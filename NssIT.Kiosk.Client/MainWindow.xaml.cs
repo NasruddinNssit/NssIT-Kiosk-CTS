@@ -787,10 +787,10 @@ namespace NssIT.Kiosk.Client
 						{
 							if ((App.CheckIsPaymentTypeAvailable(AppDecorator.Common.AppService.Sales.PaymentType.Cash)) && (App.SysParam.PrmNoPaymentNeed == false))
 							{
-								var testToBypass = App.NetClientSvc.CashPaymentService.CheckCashMachineIsReady("-", out bool isLowCoin, out bool isCoinMachRecoveryInProgressAfterDispense, out string errorMsg, 20);
+								//var testToBypass = );
 
 
-                                if (!testToBypass)
+                                if (App.NetClientSvc.CashPaymentService.CheckCashMachineIsReady("-", out bool isLowCoin, out bool isCoinMachRecoveryInProgressAfterDispense, out string errorMsg, 20))
 								{
 										//By Pass
 								}

@@ -25,4 +25,9 @@ namespace NssIT.Kiosk.AppDecorator.Common.AppService.Sales
         /// </summary>
         PaymentGateway = 3
     }
+
+    public static class FinancePaymentMethod
+    {
+        public const string CreditCard = "CreditCard";
+    }
 }

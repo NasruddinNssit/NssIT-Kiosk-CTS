@@ -91,6 +91,7 @@ namespace NssIT.Kiosk.Client
 
 		public static AppModule CurrentSaleTransactionModule { get; private set; } = AppModule.Unknown;
 
+		public static MarkLogList MarkLog { get; set; }
 		public static void ResetMaxTicketAdvanceDate()
 		{
 			DateTime dateTime = DateTime.Now.AddDays(MaxAdvanceTicketDays);
@@ -289,6 +290,7 @@ namespace NssIT.Kiosk.Client
 				//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
 				Log = DbLog.GetDbLog();
+				MarkLog = MarkLogList.GetLogList().ActivateCardMarkingLog();
 
 				Log.LogText(_logChannel, "-", $@"Start - App XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
 						"A01", "App.OnStartup");
@@ -479,6 +481,11 @@ namespace NssIT.Kiosk.Client
 			{
 				_appLock.Release();
 			}
+
+			try {
+				MarkLog.QuitMarkingLog();
+			}
+			catch { }
 		}
 
 		private void App_Exit(object sender, ExitEventArgs e)

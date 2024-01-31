@@ -185,6 +185,8 @@ namespace NssIT.Kiosk.Common.Tools.ThreadMonitor
             }
         }
 
+
+
         public void Dispose()
         {
             AbortRequest(out _);

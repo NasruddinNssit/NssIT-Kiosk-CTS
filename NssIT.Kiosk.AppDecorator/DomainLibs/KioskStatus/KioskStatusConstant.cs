@@ -112,6 +112,9 @@ namespace NssIT.Kiosk.AppDecorator.DomainLibs.KioskStatus
         /// </summary>
         [Description("Is Credit Card Settlement Done")]
         IsCreditCardSettlementDone = 100,
+
+        [Description("Is Card Machine Data Communication Normal")]
+        IsCardMachineDataCommNormal = 101
     }
 
     public static class KioskStatusConstant

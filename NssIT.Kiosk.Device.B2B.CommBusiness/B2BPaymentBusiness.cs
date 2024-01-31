@@ -42,7 +42,7 @@ namespace NssIT.Kiosk.Device.B2B.CommBusiness
 
 		public B2BPaymentBusiness()
 		{
-			_cx2d3 = new CX2D3Access();
+			//_cx2d3 = new CX2D3Access();
 
 			_b2bAccess = B2BAccess.GetB2BAccess();
 

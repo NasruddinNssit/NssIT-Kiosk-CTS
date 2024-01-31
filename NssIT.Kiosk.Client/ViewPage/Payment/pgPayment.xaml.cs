@@ -415,16 +415,25 @@ namespace NssIT.Kiosk.Client.ViewPage.Payment
 
             this.Dispatcher.Invoke(new Action(() =>
             {
+                ResourceDictionary langRec = (_language == LanguageCode.Malay) ? _langMal : _langEng;
+                _pgCreditCardPayWave.ClearEvents();
+                _pgCreditCardPayWave.InitPaymentData(_currency, _totalAmount, _transactionNo, "COM3", langRec);
+                _pgCreditCardPayWave.OnEndPayment += _pgCreditCardPayWave_OnEndPayment;
                 FrmGoPay.Content = null;
                 FrmGoPay.NavigationService.RemoveBackEntry();
+                _lastPaymentType = PaymentType.CreditCard;
+                _lastPaymentMethodString = "D";
 
+                FrmGoPay.NavigationService.Navigate(_pgCreditCardPayWave);
                 System.Windows.Forms.Application.DoEvents();
 
-                _lastPaymentType = PaymentType.CreditCard;
-                _lastPaymentMethodString = "D"; ;
-                FrmGoPay.NavigationService.Navigate(_pgCreditCardPayWave);
 
             }));
+        }
+
+        private void _pgCreditCardPayWave_OnEndPayment(object sender, EndOfPaymentEventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         private void StartBTnGPaymentDelgWorking(string paymentGateWay, string paymentGatewayLogoUrl, string paymentMethod)

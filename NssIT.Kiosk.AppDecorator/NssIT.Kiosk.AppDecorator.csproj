@@ -189,6 +189,10 @@
     <Compile Include="DomainLibs\CollectTicket\UIx\UIxCTSubmitTicketNoRequest.cs" />
     <Compile Include="DomainLibs\CollectTicket\UIx\UIxCTTicketNoNotFoundAck.cs" />
     <Compile Include="DomainLibs\CollectTicket\UIx\UIxSubmitCollectTicketPaymentRequest.cs" />
+    <Compile Include="DomainLibs\Common\CreditDebitCharge\InProgressEventArgs.cs" />
+    <Compile Include="DomainLibs\Common\CreditDebitCharge\ResponseInfo.cs" />
+    <Compile Include="DomainLibs\Common\CreditDebitCharge\SettlementDoneEventArgs.cs" />
+    <Compile Include="DomainLibs\Common\CreditDebitCharge\TrxCallBackEventArgs.cs" />
     <Compile Include="DomainLibs\KioskStatus\IStatusLocalExtension.cs" />
     <Compile Include="DomainLibs\KioskStatus\IStatusRemark.cs" />
     <Compile Include="DomainLibs\KioskStatus\KioskStatusConstant.cs" />
@@ -220,6 +224,9 @@
     <Compile Include="DomainLibs\Sqlite.DB\TableEntity\BTnGTransactionEnt.cs" />
     <Compile Include="DomainLibs\Ticketing\UIx\UIxResetUserSessionSendOnlyRequest.cs" />
     <Compile Include="Log\IAgreeLog.cs" />
+    <Compile Include="Log\Marking\MarkingLogType.cs" />
+    <Compile Include="Log\Marking\MarkLog.cs" />
+    <Compile Include="Log\Marking\MarkLogSection.cs" />
     <Compile Include="NotApplicable.cs" />
     <Compile Include="NssITThreadExtension.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

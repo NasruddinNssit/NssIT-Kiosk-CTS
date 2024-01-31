@@ -1,6 +1,7 @@
 ﻿using NssIT.Kiosk.AppDecorator.Common;
 using NssIT.Kiosk.AppDecorator.Common.AppService;
 using NssIT.Kiosk.AppDecorator.Common.AppService.Sales;
+using NssIT.Kiosk.AppDecorator.DomainLibs.Common.CreditDebitCharge;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,15 +25,20 @@ namespace NssIT.Kiosk.Client.ViewPage.Payment
 		//==================================================================
 		// For 'Boost / Touch n Go' Payment transaction
 		public string BTnGSaleTransactionNo { get; private set; }
-		//==================================================================
+        //==================================================================
 
-		/// <summary>
-		/// Payment Gateway (eWallet)
-		/// </summary>
-		/// <param name="processId"></param>
-		/// <param name="resultState"></param>
-		/// <param name="bTngSaleTransactionNo"></param>
-		public EndOfPaymentEventArgs(string processId, PaymentResult resultState, string bTngSaleTransactionNo, string paymentMethod)
+        //Credit Card Redfer to "Paysys/Revenue" data structure
+        public ResponseInfo CardResponseResult { get; private set; } = null;
+        // A Bank Reference Number after success transaction.
+        public string BankReferenceNo { get; private set; }
+        //====================================================================
+        /// <summary>
+        /// Payment Gateway (eWallet)
+        /// </summary>
+        /// <param name="processId"></param>
+        /// <param name="resultState"></param>
+        /// <param name="bTngSaleTransactionNo"></param>
+        public EndOfPaymentEventArgs(string processId, PaymentResult resultState, string bTngSaleTransactionNo, string paymentMethod)
 		{
 			ProcessId = string.IsNullOrWhiteSpace(processId) ? "-" : processId;
 			ResultState = resultState;
@@ -50,16 +56,40 @@ namespace NssIT.Kiosk.Client.ViewPage.Payment
 			BTnGSaleTransactionNo = bTngSaleTransactionNo;
 		}
 
-		/// <summary>
-		/// Cash Payment
-		/// </summary>
-		/// <param name="processId"></param>
-		/// <param name="resultState"></param>
-		/// <param name="cassette1NoteCount"></param>
-		/// <param name="cassette2NoteCount"></param>
-		/// <param name="cassette3NoteCount"></param>
-		/// <param name="refundCoinAmount"></param>
-		public EndOfPaymentEventArgs(string processId, PaymentResult resultState,
+        public EndOfPaymentEventArgs(string processId, PaymentResult resultState, string bankReferenceNo, ResponseInfo cardResponseResult = null)
+        {
+            ProcessId = string.IsNullOrWhiteSpace(processId) ? "-" : processId;
+            ResultState = resultState;
+            TypeOfPayment = PaymentType.CreditCard;
+            PaymentMethod = FinancePaymentMethod.CreditCard; ;
+
+            //CYA-DEMO
+            if (App.SysParam.PrmNoPaymentNeed == false)
+            {
+                if ((resultState == PaymentResult.Success) && (cardResponseResult is null))
+                {
+                    throw new Exception("Invalid card response data with credit card successful transaction result !");
+                }
+                else if ((resultState == PaymentResult.Success) && (string.IsNullOrWhiteSpace(bankReferenceNo)))
+                {
+                    throw new Exception("Invalid bank reference number with credit card successful transaction result !");
+                }
+            }
+
+            BankReferenceNo = bankReferenceNo;
+            CardResponseResult = cardResponseResult;
+        }
+
+        /// <summary>
+        /// Cash Payment
+        /// </summary>
+        /// <param name="processId"></param>
+        /// <param name="resultState"></param>
+        /// <param name="cassette1NoteCount"></param>
+        /// <param name="cassette2NoteCount"></param>
+        /// <param name="cassette3NoteCount"></param>
+        /// <param name="refundCoinAmount"></param>
+        public EndOfPaymentEventArgs(string processId, PaymentResult resultState,
 			int cassette1NoteCount, int cassette2NoteCount, int cassette3NoteCount, int refundCoinAmount)
 		{
 			ProcessId = string.IsNullOrWhiteSpace(processId) ? "-" : processId;

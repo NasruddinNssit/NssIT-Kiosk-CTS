@@ -147,6 +147,7 @@
     <Compile Include="Base\KioskServiceSwitching.cs" />
     <Compile Include="Base\LocalDevices\ICPassHttpReader.cs" />
     <Compile Include="Base\LocalDevices\IIdentityReader.cs" />
+    <Compile Include="Base\MarkLogList.cs" />
     <Compile Include="Base\NetServiceAnswerMan.cs" />
     <Compile Include="Base\PassengerIdentity.cs" />
     <Compile Include="Base\ScreenImageManager.cs" />
@@ -785,6 +786,18 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\repos\KTMB_KTMBKiosk2_new\KTMBKiosk\NssIT.Kiosk.Device.PAX.IM20.AccessSDK\NssIT.Kiosk.Device.PAX.IM20.AccessSDK.csproj">
+      <Project>{1783EAD6-B687-4D16-835B-0DFCC50BCE81}</Project>
+      <Name>NssIT.Kiosk.Device.PAX.IM20.AccessSDK</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\repos\KTMB_KTMBKiosk2_new\KTMBKiosk\NssIT.Kiosk.Device.PAX.IM20.OrgAPI\NssIT.Kiosk.Device.PAX.IM20.OrgAPI.csproj">
+      <Project>{C0478A28-B53B-4184-B246-AEEA8A096D43}</Project>
+      <Name>NssIT.Kiosk.Device.PAX.IM20.OrgAPI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\repos\KTMB_KTMBKiosk2_new\KTMBKiosk\NssIT.Kiosk.Tools\NssIT.Kiosk.Tools.csproj">
+      <Project>{2B735ED3-D8F9-4B25-9992-F8D0ABDC4221}</Project>
+      <Name>NssIT.Kiosk.Tools</Name>
+    </ProjectReference>
     <ProjectReference Include="..\NssIT.Kiosk.AppDecorator\NssIT.Kiosk.AppDecorator.csproj">
       <Project>{1cc91bda-e1d3-4eab-9d67-7d04b224f837}</Project>
       <Name>NssIT.Kiosk.AppDecorator</Name>

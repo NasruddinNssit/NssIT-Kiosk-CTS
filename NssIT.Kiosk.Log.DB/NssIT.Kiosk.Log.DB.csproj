@@ -65,7 +65,11 @@
   <ItemGroup>
     <Compile Include="DbLog.cs" />
     <Compile Include="LogDBManager.cs" />
+    <Compile Include="MarkingLogMaster.cs" />
+    <Compile Include="MarkingLog\BaseMarkingLog.cs" />
+    <Compile Include="MarkingLog\TriggerNTimeInterval\TriggerTimeIntervalMarkingLog.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StatusMonitor\StatusHub.cs" />
     <Compile Include="WithDataException.cs" />
   </ItemGroup>
   <ItemGroup>
