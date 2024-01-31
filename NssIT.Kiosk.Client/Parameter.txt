@@ -1,5 +1,6 @@
 LocalServerPort=7385
 ClientPort=23838
+PayWaveCOM=COM3
 AppGroupCode=Melaka 
 IsDebugMode=Yes
 MyKadScanner=Yes

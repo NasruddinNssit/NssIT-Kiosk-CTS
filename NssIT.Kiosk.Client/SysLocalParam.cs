@@ -54,6 +54,7 @@ namespace NssIT.Kiosk.Client
 		public bool PrmMyKadScanner { get; private set; } = false;
 		public string PrmAppGroupCode { get; private set; } = "Melaka";
 
+		public string PrmPayWaveCOM { get; private set; } = null;
 		public SysLocalParam() { }
 
 		private string FullParamFileName
@@ -109,6 +110,7 @@ namespace NssIT.Kiosk.Client
 				PrmIsDebugMode = false;
 				PrmNoPaymentNeed = false;
 				PrmMyKadScanner = false;
+                PrmPayWaveCOM = null;
 
 				ReadAllValues(retParam);
 
@@ -227,6 +229,10 @@ namespace NssIT.Kiosk.Client
 							PrmClientPort = -1;
 					}
 				}
+				else if(prmNm.ToUpper().Equals("PayWaveCOM", StringComparison.InvariantCultureIgnoreCase))
+				{
+                    PrmPayWaveCOM = string.IsNullOrWhiteSpace(prmVal) ? null : prmVal.Trim().ToUpper();
+                }
 				else if (prmNm.ToUpper().Equals("LocalServerPort", StringComparison.InvariantCultureIgnoreCase))
 				{
 					int intPortX = -1;

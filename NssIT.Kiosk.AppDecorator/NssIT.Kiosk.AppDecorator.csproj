@@ -147,6 +147,7 @@
     <Compile Include="Common\AppService\UIxGnBTnGAck.cs" />
     <Compile Include="Common\AppService\UIxKioskDataAckBase.cs" />
     <Compile Include="Common\AppService\UIxKioskDataRequestBase.cs" />
+    <Compile Include="Common\CreditCardResponse.cs" />
     <Compile Include="Common\Delegate\App\AppDelegationList.cs" />
     <Compile Include="Common\IMessageDuplicate.cs" />
     <Compile Include="Common\LanguageCode.cs" />

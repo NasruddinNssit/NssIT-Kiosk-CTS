@@ -25,6 +25,8 @@ using System.IO;
 using NssIT.Kiosk.AppDecorator.Common.AppService;
 using static NssIT.Kiosk.Client.ViewPage.Payment.pgPaymentTypes;
 using NssIT.Kiosk.AppDecorator;
+using NssIT.Kiosk.Log.DB;
+using NssIT.Kiosk.AppDecorator.DomainLibs.Common.CreditDebitCharge;
 
 namespace NssIT.Kiosk.Client.ViewPage.Payment
 {
@@ -52,7 +54,7 @@ namespace NssIT.Kiosk.Client.ViewPage.Payment
         private pgPaymentTypes _paymentTypesPage = null; 
         private pgPrintTicket2 _printTicketPage = null;
         private IPaymentTraffitController _paymentTraffitController = null;
-
+        private CreditCardResponse _lastCreditCardAnswer = null;
         private decimal _departTotalPricePerTicket = 0M;
         private string _currency = "RM";
         private string _passgName = "-Bus Passenger-";
@@ -417,7 +419,7 @@ namespace NssIT.Kiosk.Client.ViewPage.Payment
             {
                 ResourceDictionary langRec = (_language == LanguageCode.Malay) ? _langMal : _langEng;
                 _pgCreditCardPayWave.ClearEvents();
-                _pgCreditCardPayWave.InitPaymentData(_currency, _totalAmount, _transactionNo, "COM3", langRec);
+                _pgCreditCardPayWave.InitPaymentData(_currency, _totalAmount, _transactionNo, App.SysParam.PrmPayWaveCOM, langRec);
                 _pgCreditCardPayWave.OnEndPayment += _pgCreditCardPayWave_OnEndPayment;
                 FrmGoPay.Content = null;
                 FrmGoPay.NavigationService.RemoveBackEntry();
@@ -433,7 +435,124 @@ namespace NssIT.Kiosk.Client.ViewPage.Payment
 
         private void _pgCreditCardPayWave_OnEndPayment(object sender, EndOfPaymentEventArgs e)
         {
-            throw new NotImplementedException();
+            string bankRefNo = "";
+            bool isAllowAlert = true;
+            try
+            {
+                bankRefNo = e.BankReferenceNo;
+
+                //CYA-DEMO
+                if (App.SysParam.PrmNoPaymentNeed)
+                    bankRefNo = DateTime.Now.ToString("MMddHHmmss");
+
+                if (_endPaymentThreadWorker != null)
+                {
+                    if ((_endPaymentThreadWorker.ThreadState & ThreadState.Stopped) != ThreadState.Stopped)
+                    {
+                        try
+                        {
+                            _endPaymentThreadWorker.Abort();
+                            Thread.Sleep(300);
+                        }
+                        catch { }
+                    }
+                }
+
+                isAllowAlert = false;
+                _endPaymentThreadWorker = new Thread(new ThreadStart(OnEndPaymentThreadWorking));
+                _endPaymentThreadWorker.IsBackground = true;
+                _endPaymentThreadWorker.Start();
+            }
+            catch (Exception ex)
+            {
+                App.Log.LogError(_logChannel, _transactionNo,
+                   new WithDataException($@"{ex.Message}; (EXIT10001126)", ex, e), "EX02", "pgPayment._cashPaymentPage_OnEndPayment",
+                   adminMsg: $@"{ex.Message}; (EXIT10001126)");
+
+                if (isAllowAlert)
+                {
+                    App.MainScreenControl.Alert(detailMsg: $@"{ex.Message}; (EXIT10001126)");
+                }
+            }
+
+            return;
+            //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+            void OnEndPaymentThreadWorking()
+            {
+                try
+                {
+                    if(e.ResultState == PaymentResult.Success)
+                    {
+                        //reset counter
+                        ResponseInfo respInfo = e.CardResponseResult;
+                        _lastCreditCardAnswer = new CreditCardResponse()
+                        {
+                            adat = respInfo.AdditionalData,
+                            aid = respInfo.AID,
+                            apvc = respInfo.ApprovalCode,
+                            bcam = respInfo.BatchCurrencyAmount,
+                            bcno = respInfo.BatchNumber,
+                            btct = respInfo.BatchCount,
+                            camt = respInfo.CurrencyAmount,
+                            cdnm = respInfo.CardholderName,
+                            cdno = respInfo.CardNo,
+                            cdty = respInfo.CardType,
+                            erms = respInfo.ErrorMsg,
+                            hsno = respInfo.HostNo,
+                            mcid = respInfo.MachineId,
+                            mid = respInfo.MID,
+                            rmsg = respInfo.ResponseMsg,
+                            rrn = respInfo.RRN,
+                            stcd = respInfo.StatusCode,
+                            tid = respInfo.TID,
+                            trcy = respInfo.TC,
+                            trdt = DateTime.Now,
+                            ttce = respInfo.TransactionTrace,
+                            CardToken = respInfo.CardToken
+                        };
+
+                        this.Dispatcher.Invoke(new Action(() =>
+                        {
+                            FrmPayInfo.Content = null;
+                            FrmPayInfo.NavigationService.RemoveBackEntry();
+                            System.Windows.Forms.Application.DoEvents();
+
+                            _printTicketPage.InitSuccessPaymentCompleted(_transactionNo, _language);
+
+                            _pgCreditCardPayWave.ClearEvents();
+
+                            FrmGoPay.Content = null;
+                            FrmGoPay.NavigationService.RemoveBackEntry();
+                            FrmPayInfo.NavigationService.Navigate(_printTicketPage);
+                            System.Windows.Forms.Application.DoEvents();
+
+                        })); 
+
+                        //call API
+                        //App.NetClientSvc.SalesService.SubmitSalesPayment(_transactionNo, _totalAmount)
+                    }else if((e.ResultState == PaymentResult.Cancel) || (e.ResultState == PaymentResult.Fail))
+                    {
+                        if ((App.AvailablePaymentTypeList?.Length == 1) && (App.CheckIsPaymentTypeAvailable(PaymentType.Cash)))
+                            CancelPaymentDelgWorking();
+                        else
+                            ShowPaymentTypeSelection();
+                    }
+                    else
+                    {
+                        CancelPaymentDelgWorking();
+                    }
+                }catch(ThreadAbortException) { }
+                catch (Exception ex)
+                {
+                    App.Log.LogError(_logChannel, "-", ex, "EX02", "pgPayment.OnEndPaymentThreadWorking");
+
+                }
+                finally
+                {
+                    _endPaymentThreadWorker = null;
+                }
+            }
+
         }
 
         private void StartBTnGPaymentDelgWorking(string paymentGateWay, string paymentGatewayLogoUrl, string paymentMethod)
