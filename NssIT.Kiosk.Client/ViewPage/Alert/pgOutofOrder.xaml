@@ -1,0 +1,103 @@
+﻿<Page x:Class="NssIT.Kiosk.Client.ViewPage.Alert.pgOutofOrder"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:NssIT.Kiosk.Client.ViewPage.Alert"
+      mc:Ignorable="d" 
+      Stylus.IsPressAndHoldEnabled="False"
+      d:DesignHeight="710" d:DesignWidth="750"
+      FontFamily="Segoe UI" Background="White"
+      Title="Out of Order" Loaded="Page_Loaded" Unloaded="Page_Unloaded">
+
+    <Page.Resources>
+        <ResourceDictionary>
+            <Style x:Key="btnAsistance" TargetType="Button">
+                <Setter Property="FontSize" Value="15"/>
+                <Setter Property="Foreground" Value="#777777"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Border CornerRadius="23" Background="#CDF7FD">
+                                <ContentPresenter x:Name="contentPresenter" 
+                                                  ContentTemplate="{TemplateBinding ContentTemplate}" 
+                                                  Content="{TemplateBinding Content}" 
+                                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                                  Margin="{TemplateBinding Padding}" 
+                                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+    </Page.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="40"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="2.9*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="40"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="5.1*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+
+        <!-- Background -->
+        <Image Grid.Column="0" Grid.ColumnSpan="5" Grid.Row="0" Grid.RowSpan="7" 
+               Source= "/Resources/TVM-bg.png" Stretch="UniformToFill" HorizontalAlignment="Center" />
+
+        <!-- Logo -->
+        <Image Grid.Column="3" Grid.Row="1" Source="/Resources/MelakaSentral-logo.png" HorizontalAlignment="Right" Margin="0 -7 -7 0" x:Name="ImgStationLogo"/>
+
+        <TextBlock Grid.Column="2" Grid.Row="4" x:Name="TxtTimeStr"  VerticalAlignment="Top" TextAlignment="Center" Foreground="#FFAAAAAA" Width="300" MaxWidth="300" MaxHeight="80"
+                   FontSize="12" FontWeight="Bold" Text="20201101-133057-64735" TextWrapping="Wrap"/>
+
+        <Image Grid.Column="1" Grid.Row="5" Margin="0 0 0 -10" HorizontalAlignment="Left" 
+                   Source="/Resources/NSS-poweredby logo.png"/>
+
+        <TextBlock Grid.Column="3" Grid.Row="5" Text="xxxxx"  Foreground="#FF777777" TextAlignment="Right"
+                           HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,30,5" MaxWidth="150" TextWrapping="WrapWithOverflow" 
+                           x:Name="TxtSysVer"/>
+
+        <!--Box-->
+        <Viewbox Grid.Column="2" Grid.Row="3">
+            <Grid Grid.Column="2" Grid.Row="3">
+                <Image Source="/Resources/redwhitebox.png"/>
+
+                <TextBlock HorizontalAlignment="Center" TextAlignment="Center" VerticalAlignment="Center" 
+                   FontSize="60" FontWeight="Bold">
+                    <Run x:Name="TxtMalMsg" Text="TIDAK BERFUNGSI" Foreground="#000000"/>
+                    <LineBreak/>
+                    <Run x:Name="TxtEngMsg" Text="OUT OF ORDER" Foreground="#777777"/>
+                </TextBlock>
+
+                <TextBlock x:Name="TxtProblemMsg"  VerticalAlignment="Center" TextAlignment="Left" Foreground="#777777" Width="300" MaxWidth="300" MaxHeight="80"
+                   FontSize="12" FontWeight="Bold" Text="" Margin="216,377,216,143" TextWrapping="Wrap"/>
+
+                <Button Style="{StaticResource btnAsistance}" VerticalAlignment="Bottom" HorizontalAlignment="Right"
+                Height="50" Width="190" Margin="0,0,54,73" Visibility="Collapsed" >
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Text="Hello, press here for assistance" TextWrapping="Wrap" TextAlignment="Center" VerticalAlignment="Center"/>
+
+                        <Image Grid.Column="1" Source="/Resources/help-green.png" Margin="0 -2 -22 -9"/>
+                    </Grid>
+                </Button>
+            </Grid>
+        </Viewbox>
+
+    </Grid>
+</Page>

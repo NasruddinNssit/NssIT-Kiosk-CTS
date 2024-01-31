@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1A7EA8E2-B587-488F-BD60-8E9C39BB1417}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>NssIT.Kiosk.Device.B2B.B2BDecorator</RootNamespace>
+    <AssemblyName>NssIT.Kiosk.Device.B2B.B2BDecorator</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="B2BTools\B2BCountryToCurrencyCode.cs" />
+    <Compile Include="Command\B2BCommandCode.cs" />
+    <Compile Include="Command\B2BCommandResultCode.cs" />
+    <Compile Include="Command\B2BModuleAppGroup.cs" />
+    <Compile Include="Command\CommandSpec\B2BAllCassetteInfoRequest.cs" />
+    <Compile Include="Command\CommandSpec\B2BPaymentCancelCommand.cs" />
+    <Compile Include="Command\CommandSpec\B2BPaymentCommand.cs" />
+    <Compile Include="Command\IB2BCommand.cs" />
+    <Compile Include="Command\IB2BCommandParameter.cs" />
+    <Compile Include="Common\AppService\Instruction\UIB2BInstruction.cs" />
+    <Compile Include="Common\AppService\Machine\UI\UIB2BAllCassetteInfo.cs" />
+    <Compile Include="Common\AppService\Machine\UI\UIB2BAllCassetteInfoRequest.cs" />
+    <Compile Include="Data\B2BCassetteInfo.cs" />
+    <Compile Include="Data\B2BCassetteInfoCollection.cs" />
+    <Compile Include="Command\Parameter\B2BCommandPaymentParam.cs" />
+    <Compile Include="Data\BillTable.cs" />
+    <Compile Include="Data\Machine\B2BApiNewInsertedNote.cs" />
+    <Compile Include="Data\Machine\B2BApiPaymentFound.cs" />
+    <Compile Include="Error\B2BMalfunctionException.cs" />
+    <Compile Include="Events\InProgressEventArgs.cs" />
+    <Compile Include="Events\InterruptCommandEventArgs.cs" />
+    <Compile Include="Events\MachineEventArgs.cs" />
+    <Compile Include="Events\TrxCallBackEventArgs.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\NssIT.Kiosk.AppDecorator\NssIT.Kiosk.AppDecorator.csproj">
+      <Project>{1cc91bda-e1d3-4eab-9d67-7d04b224f837}</Project>
+      <Name>NssIT.Kiosk.AppDecorator</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

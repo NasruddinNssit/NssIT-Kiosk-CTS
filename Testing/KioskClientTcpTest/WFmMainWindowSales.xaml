@@ -1,0 +1,15 @@
+﻿<Window x:Class="KioskClientTcpTest.WFmMainWindowSales"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:KioskClientTcpTest"
+        mc:Ignorable="d"
+        Title="WFmMainWindowSales" Height="450" Width="800">
+    <Grid>
+        <Button x:Name="BtnCheckServerStatus" Content="Check Server Status" HorizontalAlignment="Left" Margin="10,20,0,0" VerticalAlignment="Top" Width="335" Click="BtnCheckServerStatus_Click"/>
+        <Button x:Name="BtnStartNewSales" Content="Get Destination List (Melaka Sentral - Start new Sales)" HorizontalAlignment="Left" Margin="10,90,0,0" VerticalAlignment="Top" Width="335" Height="25" Click="BtnStartNewSales_Click"/>
+        <Button x:Name="BtnReLogon" Content="Re-Logon" HorizontalAlignment="Left" Margin="10,55,0,0" VerticalAlignment="Top" Width="335" Click="BtnReLogon_Click"/>
+
+    </Grid>
+</Window>

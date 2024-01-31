@@ -1,0 +1,147 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{EE33EF5E-7375-4FD6-979C-194DE1109E17}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>NssIT.Kiosk.Server.AccessDB</RootNamespace>
+    <AssemblyName>NssIT.Kiosk.Server.AccessDB</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.SQLite, Version=1.0.115.5, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.115.5\lib\net46\System.Data.SQLite.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.SQLite.EF6, Version=1.0.115.5, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.SQLite.EF6.1.0.115.5\lib\net46\System.Data.SQLite.EF6.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.SQLite.Linq, Version=1.0.115.5, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.SQLite.Linq.1.0.115.5\lib\net46\System.Data.SQLite.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Activation" />
+    <Reference Include="System.ServiceModel.Activities" />
+    <Reference Include="System.ServiceModel.Channels" />
+    <Reference Include="System.ServiceModel.Discovery" />
+    <Reference Include="System.ServiceModel.Routing" />
+    <Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AccessCommandPack.cs" />
+    <Compile Include="AxCommand\AxUpSertKioskStatus.cs" />
+    <Compile Include="AxCommand\BTnG\AxGetAvailablePaymentGateway.cs" />
+    <Compile Include="AxCommand\BTnG\AxUpdateSuccessTransLog.cs" />
+    <Compile Include="AxCommand\CTCollectTicket\AxCompleteSaleCollectTicketTransaction.cs" />
+    <Compile Include="AxCommand\CTCollectTicket\AxCTGetBusCompany.cs" />
+    <Compile Include="AxCommand\CTCollectTicket\AxCTGetTicket.cs" />
+    <Compile Include="AxCommand\IAx.cs" />
+    <Compile Include="AxCommand\IAxCommand.cs" />
+    <Compile Include="CommandExec\CompleteTransactionElseReleaseSeatExecution.cs" />
+    <Compile Include="CommandExec\DepartCustInfoUpdateElseReleaseSeatExecution.cs" />
+    <Compile Include="CommandExec\DepartSeatConfirmExecution.cs" />
+    <Compile Include="CommandExec\GetOriginExecution.cs" />
+    <Compile Include="CommandExec\ReleaseSeatExecution.cs" />
+    <Compile Include="CommandExec\GetDepartSeatListExecution.cs" />
+    <Compile Include="CommandExec\GetDestinationExecution.cs" />
+    <Compile Include="CommandExec\GetDepartTripExecution.cs" />
+    <Compile Include="CommandExec\IAccessCommandExec.cs" />
+    <Compile Include="AccessCommandRepository.cs" />
+    <Compile Include="CommandExec\WebServerLogonExecution.cs" />
+    <Compile Include="RegistryTools.cs" />
+    <Compile Include="Security.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SecurityCommon.cs" />
+    <Compile Include="ServerAccess.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\NssIT.Kiosk.AppDecorator\NssIT.Kiosk.AppDecorator.csproj">
+      <Project>{1cc91bda-e1d3-4eab-9d67-7d04b224f837}</Project>
+      <Name>NssIT.Kiosk.AppDecorator</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NssIT.Kiosk.Common.Tools\NssIT.Kiosk.Common.Tools.csproj">
+      <Project>{c1d10fa5-9e91-4390-8f8a-888ade28cab0}</Project>
+      <Name>NssIT.Kiosk.Common.Tools</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NssIT.Kiosk.Common.WebAPI\NssIT.Kiosk.Common.WebAPI.csproj">
+      <Project>{755f7baf-3f2d-47bf-8050-e6bcb8170d61}</Project>
+      <Name>NssIT.Kiosk.Common.WebAPI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NssIT.Kiosk.Common.WebService\NssIT.Kiosk.Common.WebService.csproj">
+      <Project>{6450360b-dd19-42ae-ae77-25dc5800c23e}</Project>
+      <Name>NssIT.Kiosk.Common.WebService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NssIT.Kiosk.Log.DB\NssIT.Kiosk.Log.DB.csproj">
+      <Project>{92b559f6-ad65-4818-9300-badd7f849853}</Project>
+      <Name>NssIT.Kiosk.Log.DB</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NssIT.Kiosk.Network.SignalRClient.API\NssIT.Kiosk.Network.SignalRClient.API.csproj">
+      <Project>{11dfb38d-b281-4f28-9e86-674e0af7ca9d}</Project>
+      <Name>NssIT.Kiosk.Network.SignalRClient.API</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NssIT.Kiosk.Sqlite.DB\NssIT.Kiosk.Sqlite.DB.csproj">
+      <Project>{df6a256f-99b3-4510-9667-199fcf0deb0d}</Project>
+      <Name>NssIT.Kiosk.Sqlite.DB</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="AxCommand\CTCollectTicket\Backup\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+    <Error Condition="!Exists('..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.115.5\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.115.5\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+  <Import Project="..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.115.5\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets" Condition="Exists('..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.115.5\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets')" />
+</Project>

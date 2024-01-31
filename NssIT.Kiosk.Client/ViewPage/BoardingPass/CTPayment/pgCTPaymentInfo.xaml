@@ -1,0 +1,256 @@
+﻿<Page x:Class="NssIT.Kiosk.Client.ViewPage.BoardingPass.CTPayment.pgCTPaymentInfo"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:NssIT.Kiosk.Client.ViewPage.BoardingPass.CTPayment"
+      mc:Ignorable="d" 
+      d:DesignWidth="1180"
+      FontFamily="Roboto"
+      Title="Payment Infor" Loaded="Page_Loaded" Unloaded="Page_Unloaded">
+
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="rosCTPaymentEnglish.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+
+    <Border Background="#FFE8E8E8" BorderThickness="2" BorderBrush="#E4E4E4" CornerRadius="20,20,20,20">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="15"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="13"/>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="15"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+
+                    <!-- 0 <Space> -->
+                    <RowDefinition Height="15"/>
+
+                    <!-- 1 Company (Trip No) -->
+                    <RowDefinition MinHeight="45"/>
+
+                    <!-- 2 Ticket No -->
+                    <RowDefinition Height="Auto"/>
+
+                    <!-- 3 Trip No -->
+                    <RowDefinition Height="Auto"/>
+
+                    <!-- 4 Departure Date -->
+                    <RowDefinition Height="Auto"/>
+
+                    <!-- 5 From-To Location -->
+                    <RowDefinition Height="Auto"/>
+
+                    <!-- 6 To Location -->
+                    <RowDefinition Height="Auto"/>
+
+                    <!-- 7 Seat Info -->
+                    <RowDefinition Height="Auto"/>
+
+                    <!-- xx <Space> -->
+                    <RowDefinition Height="15"/>
+
+                    <!-- 8 Passenger Name -->
+                    <RowDefinition Height="Auto"/>
+
+                    <!-- 9 IC/Passport -->
+                    <RowDefinition Height="Auto"/>
+
+                    <!-- 10 Contact No -->
+                    <RowDefinition Height="Auto"/>
+
+                    <!-- 11 <Space> -->
+                    <RowDefinition Height="15"/>
+                </Grid.RowDefinitions>
+
+                <Grid.Resources>
+                    <ResourceDictionary>
+                        <Style x:Key="ToggleLeftButton" TargetType="{x:Type Button}">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border CornerRadius="5 0 0 5" Background="#FFFFFF" BorderBrush="#E4E4E4" BorderThickness="1">
+                                            <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                        <Style x:Key="ToggleRightButton" TargetType="{x:Type Button}">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border CornerRadius="0 5 5 0" Background="#F5F5F5" BorderBrush="#E4E4E4" BorderThickness="1">
+                                            <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                        <Style x:Key="MykadButton" TargetType="{x:Type Button}">
+                            <Setter Property="Foreground" Value="#FFFFFF"/>
+                            <Setter Property="HorizontalAlignment" Value="Left"/>
+                            <Setter Property="VerticalAlignment" Value="Center"/>
+                            <Setter Property="Padding" Value="5 5 5 5"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border CornerRadius="5" Background="#2B9CDB">
+                                            <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                        <Style x:Key="ConfirmButton" TargetType="{x:Type Button}">
+                            <Setter Property="Foreground" Value="#FFFFFF"/>
+                            <Setter Property="HorizontalAlignment" Value="Right"/>
+                            <Setter Property="VerticalAlignment" Value="Top"/>
+                            <Setter Property="Padding" Value="30 10 30 10"/>
+                            <Setter Property="Margin" Value="0 5 25 0"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border CornerRadius="10" Background="#43D82C">
+                                            <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </ResourceDictionary>
+                </Grid.Resources>
+
+                <!-- 1 Company (Trip No) -->
+                <Grid Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3" Margin="0,7,0,7">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Image Grid.Column="0" Grid.Row="0" MaxWidth="150" Height="40" x:Name="ImgBusComapnyLogo" VerticalAlignment="Top" Margin="0,10,0,10"/>
+                    <TextBlock Grid.Column="1" Grid.Row="0" FontSize="32" FontWeight="Bold" Text="BUS COMPANY NAME" Foreground="Black" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" TextWrapping="WrapWithOverflow" x:Name="TxtBusCompanyName"/>
+                </Grid>
+
+                <!-- 2 Ticket No -->
+                <TextBlock Grid.Column="1" Grid.Row="2" FontSize="22" Text="{DynamicResource TICKET_NO_Label}" Foreground="#FF777777" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,5,0,5"/>
+                <TextBlock Grid.Column="2" Grid.Row="2" FontSize="22" FontWeight="DemiBold" Text=":" Foreground="#FF777777" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,5,0,5"/>
+                <TextBlock Grid.Column="3" Grid.Row="2" FontSize="22" FontWeight="Bold" Text="GHT73645857457" Foreground="#FF777777" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,5,0,5" x:Name="TxtTicketNo"/>
+
+                <!-- 3 Trip No -->
+                <TextBlock Grid.Column="1" Grid.Row="3" FontSize="22" Text="{DynamicResource TRIP_NO_Label}" Foreground="#FF777777" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,5,0,5"/>
+                <TextBlock Grid.Column="2" Grid.Row="3" FontSize="22" FontWeight="DemiBold" Text=":" Foreground="#FF777777" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,5,0,5"/>
+                <TextBlock Grid.Column="3" Grid.Row="3" FontSize="22" FontWeight="Bold" Text="Trip84365" Foreground="#FF777777" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,5,0,5" x:Name="TxtTripNo"/>
+
+
+                <!-- 4 Departure Date -->
+                <TextBlock Grid.Column="1" Grid.Row="4" FontSize="22" Text="{DynamicResource DEPARTURE_DATE_Label}" Foreground="#FF777777" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,5,0,5"/>
+                <TextBlock Grid.Column="2" Grid.Row="4" FontSize="22" FontWeight="DemiBold" Text=":" Foreground="#FF777777" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,5,0,5"/>
+                <TextBlock Grid.Column="3" Grid.Row="4" FontSize="22" FontWeight="Bold" Text="17 Dec 2021" Foreground="#FF777777" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,5,0,5" x:Name="TxtDepartureDate"/>
+
+                <!-- 5 From-To Location -->
+                <TextBlock Grid.Column="1" Grid.Row="5" FontSize="22" Text="{DynamicResource FROM_Label}" Foreground="#FF777777" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,5,0,5"/>
+                <TextBlock Grid.Column="2" Grid.Row="5" FontSize="22" FontWeight="DemiBold" Text=":" Foreground="#FF777777" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,5,0,5"/>
+                <TextBlock Grid.Column="3" Grid.Row="5" FontSize="22" FontWeight="Bold" Text="Kuala Lumpur" Foreground="#FF777777" HorizontalAlignment="Left" VerticalAlignment="Center" TextWrapping="WrapWithOverflow" Margin="0,5,0,5" x:Name="TxtFrom"/>
+
+                <!-- 5 From-To Location -->
+                <TextBlock Grid.Column="1" Grid.Row="6" FontSize="22" Text="{DynamicResource To_Label}" Foreground="#FF777777" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,5,0,5"/>
+                <TextBlock Grid.Column="2" Grid.Row="6" FontSize="22" FontWeight="DemiBold" Text=":" Foreground="#FF777777" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,5,0,5"/>
+                <TextBlock Grid.Column="3" Grid.Row="6" FontSize="22" FontWeight="Bold" Text="Ipoh" Foreground="#FF777777" HorizontalAlignment="Left" VerticalAlignment="Center" TextWrapping="WrapWithOverflow" Margin="0,5,0,5" x:Name="TxtTo"/>
+
+                <!-- 6 Seat Info -->
+                <TextBlock Grid.Column="1" Grid.Row="7" FontSize="22" Text="{DynamicResource SEAT_Label}" Foreground="#FF777777" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,5,0,5"/>
+                <TextBlock Grid.Column="2" Grid.Row="7" FontSize="22" FontWeight="DemiBold" Text=":" Foreground="#FF777777" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,5,0,5"/>
+                <TextBlock Grid.Column="3" Grid.Row="7" FontSize="22" FontWeight="Bold" Text="B5     RM 16.80     (Type: A)" Foreground="#FF777777" HorizontalAlignment="Left" VerticalAlignment="Center" TextWrapping="WrapWithOverflow" Margin="0,5,0,5" x:Name="TxtSeat"/>
+
+                <!-- 7 #Line# -->
+                <Line Grid.Column="1" Grid.Row="8" Grid.ColumnSpan="3" X1="0" Y1="0" X2="550" Y2="0" Stroke="#FF999999" Fill="#FF999999" StrokeThickness="2" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,7,0,7" />
+
+                <!-- 7 Passenger Name -->
+                <TextBlock Grid.Column="1" Grid.Row="9" FontSize="22" Text="{DynamicResource PASSENGER_NAME_Label}" Foreground="#FF777777" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,5,0,5"/>
+                <TextBlock Grid.Column="2" Grid.Row="9" FontSize="22" FontWeight="DemiBold" Text=":" Foreground="#FF777777" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,5,0,5"/>
+                <TextBlock Grid.Column="3" Grid.Row="9" FontSize="22" FontWeight="Bold" Text="Passenger Name" Foreground="#FF777777" HorizontalAlignment="Left" VerticalAlignment="Center" TextWrapping="WrapWithOverflow" Margin="0,5,0,5" x:Name="TxtPassgName" />
+
+                <!-- 8 IC/Passport -->
+                <TextBlock Grid.Column="1" Grid.Row="10" FontSize="22" Text="{DynamicResource IC_PASSPORT_Label}" Foreground="#FF777777" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,5,0,5"/>
+                <TextBlock Grid.Column="2" Grid.Row="10" FontSize="22" FontWeight="DemiBold" Text=":" Foreground="#FF777777" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,5,0,5"/>
+                <TextBlock Grid.Column="3" Grid.Row="10" FontSize="22" FontWeight="Bold" Text="IC/Passport" Foreground="#FF777777" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,5,0,5" x:Name="TxtICPass" />
+
+                <!-- 9 Contact No -->
+                <TextBlock Grid.Column="1" Grid.Row="11" FontSize="22" Text="{DynamicResource CONTACT_NO_Label}" Foreground="#FF777777" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,5,0,5"/>
+                <TextBlock Grid.Column="2" Grid.Row="11" FontSize="22" FontWeight="DemiBold" Text=":" Foreground="#FF777777" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,5,0,5"/>
+                <TextBlock Grid.Column="3" Grid.Row="11" FontSize="22" FontWeight="Bold" Text="Contact No" Foreground="#FF777777" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,5,0,5" x:Name="TxtContactNo" />
+            </Grid>
+
+            <Border  Grid.Column="1" Background="White" BorderThickness="2" BorderBrush="#E4E4E4" CornerRadius="20,20,20,20" Margin="30,30,30,30">
+                <Grid Grid.Column="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="30"/>
+                        <ColumnDefinition Width="1.5*"/>
+                        <ColumnDefinition Width="13"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="30"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <!-- 0 <Space> -->
+                        <RowDefinition Height="*"/>
+                        <!-- 1 Title -->
+                        <RowDefinition Height="Auto"/>
+                        <!-- 2 <Space> -->
+                        <RowDefinition Height="*"/>
+                        <!-- 3 Facility Charge -->
+                        <RowDefinition Height="Auto"/>
+                        <!-- 4 <Space> -->
+                        <RowDefinition Height="0.5*"/>
+                        <!-- 5 QR Charge -->
+                        <RowDefinition Height="Auto"/>
+                        <!-- 6 <Space> -->
+                        <RowDefinition Height="*"/>
+                        <!-- 7 #Line# -->
+                        <RowDefinition Height="Auto"/>
+                        <!-- 8 <Space> -->
+                        <RowDefinition Height="*"/>
+                        <!-- 9 ToTal -->
+                        <RowDefinition Height="Auto"/>
+                        <!-- 10 <Space> -->
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- 1 Title -->
+                    <TextBlock Grid.Column="1" Grid.Row="1" FontSize="32" FontWeight="Bold" Text="{DynamicResource CHARGES_Label}" VerticalAlignment="Center"/>
+
+                    <!-- 3 Facility Charge -->
+                    <TextBlock Grid.Column="1" Grid.Row="3" FontSize="22" Foreground="#FF777777" Text="{DynamicResource FASILITY_CHARGE_Label}" VerticalAlignment="Center"/>
+                    <TextBlock Grid.Column="2" Grid.Row="3" FontSize="22" Foreground="#FF777777" Text=":" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    <TextBlock Grid.Column="3" Grid.Row="3" FontSize="22" Foreground="#FF777777" FontWeight="Bold" Text="RM 0.70" VerticalAlignment="Center" HorizontalAlignment="Right" x:Name="TxtFasilityCharges"/>
+
+                    <!-- 5 QR Charge -->
+                    <TextBlock Grid.Column="1" Grid.Row="5" FontSize="22" Foreground="#FF777777" Text="{DynamicResource QR_CHARGE_Label}" VerticalAlignment="Center"/>
+                    <TextBlock Grid.Column="2" Grid.Row="5" FontSize="22" Foreground="#FF777777" Text=":" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    <TextBlock Grid.Column="3" Grid.Row="5" FontSize="22" Foreground="#FF777777" Text="RM 0.50" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Right" x:Name="TxtQRCharges"/>
+
+                    <!-- 7 #Line# -->
+                    <Line Grid.Column="1" Grid.Row="7" Grid.ColumnSpan="3" X1="0" Y1="0" X2="490" Y2="0" Stroke="#FFBBBBBB" Fill="#FFBBBBBB" StrokeThickness="2" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,7,0,7" />
+
+                    <!-- 9 ToTal -->
+                    <TextBlock Grid.Column="1" Grid.Row="9" FontSize="32" Text="{DynamicResource TOTAL_AMOUNT_Label}" VerticalAlignment="Center"/>
+                    <TextBlock Grid.Column="2" Grid.Row="9" FontSize="32" Text=":" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    <TextBlock Grid.Column="3" Grid.Row="9" FontSize="38" Text="RM 1.30" FontWeight="Bold" Foreground="#FF43D82C" VerticalAlignment="Center" HorizontalAlignment="Right" x:Name="TxtTotalAmount"/>
+
+                </Grid>
+            </Border>
+        </Grid>
+    </Border>
+
+
+</Page>

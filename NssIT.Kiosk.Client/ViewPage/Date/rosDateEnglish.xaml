@@ -1,0 +1,17 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:NssIT.Kiosk.Client.ViewPage.Date">
+
+    <sys:String x:Key="PREVLabel">PREV</sys:String>
+    <sys:String x:Key="NEXTLabel">NEXT</sys:String>
+    <sys:String x:Key="SEARCHLabel">SEARCH</sys:String>
+
+    <sys:String x:Key="IN_PROGRESS_Label">In progress..</sys:String>
+
+    <sys:String x:Key="S1">&lt;ABC&gt;</sys:String>
+    <sys:String x:Key="S2">&amp;FGH&amp;</sys:String>
+    <sys:String x:Key="S3">&quot;Special&quot;</sys:String>
+    <sys:String x:Key="S4">Name: {0}; Age: {1}</sys:String>
+
+</ResourceDictionary>

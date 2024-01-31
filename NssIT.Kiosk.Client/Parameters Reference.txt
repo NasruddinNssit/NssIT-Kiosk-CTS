@@ -1,0 +1,38 @@
+LocalServerPort=7385
+ClientPort=23838
+PayMethod=C
+AppGroupCode=Larkin 
+IsDebugMode=true
+NoPaymentNeed=true
+
+xxxxx
+* Use "xxxxx" (5"x") to indicate end of Parameters setting.
+* Use "=" to assign value
+* A Space " " is not allowed in parameter setting except a file path.
+* PayMethod : C for Cash. At the moment only Cash has supported.
+
+* PayMethod : C for Cash, D for Paywave(Credit Card); C&D mean Cash and Paywave ;
+    D = Paywave Only
+	C = Cash Only
+	C&D = Paywave & Cash
+
+* IsDebugMode : This is an optionanl parameter. Remove this parameter if not necessary.
+			: Example -> IsDebugMode=true
+
+* ClientPort      : Port number used for data receiving in client application (NssIT.Kiosk.Client.exe)
+* LocalServerPort : Port number used for data receiving at Local Server (NssIT.Kiosk.Server.exe / Windows Service)
+* NoPaymentNeed   : A "true" will ignored all payment (Like Cash or Credit Card) process. A "false" or these parameter not found will follow normal way accordingly for payment transaction.
+
+* AppGroupCode	: Optional Parameter.
+				: Default value is Melaka.
+				: If this parameter has not set, this value is default to Melaka(Melaka Sentral)
+				: The Valid value is Melaka or Larkin.
+
+Reference
+=============================
+ClientPort=9838
+LocalServerPort=7385
+IsDebugMode=Yes
+PayMethod=C
+IsDebugMode=Yes
+NoPaymentNeed=Yes

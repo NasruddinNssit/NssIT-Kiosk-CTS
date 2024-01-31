@@ -1,0 +1,22 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <sys:String x:Key="PREVLabel">PREV</sys:String>
+    <sys:String x:Key="NEXTLabel">NEXT</sys:String>
+    
+    <sys:String x:Key="SELECT_BOARDING_DATE_Label">ENTER YOUR TICKET NUMBER</sys:String>
+    <sys:String x:Key="SEARCHLabel">SEARCH</sys:String>
+    <sys:String x:Key="TICKET_NO_Label">Ticket No.</sys:String>
+    <sys:String x:Key="DEPARTURE_DATE_Label">Departure Date</sys:String>
+
+    <sys:String x:Key="ENTER_TICKET_NO_Label">Enter Ticket No. here</sys:String>
+
+    <sys:String x:Key="IN_PROGRESS_Label">In progress..</sys:String>
+
+    <sys:String x:Key="TICKET_NOT_FOUND_ERROR_ErrMsg">Ticket not found from website</sys:String>
+    <sys:String x:Key="INVALID_TOKEN_ErrMsg">Invalid access token..</sys:String>
+    <sys:String x:Key="TOKEN_EXPIRED_ErrMsg">Access token expired..</sys:String>
+    <sys:String x:Key="ORIGIN_SERVER_NOT_FOUND_ErrMsg">Ticket origin server not found..</sys:String>
+    
+</ResourceDictionary>

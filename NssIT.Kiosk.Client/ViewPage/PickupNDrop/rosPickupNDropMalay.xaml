@@ -1,0 +1,13 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                    xmlns:local="clr-namespace:NssIT.Kiosk.Client.ViewPage.PickupNDrop">
+
+    <sys:String x:Key="PICK_UP_Label">Diambilkan</sys:String>
+    <sys:String x:Key="DROP_OFF_Label">Diturunkan</sys:String>
+    <sys:String x:Key="IN_PROGRESS_Label">Kerja sedang dijalankan..</sys:String>
+
+    <sys:String x:Key="SELECT_PICKUP_LOC_Label">Sila pilih lokasi pengambilan anda</sys:String>
+    <sys:String x:Key="SELECT_DROPOFF_LOC_Label">Sila pilih lokasi penurunan anda</sys:String>
+
+</ResourceDictionary>

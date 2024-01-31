@@ -1,0 +1,38 @@
+﻿
+//CYA-DEBUG     : Code will be removed/Remark when finish working OR deployment.
+//CYA-PENDING-LOG  : Pending for adding log
+                    :: //CYA-PENDING-LOG .. Need to log error here
+//CYA-PENDING-CODE : Pending for additional feature
+//CYA-PENDING-WORK : Pending for additional working/Testing
+//CYA-TEST      : Related code will be commented/remark on Live deployment
+//CYA-DEMO      : Similar to CYA-TEST for demo purpose.
+
+ClassCode:EXIT01.3245.LN01
+    * 01 : Library Code
+    * 32 : Class Code
+    * 45 : Function code
+    * LN01 : Line Tab. Any string.
+    * '.' Is a Separator.
+
+Class Code & Function Code
+    * Start from 00 to 99
+    * Only allowed 2 chars for Class Code and 2 chars Function code.
+    * Alphabet in the code can be used is A,B,C,D,E .. Z .  Small letter is NOT allowed.
+    * For a Function code, refer to a sub-method inside a method, start code with 8 or 9 like 91, 92, 9A, 9G, 9X, 81, 82, 8A, 8D.
+        Example .. EXIT01.321D, or EXIT01.32M1
+
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+References
+-------------
+/// ClassCode:EXIT32.12
+/// FuncCode:EXIT32.1201
+
+/// <summary>
+/// ClassCode:EXIT35.01
+/// </summary>
+
+/// <summary>
+/// FuncCode:EXIT80.0701
+/// </summary>
+
+

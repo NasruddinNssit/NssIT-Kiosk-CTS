@@ -1,0 +1,46 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <sys:String x:Key="PREVLabel">PREV</sys:String>
+    <sys:String x:Key="NEXTLabel">NEXT</sys:String>
+    <sys:String x:Key="ENTER_PASSENGER_INFO_Label">ENTER PASSENGER INFO</sys:String>
+    <sys:String x:Key="SCAN_MYKAD_Label">SCAN MYKAD</sys:String>
+    <sys:String x:Key="CONFIRM_Label">COMFIRM</sys:String>
+
+    <sys:String x:Key="TICKET_NO_Label">Ticket No.</sys:String>
+    <sys:String x:Key="TRIP_NO_Label">Trip No.</sys:String>
+    <sys:String x:Key="BUS_COMPANY_Label">Bus Company</sys:String>
+    <sys:String x:Key="DEPARTURE_DATE_Label">Departure Date</sys:String>
+    <sys:String x:Key="FROM_TO_Label">From - To</sys:String>
+    <sys:String x:Key="FROM_Label">From</sys:String>
+    <sys:String x:Key="TO_Label">To</sys:String>
+    <sys:String x:Key="SEAT_Label">Seat</sys:String>
+    <sys:String x:Key="SEAT_TYPE_Label">Type</sys:String>
+    <sys:String x:Key="PASSENGER_NAME_Label">Passenger Name</sys:String>
+    <sys:String x:Key="IC_PASSPORT_Label">IC / Passport</sys:String>
+    <sys:String x:Key="CONTACT_NO_Label">Mobile No.</sys:String>
+    <sys:String x:Key="FASILITY_CHARGE_Label">Facility Charge</sys:String>
+    <sys:String x:Key="QR_CHARGE_Label">QR Charge</sys:String>
+
+    <sys:String x:Key="PERSON_DETAILS_Label">Person Details</sys:String>
+
+    <sys:String x:Key="FULL_NAME_ADVISE_Label">Passenger details are required for verification purposes</sys:String>
+    <sys:String x:Key="CORRECT_PASSENGER_INFO_Label">Please correct passenger info entry</sys:String>
+
+    <sys:String x:Key="SCAN_PASSENGER_MYKAD_Label">SCAN MYKAD: Passenger</sys:String>
+    <sys:String x:Key="INSERT_MYKAD_FOR_SCAN_Label">Please insert MyKad to scan</sys:String>
+
+    <sys:String x:Key="REMOVE_MYKAD_Label">Remove MyKad</sys:String>
+    <sys:String x:Key="READYFORMOBILE_Label">and enter your mobile phone number</sys:String>
+
+    <sys:String x:Key="ADVICE_PASSENGER_NAME_Label">Enter the full name of Passenger</sys:String>
+    <sys:String x:Key="ADVICE_IC_NO_Label">Enter identity card (MyKad)/passport</sys:String>
+    <sys:String x:Key="ADVICE_MOBILE_NO_Label">Enter mobile phone number</sys:String>
+
+    <sys:String x:Key="CUST_ERROR_IC_NO_Label">Identity card/passport details must include at least 8 alphanumeric characters</sys:String>
+    <sys:String x:Key="CUST_ERROR_MOBILE_NO_Label">Mobile phone number must include at least 10 digits without spaces</sys:String>
+
+    <sys:String x:Key="IN_PROGRESS_Label">In progress..</sys:String>
+    
+</ResourceDictionary>

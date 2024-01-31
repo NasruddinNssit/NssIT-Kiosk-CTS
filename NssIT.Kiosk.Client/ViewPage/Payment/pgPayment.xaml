@@ -1,0 +1,36 @@
+﻿<Page x:Class="NssIT.Kiosk.Client.ViewPage.Payment.pgPayment"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:NssIT.Kiosk.Client.ViewPage.Payment"
+      mc:Ignorable="d"  Stylus.IsPressAndHoldEnabled="False"
+      d:DesignHeight="710" d:DesignWidth="512"
+      FontFamily="Segoe UI"
+      Title="Payment" Loaded="Page_Loaded" Unloaded="Page_Unloaded">
+    <!--Background="White"-->
+    <Grid>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <!--<RowDefinition Height="*"/>-->
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/> <!-- 295 -->
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Frame x:Name="FrmPayInfo" Grid.Column="0" Grid.Row="0"/>
+
+        <Border Grid.Column="0" Grid.Row="1" Background="White" />
+
+        <!--Frame-->
+        <Frame x:Name="FrmGoPay" Grid.Column="0" Grid.Row="2"/>
+        <Border Grid.Column="0" Grid.Row="3" 
+                Height="0"
+                x:Name="BdStacker1"/>
+        <!--Background="#FF2F7BB6"-->
+    </Grid>
+</Page>

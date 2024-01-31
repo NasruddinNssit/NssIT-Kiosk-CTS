@@ -1,0 +1,17 @@
+﻿<Window x:Class="PrintTicketTesting.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PrintTicketTesting"
+        mc:Ignorable="d"
+        Title="Print Ticket Testing" Height="207" Width="800" Loaded="Window_Loaded">
+    <Grid>
+        <Button Content="Test Print Ticket" Margin="117,88,0,0" VerticalAlignment="Top" Height="35" Click="TestPrintTicket_Click" HorizontalAlignment="Left" Width="225"/>
+        <TextBox Height="23" Margin="117,60,25,0" TextWrapping="Wrap" Text="C:\KioskTicket" VerticalAlignment="Top" x:Name="TxtPDFFileLocation"/>
+        <TextBlock HorizontalAlignment="Left" Margin="18,60,0,0" TextWrapping="Wrap" Text="PDF Ticket File" VerticalAlignment="Top"/>
+        <TextBox Height="23" Margin="117,25,25,0" TextWrapping="Wrap" Text="C:\Program Files (x86)\Adobe\Acrobat Reader DC\Reader\AcroRd32.exe" VerticalAlignment="Top" x:Name="TxtAdobe"/>
+        <TextBlock HorizontalAlignment="Left" Margin="18,25,0,0" TextWrapping="Wrap" Text="Adobe Exec File" VerticalAlignment="Top"/>
+
+    </Grid>
+</Window>

@@ -1,0 +1,72 @@
+﻿<Page x:Class="NssIT.Kiosk.Client.ViewPage.CustInfo.pgMyKad"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:NssIT.Kiosk.Client.ViewPage.CustInfo"
+      mc:Ignorable="d"  Stylus.IsPressAndHoldEnabled="False"
+      Height="300" Width="600"
+      FontFamily="Segoe UI" Background="White"
+      Title="MyKad IC Entry" Loaded="Page_Loaded" Unloaded="Page_Unloaded">
+
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="rosCustInfoEnglish.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+
+    <Border BorderThickness="1,1,1,1" BorderBrush="#FF0000FF">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="5" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="5" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="5" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="5" />
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3"  Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Height="40" Width="450">
+                <TextBlock Text="{DynamicResource SCAN_PASSENGER_MYKAD_Label}" FontSize="26" FontWeight="Bold" />
+                <TextBlock Text="20" FontSize="26" x:Name="TxtPassengerNo" Margin="3,0,0,0" FontWeight="Bold" />
+            </StackPanel>
+
+            <TextBlock Grid.Column="4" Grid.Row="1" Text="CTD" FontSize="48" FontWeight="Bold" HorizontalAlignment="Right" VerticalAlignment="Top" x:Name="TxtCountDown" Height="60" Width="100" />
+
+            <StackPanel Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="4"  Orientation="Horizontal"  HorizontalAlignment="Left" VerticalAlignment="Top" Height="41">
+                <TextBlock x:Name="TxtInsertMyKad" FontSize="24" Text="{DynamicResource INSERT_MYKAD_FOR_SCAN_Label}" Visibility="Collapsed"/>
+                <TextBlock x:Name="TxtRemoveMyKad" FontSize="24" Margin="0,0,0,-60" Height="100" VerticalAlignment="Top">
+                    <Run Text="{DynamicResource REMOVE_MYKAD_Label}"/>
+                    <LineBreak/>
+                    <Run Text="{DynamicResource READYFORMOBILE_Label}"/>
+                </TextBlock>
+            </StackPanel>
+
+            <Image Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2" HorizontalAlignment="Left" 
+               Source="/Resources/ID-scan-green.png" Width="120"/>
+
+            <StackPanel Grid.Column="3" Grid.Row="3" Grid.ColumnSpan="2"  Orientation="Horizontal" HorizontalAlignment="Right" FlowDirection="RightToLeft">
+
+                <Border CornerRadius="5" Background="#FFFE4C70" Height ="45" VerticalAlignment="Bottom" Margin="0,0,10,0" HorizontalAlignment="Right" RenderTransformOrigin="0.5,0.5" Width="100" MouseLeftButtonDown="Button_Cancel">
+                    <TextBlock Text="X" Foreground="White" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center" MaxWidth="50" TextAlignment="Center" Margin="0,0,0,1" />
+                </Border>
+
+                <Border x:Name="BdOK" CornerRadius="5" Background="#43D82C" Height ="45" VerticalAlignment="Bottom" HorizontalAlignment="Right" RenderTransformOrigin="0.5,0.5" Width="100" MouseLeftButtonDown="Button_OK" >
+                    <TextBlock Text="OK" Foreground="White" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center" MaxWidth="50" TextAlignment="Center" Margin="0,0,0,1" />
+                </Border>
+
+            </StackPanel>
+
+        </Grid>
+    </Border>
+
+</Page>

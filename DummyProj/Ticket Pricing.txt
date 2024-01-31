@@ -1,0 +1,25 @@
+﻿
+trip_detail
+==============
+trip_detail.price
+trip_detail.insurance
+
+Total Ticket Price = trip_detail.price
+
+Note : trip_detail.price has included trip_detail.insurance
+
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+seat_status
+=============
+seat_status.terminalcharge
+seat_status.adultprice
+seat_status.insurance
+seat_status.adultdisc
+seat_status.onlineqrcharge
+
+Total Ticket Price = seat_status.terminalcharge + seat_status.adultprice + seat_status.insurance + seat_status.onlineqrcharge
+
+Note : Only seat_status.insurance can be deselected by user.
+Note : seat_status.adultprice has included seat_status.adultdisc
+
+

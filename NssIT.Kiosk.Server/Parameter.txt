@@ -1,0 +1,79 @@
+WebServiceURL=http://203.115.193.19/ws_kiosk_test/service.asmx
+LocalServerPort=7385
+PayMethod=T,D
+AppGroupCode=Melaka 
+//IsBoardingPassEnabled=true
+IsDebugMode=true
+BTnGMinimumWaitingPeriod=600
+
+xxxxx
+* Use "xxxxx" (5"x") to indicate end of Parameters setting.
+* Use "=" to assign value
+* A Space " " is not allowed in parameter setting.
+
+* PayMethod : C for Cash, D for Paywave(Credit Card); C,D mean Cash and Paywave ;
+    D for Paywave/Credit Card/Debit Card
+	C for Cash
+	T for Payment Gateway / e-Wallet (like Boost & TnG)
+	T,C,D for e-Wallet, Cash, Paywave
+
+	Use "," as separator. Like C,D
+
+* WebServiceURL :  Web Service URL for any data transaction.
+* IsDebugMode : This is an optionanl parameter. Remove this parameter if not necessary.
+			: Example -> IsDebugMode=true
+
+* LocalServerPort : Port number used for data receiving at Local Server (NssIT.Kiosk.Server.exe / Windows Service)
+
+* AppGroupCode	: Optional Parameter.
+				: Default value is Melaka.
+				: If this parameter has not set, this value is default to Melaka (Melaka Sentral)
+				: The Valid value is Melaka / Larkin / Gombak / Klang.
+
+* IsBoardingPassEnabled	: Optional Parameter.
+						: Default value is false. 
+						: Allow system to print Boarding Pass if true.
+
+* BTnGMinimumWaitingPeriod	: 'Boost/Touch n Go' minimum waiting period in seconds. 
+							: This period used for response waiting after 2D Barcode has shown.
+							: Default and Minimum value is 90.
+
+Sample Parameter
+==================
+WebServiceURL=http://localhost/kioskwebservice/service.asmx
+
+DEV - Larkin
+-------------
+WebServiceURL=http://localhost/larkinwebsvc/service.asmx
+WebServiceURL=http://10.200.1.1/ws_kiosk_larkin/service.asmx
+
+DEV
+----
+WebServiceURL=http://203.115.193.19/ws_kiosk_test/service.asmx
+WebServiceURL=http://10.238.1.4/ws_kiosk_test/service.asmx
+WebServiceURL=http://203.115.193.19/ws_kiosk_larkin_test/service.asmx
+..Klang
+WebServiceURL=http://203.115.193.19/ws_kiosk_ks_test/service.asmx
+
+LIVE
+----
+WebServiceURL=http://203.115.193.5/ws_kiosk/service.asmx
+
+WebServiceURL=http://10.238.1.6/ws_kiosk/service.asmx
+WebServiceURL=http://10.200.1.1/ws_kiosk_larkin2/service.asmx
+(Obsolate) WebServiceURL=http://10.200.1.1/ws_kiosk_larkin/service.asmx
+
+..Klang
+WebServiceURL=http://203.115.193.24/ws_kiosk_ks/service.asmx
+
+LIVE - Public Server; Used by 3rd Party
+----
+WebServiceURL=http://10.238.1.5/ws_kiosk/service.asmx
+
+LocalServerPort=7385
+BTnGMinimumWaitingPeriod=600
+PayMethod=T,C
+IsDebugMode=true
+AppGroupCode=Larkin
+IsBoardingPassEnabled=false;
+/////KioskId=MELTVM01

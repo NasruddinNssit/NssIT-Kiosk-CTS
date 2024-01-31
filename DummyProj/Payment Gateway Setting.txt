@@ -1,0 +1,61 @@
+CTS Payment Gateway
+====================
+
+# Setting Locations
+	+ Payment Gateway Database.
+		- Table : PaymentGatewayAdmins.
+			~ Setting : GoPayment WebAPI & Security Setting.
+			~ Setting : Id & Station Code.
+
+		- Table : Stations
+			~ Setting : Web Service URL. 
+				(Like use Web Service to check sale transaction status (success or not)).
+
+	+ Payment Gateway WebAPI => appsettings.json
+		- Setting : ConnectionStrings.PayGateConnection
+		- Setting : ServerAppSettings.VersionPhase (Server access authentication DEV / PROD)
+
+	+ Kiosk's Registry.
+		- Computer\HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\CTS_Kiosk.
+			~ Setting : GoPayment Security.
+			~ Setting : Payment Gateway Web API.
+		
+	+ Kiosk's local server Parameter.txt.
+		- Setting : Web Service (WebServiceURL).
+		- Setting : PayMethod set with 'T'
+		- Setting : Optional Minimum Waiting Period (BTnGMinimumWaitingPeriod)
+
+------------------------------------------------------------------------------------------------------------------------------------
+
+Set Payment Gateway Development Server For Live GoPayment Sales Transaction Testing
+=======================================================================================
+
+# Setting Locations
+	+ Payment Gateway Database.
+		- Table : PaymentGatewayAdmins.
+			~ Setting : GoPayment WebAPI & Security Setting. (==>Set to Live GoPayment Merchant Id & Security)	
+			~ Setting : Id & Station Code.
+
+		- Table : Stations
+			~ Setting : Web Service URL to Development
+
+	+ Payment Gateway WebAPI => appsettings.json
+		- Setting : ConnectionStrings.PayGateConnection	to Development
+		- Setting : ServerAppSettings.VersionPhase to DEV
+	
+	+ Kiosk's Registry.
+		- Computer\HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\CTS_Kiosk.
+			~ Setting : GoPayment Security.			(==>Set to Live GoPayment Merchant Id & Security)	
+			~ Setting : Payment Gateway Web API to Development
+			~ Setting : BTnGSection	to Development
+		
+	+ Kiosk's local server Parameter.txt.
+		- Setting : Web Service (WebServiceURL) to Development
+		- Setting : PayMethod set with 'T'
+
+
+
+
+
+
+

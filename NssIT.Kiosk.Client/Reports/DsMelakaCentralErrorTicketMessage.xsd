@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DsMelakaCentralErrorTicketMessage" targetNamespace="http://tempuri.org/DsMelakaCentralErrorTicketMessage.xsd" xmlns:mstns="http://tempuri.org/DsMelakaCentralErrorTicketMessage.xsd" xmlns="http://tempuri.org/DsMelakaCentralErrorTicketMessage.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DsMelakaCentralErrorTicketMessage" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DsMelakaCentralErrorTicketMessage" msprop:Generator_UserDSName="DsMelakaCentralErrorTicketMessage">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="ErrorInfo" msprop:Generator_TableClassName="ErrorInfoDataTable" msprop:Generator_TableVarName="tableErrorInfo" msprop:Generator_TablePropName="ErrorInfo" msprop:Generator_RowDeletingName="ErrorInfoRowDeleting" msprop:Generator_RowChangingName="ErrorInfoRowChanging" msprop:Generator_RowEvHandlerName="ErrorInfoRowChangeEventHandler" msprop:Generator_RowDeletedName="ErrorInfoRowDeleted" msprop:Generator_UserTableName="ErrorInfo" msprop:Generator_RowChangedName="ErrorInfoRowChanged" msprop:Generator_RowEvArgName="ErrorInfoRowChangeEvent" msprop:Generator_RowClassName="ErrorInfoRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="TransactionNo" msprop:Generator_ColumnVarNameInTable="columnTransactionNo" msprop:Generator_ColumnPropNameInRow="TransactionNo" msprop:Generator_ColumnPropNameInTable="TransactionNoColumn" msprop:Generator_UserColumnName="TransactionNo" type="xs:string" minOccurs="0" />
+              <xs:element name="ErrorMsg" msprop:Generator_ColumnVarNameInTable="columnErrorMsg" msprop:Generator_ColumnPropNameInRow="ErrorMsg" msprop:Generator_ColumnPropNameInTable="ErrorMsgColumn" msprop:Generator_UserColumnName="ErrorMsg" type="xs:string" minOccurs="0" />
+              <xs:element name="TerminalLogoPath" msprop:Generator_ColumnVarNameInTable="columnTerminalLogoPath" msprop:Generator_ColumnPropNameInRow="TerminalLogoPath" msprop:Generator_ColumnPropNameInTable="TerminalLogoPathColumn" msprop:Generator_UserColumnName="TerminalLogoPath" type="xs:string" minOccurs="0" />
+              <xs:element name="TimeStr" msprop:Generator_ColumnVarNameInTable="columnTimeStr" msprop:Generator_ColumnPropNameInRow="TimeStr" msprop:Generator_ColumnPropNameInTable="TimeStrColumn" msprop:Generator_UserColumnName="TimeStr" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

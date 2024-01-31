@@ -1,0 +1,75 @@
+LocalServerPort=7385
+ClientPort=23838
+PayWaveCOM=COM3
+CardSettlementTime=12:00
+//MyKadScanner=Yes
+IsDebugMode=Yes
+//NoCardSettlement=Yes
+//NoPaymentNeed=Yes
+//LightIndicatorCOM=COM12
+//PrinterName=Microsoft Print to PDF
+//PrinterName=NPI Integration Driver (Copy 1)
+PrinterName=NPI Integration Driver
+CheckPrinterPaperLow=No
+
+xxxxx
+* Use "xxxxx" (5"x") to indicate end of Parameters setting.
+* Use "=" to assign value
+* A Space " " is not allowed in parameter setting except a file path or printer name.
+
+* ClientPort      : Port number used for data receiving in client application (NssIT.Kiosk.Client.exe)
+* LocalServerPort : Port number used for data receiving at Local Server (NssIT.Kiosk.Server.exe / Windows Service)
+* PayMethod : D for Paywave(Credit Card). At the moment only Paywave(Credit Card) Only is supported.
+
+* PayWaveCOM    : Mandatory Parameter
+                : COM Port / Serial Port used to interact with the Credit Card Payment Machine.
+                : MUST in Capital Letters
+                : Example -> COM7
+
+* CardSettlementTime	: Mandatory Parameter
+						: Card Settlement Time. This setting determines the daily starting time for settle all card transaction in Card Machine.
+						: Time format in 24 Hours.
+						: Format in HH:mm (Like 18:30 or 06:30; INVALID format like 18.30, 18:3, 18.3, 6:30, 6:3, 63, or 630).
+
+* CheckPrinterPaperLow	: Mandatory Parameter
+						: A "Yes" or "No" should be used.
+						: Set to a "No" to disable Printer Paper Low status checking. Else system will do Printer Paper Low  status checking.
+						: Example Like ..
+							CheckPrinterPaperLow=No
+							<OR>
+							CheckPrinterPaperLow=Yes
+
+* MyKadScanner	: This is an optionanl parameter. 
+				: Example -> MyKadScanner=Yes
+				: A "Yes" indicate a MyKad Scanner is ready.
+				: Default is "No".
+
+* CustomerSensorCOM	: This is an optionanl parameter. 
+					: COM port that used to detect a customer when he/she is move near/close to this Kiosk machine. 
+					: Example -> COM11
+
+* LightIndicatorCOM	: This is an optionanl parameter.
+					: COM port that used to show LED light of machine status that placed on the top of Kiosk machine.
+					: Example -> COM12.
+					: Normally refer to "Posiflex Status Indicator" COM port setting (check this in Device Manager -> Port).
+
+* PrinterName		: This is an optional parameter.
+					: Name of Printer. This normally refer to a Nippon NP-3611BD Printer
+					: Without this parameter, system will use default printer.
+					: Either Parameter printer or System OS default printer, both must be detected as Nippon NP-3611BD Printer.
+					: When specify the name, technician must provide the right name refering to printer set in Windows 10.
+
+Sample Reference
+=============================
+LocalServerPort=7385
+ClientPort=23838
+IsDebugMode=Yes
+NoPaymentNeed=Yes
+MyKadScanner=Yes
+PayWaveCOM=COM7
+CardSettlementTime=00:00
+CustomerSensorCOM=COM11
+PrinterName=NPI Integration Driver
+PrinterName=Microsoft Print to PDF
+PrinterName=NPI Integration Driver (Copy 1)
+CheckPrinterPaperLow=Yes

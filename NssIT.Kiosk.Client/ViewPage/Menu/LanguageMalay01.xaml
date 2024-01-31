@@ -1,0 +1,27 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                    xmlns:local="clr-namespace:NssIT.Kiosk.Client.ViewPage.Menu">
+
+    <sys:String x:Key="YourTicketLabel">Tiket Anda</sys:String>
+
+    <sys:String x:Key="FROMLabel">DARI</sys:String>
+
+    <sys:String x:Key="TOLabel">KE</sys:String>
+
+    <sys:String x:Key="DEPARTDATELabel">TARIKH BERTOLAK</sys:String>
+
+    <sys:String x:Key="COMPANYLabel">SYARIKAT</sys:String>
+
+    <sys:String x:Key="SEATLabel">TEMPAT DUDUK</sys:String>
+
+    <sys:String x:Key="RETURNDATELabel">TARIKH PULANG</sys:String>
+
+    <sys:String x:Key="PASSENGERLabel">PENUMPANG</sys:String>
+
+    <sys:String x:Key="PAYMENTLabel">BAYARAN</sys:String>
+
+    <sys:String x:Key="EXITLabel">Keluar</sys:String>
+    <sys:String x:Key="PREVIOUSLabel">Sebelum &gt;</sys:String>
+
+</ResourceDictionary>

@@ -1,0 +1,92 @@
+﻿<Page x:Class="NssIT.Kiosk.Client.ViewPage.Language.pgLanguage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:NssIT.Kiosk.Client.ViewPage.Language"
+      mc:Ignorable="d" 
+     Stylus.IsPressAndHoldEnabled="False"
+      d:DesignHeight="1024" d:DesignWidth="1280"
+      FontFamily="Segoe UI" Background="White"
+      Title="Languages" Loaded="Page_Loaded" Unloaded="Page_Unloaded">
+
+    <Page.Resources>
+        <ResourceDictionary>
+            <LinearGradientBrush x:Key="ButtonBackground" StartPoint="0.5,0" EndPoint="0.5,1">
+                <GradientStop Color="#9feb93" Offset="0"/>
+                <GradientStop Color="#79e368" Offset="0.445"/>
+                <GradientStop Color="#43D82C" Offset="0.8"/>
+            </LinearGradientBrush>
+            <Style x:Key="GreenButton" TargetType="{x:Type Button}">
+                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                <Setter Property="FontSize" Value="20"/>
+                <Setter Property="Foreground" Value="White"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Border CornerRadius="15" Background="{StaticResource ButtonBackground}">
+                                <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+    </Page.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="40"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="2.7*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="40"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="1.2*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="0.8*"/>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+
+        <!-- Background -->
+        <Image Grid.Column="0" Grid.ColumnSpan="5" Grid.Row="0" Grid.RowSpan="7" 
+               Source= "/Resources/TVM-bg.png" Stretch="UniformToFill" HorizontalAlignment="Center" />
+
+        <!-- Logo & Text -->
+        <Image Grid.Column="3" Grid.Row="1" Source="/Resources/MelakaSentral-logo.png" HorizontalAlignment="Right" Margin="0 -7 -7 0" x:Name="ImgStationLogo"/>
+
+        <TextBlock Grid.Column="2" Grid.Row="2" TextAlignment="Center" VerticalAlignment="Bottom" Foreground="White" FontSize="40" Margin="0 0 0 30">
+                <Run Text="Sila pilih bahasa pilihan anda"/><LineBreak/>
+                <Run Text="Please pick your language preference"/><LineBreak/>
+        </TextBlock>
+
+        <Image Grid.Column="1" Grid.Row="5" Margin="0 0 0 -10" HorizontalAlignment="Left" 
+                   Source="/Resources/NSS-poweredby logo.png"/>
+
+        <!-- Button -->
+        <Grid Grid.Column="2" Grid.Row="3">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.5*"/>
+                <RowDefinition Height="3*" MaxHeight="150"/>
+                <RowDefinition Height="1.2*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Row="1" Margin="0 0 10 0" Style="{StaticResource GreenButton}" Click="Malay_Click">
+                <TextBlock FontWeight="DemiBold" FontSize="32"><Run Text=" BAHASA"/><LineBreak/><Run Text="MALAYSIA"/></TextBlock>
+            </Button>
+
+            <Button Grid.Column="1" Margin="10 0 0 0" Grid.Row="1" Style="{StaticResource GreenButton}" Click="English_Click">
+                <TextBlock FontSize="32" FontWeight="DemiBold" Text="ENGLISH"/>
+            </Button>
+
+        </Grid>
+    </Grid>
+</Page>

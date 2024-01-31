@@ -1,0 +1,1122 @@
+﻿<Page x:Class="NssIT.Kiosk.Client.ViewPage.BoardingPass.BoardingDate.pgBoardingDate"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:sys="clr-namespace:System;assembly=mscorlib"
+      xmlns:local="clr-namespace:NssIT.Kiosk.Client.ViewPage.BoardingPass.BoardingDate"
+      xmlns:loNav="clr-namespace:NssIT.Kiosk.Client.ViewPage.BoardingPass.Navigation"
+      mc:Ignorable="d" 
+      Stylus.IsPressAndHoldEnabled="False"
+      d:DesignHeight="1024" d:DesignWidth="1280"
+      FontFamily="Roboto" Background="White"
+      Title="Boading Date Entry" Loaded="Page_Loaded"  Unloaded="Page_Unloaded">
+
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="rosBoardingDateEnglish.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="40"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="40"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+
+            <RowDefinition Height="*" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="150" />
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+
+        <Grid.Resources>
+            <!--<ResourceDictionary>
+                <sys:Double x:Key="circle_Day">46</sys:Double>
+                <sys:Double x:Key="halfBlock_Day">45</sys:Double>
+                <sys:Double x:Key="topBlock_Day">4</sys:Double>
+                <sys:Double x:Key="bottomBlock_Day">4</sys:Double>
+                <sys:Double x:Key="fontSize_Day">20</sys:Double>
+            </ResourceDictionary>-->
+            <ResourceDictionary>
+                <sys:Double x:Key="circle_Day">75</sys:Double>
+                <sys:Double x:Key="halfBlock_Day">56</sys:Double>
+                <sys:Double x:Key="topBlock_Day">8</sys:Double>
+                <sys:Double x:Key="bottomBlock_Day">8</sys:Double>
+                <sys:Double x:Key="fontSize_Day">27</sys:Double>
+            </ResourceDictionary>
+        </Grid.Resources>
+
+        <TextBlock Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" FontSize="48" Text="{DynamicResource SELECT_BOARDING_DATE_Label}" Foreground="#FF777777" HorizontalAlignment="Center" Margin="0,20,0,0"/>
+        
+        <Border Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Image Height="40" Margin="0,0,0,0" x:Name="ImgBusComapnyLogo"/>
+                <TextBlock FontSize="24" Text="BUS COMPANY NAME" Foreground="#FF777777" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,0,10,0" x:Name="TxtBusCompanyName"/>
+                <Image Height="40" Margin="0,0,0,0" x:Name="ImgBusComapnyLogoX" Visibility="Hidden"/>
+            </StackPanel>
+        </Border>
+
+        <Grid x:Name="GrdDateSelection" Grid.Column="1" Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="30"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="30"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="90" />
+                <RowDefinition Height="10" />
+                <RowDefinition Height="40" />
+
+                <RowDefinition Height="90" />
+                <RowDefinition Height="90" />
+                <RowDefinition Height="90" />
+                <RowDefinition Height="90" />
+                <RowDefinition Height="90" />
+                <RowDefinition Height="90" />
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.Column="1" Grid.Row="0" Orientation="Vertical" MouseDown="PreviousMonth_MouseDown" Background="#00FFFFFF" x:Name="SkpPrevious">
+                <TextBlock Text="" Margin="0,5,0,0"/>
+                <Image Source="/NssIT.Kiosk.Client;component/Resources/icon-chevron-left-light.png" Height="45" Margin="35,0,35,0" Stretch="Fill" RenderTransformOrigin="0.5,0.5" >
+                    <Image.RenderTransform>
+                        <TransformGroup>
+                            <RotateTransform Angle="0"/>
+                        </TransformGroup>
+                    </Image.RenderTransform>
+                </Image>
+                <TextBlock Text="{DynamicResource PREVLabel}" Margin="0,5,0,0" Foreground="Black" HorizontalAlignment="Center"  Width="70" TextAlignment="Center" Height="22" FontSize="16" />
+            </StackPanel>
+            <TextBlock x:Name="TxtMonthYearTag" Grid.Column="2" Grid.Row="0" Grid.ColumnSpan="5" FontSize="22" Text="JUNE 2020" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#FF444444" FontWeight="Bold" />
+            <StackPanel Grid.Column="7" Grid.Row="0" Orientation="Vertical" MouseDown="NextMonth_MouseDown" Background="#00FFFFFF" x:Name="SkpNext">
+                <TextBlock Text="" Margin="0,5,0,0"/>
+                <Image Source="/NssIT.Kiosk.Client;component/Resources/icon-chevron-left-light.png" Height="45" Margin="35,0,35,0" Stretch="Fill" RenderTransformOrigin="0.5,0.5" >
+                    <Image.RenderTransform>
+                        <TransformGroup>
+                            <RotateTransform Angle="180"/>
+                        </TransformGroup>
+                    </Image.RenderTransform>
+                </Image>
+                <TextBlock Text="{DynamicResource NEXTLabel}" Margin="0,5,0,0" Foreground="Black" HorizontalAlignment="Center" Width="70" TextAlignment="Center" Height="22" FontSize="16" />
+            </StackPanel>
+
+            <TextBlock x:Name="TxtWeekDayTagX00" Grid.Column="1" Grid.Row="2" Text="MON" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22" Foreground="Black"  />
+            <TextBlock x:Name="TxtWeekDayTagX01" Grid.Column="2" Grid.Row="2" Text="MON" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22" Foreground="Black" />
+            <TextBlock x:Name="TxtWeekDayTagX02" Grid.Column="3" Grid.Row="2" Text="MON" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22" Foreground="Black" />
+            <TextBlock x:Name="TxtWeekDayTagX03" Grid.Column="4" Grid.Row="2" Text="MON" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22" Foreground="Black" />
+            <TextBlock x:Name="TxtWeekDayTagX04" Grid.Column="5" Grid.Row="2" Text="MON" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22" Foreground="Black" />
+            <TextBlock x:Name="TxtWeekDayTagX05" Grid.Column="6" Grid.Row="2" Text="SAT" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22" Foreground="#FF777777" FontWeight="Bold" />
+            <TextBlock x:Name="TxtWeekDayTagX06" Grid.Column="7" Grid.Row="2" Text="SAT" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22" Foreground="#FF777777" FontWeight="Bold" />
+
+            <!--< "X0000" => Column 00, Row 00.  >-->
+            <!-- < XXXXXXXXXXXXXXXXXXXXXXXX Row 00 XXXXXXXXXXXXXXXXXXXXXXXX > -->
+            <Border x:Name="CellX0000" Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" MouseDown="DayCell_MouseDown">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="{Binding Source={StaticResource topBlock_Day}}" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="{Binding Source={StaticResource bottomBlock_Day}}" />
+                    </Grid.RowDefinitions>
+
+                    <Border x:Name="LeftBlockX0000" Grid.Column="0" Grid.Row="1" CornerRadius="7,0,0,7" Background="#FF60BDF1" Visibility="Visible"/>
+                    <Border x:Name="RightBlockX0000" Grid.Column="1" Grid.Row="1" CornerRadius="0,7,7,0" Background="#FF60BDF1" Visibility="Visible"/>
+
+                    <Ellipse x:Name="CircleX0000" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="3"  Fill="#FF2B9CDB" HorizontalAlignment="Center"  
+                    Height="{StaticResource circle_Day}" Margin="0,0,0,0" VerticalAlignment="Center" Width="{StaticResource circle_Day}" Visibility="Visible" />
+
+                    <!--<TextBlock x:Name="DayInxTextX0000" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="3" Text="1" FontSize="{StaticResource fontSize_Day}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" Width="100" TextAlignment="Right" Margin="0,0,0,0" Background="#FFF0FB03"/>-->
+                    <TextBlock x:Name="DayInxTextX0000" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Text="1" FontSize="{StaticResource fontSize_Day}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" Width="40" TextAlignment="Center" Margin="42,0,42,2"/>
+                    <Line x:Name="DayInxTextLineX0000" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" X1="0" Y1="0" X2="35" Y2="0" Stroke="Red" Fill="Red" StrokeThickness="5" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,28,0,0" />
+                </Grid>
+            </Border>
+            <Border x:Name="CellX0100" Grid.Column="2" Grid.Row="3" VerticalAlignment="Center" MouseDown="DayCell_MouseDown">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="{Binding Source={StaticResource topBlock_Day}}" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="{Binding Source={StaticResource bottomBlock_Day}}" />
+                    </Grid.RowDefinitions>
+
+                    <Border x:Name="LeftBlockX0100" Grid.Column="0" Grid.Row="1" CornerRadius="7,0,0,7" Background="#FF60BDF1" Visibility="Visible"/>
+                    <Border x:Name="RightBlockX0100" Grid.Column="1" Grid.Row="1" CornerRadius="0,7,7,0" Background="#FF60BDF1" Visibility="Visible"/>
+
+                    <Ellipse x:Name="CircleX0100" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="3"  Fill="#FF2B9CDB" HorizontalAlignment="Center"  
+                    Height="{StaticResource circle_Day}" Margin="0,0,0,0" VerticalAlignment="Center" Width="{StaticResource circle_Day}" Visibility="Visible" />
+
+                    <TextBlock x:Name="DayInxTextX0100" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Text="2" FontSize="{StaticResource fontSize_Day}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" Width="40" TextAlignment="Center" Margin="42,0,42,2"/>
+                    <Line x:Name="DayInxTextLineX0100" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" X1="0" Y1="0" X2="35" Y2="0" Stroke="Red" Fill="Red" StrokeThickness="5" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,28,0,0" />
+                </Grid>
+            </Border>
+            <Border x:Name="CellX0200" Grid.Column="3" Grid.Row="3" VerticalAlignment="Center" MouseDown="DayCell_MouseDown">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="{Binding Source={StaticResource topBlock_Day}}" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="{Binding Source={StaticResource bottomBlock_Day}}" />
+                    </Grid.RowDefinitions>
+
+                    <Border x:Name="LeftBlockX0200" Grid.Column="0" Grid.Row="1" CornerRadius="7,0,0,7" Background="#FF60BDF1" Visibility="Visible"/>
+                    <Border x:Name="RightBlockX0200" Grid.Column="1" Grid.Row="1" CornerRadius="0,7,7,0" Background="#FF60BDF1" Visibility="Visible"/>
+
+                    <Ellipse x:Name="CircleX0200" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="3"  Fill="#FF2B9CDB" HorizontalAlignment="Center"  
+                    Height="{StaticResource circle_Day}" Margin="0,0,0,0" VerticalAlignment="Center" Width="{StaticResource circle_Day}" Visibility="Visible" />
+
+                    <TextBlock x:Name="DayInxTextX0200" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="3" Text="3" FontSize="{StaticResource fontSize_Day}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" Width="40" TextAlignment="Center" Margin="40,0,40,2"/>
+                    <Line x:Name="DayInxTextLineX0200" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" X1="0" Y1="0" X2="35" Y2="0" Stroke="Red" Fill="Red" StrokeThickness="5" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,28,0,0" />
+                </Grid>
+            </Border>
+            <Border x:Name="CellX0300" Grid.Column="4" Grid.Row="3" VerticalAlignment="Center" MouseDown="DayCell_MouseDown">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="{Binding Source={StaticResource topBlock_Day}}" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="{Binding Source={StaticResource bottomBlock_Day}}" />
+                    </Grid.RowDefinitions>
+
+                    <Border x:Name="LeftBlockX0300" Grid.Column="0" Grid.Row="1" CornerRadius="7,0,0,7" Background="#FF60BDF1" Visibility="Visible"/>
+                    <Border x:Name="RightBlockX0300" Grid.Column="1" Grid.Row="1" CornerRadius="0,7,7,0" Background="#FF60BDF1" Visibility="Visible"/>
+
+                    <Ellipse x:Name="CircleX0300" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="3"  Fill="#FF2B9CDB" HorizontalAlignment="Center"  
+                    Height="{StaticResource circle_Day}" Margin="0,0,0,0" VerticalAlignment="Center" Width="{StaticResource circle_Day}" Visibility="Visible" />
+
+                    <TextBlock x:Name="DayInxTextX0300" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="3" Text="4" FontSize="{StaticResource fontSize_Day}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" Width="40" TextAlignment="Center" Margin="40,0,40,2"/>
+                    <Line x:Name="DayInxTextLineX0300" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" X1="0" Y1="0" X2="35" Y2="0" Stroke="Red" Fill="Red" StrokeThickness="5" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,28,0,0" />
+                </Grid>
+            </Border>
+            <Border x:Name="CellX0400" Grid.Column="5" Grid.Row="3" VerticalAlignment="Center" MouseDown="DayCell_MouseDown">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="{Binding Source={StaticResource topBlock_Day}}" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="{Binding Source={StaticResource bottomBlock_Day}}" />
+                    </Grid.RowDefinitions>
+
+                    <Border x:Name="LeftBlockX0400" Grid.Column="0" Grid.Row="1" CornerRadius="7,0,0,7" Background="#FF60BDF1" Visibility="Visible"/>
+                    <Border x:Name="RightBlockX0400" Grid.Column="1" Grid.Row="1" CornerRadius="0,7,7,0" Background="#FF60BDF1" Visibility="Visible"/>
+
+                    <Ellipse x:Name="CircleX0400" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="3"  Fill="#FF2B9CDB" HorizontalAlignment="Center"  
+                    Height="{StaticResource circle_Day}" Margin="0,0,0,0" VerticalAlignment="Center" Width="{StaticResource circle_Day}" Visibility="Visible" />
+
+                    <TextBlock x:Name="DayInxTextX0400" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="3" Text="5" FontSize="{StaticResource fontSize_Day}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" Width="40" TextAlignment="Center" Margin="40,0,40,2"/>
+                    <Line x:Name="DayInxTextLineX0400" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" X1="0" Y1="0" X2="35" Y2="0" Stroke="Red" Fill="Red" StrokeThickness="5" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,28,0,0" />
+                </Grid>
+            </Border>
+            <Border x:Name="CellX0500" Grid.Column="6" Grid.Row="3" VerticalAlignment="Center" MouseDown="DayCell_MouseDown">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="{Binding Source={StaticResource topBlock_Day}}" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="{Binding Source={StaticResource bottomBlock_Day}}" />
+                    </Grid.RowDefinitions>
+
+                    <Border x:Name="LeftBlockX0500" Grid.Column="0" Grid.Row="1" CornerRadius="7,0,0,7" Background="#FF60BDF1" Visibility="Visible"/>
+                    <Border x:Name="RightBlockX0500" Grid.Column="1" Grid.Row="1" CornerRadius="0,7,7,0" Background="#FF60BDF1" Visibility="Visible"/>
+
+                    <Ellipse x:Name="CircleX0500" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="3"  Fill="#FF2B9CDB" HorizontalAlignment="Center"  
+                    Height="{StaticResource circle_Day}" Margin="0,0,0,0" VerticalAlignment="Center" Width="{StaticResource circle_Day}" Visibility="Visible" />
+
+                    <TextBlock x:Name="DayInxTextX0500" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="3" Text="26" FontSize="{StaticResource fontSize_Day}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" Width="40" TextAlignment="Center" Margin="40,0,40,2"/>
+                    <Line x:Name="DayInxTextLineX0500" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" X1="0" Y1="0" X2="35" Y2="0" Stroke="Red" Fill="Red" StrokeThickness="5" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,28,0,0" />
+                </Grid>
+            </Border>
+            <Border x:Name="CellX0600" Grid.Column="7" Grid.Row="3" VerticalAlignment="Center" MouseDown="DayCell_MouseDown">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="{Binding Source={StaticResource topBlock_Day}}" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="{Binding Source={StaticResource bottomBlock_Day}}" />
+                    </Grid.RowDefinitions>
+
+                    <Border x:Name="LeftBlockX0600" Grid.Column="0" Grid.Row="1" CornerRadius="7,0,0,7" Background="#FF60BDF1" Visibility="Visible"/>
+                    <Border x:Name="RightBlockX0600" Grid.Column="1" Grid.Row="1" CornerRadius="0,7,7,0" Background="#FF60BDF1" Visibility="Visible"/>
+
+                    <Ellipse x:Name="CircleX0600" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="3"  Fill="#FF2B9CDB" HorizontalAlignment="Center"  
+                    Height="{StaticResource circle_Day}" Margin="0,0,0,0" VerticalAlignment="Center" Width="{StaticResource circle_Day}" Visibility="Visible" />
+
+                    <TextBlock x:Name="DayInxTextX0600" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="3" Text="27" FontSize="{StaticResource fontSize_Day}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" Width="40" TextAlignment="Center" Margin="40,0,40,2"/>
+                    <Line x:Name="DayInxTextLineX0600" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" X1="0" Y1="0" X2="35" Y2="0" Stroke="Red" Fill="Red" StrokeThickness="5" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,28,0,0" />
+                </Grid>
+            </Border>
+
+            <!-- < XXXXXXXXXXXXXXXXXXXXXXXX Row 01 XXXXXXXXXXXXXXXXXXXXXXXX > -->
+            <Border x:Name="CellX0001" Grid.Column="1" Grid.Row="4" VerticalAlignment="Center" MouseDown="DayCell_MouseDown">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="{Binding Source={StaticResource topBlock_Day}}" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="{Binding Source={StaticResource bottomBlock_Day}}" />
+                    </Grid.RowDefinitions>
+
+                    <Border x:Name="LeftBlockX0001" Grid.Column="0" Grid.Row="1" CornerRadius="7,0,0,7" Background="#FF60BDF1" Visibility="Visible"/>
+                    <Border x:Name="RightBlockX0001" Grid.Column="1" Grid.Row="1" CornerRadius="0,7,7,0" Background="#FF60BDF1" Visibility="Visible"/>
+
+                    <Ellipse x:Name="CircleX0001" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="3"  Fill="#FF2B9CDB" HorizontalAlignment="Center"  
+                    Height="{StaticResource circle_Day}" Margin="0,0,0,0" VerticalAlignment="Center" Width="{StaticResource circle_Day}" Visibility="Visible" />
+
+                    <TextBlock x:Name="DayInxTextX0001" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="3" Text="1" FontSize="{StaticResource fontSize_Day}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White"  Width="40" TextAlignment="Center" Margin="40,0,40,2"/>
+                    <Line x:Name="DayInxTextLineX0001" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" X1="0" Y1="0" X2="35" Y2="0" Stroke="Red" Fill="Red" StrokeThickness="5" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,28,0,0" />
+                </Grid>
+            </Border>
+            <Border x:Name="CellX0101" Grid.Column="2" Grid.Row="4" VerticalAlignment="Center" MouseDown="DayCell_MouseDown">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="{Binding Source={StaticResource topBlock_Day}}" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="{Binding Source={StaticResource bottomBlock_Day}}" />
+                    </Grid.RowDefinitions>
+
+                    <Border x:Name="LeftBlockX0101" Grid.Column="0" Grid.Row="1" CornerRadius="7,0,0,7" Background="#FF60BDF1" Visibility="Visible"/>
+                    <Border x:Name="RightBlockX0101" Grid.Column="1" Grid.Row="1" CornerRadius="0,7,7,0" Background="#FF60BDF1" Visibility="Visible"/>
+
+                    <Ellipse x:Name="CircleX0101" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="3"  Fill="#FF2B9CDB" HorizontalAlignment="Center"  
+                    Height="{StaticResource circle_Day}" Margin="0,0,0,0" VerticalAlignment="Center" Width="{StaticResource circle_Day}" Visibility="Visible" />
+
+                    <TextBlock x:Name="DayInxTextX0101" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="3" Text="2" FontSize="{StaticResource fontSize_Day}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" Width="40" TextAlignment="Center" Margin="40,0,40,2"/>
+                    <Line x:Name="DayInxTextLineX0101" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" X1="0" Y1="0" X2="35" Y2="0" Stroke="Red" Fill="Red" StrokeThickness="5" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,28,0,0" />
+                </Grid>
+            </Border>
+            <Border x:Name="CellX0201" Grid.Column="3" Grid.Row="4" VerticalAlignment="Center" MouseDown="DayCell_MouseDown">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="{Binding Source={StaticResource topBlock_Day}}" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="{Binding Source={StaticResource bottomBlock_Day}}" />
+                    </Grid.RowDefinitions>
+
+                    <Border x:Name="LeftBlockX0201" Grid.Column="0" Grid.Row="1" CornerRadius="7,0,0,7" Background="#FF60BDF1" Visibility="Visible"/>
+                    <Border x:Name="RightBlockX0201" Grid.Column="1" Grid.Row="1" CornerRadius="0,7,7,0" Background="#FF60BDF1" Visibility="Visible"/>
+
+                    <Ellipse x:Name="CircleX0201" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="3"  Fill="#FF2B9CDB" HorizontalAlignment="Center"  
+                    Height="{StaticResource circle_Day}" Margin="0,0,0,0" VerticalAlignment="Center" Width="{StaticResource circle_Day}" Visibility="Visible" />
+
+                    <TextBlock x:Name="DayInxTextX0201" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="3" Text="3" FontSize="{StaticResource fontSize_Day}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" Width="40" TextAlignment="Center" Margin="40,0,40,2"/>
+                    <Line x:Name="DayInxTextLineX0201" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" X1="0" Y1="0" X2="35" Y2="0" Stroke="Red" Fill="Red" StrokeThickness="5" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,28,0,0" />
+                </Grid>
+            </Border>
+            <Border x:Name="CellX0301" Grid.Column="4" Grid.Row="4" VerticalAlignment="Center" MouseDown="DayCell_MouseDown">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="{Binding Source={StaticResource topBlock_Day}}" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="{Binding Source={StaticResource bottomBlock_Day}}" />
+                    </Grid.RowDefinitions>
+
+                    <Border x:Name="LeftBlockX0301" Grid.Column="0" Grid.Row="1" CornerRadius="7,0,0,7" Background="#FF60BDF1" Visibility="Visible"/>
+                    <Border x:Name="RightBlockX0301" Grid.Column="1" Grid.Row="1" CornerRadius="0,7,7,0" Background="#FF60BDF1" Visibility="Visible"/>
+
+                    <Ellipse x:Name="CircleX0301" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="3"  Fill="#FF2B9CDB" HorizontalAlignment="Center"  
+                    Height="{StaticResource circle_Day}" Margin="0,0,0,0" VerticalAlignment="Center" Width="{StaticResource circle_Day}" Visibility="Visible" />
+
+                    <TextBlock x:Name="DayInxTextX0301" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="3" Text="4" FontSize="{StaticResource fontSize_Day}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" Width="40" TextAlignment="Center" Margin="40,0,40,2"/>
+                    <Line x:Name="DayInxTextLineX0301" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" X1="0" Y1="0" X2="35" Y2="0" Stroke="Red" Fill="Red" StrokeThickness="5" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,28,0,0" />
+                </Grid>
+            </Border>
+            <Border x:Name="CellX0401" Grid.Column="5" Grid.Row="4" VerticalAlignment="Center" MouseDown="DayCell_MouseDown">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="{Binding Source={StaticResource topBlock_Day}}" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="{Binding Source={StaticResource bottomBlock_Day}}" />
+                    </Grid.RowDefinitions>
+
+                    <Border x:Name="LeftBlockX0401" Grid.Column="0" Grid.Row="1" CornerRadius="7,0,0,7" Background="#FF60BDF1" Visibility="Visible"/>
+                    <Border x:Name="RightBlockX0401" Grid.Column="1" Grid.Row="1" CornerRadius="0,7,7,0" Background="#FF60BDF1" Visibility="Visible"/>
+
+                    <Ellipse x:Name="CircleX0401" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="3"  Fill="#FF2B9CDB" HorizontalAlignment="Center"  
+                    Height="{StaticResource circle_Day}" Margin="0,0,0,0" VerticalAlignment="Center" Width="{StaticResource circle_Day}" Visibility="Visible" />
+
+                    <TextBlock x:Name="DayInxTextX0401" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="3" Text="5" FontSize="{StaticResource fontSize_Day}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" Width="40" TextAlignment="Center" Margin="40,0,40,2"/>
+                    <Line x:Name="DayInxTextLineX0401" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" X1="0" Y1="0" X2="35" Y2="0" Stroke="Red" Fill="Red" StrokeThickness="5" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,28,0,0" />
+                </Grid>
+            </Border>
+            <Border x:Name="CellX0501" Grid.Column="6" Grid.Row="4" VerticalAlignment="Center" MouseDown="DayCell_MouseDown">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="{Binding Source={StaticResource topBlock_Day}}" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="{Binding Source={StaticResource bottomBlock_Day}}" />
+                    </Grid.RowDefinitions>
+
+                    <Border x:Name="LeftBlockX0501" Grid.Column="0" Grid.Row="1" CornerRadius="7,0,0,7" Background="#FF60BDF1" Visibility="Visible"/>
+                    <Border x:Name="RightBlockX0501" Grid.Column="1" Grid.Row="1" CornerRadius="0,7,7,0" Background="#FF60BDF1" Visibility="Visible"/>
+
+                    <Ellipse x:Name="CircleX0501" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="3"  Fill="#FF2B9CDB" HorizontalAlignment="Center"  
+                    Height="{StaticResource circle_Day}" Margin="0,0,0,0" VerticalAlignment="Center" Width="{StaticResource circle_Day}" Visibility="Visible" />
+
+                    <TextBlock x:Name="DayInxTextX0501" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="3" Text="6" FontSize="{StaticResource fontSize_Day}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" Width="40" TextAlignment="Center" Margin="40,0,40,2"/>
+                    <Line x:Name="DayInxTextLineX0501" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" X1="0" Y1="0" X2="35" Y2="0" Stroke="Red" Fill="Red" StrokeThickness="5" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,28,0,0" />
+                </Grid>
+            </Border>
+            <Border x:Name="CellX0601" Grid.Column="7" Grid.Row="4" VerticalAlignment="Center" MouseDown="DayCell_MouseDown">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="{Binding Source={StaticResource topBlock_Day}}" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="{Binding Source={StaticResource bottomBlock_Day}}" />
+                    </Grid.RowDefinitions>
+
+                    <Border x:Name="LeftBlockX0601" Grid.Column="0" Grid.Row="1" CornerRadius="7,0,0,7" Background="#FF60BDF1" Visibility="Visible"/>
+                    <Border x:Name="RightBlockX0601" Grid.Column="1" Grid.Row="1" CornerRadius="0,7,7,0" Background="#FF60BDF1" Visibility="Visible"/>
+
+                    <Ellipse x:Name="CircleX0601" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="3"  Fill="#FF2B9CDB" HorizontalAlignment="Center"  
+                    Height="{StaticResource circle_Day}" Margin="0,0,0,0" VerticalAlignment="Center" Width="{StaticResource circle_Day}" Visibility="Visible" />
+
+                    <TextBlock x:Name="DayInxTextX0601" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="3" Text="7" FontSize="{StaticResource fontSize_Day}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" Width="40" TextAlignment="Center" Margin="40,0,40,2"/>
+                    <Line x:Name="DayInxTextLineX0601" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" X1="0" Y1="0" X2="35" Y2="0" Stroke="Red" Fill="Red" StrokeThickness="5" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,28,0,0" />
+                </Grid>
+            </Border>
+
+            <!-- < XXXXXXXXXXXXXXXXXXXXXXXX Row 02 XXXXXXXXXXXXXXXXXXXXXXXX > -->
+            <Border x:Name="CellX0002" Grid.Column="1" Grid.Row="5"  BorderThickness="0" HorizontalAlignment="Center" VerticalAlignment="Center" MouseDown="DayCell_MouseDown">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="{Binding Source={StaticResource topBlock_Day}}" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="{Binding Source={StaticResource bottomBlock_Day}}" />
+                    </Grid.RowDefinitions>
+
+                    <Border x:Name="LeftBlockX0002" Grid.Column="0" Grid.Row="1" CornerRadius="7,0,0,7" Background="#FF60BDF1" Visibility="Visible"/>
+                    <Border x:Name="RightBlockX0002" Grid.Column="1" Grid.Row="1" CornerRadius="0,7,7,0" Background="#FF60BDF1" Visibility="Visible"/>
+
+                    <Ellipse x:Name="CircleX0002" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="3"  Fill="#FF2B9CDB" HorizontalAlignment="Center"  
+                    Height="{StaticResource circle_Day}" Margin="0,0,0,0" VerticalAlignment="Center" Width="{StaticResource circle_Day}" Visibility="Visible" />
+
+                    <TextBlock x:Name="DayInxTextX0002" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="3" Text="1" FontSize="{StaticResource fontSize_Day}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" Width="40" TextAlignment="Center" Margin="40,0,40,2"/>
+                    <Line x:Name="DayInxTextLineX0002" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" X1="0" Y1="0" X2="35" Y2="0" Stroke="Red" Fill="Red" StrokeThickness="5" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,28,0,0" />
+                </Grid>
+            </Border>
+            <Border x:Name="CellX0102" Grid.Column="2" Grid.Row="5"  BorderThickness="0" HorizontalAlignment="Center" VerticalAlignment="Center" MouseDown="DayCell_MouseDown">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="{Binding Source={StaticResource topBlock_Day}}" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="{Binding Source={StaticResource bottomBlock_Day}}" />
+                    </Grid.RowDefinitions>
+
+                    <Border x:Name="LeftBlockX0102" Grid.Column="0" Grid.Row="1" CornerRadius="7,0,0,7" Background="#FF60BDF1" Visibility="Visible"/>
+                    <Border x:Name="RightBlockX0102" Grid.Column="1" Grid.Row="1" CornerRadius="0,7,7,0" Background="#FF60BDF1" Visibility="Visible"/>
+
+                    <Ellipse x:Name="CircleX0102" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="3"  Fill="#FF2B9CDB" HorizontalAlignment="Center"  
+                    Height="{StaticResource circle_Day}" Margin="0,0,0,0" VerticalAlignment="Center" Width="{StaticResource circle_Day}" Visibility="Visible" />
+
+                    <TextBlock x:Name="DayInxTextX0102" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="3" Text="2" FontSize="{StaticResource fontSize_Day}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" Width="40" TextAlignment="Center" Margin="40,0,40,2"/>
+                    <Line x:Name="DayInxTextLineX0102" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" X1="0" Y1="0" X2="35" Y2="0" Stroke="Red" Fill="Red" StrokeThickness="5" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,28,0,0" />
+                </Grid>
+            </Border>
+            <Border x:Name="CellX0202" Grid.Column="3" Grid.Row="5"  BorderThickness="0" HorizontalAlignment="Center" VerticalAlignment="Center" MouseDown="DayCell_MouseDown">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="{Binding Source={StaticResource topBlock_Day}}" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="{Binding Source={StaticResource bottomBlock_Day}}" />
+                    </Grid.RowDefinitions>
+
+                    <Border x:Name="LeftBlockX0202" Grid.Column="0" Grid.Row="1" CornerRadius="7,0,0,7" Background="#FF60BDF1" Visibility="Visible"/>
+                    <Border x:Name="RightBlockX0202" Grid.Column="1" Grid.Row="1" CornerRadius="0,7,7,0" Background="#FF60BDF1" Visibility="Visible"/>
+
+                    <Ellipse x:Name="CircleX0202" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="3"  Fill="#FF2B9CDB" HorizontalAlignment="Center"  
+                    Height="{StaticResource circle_Day}" Margin="0,0,0,0" VerticalAlignment="Center" Width="{StaticResource circle_Day}" Visibility="Visible" />
+
+                    <TextBlock x:Name="DayInxTextX0202" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="3" Text="3" FontSize="{StaticResource fontSize_Day}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" Width="40" TextAlignment="Center" Margin="40,0,40,2"/>
+                    <Line x:Name="DayInxTextLineX0202" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" X1="0" Y1="0" X2="35" Y2="0" Stroke="Red" Fill="Red" StrokeThickness="5" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,28,0,0" />
+                </Grid>
+            </Border>
+            <Border x:Name="CellX0302" Grid.Column="4" Grid.Row="5"  BorderThickness="0" HorizontalAlignment="Center" VerticalAlignment="Center" MouseDown="DayCell_MouseDown">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="{Binding Source={StaticResource topBlock_Day}}" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="{Binding Source={StaticResource bottomBlock_Day}}" />
+                    </Grid.RowDefinitions>
+
+                    <Border x:Name="LeftBlockX0302" Grid.Column="0" Grid.Row="1" CornerRadius="7,0,0,7" Background="#FF60BDF1" Visibility="Visible"/>
+                    <Border x:Name="RightBlockX0302" Grid.Column="1" Grid.Row="1" CornerRadius="0,7,7,0" Background="#FF60BDF1" Visibility="Visible"/>
+
+                    <Ellipse x:Name="CircleX0302" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="3"  Fill="#FF2B9CDB" HorizontalAlignment="Center"  
+                    Height="{StaticResource circle_Day}" Margin="0,0,0,0" VerticalAlignment="Center" Width="{StaticResource circle_Day}" Visibility="Visible" />
+
+                    <TextBlock x:Name="DayInxTextX0302" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="3" Text="4" FontSize="{StaticResource fontSize_Day}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" Width="40" TextAlignment="Center" Margin="40,0,40,2"/>
+                    <Line x:Name="DayInxTextLineX0302" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" X1="0" Y1="0" X2="35" Y2="0" Stroke="Red" Fill="Red" StrokeThickness="5" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,28,0,0" />
+                </Grid>
+            </Border>
+            <Border x:Name="CellX0402" Grid.Column="5" Grid.Row="5"  BorderThickness="0" HorizontalAlignment="Center" VerticalAlignment="Center" MouseDown="DayCell_MouseDown">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="{Binding Source={StaticResource topBlock_Day}}" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="{Binding Source={StaticResource bottomBlock_Day}}" />
+                    </Grid.RowDefinitions>
+
+                    <Border x:Name="LeftBlockX0402" Grid.Column="0" Grid.Row="1" CornerRadius="7,0,0,7" Background="#FF60BDF1" Visibility="Visible"/>
+                    <Border x:Name="RightBlockX0402" Grid.Column="1" Grid.Row="1" CornerRadius="0,7,7,0" Background="#FF60BDF1" Visibility="Visible"/>
+
+                    <Ellipse x:Name="CircleX0402" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="3"  Fill="#FF2B9CDB" HorizontalAlignment="Center"  
+                    Height="{StaticResource circle_Day}" Margin="0,0,0,0" VerticalAlignment="Center" Width="{StaticResource circle_Day}" Visibility="Visible" />
+
+                    <TextBlock x:Name="DayInxTextX0402" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="3" Text="5" FontSize="{StaticResource fontSize_Day}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" Width="40" TextAlignment="Center" Margin="40,0,40,2"/>
+                    <Line x:Name="DayInxTextLineX0402" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" X1="0" Y1="0" X2="35" Y2="0" Stroke="Red" Fill="Red" StrokeThickness="5" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,28,0,0" />
+                </Grid>
+            </Border>
+            <Border x:Name="CellX0502" Grid.Column="6" Grid.Row="5"  BorderThickness="0" HorizontalAlignment="Center" VerticalAlignment="Center" MouseDown="DayCell_MouseDown">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="{Binding Source={StaticResource topBlock_Day}}" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="{Binding Source={StaticResource bottomBlock_Day}}" />
+                    </Grid.RowDefinitions>
+
+                    <Border x:Name="LeftBlockX0502" Grid.Column="0" Grid.Row="1" CornerRadius="7,0,0,7" Background="#FF60BDF1" Visibility="Visible"/>
+                    <Border x:Name="RightBlockX0502" Grid.Column="1" Grid.Row="1" CornerRadius="0,7,7,0" Background="#FF60BDF1" Visibility="Visible"/>
+
+                    <Ellipse x:Name="CircleX0502" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="3"  Fill="#FF2B9CDB" HorizontalAlignment="Center"  
+                    Height="{StaticResource circle_Day}" Margin="0,0,0,0" VerticalAlignment="Center" Width="{StaticResource circle_Day}" Visibility="Visible" />
+
+                    <TextBlock x:Name="DayInxTextX0502" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="3" Text="6" FontSize="{StaticResource fontSize_Day}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" Width="40" TextAlignment="Center" Margin="40,0,40,2"/>
+                    <Line x:Name="DayInxTextLineX0502" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" X1="0" Y1="0" X2="35" Y2="0" Stroke="Red" Fill="Red" StrokeThickness="5" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,28,0,0" />
+                </Grid>
+            </Border>
+            <Border x:Name="CellX0602" Grid.Column="7" Grid.Row="5"  BorderThickness="0" HorizontalAlignment="Center" VerticalAlignment="Center" MouseDown="DayCell_MouseDown">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="{Binding Source={StaticResource topBlock_Day}}" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="{Binding Source={StaticResource bottomBlock_Day}}" />
+                    </Grid.RowDefinitions>
+
+                    <Border x:Name="LeftBlockX0602" Grid.Column="0" Grid.Row="1" CornerRadius="7,0,0,7" Background="#FF60BDF1" Visibility="Visible"/>
+                    <Border x:Name="RightBlockX0602" Grid.Column="1" Grid.Row="1" CornerRadius="0,7,7,0" Background="#FF60BDF1" Visibility="Visible"/>
+
+                    <Ellipse x:Name="CircleX0602" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="3"  Fill="#FF2B9CDB" HorizontalAlignment="Center"  
+                    Height="{StaticResource circle_Day}" Margin="0,0,0,0" VerticalAlignment="Center" Width="{StaticResource circle_Day}" Visibility="Visible" />
+
+                    <TextBlock x:Name="DayInxTextX0602" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="3" Text="7" FontSize="{StaticResource fontSize_Day}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" Width="40" TextAlignment="Center" Margin="40,0,40,2"/>
+                    <Line x:Name="DayInxTextLineX0602" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" X1="0" Y1="0" X2="35" Y2="0" Stroke="Red" Fill="Red" StrokeThickness="5" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,28,0,0" />
+                </Grid>
+            </Border>
+
+            <!-- < XXXXXXXXXXXXXXXXXXXXXXXX Row 03 XXXXXXXXXXXXXXXXXXXXXXXX > -->
+            <Border x:Name="CellX0003" Grid.Column="1" Grid.Row="6"  BorderThickness="0" HorizontalAlignment="Center" VerticalAlignment="Center" MouseDown="DayCell_MouseDown">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="{Binding Source={StaticResource topBlock_Day}}" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="{Binding Source={StaticResource bottomBlock_Day}}" />
+                    </Grid.RowDefinitions>
+
+                    <Border x:Name="LeftBlockX0003" Grid.Column="0" Grid.Row="1" CornerRadius="7,0,0,7" Background="#FF60BDF1" Visibility="Visible"/>
+                    <Border x:Name="RightBlockX0003" Grid.Column="1" Grid.Row="1" CornerRadius="0,7,7,0" Background="#FF60BDF1" Visibility="Visible"/>
+
+                    <Ellipse x:Name="CircleX0003" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="3"  Fill="#FF2B9CDB" HorizontalAlignment="Center"  
+                    Height="{StaticResource circle_Day}" Margin="0,0,0,0" VerticalAlignment="Center" Width="{StaticResource circle_Day}" Visibility="Visible" />
+
+                    <TextBlock x:Name="DayInxTextX0003" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="3" Text="1" FontSize="{StaticResource fontSize_Day}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" Width="40" TextAlignment="Center" Margin="40,0,40,2"/>
+                    <Line x:Name="DayInxTextLineX0003" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" X1="0" Y1="0" X2="35" Y2="0" Stroke="Red" Fill="Red" StrokeThickness="5" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,28,0,0" />
+                </Grid>
+            </Border>
+            <Border x:Name="CellX0103" Grid.Column="2" Grid.Row="6"  BorderThickness="0" HorizontalAlignment="Center" VerticalAlignment="Center" MouseDown="DayCell_MouseDown">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="{Binding Source={StaticResource topBlock_Day}}" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="{Binding Source={StaticResource bottomBlock_Day}}" />
+                    </Grid.RowDefinitions>
+
+                    <Border x:Name="LeftBlockX0103" Grid.Column="0" Grid.Row="1" CornerRadius="7,0,0,7" Background="#FF60BDF1" Visibility="Visible"/>
+                    <Border x:Name="RightBlockX0103" Grid.Column="1" Grid.Row="1" CornerRadius="0,7,7,0" Background="#FF60BDF1" Visibility="Visible"/>
+
+                    <Ellipse x:Name="CircleX0103" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="3"  Fill="#FF2B9CDB" HorizontalAlignment="Center"  
+                    Height="{StaticResource circle_Day}" Margin="0,0,0,0" VerticalAlignment="Center" Width="{StaticResource circle_Day}" Visibility="Visible" />
+
+                    <TextBlock x:Name="DayInxTextX0103" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="3" Text="2" FontSize="{StaticResource fontSize_Day}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" Width="40" TextAlignment="Center" Margin="40,0,40,2"/>
+                    <Line x:Name="DayInxTextLineX0103" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" X1="0" Y1="0" X2="35" Y2="0" Stroke="Red" Fill="Red" StrokeThickness="5" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,28,0,0" />
+                </Grid>
+            </Border>
+            <Border x:Name="CellX0203" Grid.Column="3" Grid.Row="6"  BorderThickness="0" HorizontalAlignment="Center" VerticalAlignment="Center" MouseDown="DayCell_MouseDown">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="{Binding Source={StaticResource topBlock_Day}}" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="{Binding Source={StaticResource bottomBlock_Day}}" />
+                    </Grid.RowDefinitions>
+
+                    <Border x:Name="LeftBlockX0203" Grid.Column="0" Grid.Row="1" CornerRadius="7,0,0,7" Background="#FF60BDF1" Visibility="Visible"/>
+                    <Border x:Name="RightBlockX0203" Grid.Column="1" Grid.Row="1" CornerRadius="0,7,7,0" Background="#FF60BDF1" Visibility="Visible"/>
+
+                    <Ellipse x:Name="CircleX0203" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="3"  Fill="#FF2B9CDB" HorizontalAlignment="Center"  
+                    Height="{StaticResource circle_Day}" Margin="0,0,0,0" VerticalAlignment="Center" Width="{StaticResource circle_Day}" Visibility="Visible" />
+
+                    <TextBlock x:Name="DayInxTextX0203" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="3" Text="3" FontSize="{StaticResource fontSize_Day}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" Width="40" TextAlignment="Center" Margin="40,0,40,2"/>
+                    <Line x:Name="DayInxTextLineX0203" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" X1="0" Y1="0" X2="35" Y2="0" Stroke="Red" Fill="Red" StrokeThickness="5" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,28,0,0" />
+                </Grid>
+            </Border>
+            <Border x:Name="CellX0303" Grid.Column="4" Grid.Row="6"  BorderThickness="0" HorizontalAlignment="Center" VerticalAlignment="Center" MouseDown="DayCell_MouseDown">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="{Binding Source={StaticResource topBlock_Day}}" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="{Binding Source={StaticResource bottomBlock_Day}}" />
+                    </Grid.RowDefinitions>
+
+                    <Border x:Name="LeftBlockX0303" Grid.Column="0" Grid.Row="1" CornerRadius="7,0,0,7" Background="#FF60BDF1" Visibility="Visible"/>
+                    <Border x:Name="RightBlockX0303" Grid.Column="1" Grid.Row="1" CornerRadius="0,7,7,0" Background="#FF60BDF1" Visibility="Visible"/>
+
+                    <Ellipse x:Name="CircleX0303" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="3"  Fill="#FF2B9CDB" HorizontalAlignment="Center"  
+                    Height="{StaticResource circle_Day}" Margin="0,0,0,0" VerticalAlignment="Center" Width="{StaticResource circle_Day}" Visibility="Visible" />
+
+                    <TextBlock x:Name="DayInxTextX0303" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="3" Text="4" FontSize="{StaticResource fontSize_Day}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" Width="40" TextAlignment="Center" Margin="40,0,40,2"/>
+                    <Line x:Name="DayInxTextLineX0303" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" X1="0" Y1="0" X2="35" Y2="0" Stroke="Red" Fill="Red" StrokeThickness="5" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,28,0,0" />
+                </Grid>
+            </Border>
+            <Border x:Name="CellX0403" Grid.Column="5" Grid.Row="6"  BorderThickness="0" HorizontalAlignment="Center" VerticalAlignment="Center" MouseDown="DayCell_MouseDown">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="{Binding Source={StaticResource topBlock_Day}}" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="{Binding Source={StaticResource bottomBlock_Day}}" />
+                    </Grid.RowDefinitions>
+
+                    <Border x:Name="LeftBlockX0403" Grid.Column="0" Grid.Row="1" CornerRadius="7,0,0,7" Background="#FF60BDF1" Visibility="Visible"/>
+                    <Border x:Name="RightBlockX0403" Grid.Column="1" Grid.Row="1" CornerRadius="0,7,7,0" Background="#FF60BDF1" Visibility="Visible"/>
+
+                    <Ellipse x:Name="CircleX0403" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="3"  Fill="#FF2B9CDB" HorizontalAlignment="Center"  
+                    Height="{StaticResource circle_Day}" Margin="0,0,0,0" VerticalAlignment="Center" Width="{StaticResource circle_Day}" Visibility="Visible" />
+
+                    <TextBlock x:Name="DayInxTextX0403" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="3" Text="5" FontSize="{StaticResource fontSize_Day}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" Width="40" TextAlignment="Center" Margin="40,0,40,2"/>
+                    <Line x:Name="DayInxTextLineX0403" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" X1="0" Y1="0" X2="35" Y2="0" Stroke="Red" Fill="Red" StrokeThickness="5" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,28,0,0" />
+                </Grid>
+            </Border>
+            <Border x:Name="CellX0503" Grid.Column="6" Grid.Row="6"  BorderThickness="0" HorizontalAlignment="Center" VerticalAlignment="Center" MouseDown="DayCell_MouseDown">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="{Binding Source={StaticResource topBlock_Day}}" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="{Binding Source={StaticResource bottomBlock_Day}}" />
+                    </Grid.RowDefinitions>
+
+                    <Border x:Name="LeftBlockX0503" Grid.Column="0" Grid.Row="1" CornerRadius="7,0,0,7" Background="#FF60BDF1" Visibility="Visible"/>
+                    <Border x:Name="RightBlockX0503" Grid.Column="1" Grid.Row="1" CornerRadius="0,7,7,0" Background="#FF60BDF1" Visibility="Visible"/>
+
+                    <Ellipse x:Name="CircleX0503" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="3"  Fill="#FF2B9CDB" HorizontalAlignment="Center"  
+                    Height="{StaticResource circle_Day}" Margin="0,0,0,0" VerticalAlignment="Center" Width="{StaticResource circle_Day}" Visibility="Visible" />
+
+                    <TextBlock x:Name="DayInxTextX0503" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="3" Text="6" FontSize="{StaticResource fontSize_Day}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" Width="40" TextAlignment="Center" Margin="40,0,40,2"/>
+                    <Line x:Name="DayInxTextLineX0503" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" X1="0" Y1="0" X2="35" Y2="0" Stroke="Red" Fill="Red" StrokeThickness="5" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,28,0,0" />
+                </Grid>
+            </Border>
+            <Border x:Name="CellX0603" Grid.Column="7" Grid.Row="6"  BorderThickness="0" HorizontalAlignment="Center" VerticalAlignment="Center" MouseDown="DayCell_MouseDown">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="{Binding Source={StaticResource topBlock_Day}}" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="{Binding Source={StaticResource bottomBlock_Day}}" />
+                    </Grid.RowDefinitions>
+
+                    <Border x:Name="LeftBlockX0603" Grid.Column="0" Grid.Row="1" CornerRadius="7,0,0,7" Background="#FF60BDF1" Visibility="Visible"/>
+                    <Border x:Name="RightBlockX0603" Grid.Column="1" Grid.Row="1" CornerRadius="0,7,7,0" Background="#FF60BDF1" Visibility="Visible"/>
+
+                    <Ellipse x:Name="CircleX0603" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="3"  Fill="#FF2B9CDB" HorizontalAlignment="Center"  
+                    Height="{StaticResource circle_Day}" Margin="0,0,0,0" VerticalAlignment="Center" Width="{StaticResource circle_Day}" Visibility="Visible" />
+
+                    <TextBlock x:Name="DayInxTextX0603" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="3" Text="7" FontSize="{StaticResource fontSize_Day}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" Width="40" TextAlignment="Center" Margin="40,0,40,2"/>
+                    <Line x:Name="DayInxTextLineX0603" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" X1="0" Y1="0" X2="35" Y2="0" Stroke="Red" Fill="Red" StrokeThickness="5" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,28,0,0" />
+                </Grid>
+            </Border>
+
+            <!-- < XXXXXXXXXXXXXXXXXXXXXXXX Row 04 XXXXXXXXXXXXXXXXXXXXXXXX > -->
+            <Border x:Name="CellX0004" Grid.Column="1" Grid.Row="7"  BorderThickness="0" HorizontalAlignment="Center" VerticalAlignment="Center" MouseDown="DayCell_MouseDown">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="{Binding Source={StaticResource topBlock_Day}}" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="{Binding Source={StaticResource bottomBlock_Day}}" />
+                    </Grid.RowDefinitions>
+
+                    <Border x:Name="LeftBlockX0004" Grid.Column="0" Grid.Row="1" CornerRadius="7,0,0,7" Background="#FF60BDF1" Visibility="Visible"/>
+                    <Border x:Name="RightBlockX0004" Grid.Column="1" Grid.Row="1" CornerRadius="0,7,7,0" Background="#FF60BDF1" Visibility="Visible"/>
+
+                    <Ellipse x:Name="CircleX0004" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="3"  Fill="#FF2B9CDB" HorizontalAlignment="Center"  
+                    Height="{StaticResource circle_Day}" Margin="0,0,0,0" VerticalAlignment="Center" Width="{StaticResource circle_Day}" Visibility="Visible" />
+
+                    <TextBlock x:Name="DayInxTextX0004" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="3" Text="1" FontSize="{StaticResource fontSize_Day}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" Width="40" TextAlignment="Center" Margin="40,0,40,2"/>
+                    <Line x:Name="DayInxTextLineX0004" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" X1="0" Y1="0" X2="35" Y2="0" Stroke="Red" Fill="Red" StrokeThickness="5" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,28,0,0" />
+                </Grid>
+            </Border>
+            <Border x:Name="CellX0104" Grid.Column="2" Grid.Row="7"  BorderThickness="0" HorizontalAlignment="Center" VerticalAlignment="Center" MouseDown="DayCell_MouseDown">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="{Binding Source={StaticResource topBlock_Day}}" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="{Binding Source={StaticResource bottomBlock_Day}}" />
+                    </Grid.RowDefinitions>
+
+                    <Border x:Name="LeftBlockX0104" Grid.Column="0" Grid.Row="1" CornerRadius="7,0,0,7" Background="#FF60BDF1" Visibility="Visible"/>
+                    <Border x:Name="RightBlockX0104" Grid.Column="1" Grid.Row="1" CornerRadius="0,7,7,0" Background="#FF60BDF1" Visibility="Visible"/>
+
+                    <Ellipse x:Name="CircleX0104" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="3"  Fill="#FF2B9CDB" HorizontalAlignment="Center"  
+                    Height="{StaticResource circle_Day}" Margin="0,0,0,0" VerticalAlignment="Center" Width="{StaticResource circle_Day}" Visibility="Visible" />
+
+                    <TextBlock x:Name="DayInxTextX0104" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="3" Text="2" FontSize="{StaticResource fontSize_Day}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" Width="40" TextAlignment="Center" Margin="40,0,40,2"/>
+                    <Line x:Name="DayInxTextLineX0104" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" X1="0" Y1="0" X2="35" Y2="0" Stroke="Red" Fill="Red" StrokeThickness="5" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,28,0,0" />
+                </Grid>
+            </Border>
+            <Border x:Name="CellX0204" Grid.Column="3" Grid.Row="7"  BorderThickness="0" HorizontalAlignment="Center" VerticalAlignment="Center" MouseDown="DayCell_MouseDown">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="{Binding Source={StaticResource topBlock_Day}}" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="{Binding Source={StaticResource bottomBlock_Day}}" />
+                    </Grid.RowDefinitions>
+
+                    <Border x:Name="LeftBlockX0204" Grid.Column="0" Grid.Row="1" CornerRadius="7,0,0,7" Background="#FF60BDF1" Visibility="Visible"/>
+                    <Border x:Name="RightBlockX0204" Grid.Column="1" Grid.Row="1" CornerRadius="0,7,7,0" Background="#FF60BDF1" Visibility="Visible"/>
+
+                    <Ellipse x:Name="CircleX0204" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="3"  Fill="#FF2B9CDB" HorizontalAlignment="Center"  
+                    Height="{StaticResource circle_Day}" Margin="0,0,0,0" VerticalAlignment="Center" Width="{StaticResource circle_Day}" Visibility="Visible" />
+
+                    <TextBlock x:Name="DayInxTextX0204" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="3" Text="3" FontSize="{StaticResource fontSize_Day}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" Width="40" TextAlignment="Center" Margin="40,0,40,2"/>
+                    <Line x:Name="DayInxTextLineX0204" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" X1="0" Y1="0" X2="35" Y2="0" Stroke="Red" Fill="Red" StrokeThickness="5" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,28,0,0" />
+                </Grid>
+            </Border>
+            <Border x:Name="CellX0304" Grid.Column="4" Grid.Row="7"  BorderThickness="0" HorizontalAlignment="Center" VerticalAlignment="Center" MouseDown="DayCell_MouseDown">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="{Binding Source={StaticResource topBlock_Day}}" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="{Binding Source={StaticResource bottomBlock_Day}}" />
+                    </Grid.RowDefinitions>
+
+                    <Border x:Name="LeftBlockX0304" Grid.Column="0" Grid.Row="1" CornerRadius="7,0,0,7" Background="#FF60BDF1" Visibility="Visible"/>
+                    <Border x:Name="RightBlockX0304" Grid.Column="1" Grid.Row="1" CornerRadius="0,7,7,0" Background="#FF60BDF1" Visibility="Visible"/>
+
+                    <Ellipse x:Name="CircleX0304" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="3"  Fill="#FF2B9CDB" HorizontalAlignment="Center"  
+                    Height="{StaticResource circle_Day}" Margin="0,0,0,0" VerticalAlignment="Center" Width="{StaticResource circle_Day}" Visibility="Visible" />
+
+                    <TextBlock x:Name="DayInxTextX0304" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="3" Text="4" FontSize="{StaticResource fontSize_Day}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" Width="40" TextAlignment="Center" Margin="40,0,40,2"/>
+                    <Line x:Name="DayInxTextLineX0304" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" X1="0" Y1="0" X2="35" Y2="0" Stroke="Red" Fill="Red" StrokeThickness="5" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,28,0,0" />
+                </Grid>
+            </Border>
+            <Border x:Name="CellX0404" Grid.Column="5" Grid.Row="7"  BorderThickness="0" HorizontalAlignment="Center" VerticalAlignment="Center" MouseDown="DayCell_MouseDown">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="{Binding Source={StaticResource topBlock_Day}}" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="{Binding Source={StaticResource bottomBlock_Day}}" />
+                    </Grid.RowDefinitions>
+
+                    <Border x:Name="LeftBlockX0404" Grid.Column="0" Grid.Row="1" CornerRadius="7,0,0,7" Background="#FF60BDF1" Visibility="Visible"/>
+                    <Border x:Name="RightBlockX0404" Grid.Column="1" Grid.Row="1" CornerRadius="0,7,7,0" Background="#FF60BDF1" Visibility="Visible"/>
+
+                    <Ellipse x:Name="CircleX0404" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="3"  Fill="#FF2B9CDB" HorizontalAlignment="Center"  
+                    Height="{StaticResource circle_Day}" Margin="0,0,0,0" VerticalAlignment="Center" Width="{StaticResource circle_Day}" Visibility="Visible" />
+
+                    <TextBlock x:Name="DayInxTextX0404" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="3" Text="5" FontSize="{StaticResource fontSize_Day}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" Width="40" TextAlignment="Center" Margin="40,0,40,2"/>
+                    <Line x:Name="DayInxTextLineX0404" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" X1="0" Y1="0" X2="35" Y2="0" Stroke="Red" Fill="Red" StrokeThickness="5" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,28,0,0" />
+                </Grid>
+            </Border>
+            <Border x:Name="CellX0504" Grid.Column="6" Grid.Row="7"  BorderThickness="0" HorizontalAlignment="Center" VerticalAlignment="Center" MouseDown="DayCell_MouseDown">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="{Binding Source={StaticResource topBlock_Day}}" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="{Binding Source={StaticResource bottomBlock_Day}}" />
+                    </Grid.RowDefinitions>
+
+                    <Border x:Name="LeftBlockX0504" Grid.Column="0" Grid.Row="1" CornerRadius="7,0,0,7" Background="#FF60BDF1" Visibility="Visible"/>
+                    <Border x:Name="RightBlockX0504" Grid.Column="1" Grid.Row="1" CornerRadius="0,7,7,0" Background="#FF60BDF1" Visibility="Visible"/>
+
+                    <Ellipse x:Name="CircleX0504" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="3"  Fill="#FF2B9CDB" HorizontalAlignment="Center"  
+                    Height="{StaticResource circle_Day}" Margin="0,0,0,0" VerticalAlignment="Center" Width="{StaticResource circle_Day}" Visibility="Visible" />
+
+                    <TextBlock x:Name="DayInxTextX0504" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="3" Text="6" FontSize="{StaticResource fontSize_Day}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" Width="40" TextAlignment="Center" Margin="40,0,40,2"/>
+                    <Line x:Name="DayInxTextLineX0504" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" X1="0" Y1="0" X2="35" Y2="0" Stroke="Red" Fill="Red" StrokeThickness="5" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,28,0,0" />
+                </Grid>
+            </Border>
+            <Border x:Name="CellX0604" Grid.Column="7" Grid.Row="7"  BorderThickness="0" HorizontalAlignment="Center" VerticalAlignment="Center" MouseDown="DayCell_MouseDown">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="{Binding Source={StaticResource topBlock_Day}}" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="{Binding Source={StaticResource bottomBlock_Day}}" />
+                    </Grid.RowDefinitions>
+
+                    <Border x:Name="LeftBlockX0604" Grid.Column="0" Grid.Row="1" CornerRadius="7,0,0,7" Background="#FF60BDF1" Visibility="Visible"/>
+                    <Border x:Name="RightBlockX0604" Grid.Column="1" Grid.Row="1" CornerRadius="0,7,7,0" Background="#FF60BDF1" Visibility="Visible"/>
+
+                    <Ellipse x:Name="CircleX0604" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="3"  Fill="#FF2B9CDB" HorizontalAlignment="Center"  
+                    Height="{StaticResource circle_Day}" Margin="0,0,0,0" VerticalAlignment="Center" Width="{StaticResource circle_Day}" Visibility="Visible" />
+
+                    <TextBlock x:Name="DayInxTextX0604" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="3" Text="7" FontSize="{StaticResource fontSize_Day}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" Width="40" TextAlignment="Center" Margin="40,0,40,2"/>
+                    <Line x:Name="DayInxTextLineX0604" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" X1="0" Y1="0" X2="35" Y2="0" Stroke="Red" Fill="Red" StrokeThickness="5" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,28,0,0" />
+                </Grid>
+            </Border>
+
+            <!-- < XXXXXXXXXXXXXXXXXXXXXXXX Row 05 XXXXXXXXXXXXXXXXXXXXXXXX > -->
+            <Border x:Name="CellX0005" Grid.Column="1" Grid.Row="8"  BorderThickness="0" HorizontalAlignment="Center" VerticalAlignment="Center" MouseDown="DayCell_MouseDown">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="{Binding Source={StaticResource topBlock_Day}}" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="{Binding Source={StaticResource bottomBlock_Day}}" />
+                    </Grid.RowDefinitions>
+
+                    <Border x:Name="LeftBlockX0005" Grid.Column="0" Grid.Row="1" CornerRadius="7,0,0,7" Background="#FF60BDF1" Visibility="Visible"/>
+                    <Border x:Name="RightBlockX0005" Grid.Column="1" Grid.Row="1" CornerRadius="0,7,7,0" Background="#FF60BDF1" Visibility="Visible"/>
+
+                    <Ellipse x:Name="CircleX0005" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="3"  Fill="#FF2B9CDB" HorizontalAlignment="Center"  
+                    Height="{StaticResource circle_Day}" Margin="0,0,0,0" VerticalAlignment="Center" Width="{StaticResource circle_Day}" Visibility="Visible" />
+
+                    <TextBlock x:Name="DayInxTextX0005" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="3" Text="1" FontSize="{StaticResource fontSize_Day}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" Width="40" TextAlignment="Center" Margin="40,0,40,2"/>
+                    <Line x:Name="DayInxTextLineX0005" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" X1="0" Y1="0" X2="35" Y2="0" Stroke="Red" Fill="Red" StrokeThickness="5" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,28,0,0" />
+                </Grid>
+            </Border>
+            <Border x:Name="CellX0105" Grid.Column="2" Grid.Row="8"  BorderThickness="0" HorizontalAlignment="Center" VerticalAlignment="Center" MouseDown="DayCell_MouseDown">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="{Binding Source={StaticResource topBlock_Day}}" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="{Binding Source={StaticResource bottomBlock_Day}}" />
+                    </Grid.RowDefinitions>
+
+                    <Border x:Name="LeftBlockX0105" Grid.Column="0" Grid.Row="1" CornerRadius="7,0,0,7" Background="#FF60BDF1" Visibility="Visible"/>
+                    <Border x:Name="RightBlockX0105" Grid.Column="1" Grid.Row="1" CornerRadius="0,7,7,0" Background="#FF60BDF1" Visibility="Visible"/>
+
+                    <Ellipse x:Name="CircleX0105" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="3"  Fill="#FF2B9CDB" HorizontalAlignment="Center"  
+                    Height="{StaticResource circle_Day}" Margin="0,0,0,0" VerticalAlignment="Center" Width="{StaticResource circle_Day}" Visibility="Visible" />
+
+                    <TextBlock x:Name="DayInxTextX0105" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="3" Text="2" FontSize="{StaticResource fontSize_Day}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" Width="40" TextAlignment="Center" Margin="40,0,40,2"/>
+                    <Line x:Name="DayInxTextLineX0105" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" X1="0" Y1="0" X2="35" Y2="0" Stroke="Red" Fill="Red" StrokeThickness="5" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,28,0,0" />
+                </Grid>
+            </Border>
+            <Border x:Name="CellX0205" Grid.Column="3" Grid.Row="8"  BorderThickness="0" HorizontalAlignment="Center" VerticalAlignment="Center" MouseDown="DayCell_MouseDown">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="{Binding Source={StaticResource topBlock_Day}}" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="{Binding Source={StaticResource bottomBlock_Day}}" />
+                    </Grid.RowDefinitions>
+
+                    <Border x:Name="LeftBlockX0205" Grid.Column="0" Grid.Row="1" CornerRadius="7,0,0,7" Background="#FF60BDF1" Visibility="Visible"/>
+                    <Border x:Name="RightBlockX0205" Grid.Column="1" Grid.Row="1" CornerRadius="0,7,7,0" Background="#FF60BDF1" Visibility="Visible"/>
+
+                    <Ellipse x:Name="CircleX0205" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="3"  Fill="#FF2B9CDB" HorizontalAlignment="Center"  
+                    Height="{StaticResource circle_Day}" Margin="0,0,0,0" VerticalAlignment="Center" Width="{StaticResource circle_Day}" Visibility="Visible" />
+
+                    <TextBlock x:Name="DayInxTextX0205" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="3" Text="3" FontSize="{StaticResource fontSize_Day}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" Width="40" TextAlignment="Center" Margin="40,0,40,2"/>
+                    <Line x:Name="DayInxTextLineX0205" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" X1="0" Y1="0" X2="35" Y2="0" Stroke="Red" Fill="Red" StrokeThickness="5" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,28,0,0" />
+                </Grid>
+            </Border>
+            <Border x:Name="CellX0305" Grid.Column="4" Grid.Row="8"  BorderThickness="0" HorizontalAlignment="Center" VerticalAlignment="Center" MouseDown="DayCell_MouseDown">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="{Binding Source={StaticResource topBlock_Day}}" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="{Binding Source={StaticResource bottomBlock_Day}}" />
+                    </Grid.RowDefinitions>
+
+                    <Border x:Name="LeftBlockX0305" Grid.Column="0" Grid.Row="1" CornerRadius="7,0,0,7" Background="#FF60BDF1" Visibility="Visible"/>
+                    <Border x:Name="RightBlockX0305" Grid.Column="1" Grid.Row="1" CornerRadius="0,7,7,0" Background="#FF60BDF1" Visibility="Visible"/>
+
+                    <Ellipse x:Name="CircleX0305" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="3"  Fill="#FF2B9CDB" HorizontalAlignment="Center"  
+                    Height="{StaticResource circle_Day}" Margin="0,0,0,0" VerticalAlignment="Center" Width="{StaticResource circle_Day}" Visibility="Visible" />
+
+                    <TextBlock x:Name="DayInxTextX0305" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="3" Text="4" FontSize="{StaticResource fontSize_Day}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" Width="40" TextAlignment="Center" Margin="40,0,40,2"/>
+                    <Line x:Name="DayInxTextLineX0305" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" X1="0" Y1="0" X2="35" Y2="0" Stroke="Red" Fill="Red" StrokeThickness="5" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,28,0,0" />
+                </Grid>
+            </Border>
+            <Border x:Name="CellX0405" Grid.Column="5" Grid.Row="8"  BorderThickness="0" HorizontalAlignment="Center" VerticalAlignment="Center" MouseDown="DayCell_MouseDown">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="{Binding Source={StaticResource topBlock_Day}}" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="{Binding Source={StaticResource bottomBlock_Day}}" />
+                    </Grid.RowDefinitions>
+
+                    <Border x:Name="LeftBlockX0405" Grid.Column="0" Grid.Row="1" CornerRadius="7,0,0,7" Background="#FF60BDF1" Visibility="Visible"/>
+                    <Border x:Name="RightBlockX0405" Grid.Column="1" Grid.Row="1" CornerRadius="0,7,7,0" Background="#FF60BDF1" Visibility="Visible"/>
+
+                    <Ellipse x:Name="CircleX0405" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="3"  Fill="#FF2B9CDB" HorizontalAlignment="Center"  
+                    Height="{StaticResource circle_Day}" Margin="0,0,0,0" VerticalAlignment="Center" Width="{StaticResource circle_Day}" Visibility="Visible" />
+
+                    <TextBlock x:Name="DayInxTextX0405" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="3" Text="5" FontSize="{StaticResource fontSize_Day}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" Width="40" TextAlignment="Center" Margin="40,0,40,2"/>
+                    <Line x:Name="DayInxTextLineX0405" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" X1="0" Y1="0" X2="35" Y2="0" Stroke="Red" Fill="Red" StrokeThickness="5" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,28,0,0" />
+                </Grid>
+            </Border>
+            <Border x:Name="CellX0505" Grid.Column="6" Grid.Row="8"  BorderThickness="0" HorizontalAlignment="Center" VerticalAlignment="Center" MouseDown="DayCell_MouseDown">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="{Binding Source={StaticResource topBlock_Day}}" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="{Binding Source={StaticResource bottomBlock_Day}}" />
+                    </Grid.RowDefinitions>
+
+                    <Border x:Name="LeftBlockX0505" Grid.Column="0" Grid.Row="1" CornerRadius="7,0,0,7" Background="#FF60BDF1" Visibility="Visible"/>
+                    <Border x:Name="RightBlockX0505" Grid.Column="1" Grid.Row="1" CornerRadius="0,7,7,0" Background="#FF60BDF1" Visibility="Visible"/>
+
+                    <Ellipse x:Name="CircleX0505" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="3"  Fill="#FF2B9CDB" HorizontalAlignment="Center"  
+                    Height="{StaticResource circle_Day}" Margin="0,0,0,0" VerticalAlignment="Center" Width="{StaticResource circle_Day}" Visibility="Visible" />
+
+                    <TextBlock x:Name="DayInxTextX0505" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="3" Text="6" FontSize="{StaticResource fontSize_Day}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" Width="40" TextAlignment="Center" Margin="40,0,40,2"/>
+                    <Line x:Name="DayInxTextLineX0505" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" X1="0" Y1="0" X2="35" Y2="0" Stroke="Red" Fill="Red" StrokeThickness="5" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,28,0,0" />
+                </Grid>
+            </Border>
+            <Border x:Name="CellX0605" Grid.Column="7" Grid.Row="8"  BorderThickness="0" HorizontalAlignment="Center" VerticalAlignment="Center" MouseDown="DayCell_MouseDown">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="{Binding Source={StaticResource topBlock_Day}}" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="{Binding Source={StaticResource bottomBlock_Day}}" />
+                    </Grid.RowDefinitions>
+
+                    <Border x:Name="LeftBlockX0605" Grid.Column="0" Grid.Row="1" CornerRadius="7,0,0,7" Background="#FF60BDF1" Visibility="Visible"/>
+                    <Border x:Name="RightBlockX0605" Grid.Column="1" Grid.Row="1" CornerRadius="0,7,7,0" Background="#FF60BDF1" Visibility="Visible"/>
+
+                    <Ellipse x:Name="CircleX0605" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="3"  Fill="#FF2B9CDB" HorizontalAlignment="Center"  
+                    Height="{StaticResource circle_Day}" Margin="0,0,0,0" VerticalAlignment="Center" Width="{StaticResource circle_Day}" Visibility="Visible" />
+
+                    <TextBlock x:Name="DayInxTextX0605" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="3" Text="7" FontSize="{StaticResource fontSize_Day}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" Width="40" TextAlignment="Center" Margin="40,0,40,2"/>
+                    <Line x:Name="DayInxTextLineX0605" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" X1="0" Y1="0" X2="35" Y2="0" Stroke="Red" Fill="Red" StrokeThickness="5" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,28,0,0" />
+                </Grid>
+            </Border>
+        </Grid>
+
+        <Border x:Name="BdSearch" Grid.Column="1" Grid.Row="4" CornerRadius="5" Background="#FF43D82C" Height ="45" VerticalAlignment="Top" Margin="0,10,30,0" HorizontalAlignment="Right" Width="150" MouseLeftButtonDown="BdSearch_MouseLeftButtonDown">
+            <TextBlock x:Name="TxtComfirmSeat" Text="{DynamicResource SEARCHLabel}" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="16"  />
+        </Border>
+
+        <Border Grid.Column="1" Grid.Row="4" Height="50" Width="300" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,5,0,5">
+            <loNav:uscCTNavigation HorizontalAlignment="Left" x:Name="UscNav"/>
+        </Border>
+
+        <Grid x:Name="GrdScreenShield" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Grid.RowSpan="6" Background="#9FFFFFFF" Visibility="Collapsed" >
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Vertical">
+                <TextBlock Text="{DynamicResource IN_PROGRESS_Label}" FontSize="36" FontWeight="Bold" MaxWidth="500" TextWrapping="Wrap" HorizontalAlignment="Center" TextAlignment="Center"/>
+                <TextBlock Text="" FontSize="48" FontStyle="Italic" Foreground="#5F0000FF" TextAlignment="Center"/>
+                <TextBlock Text="" FontSize="48" FontStyle="Italic" Foreground="#5F0000FF" TextAlignment="Center"/>
+                <TextBlock Text="" FontSize="48" FontStyle="Italic" Foreground="#5F0000FF" TextAlignment="Center"/>
+                <TextBlock Text="" FontSize="48" FontStyle="Italic" Foreground="#5F0000FF" TextAlignment="Center"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Page>

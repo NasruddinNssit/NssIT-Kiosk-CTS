@@ -1,0 +1,290 @@
+﻿<Page x:Class="NssIT.Kiosk.Client.ViewPage.Menu.pgMenu"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:NssIT.Kiosk.Client.ViewPage.Menu"
+      mc:Ignorable="d" 
+      FontFamily="Segoe UI"
+      d:DesignHeight="1280" d:DesignWidth="250"
+      Stylus.IsPressAndHoldEnabled="False"
+      Title="Kiosk Menu">
+
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="LanguageEnglish01.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+        <!--<Grid.Background>
+            <RadialGradientBrush Center="0.5,0.5">
+                <RadialGradientBrush.RelativeTransform>
+                    <TransformGroup>
+                        <ScaleTransform CenterY="0.5" CenterX="0.5" ScaleX="3.5" ScaleY="1.3"/>
+                        <SkewTransform CenterY="0.5" CenterX="0.5"/>
+                        <RotateTransform CenterY="0.5" CenterX="0.5"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </RadialGradientBrush.RelativeTransform>
+                <RadialGradientBrush.Transform>
+                    <TransformGroup>
+                        <TranslateTransform X="210" Y="370"/>
+                    </TransformGroup>
+                </RadialGradientBrush.Transform>
+                <GradientStop Color="#FF142B56" Offset="1"/>
+                <GradientStop Color="#FF15315D" Offset="0.894"/>
+                <GradientStop Color="#FF2265A2" Offset="0.379"/>
+                <GradientStop Color="#FF3D93CB" Offset="0"/>
+
+            </RadialGradientBrush>
+        </Grid.Background>-->
+
+        <StackPanel Grid.Column="0" Grid.Row="0" Orientation="Vertical" Margin="15,0,0,0" >
+            
+            <TextBlock Text="{DynamicResource YourTicketLabel}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#FF9292B2" FontSize="20" Margin="0,16,0,3" FontWeight="Bold" FontFamily="Segoe UI Emoji" />
+
+            <Border x:Name="BdFrom" Margin="5,5,0,0"  MouseDown="ActivateMenuItem" Background="#01FFFFFF">
+                <Grid VerticalAlignment="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="15"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="25"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="20" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <TextBlock x:Name="LblFromStation" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Text="{DynamicResource FROMLabel}" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="#FFA8A8A8" FontSize="16" Margin="5,0,0,0"/>
+                    <Image x:Name="ImgFromStation" Grid.Column="2" Grid.Row="0" Source="/NssIT.Kiosk.Client;component/Resources/icon-edit.png" Width="20" Height="20" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                    <TextBlock x:Name="TxtFromStationNm" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Text="TBS (Terminal Bersepadu Selatan)" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="#FFF3C100" FontSize="18" Margin="5,0,0,0" TextWrapping="Wrap"/>
+                </Grid>
+            </Border>
+
+            <Border x:Name="BdTo" Margin="5,5,0,0" MouseDown="ActivateMenuItem">
+                <Grid VerticalAlignment="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="15"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="25"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="20" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <TextBlock x:Name="LblToStation" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Text="{DynamicResource TOLabel}" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="#FFA8A8A8" FontSize="16" Margin="5,0,0,0"/>
+                    <Image x:Name="ImgToStation" Grid.Column="2" Grid.Row="0" Source="/NssIT.Kiosk.Client;component/Resources/icon-edit.png" Width="20" Height="20" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                    <TextBlock x:Name="TxtToStationNm" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Text="Ipoh" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="#FFF3C100" FontSize="18" Margin="5,0,0,0" TextWrapping="Wrap"/>
+                </Grid>
+            </Border>
+
+            <Border x:Name="BdDepartDate" Margin="5,5,0,0" MouseDown="ActivateMenuItem">
+                <Grid VerticalAlignment="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="15"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="25"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="20" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <TextBlock x:Name="LblDepartDate" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Text="{DynamicResource DEPARTDATELabel}" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="#FFA8A8A8" FontSize="16" Margin="5,0,0,0"/>
+                    <Image x:Name="ImgDepartDate" Grid.Column="2" Grid.Row="0" Source="/NssIT.Kiosk.Client;component/Resources/icon-edit.png" Width="20" Height="20" Margin="0,0,5,0"/>
+                    <TextBlock x:Name="TxtDepartDate" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Text="31 Jan 2020  23:30" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="#FFF3C100" FontSize="18" Margin="5,0,0,0" TextWrapping="Wrap"/>
+                </Grid>
+            </Border>
+
+            <Border x:Name="BdDepartOperator" Margin="5,5,0,0" MouseDown="ActivateMenuItem">
+                <Grid VerticalAlignment="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="15"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="25"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="20" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <Line x:Name="LnDepartOperator1" Grid.Column="0" Grid.Row="0" Stroke="#FFA8A8A8" StrokeThickness="2" X1="8" X2="8" Y2="25" Margin="5,0,0,0" />
+                    <TextBlock x:Name="LblDepartOperatorNm" Grid.Column="1" Grid.Row="0" Text="{DynamicResource COMPANYLabel}" VerticalAlignment="Center" Foreground="#FFA8A8A8" FontSize="16" Margin="5,0,0,0" HorizontalAlignment="Left"/>
+                    <Image x:Name="ImgDepartOperator" Grid.Column="2" Grid.Row="0" Source="/NssIT.Kiosk.Client;component/Resources/icon-edit.png" Width="20" Height="20" Margin="0,0,5,0"/>
+
+                    <Line x:Name="LnDepartOperator2" Grid.Column="0" Grid.Row="1" Stroke="#FFA8A8A8" StrokeThickness="2" X1="8" X2="8" Y2="25" Margin="5,0,0,0" />
+                    <TextBlock x:Name="TxtDepartOperatorNm" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" Text="Mayang Sari" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="#FFF3C100" FontSize="18" Margin="5,0,0,0" TextWrapping="Wrap"/>
+                </Grid>
+            </Border>
+
+            <Border x:Name="BdDepartSeat" Margin="5,5,0,0" MouseDown="ActivateMenuItem">
+                <Grid VerticalAlignment="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="15"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="25"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="20" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <Line x:Name="LnDepartSeat1" Grid.Column="0" Grid.Row="0" Stroke="#FFA8A8A8" StrokeThickness="2" X1="8" X2="8" Y2="20" Margin="5,-5,0,0" />
+                    <TextBlock x:Name="LblDepartSeat" Grid.Column="1" Grid.Row="0" Text="{DynamicResource SEATLabel}" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="#FFA8A8A8" FontSize="16" Margin="5,0,0,0"/>
+                    <Image x:Name="ImgDepartSeat" Grid.Column="2" Grid.Row="0" Source="/NssIT.Kiosk.Client;component/Resources/icon-edit.png" Width="20" Height="20" Margin="0,0,5,0"/>
+
+                    <Line x:Name="LnDepartSeat2" Grid.Column="0" Grid.Row="1" Stroke="#FFA8A8A8" StrokeThickness="2" X1="8" X2="8" Y2="25" Margin="5,-5,0,-5" />
+                    <TextBlock x:Name="TxtDepartSeat" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" Text="A4, B4" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="#FFF3C100" FontSize="18" Margin="5,0,0,0" TextWrapping="Wrap"/>
+                </Grid>
+            </Border>
+
+            <Border x:Name="BdReturnDate" Margin="5,5,0,0"  MouseDown="ActivateMenuItem">
+                <Grid VerticalAlignment="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="15"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="25"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="20" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <TextBlock x:Name="LblReturnDate" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Text="{DynamicResource RETURNDATELabel}" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="#FFA8A8A8" FontSize="16" Margin="5,0,0,0"/>
+                    <Image x:Name="ImgReturnDate" Grid.Column="2" Grid.Row="0" Source="/NssIT.Kiosk.Client;component/Resources/icon-edit.png" Width="20" Height="20" Margin="0,0,5,0"/>
+                    <TextBlock x:Name="TxtReturnDate" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Text="28 Feb 2020  17:30" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="#FFF3C100" FontSize="18" Margin="5,0,0,0" TextWrapping="Wrap"/>
+                </Grid>
+            </Border>
+
+            <Border x:Name="BdReturnOperator" Margin="5,5,0,0"  MouseDown="ActivateMenuItem">
+                <Grid VerticalAlignment="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="15"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="25"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="20" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <Line x:Name="LnReturnOperator1" Grid.Column="0" Grid.Row="0" Stroke="#FFA8A8A8" StrokeThickness="2" X1="8" X2="8" Y2="20" Margin="5,0,0,0" />
+                    <TextBlock x:Name="LblReturnOperatorNm" Grid.Column="1" Grid.Row="0" Text="{DynamicResource COMPANYLabel}" VerticalAlignment="Center" Foreground="#FFA8A8A8" FontSize="16" Margin="5,0,80,0"/>
+                    <Image x:Name="ImgReturnOperator" Grid.Column="2" Grid.Row="0" Source="/NssIT.Kiosk.Client;component/Resources/icon-edit.png" Width="20" Height="20" Margin="0,0,5,0"/>
+
+                    <Line x:Name="LnReturnOperator2" Grid.Column="0" Grid.Row="1" Stroke="#FFA8A8A8" StrokeThickness="2" X1="8" X2="8" Y2="25" Margin="5,0,0,0" />
+                    <TextBlock x:Name="TxtReturnOperatorNm" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" Text="Transnasional" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="#FFF3C100" FontSize="18" Margin="5,0,0,0" TextWrapping="Wrap"/>
+                </Grid>
+            </Border>
+
+            <Border x:Name="BdReturnSeat" Margin="5,5,0,0"  MouseDown="ActivateMenuItem">
+                <Grid VerticalAlignment="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="15"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="25"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="20" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <Line x:Name="LnReturnSeat1" Grid.Column="0" Grid.Row="0" Stroke="#FFA8A8A8" StrokeThickness="2" X1="8" X2="8" Y2="20" Margin="5,-5,0,0" />
+                    <TextBlock x:Name="LblReturnSeat" Grid.Column="1" Grid.Row="0" Text="{DynamicResource SEATLabel}" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="#FFA8A8A8" FontSize="16" Margin="5,0,0,0"/>
+                    <Image x:Name="ImgReturnSeat" Grid.Column="2" Grid.Row="0" Source="/NssIT.Kiosk.Client;component/Resources/icon-edit.png" Width="20" Height="20" Margin="0,0,5,0" />
+
+                    <Line x:Name="LnReturnSeat2" Grid.Column="0" Grid.Row="1" Stroke="#FFA8A8A8" StrokeThickness="2" X1="8" X2="8" Y2="25" Margin="5,-5,0,-5" />
+                    <TextBlock x:Name="TxtReturnSeat" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" Text="A2, B3" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="#FFF3C100" FontSize="18" Margin="5,0,0,0" TextWrapping="Wrap"/>
+                </Grid>
+            </Border>
+
+            <Border x:Name="BdPassenger" Margin="5,5,0,0">
+                <Grid VerticalAlignment="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="15"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="25"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="20" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <TextBlock x:Name="LblPassenger" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Text="{DynamicResource PASSENGERLabel}" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="#FFA8A8A8" FontSize="16" Margin="5,0,0,0"/>
+
+                    <StackPanel x:Name="StpPassengerList" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Orientation="Vertical">
+                        <TextBlock Text="MOHD ADAM ALI 780527-04-1234" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="#FFF3C100" FontSize="18" Margin="5,0,0,0" TextWrapping="Wrap"/>
+                        <TextBlock Text="NORMAL MOHD 820210-04-9855" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="#FFF3C100" FontSize="18" Margin="5,0,0,0" TextWrapping="Wrap"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+            <Border x:Name="BdPayment" Margin="5,5,0,0">
+                <Grid VerticalAlignment="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="15"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="25"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="20" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <TextBlock x:Name="LblPayment" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Text="{DynamicResource PAYMENTLabel}" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="#FFA8A8A8" FontSize="16" Margin="5,0,0,0"/>
+                    <TextBlock x:Name="TxtPaymentTypeDesc" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Text="" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="#FFF3C100" FontSize="18" Margin="5,0,0,0" TextWrapping="Wrap"/>
+                </Grid>
+            </Border>
+
+            <!--<Border x:Name="BdTest" Margin="5,0,0,0">
+            <Grid>
+                <Image Source="/NssIT.Kiosk.Client;component/Resources/logo-NSSIT-cs3(2).png" Width="240" />
+            </Grid>
+            </Border>-->
+
+            <Border Height="50" />
+
+            <Frame x:Name="frmTripTimeFilter" ScrollViewer.CanContentScroll="True" NavigationUIVisibility="Hidden" HorizontalAlignment="Center" Margin="0,0,10,0" Visibility="Hidden"  />
+
+        </StackPanel>
+
+        <Grid Grid.Column="0" Grid.Row="1" x:Name="GrdMiniNavigator">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.Column="0" Grid.Row="1" Orientation="Horizontal" FlowDirection="RightToLeft">
+                <Border Width="10"/>
+                <Border x:Name="BdPrevious" CornerRadius="5" Background="#FF43D82C" Height ="45" VerticalAlignment="Bottom" Margin="0,10,20,20" HorizontalAlignment="Right" Width="100" MouseLeftButtonDown="BdPrevious_MouseLeftButtonDown">
+                    <TextBlock Text="{DynamicResource PREVIOUSLabel}" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="16"  />
+                </Border>
+                <Border x:Name="BdExit" CornerRadius="5" Background="#FF43D82C" Height ="45" VerticalAlignment="Bottom" Margin="0,10,20,20" HorizontalAlignment="Right" Width="100" MouseLeftButtonDown="BdExit_MouseLeftButtonDown">
+                    <TextBlock Text="{DynamicResource EXITLabel}" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="16"  />
+                </Border>
+                
+            </StackPanel>
+            <Border Grid.Column="0" Grid.Row="2" Height="0" x:Name="BdStacker1" >
+
+            </Border>
+        </Grid>
+
+        <Border x:Name="BdMenuShield" Grid.Column="0" Grid.Row="0" Grid.RowSpan="3" Background="#20FFFFFF" Visibility="Collapsed" />
+    </Grid>
+</Page>

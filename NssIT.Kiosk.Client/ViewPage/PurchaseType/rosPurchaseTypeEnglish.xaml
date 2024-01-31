@@ -1,0 +1,10 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                    xmlns:local="clr-namespace:NssIT.Kiosk.Client.ViewPage.PurchaseType">
+
+    <sys:String x:Key="SELECT_TRANS_TYPE_Label">Please select transaction type</sys:String>
+    <sys:String x:Key="BUY_TICKETS_Label">Purchase Tickets</sys:String>
+    <sys:String x:Key="COLLECT_TICKET_Label">Collect Boarding Pass</sys:String>
+
+</ResourceDictionary>

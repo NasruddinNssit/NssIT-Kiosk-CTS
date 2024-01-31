@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{033BA1EC-0055-4F79-9314-CBCFA9B6A09A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>NssIT.Kiosk.Device.Telequip.CX2_3.AccessSDK</RootNamespace>
+    <AssemblyName>NssIT.Kiosk.Device.Telequip.CX2_3.AccessSDK</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CX2D3Access.cs" />
+    <Compile Include="CX2D3CommandPack.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\NssIT.Kiosk.AppDecorator\NssIT.Kiosk.AppDecorator.csproj">
+      <Project>{1cc91bda-e1d3-4eab-9d67-7d04b224f837}</Project>
+      <Name>NssIT.Kiosk.AppDecorator</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NssIT.Kiosk.Device.Telequip.CX2_3.CX2_3Decorator\NssIT.Kiosk.Device.Telequip.CX2_3.CX2D3Decorator.csproj">
+      <Project>{d8abf788-beb6-4100-9b36-fdede5abd757}</Project>
+      <Name>NssIT.Kiosk.Device.Telequip.CX2_3.CX2D3Decorator</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NssIT.Kiosk.Device.Telequip.CX2_3.OrgApi\NssIT.Kiosk.Device.Telequip.CX2_3.OrgApi.csproj">
+      <Project>{75b1313c-249e-4813-bd3d-7efa62138921}</Project>
+      <Name>NssIT.Kiosk.Device.Telequip.CX2_3.OrgApi</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NssIT.Kiosk.Log.DB\NssIT.Kiosk.Log.DB.csproj">
+      <Project>{92b559f6-ad65-4818-9300-badd7f849853}</Project>
+      <Name>NssIT.Kiosk.Log.DB</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

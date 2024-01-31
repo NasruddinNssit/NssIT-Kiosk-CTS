@@ -1,0 +1,46 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <sys:String x:Key="PREVLabel">SEBELUM</sys:String>
+    <sys:String x:Key="NEXTLabel">SELEPAS</sys:String>
+    <sys:String x:Key="ENTER_PASSENGER_INFO_Label">MASUKKAN MAKLUMAT PENUMPANG</sys:String>
+    <sys:String x:Key="SCAN_MYKAD_Label">MENGIMBAS MYKAD</sys:String>
+    <sys:String x:Key="CONFIRM_Label">MENGESAH</sys:String>
+
+    <sys:String x:Key="TICKET_NO_Label">No. Tiket</sys:String>
+    <sys:String x:Key="TRIP_NO_Label">No. Perjalanan.</sys:String>
+    <sys:String x:Key="BUS_COMPANY_Label">Syarikat Bas</sys:String>
+    <sys:String x:Key="DEPARTURE_DATE_Label">Tarikh Berlepas</sys:String>
+    <sys:String x:Key="FROM_TO_Label">Dari - Ke</sys:String>
+    <sys:String x:Key="FROM_Label">Dari</sys:String>
+    <sys:String x:Key="TO_Label">Ke</sys:String>
+    <sys:String x:Key="SEAT_Label">Tempat Duduk</sys:String>
+    <sys:String x:Key="SEAT_TYPE_Label">Jenis</sys:String>
+    <sys:String x:Key="PASSENGER_NAME_Label">Nama Penumpang</sys:String>
+    <sys:String x:Key="IC_PASSPORT_Label">IC / Pasport</sys:String>
+    <sys:String x:Key="CONTACT_NO_Label">No.Tel.Bimbit</sys:String>
+    <sys:String x:Key="FASILITY_CHARGE_Label">Caj Kemudahan</sys:String>
+    <sys:String x:Key="QR_CHARGE_Label">Caj QR</sys:String>
+
+    <sys:String x:Key="PERSON_DETAILS_Label">Butiran Penumpang</sys:String>
+
+    <sys:String x:Key="FULL_NAME_ADVISE_Label">Maklumat penumpang diperlukan untuk tujuan pengesahan</sys:String>
+    <sys:String x:Key="CORRECT_PASSENGER_INFO_Label">Sila betulkan entri maklumat penumpang</sys:String>
+
+    <sys:String x:Key="SCAN_PASSENGER_MYKAD_Label">MENGIMBAS MYKAD: Penumpang</sys:String>
+    <sys:String x:Key="INSERT_MYKAD_FOR_SCAN_Label">Sila masukkan MyKad untuk pengimbasan.</sys:String>
+
+    <sys:String x:Key="REMOVE_MYKAD_Label">Sila keluarkan MyKad</sys:String>
+    <sys:String x:Key="READYFORMOBILE_Label">and isikan Nombor Telefon Bimbit anda.</sys:String>
+
+    <sys:String x:Key="ADVICE_PASSENGER_NAME_Label">Sila isikan nama penuh penumpang</sys:String>
+    <sys:String x:Key="ADVICE_IC_NO_Label">Sila isikan maklumat kad pengenalan/pasport</sys:String>
+    <sys:String x:Key="ADVICE_MOBILE_NO_Label">Sila isikan nombor telefon bimbit</sys:String>
+
+    <sys:String x:Key="CUST_ERROR_IC_NO_Label"> Maklumat kad pengenalan/pasport sekurang-kurangnya 8 rangkaian aksara yang terdiri daripada huruf, angka, dan tanda baca</sys:String>
+    <sys:String x:Key="CUST_ERROR_MOBILE_NO_Label">Nombor telefon bimbit sekurang-kurangnya 10 digit tanpa ruang kosong</sys:String>
+
+    <sys:String x:Key="IN_PROGRESS_Label">Kerja sedang dijalankan..</sys:String>
+    
+</ResourceDictionary>

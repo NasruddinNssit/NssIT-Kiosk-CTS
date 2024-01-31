@@ -1,0 +1,132 @@
+﻿B2B
+xxxxxxxxx
+Answer
+
+Activety : Machine Initialization
+-------------------------------------
+b2b.objB2B.SearchAndConnect()
+b2b.objB2B.Open();
+b2b.objB2B.OnBillToBillStatusChanged += new BillToBill.Event(objB2B_OnBillToBillStatusChanged);
+b2b.objB2B.OnPollAnswerReceived += new BillToBill.AnswerReceivedEvent(objB2B_OnPollAnswerReceived);
+b2b.objB2B.IsPoll = true;
+billtable = new BillTable[23];
+Answer = b2b.objB2B.CCNET.RunCommand(CCNETCommand.GET_BILL_TABLE, true);
+Answer.ReceivedData
+b2b.objB2B.PollInterval = 150;
+
+Activity : Read Bill Table
+--------------------------------------
+Answer = b2b.objB2B.CCNET.RunCommand(CCNETCommand.GET_BILL_TABLE, true);
+
+Activity : Machine Set Cassette Type
+--------------------------------------
+//b2b.objB2B.Cassettes[0].SetCassetteType(0);
+//b2b.objB2B.Cassettes[1].SetCassetteType(2);
+//b2b.objB2B.Cassettes[2].SetCassetteType(3);
+
+Activity : Machine Set Maximum Cassette Quantity
+--------------------------------------------------
+b2b.objB2B.Cassettes[0].LoadLimit = intCashD1Limit
+b2b.objB2B.Cassettes[1].LoadLimit = intCashD2Limit
+b2b.objB2B.Cassettes[2].LoadLimit = intCashD3Limit
+
+Activity : Machine Read Cassette Qty Data
+--------------------------------------------------
+b2b.objB2B.Cassettes[0].Denomination
+b2b.objB2B.Cassettes[1].Denomination
+b2b.objB2B.Cassettes[2].Denomination
+b2b.objB2B.Cassettes[0].BillQuantity
+b2b.objB2B.Cassettes[1].BillQuantity
+b2b.objB2B.Cassettes[2].BillQuantity
+
+Activity : Reset Machine When Machine has restored
+----------------------------------------------------
+b2b.objB2B.CCNET.RunComandNonAnswer(CCNETCommand.RESET);
+
+Machine Related Events
+--------------------------
+b2b.objB2B.BillToBillStatus
+	: Bill_to_Bill_Sataus.PACKED_STACKED
+	: Bill_to_Bill_Sataus.DISPENSED
+	: Bill_to_Bill_Sataus.POWER_UP
+	: Bill_to_Bill_Sataus.IDLING
+	: Bill_to_Bill_Sataus.DISABLED
+	: Bill_to_Bill_Sataus.INITIALIZE
+	: Bill_to_Bill_Sataus.DISABLED
+
+Activity : Set Machine To Stand=by Mode
+----------------------------------------------------
+b2b.objB2B.ToDisableMode();
+
+Activity : Unload a specified quantity of note from a cassette to Drop Box 
+-----------------------------------------------------------------------------
+b2b.objB2B.Cassettes[i].Unload(Convert.ToByte(b2b.objB2B.Cassettes[i].BillQuantity));
+
+Activity : Dispense a specified value of Banknotes. 
+-----------------------------------------------------------------------------
+b2b.objB2B.CCNET.RunComandNonAnswer(CCNETCommand.DISPENSE, snd_arr);
+
+Activity : Set Machine to ready for receiving Banknote refer to a code. 
+-----------------------------------------------------------------------------
+b2b.objB2B.CCNET.RunCommand(CCNETCommand.ENABLE_BILL_TYPES, new byte[] { 0, 0, 13, 0, 0, 0 });
+
+Activity : Check a COM Port for the Opening Status
+-----------------------------------------------------------------------------
+b2b.objB2B.CCNET.Port.IsOpen
+
+Activity : Close COM Port
+-----------------------------------------------------------------------------
+b2b.objB2B.CCNET.Port.Close()
+
+
+AxTQ01001
+xxxxxxxxxxxxxxxx
+
+Activety : Machine Initialization
+-----------------------------------
+AxTQ01001.CommunicationChannel = false;
+lRetVal = AxTQ01001.SetProtocol(2);
+lRetVal = AxTQ01001.InitPortSettings(ref strOcxVersion);
+
+Activety : Check Previous Dispense Amount
+---------------------------------------------
+AxTQ01001.AmountDispensed
+
+Activety : Clear Machine Cache Data and Status
+---------------------------------------------
+AxTQ01001.ClearColumnHistory()
+AxTQ01001.ClearMachineStatus()
+AxTQ01001.ClearSensorStatus()
+AxTQ01001.ResetMachineStatus(ref test);
+
+Activety : Dispense Coin
+---------------------------------------------
+AxTQ01001.DispenseByColumn(txt10.Text + txt20.Text + txt50.Text + "00000")
+
+Activety : Read Column History
+---------------------------------------------
+AxTQ01001.GetColumnHistory(ref refObj);
+
+Activety : Read Machine Status for Low Coin Checking
+------------------------------------------------------
+lRetVal = AxTQ01001.GetLowCoinColumnStatus(ref refObj);
+
+Activety : Read Machine Status
+------------------------------------------------------
+AxTQ01001.GetMachineStatus(ref refObj);
+
+Activety : Read Machine's Last Error
+------------------------------------------------------
+AxTQ01001.GetMachineErrors(ref refObj)
+
+Activety : Read Machine's Last Transaction Error
+------------------------------------------------------
+AxTQ01001.GetTransactLastError()
+
+Activety : Refresh Machine
+------------------------------------------------------
+AxTQ01001.Refresh();
+
+Activety : Spin Coin Bin
+------------------------------------------------------
+AxTQ01001.SpinByBin(i);

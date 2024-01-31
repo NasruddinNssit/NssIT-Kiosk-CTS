@@ -1,0 +1,107 @@
+﻿<Page x:Class="NssIT.Kiosk.Client.ViewPage.Payment.pgCreditCardPayWave"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:NssIT.Kiosk.Client.ViewPage.Payment"
+      mc:Ignorable="d" FontFamily="Roboto" Background="#FFD2E9F5"
+      Height="380" Width="956" Stylus.IsPressAndHoldEnabled="False"
+      Title="Credit Card Paywave" Loaded="Page_Loaded" Unloaded="Page_Unloaded">
+
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="rosPaymentEnglish.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+
+    </Page.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="63"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="90"/>
+        </Grid.RowDefinitions>
+        <Border Grid.Row="0" Background="White">
+            <TextBlock Text="{DynamicResource CARD_PAYMENT_Label}" FontSize="28" Foreground="#777777" VerticalAlignment="Center" Margin="16,0,0,0"/>
+        </Border>
+
+        <TextBlock Text="Ref: XXXXX" FontSize="13" FontWeight="Bold" Foreground="#777777" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,5" x:Name="TxtRefNo"/>
+
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.66*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="0.5*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <StackPanel Grid.Row="0" Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="{DynamicResource PLEASE_PAY__Label}" FontSize="26" FontWeight="DemiBold" Foreground="#FF777777"/>
+                    <TextBlock Text="RM 500.00" FontSize="26" Foreground="#FF777777" x:Name="TxtPayAmount"/>
+                </StackPanel>
+                <StackPanel Grid.Row="1" Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="{DynamicResource BALANCE_Label}" FontSize="26" FontWeight="DemiBold" Foreground="#FF777777" AllowDrop="True"/>
+                    <TextBlock Text="RM 500.00" FontSize="26" Foreground="#FF777777" x:Name="TxtPayBalance"/>
+                </StackPanel>
+            </Grid>
+
+            <Grid Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.4*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="60"/>
+                </Grid.RowDefinitions>
+
+                <Border Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" MouseLeftButtonUp="Test_SubmitPayment">
+                    <Border.Background>
+                        <ImageBrush ImageSource="/Resources/CreditCardPayWave01.png" Stretch="None"/>
+                    </Border.Background>
+                </Border>
+
+                <!--<Image Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Source="/Resources/CreditCardPayWave01.png" HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="None"/>-->
+                <Image Grid.Column="0" Grid.Row="1" Source="/Resources/icon-exclamation-light.png" HorizontalAlignment="Right" VerticalAlignment="Top" Height="20" Margin="0,7,5,0"/>
+                <TextBlock Grid.Column="1" Grid.Row="1" Text="{DynamicResource CARD_PAYMENT_MESSAGE_Label}" FontSize="11" Foreground="#FF777777" TextWrapping="WrapWithOverflow" Margin="0,10,0,0"/>
+            </Grid>
+        </Grid>
+
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="12"/>
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.Column="0" Grid.Row="0" Orientation="Vertical">
+                <TextBlock Grid.Column="0" Grid.Row="2" Text="Error Msg .." x:Name="TxtError" Foreground="Red" Margin="20,0,10,0"/>
+                <TextBlock Grid.Column="0" Grid.Row="2" FontSize="16" Text="Cust.Msg .. " Foreground="#FF777777" TextWrapping="WrapWithOverflow" x:Name="TxtMacBusy" Margin="20,10,0,0"/>
+            </StackPanel>
+
+            <TextBlock Grid.Column="0" Grid.Row="2" Text="In progress .." FontSize="10" x:Name="TxtInProgress" Margin="20,0,0,0"/>
+
+            <StackPanel Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,30,0">
+                <Border Background="#FFF48220" Width="160" Height="45" CornerRadius="10" MouseLeftButtonUp="Cancel_Click" x:Name="BdCancel">
+                    <TextBlock Text="{DynamicResource CANCEL_Label}" FontSize="18" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" x:Name="TxtName" Margin="0,3,0,0"/>
+                </Border>
+                <TextBlock Text="(62)" FontSize="24" Foreground="#FF777777" VerticalAlignment="Center" Margin="10,0,0,0" x:Name="TxtTimer"/>
+            </StackPanel>
+        </Grid>
+
+
+
+    </Grid>
+</Page>

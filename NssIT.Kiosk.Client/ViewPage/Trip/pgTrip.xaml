@@ -1,0 +1,245 @@
+﻿<Page x:Class="NssIT.Kiosk.Client.ViewPage.Trip.pgTrip"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:sys="clr-namespace:System;assembly=mscorlib"
+      xmlns:local="clr-namespace:NssIT.Kiosk.Client.ViewPage.Trip"
+      mc:Ignorable="d" 
+      Stylus.IsPressAndHoldEnabled="False"
+      d:DesignHeight="710" d:DesignWidth="750"
+      FontFamily="Segoe UI" Background="White"
+      Title="Trip Selection" Loaded="Page_Loaded"  SizeChanged="Page_SizeChanged" Unloaded="Page_Unloaded">
+
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="rosTripEnglish.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+
+    </Page.Resources>
+
+    <Grid ScrollViewer.CanContentScroll="true">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="45"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Column="0" Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="100"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Border Grid.Column="0" Grid.Row="0" Background="#FFD2D4E0" >
+                <TextBlock x:Name="TxtTripMode" Text="Depart" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center" />
+            </Border>
+            <Border Grid.Column="1" Grid.Row="0" Background="#FFD2D4E0" >
+                <TextBlock x:Name="TxtDepartureStationDesc" Text="Depart Station xx xx xx xx cc " FontSize="20" VerticalAlignment="Center"  HorizontalAlignment="Right" TextAlignment="Center"  Margin="0,0,15,0" TextWrapping="WrapWithOverflow" />
+            </Border>
+            <Border Grid.Column="2" Grid.Row="0" Background="#FFD2D4E0" BorderBrush="Black" BorderThickness="0,0,0,0" >
+                <TextBlock Text=">" FontSize="24" FontWeight="Bold" Foreground="#FF6F6F6F"  VerticalAlignment="Center" HorizontalAlignment="Center" />
+            </Border>
+            <Border Grid.Column="3" Grid.Row="0" Background="#FFD2D4E0" >
+                <TextBlock x:Name="TxtDestinationStationDesc" Text="Destination Station" FontSize="20" VerticalAlignment="Center"  HorizontalAlignment="Left" TextAlignment="Center" Margin="15,0,0,0" />
+            </Border>
+            <Border Grid.Column="4" Grid.Row="0" Background="#FFD2D4E0"></Border>
+        </Grid>
+
+        <ScrollViewer x:Name="ScvDayCalendarContainer" Grid.Column="0" Grid.Row="1" ScrollViewer.CanContentScroll="False"
+                VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Disabled" Margin="0,0,0,0" Background="#FFD0D1D8" >
+            <Canvas x:Name="cvDaysFrame" Margin="-3000,0,-3000,0" Height="45"></Canvas>
+        </ScrollViewer>
+
+        <ProgressBar Name="PgbTripLoading" Grid.Column="0" Grid.Row="2" Height="5" Value="50" Foreground="Blue" />
+
+        <ListView Name="LstTrip" Grid.Column="0" Grid.Row="3" 
+            ItemsSource="{Binding}"
+            IsSynchronizedWithCurrentItem="True" 
+            ScrollViewer.CanContentScroll="False" Margin="0,0,0,0" 
+            ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+            ScrollViewer.ScrollChanged="LstTrip_ScrollChanged" 
+            AlternationCount="2" SelectionChanged="LstTrip_SelectionChanged" SelectionMode="Single">
+
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                    <!--<Setter Property="Focusable" Value="false"/>-->
+                    <Setter Property="Height" Value="50" />
+
+                    <Style.Triggers>
+                        <Trigger Property="IsSelected"
+                         Value="True">
+                            <Setter Property="Background"
+                            Value="{x:Null}" />
+                            <Setter Property="BorderBrush"
+                            Value="{x:Null}" />
+                        </Trigger>
+                        <Trigger Property="ItemsControl.AlternationIndex"  Value="0">
+                            <Setter Property="Background" Value="#FFFFFFFF" />
+                        </Trigger>
+                        <Trigger Property="ItemsControl.AlternationIndex"  Value="1">
+                            <Setter Property="Background" Value="#FFF0F0F0" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.View>
+                <GridView AllowsColumnReorder="False">
+
+                    <!--Time-->
+                    <GridViewColumn Width="85"  x:Name="GvcTimeCol">
+                        <GridViewColumnHeader Background="#FFF0F3FF"  >
+                            <TextBlock Text="{DynamicResource TIMELabel}" Margin="0,5,0,5" />
+                        </GridViewColumnHeader>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <!--<TextBlock Tag="TxtTimeTag" Text="{Binding Path=TimeStr}"  TextAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0" FontSize="16" FontWeight="Bold" Foreground="#FF444444"/>-->
+                                <TextBlock Tag="TxtTimeTag" Text="{Binding Path=TimeStr}"  TextAlignment="Center" VerticalAlignment="Top" Margin="0,0,0,0" FontSize="16" FontWeight="Bold" Foreground="#FF444444"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
+                    <!--FARE-->
+                    <GridViewColumn Width="100" x:Name="GvcFareCol">
+                        <GridViewColumnHeader Background="#FFF0F3FF">
+                            <TextBlock Text="{DynamicResource FARELabel}" />
+                        </GridViewColumnHeader>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Tag="BdFareTag" Orientation="Horizontal" Grid.Column="1" VerticalAlignment="Top" Height="50" Margin="15,0,0,0" Grid.ColumnSpan="2">
+                                    <TextBlock Tag="TxtCurrencyTag" Text="{Binding Path=Currency}" TextAlignment="Center" VerticalAlignment="Top" FontSize="12" Foreground="#FF999999" Padding="0,13,0,0"/>
+                                    <TextBlock Tag="TxtBlankTag" Text=" " TextAlignment="Center" VerticalAlignment="Top" FontSize="12" Foreground="#FF444444" Padding="0,13,0,0"/>
+                                    <TextBlock Tag="TxtPriceTag" Text="{Binding Path=PriceStr}" TextAlignment="Center" VerticalAlignment="Top" FontSize="16" Foreground="#FF777777" Padding="0,10,0,0"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
+                    <!--SEATS-->
+                    <GridViewColumn Width="85" x:Name="GvcSeatCol">
+                        <GridViewColumnHeader Background="#FFF0F3FF">
+                            <TextBlock Text="{DynamicResource SEATSLabel}" Width="85" TextWrapping="WrapWithOverflow" TextAlignment="Center"   />
+                        </GridViewColumnHeader>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <!--<StackPanel Tag="BdSeatsTag" Orientation="Horizontal" Grid.Column="3" VerticalAlignment="Top" Margin="15,10,0,0" Grid.ColumnSpan="2">-->
+                                <!--<StackPanel Tag="BdSeatsTag" Orientation="Horizontal" VerticalAlignment="Top" Margin="15,0,-25,5" Grid.ColumnSpan="2">-->
+                                    <!--<TextBlock Tag="TxtAvailableSeatsTag" Text="{Binding Path=AvailableSeat}" TextAlignment="Center" VerticalAlignment="Top" FontSize="16" Foreground="#FF444444" Padding="0,3,0,0"/>-->
+                                    <!--<TextBlock Tag="TxtBlankTag" Text=" / " TextAlignment="Center" VerticalAlignment="Top" FontSize="12" Foreground="#FF777777" Padding="0,7,0,0"/>-->
+
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+
+                                    <TextBlock Grid.Column="0" Grid.Row="0" Tag="TxtTotalSeatTag" Text="{Binding Path=TotalSeatStr}" Visibility="{Binding Path=NormalSeatAvailableVisible}" TextWrapping="WrapWithOverflow" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="16" Foreground="#FF777777" Padding="0,2,0,7"/>
+                                    <TextBlock Grid.Column="0" Grid.Row="1" Tag="TxtTotalSeatTag2" Text="{Binding Path=TotalSeatStr}" Visibility="{Binding Path=QuickFinishSeatAvailableVisible}" TextWrapping="WrapWithOverflow" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" Foreground="#FFFF0000" Padding="0,2,0,7"/>
+                                    <TextBlock Grid.Column="0" Grid.Row="2" Tag="TxtTotalSeatTag3" Text="{Binding Path=TotalSeatStr}" Visibility="{Binding Path=SoldOutVisible}" TextWrapping="WrapWithOverflow" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="11" FontWeight="Bold" Foreground="#FFFF0000" Padding="0,2,0,7"/>
+
+                                </Grid>
+                                
+                                
+                                <!--</StackPanel>-->
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
+                    <!--BUS COMPANY & TRIP DETAILS-->
+                    <GridViewColumn Width="350" x:Name="GvcTripDetailCol">
+                        <GridViewColumnHeader Background="#FFF0F3FF" HorizontalContentAlignment="Left" >
+                            <TextBlock Text="{DynamicResource BCDLabel}" TextAlignment="Left" HorizontalAlignment="Left" Margin="5,0,0,0"  />
+                        </GridViewColumnHeader>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+
+                                <Grid Margin="0,7,3,0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="100"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="5"/>
+                                        <ColumnDefinition Width="30"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="16"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+
+                                    <!--Width="100" Height="35"-->
+                                    <Border Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Tag="BdOperatorTag" CornerRadius="10, 10, 10, 10" Height="35" BorderBrush="#FF00FFFF" VerticalAlignment="Center" Padding="0,5,3,0">
+                                        <Border.Background>
+                                            <ImageBrush ImageSource="{Binding Path=OperatorImgPath}"/>
+                                            <!--<ImageBrush ImageSource="/NssIT.Kiosk.Client;component/Resources/OperatorLogoTest01.png"/>-->
+                                        </Border.Background>
+                                    </Border>
+
+                                    <TextBlock Grid.Column="1" Grid.Row="0" Tag="TxtOperatorTripTag" Text="{Binding Path=OperatorDesc}" TextAlignment="Left" HorizontalAlignment="Left" Padding="30,0,0,0" VerticalAlignment="Bottom" FontSize="16" Foreground="#FF444444" TextTrimming="CharacterEllipsis"/>
+                                    <Border Grid.Column="2" Grid.Row="0" Tag="BdTripBlankTag" Width="10" Padding="0,0,0,0" VerticalAlignment="Bottom"/>
+                                    <TextBlock Grid.Column="3" Grid.Row="0"  Tag="TxtTripClassTag" Text="{Binding Path=TripClass}" TextAlignment="Left" HorizontalAlignment="Left" Padding="0,0,0,0" VerticalAlignment="Bottom" FontSize="12" Foreground="#FF777777" TextTrimming="CharacterEllipsis" />
+
+                                    <TextBlock Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3" Tag="TxtTripDetailTag" Text="{Binding Path=TripDetail}" TextAlignment="Left" HorizontalAlignment="Left" Padding="30,0,0,0" VerticalAlignment="Top" FontSize="12" Foreground="#FF999999" TextWrapping="Wrap" />
+                                </Grid>
+
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
+                    <!--Seat Picking-->
+                    <GridViewColumn Width="110"  x:Name="GvcPickingCol">
+                        <GridViewColumnHeader Background="#FFF0F3FF" />
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Border Tag="{Binding Path=TripIdCode}" CornerRadius="10, 10, 10, 10" Height="35" VerticalAlignment="Top" Margin="0,0,10,0" Background="#FF2CD843" Visibility="{Binding Path=IsPickSeatVisible}" MouseLeftButtonDown="BdPick_MouseLeftButtonDown">
+                                    <TextBlock Text="{DynamicResource PICKSEATLabel}" Foreground="White" FontSize="{DynamicResource PICKSEATfontSize}" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" TextWrapping="Wrap" FontWeight="Bold" />
+                                    <!--<TextBlock Text="PILIH TEMPAT DUDUK" Foreground="White" FontSize="12" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" TextWrapping="Wrap" FontWeight="Bold" />-->
+                                    <!--<TextBlock Text="PICK SEATS" Foreground="White" FontSize="16" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" />-->
+                                </Border>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <Border x:Name="BdTripViewerShield" Grid.Column="0" Grid.Row="3" Background="#E0FFFFFF" Visibility="Collapsed">
+            <TextBlock x:Name="TxtShieldCoverMsg" Text="Please Select A Date xx xx xx xx xx xx xx xx xx xx" FontSize="36" FontWeight="Bold" MaxWidth="500" TextWrapping="Wrap" TextAlignment="Center" HorizontalAlignment="Center" Margin="0,100,0,0"/>
+        </Border>
+
+        <Border x:Name="BdTripViewerAllShield" Grid.Column="0" Grid.Row="1" Grid.RowSpan="3" Background="#E0FFFFFF"  Visibility="Collapsed">
+            <TextBlock x:Name="TxtShieldAllCoverMsg" Text="Loading in progress .." FontSize="36" FontWeight="Bold" MaxWidth="500" TextWrapping="Wrap" HorizontalAlignment="Center" Margin="0,100,0,0"/>
+        </Border>
+
+        <Grid x:Name="GrdScreenShield" Grid.Column="0" Grid.Row="0" Grid.RowSpan="5" Background="#9FFFFFFF" Visibility="Collapsed">
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Vertical">
+                <TextBlock Text="{DynamicResource IN_PROGRESS_Label}" FontSize="36" FontWeight="Bold" MaxWidth="500" TextWrapping="Wrap" HorizontalAlignment="Center" TextAlignment="Center" x:Name="TxtScreenShield1"/>
+                <TextBlock Text="" FontSize="36" FontWeight="Bold" MaxWidth="500" TextWrapping="Wrap" HorizontalAlignment="Center" TextAlignment="Center" x:Name="TxtScreenShield2"/>
+                <TextBlock Text="ttttt" FontSize="16" FontStyle="Italic" Foreground="#CF000000" TextAlignment="Center" x:Name="TxtErrorCode"/>
+                <TextBlock Text="" FontSize="48" FontStyle="Italic" Foreground="#5F0000FF" TextAlignment="Center"/>
+                <Border x:Name="BdError" CornerRadius="5" Background="#FF43D82C" Height ="45" VerticalAlignment="Top" HorizontalAlignment="Center" RenderTransformOrigin="0.5,0.5" Width="150" MouseLeftButtonDown="CloseError_Click" Visibility="Collapsed">
+                    <TextBlock Text="OK" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" MaxWidth="100" TextWrapping="WrapWithOverflow" TextAlignment="Center" FontWeight="Bold" />
+                </Border>
+                <TextBlock Text="" FontSize="92" FontStyle="Italic" Foreground="#5F0000FF" TextAlignment="Center"/>
+                
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Page>

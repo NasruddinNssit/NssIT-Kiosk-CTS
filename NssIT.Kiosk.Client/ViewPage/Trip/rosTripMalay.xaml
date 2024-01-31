@@ -1,0 +1,32 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                    xmlns:local="clr-namespace:NssIT.Kiosk.Client.ViewPage.Trip">
+
+    <sys:Double x:Key="PICKSEATfontSize">12</sys:Double>
+    <sys:String x:Key="PICKSEATLabel">PILIH TEMPAT DUDUK</sys:String>
+
+    <sys:String x:Key="TIMELabel">MASA</sys:String>
+    <sys:String x:Key="FARELabel">TAMBANG</sys:String>
+    <sys:String x:Key="SEATSLabel">TEMPAT DUDUK YANG ADA</sys:String>
+    <sys:String x:Key="BCDLabel"> SYARIKAT BUS &amp; MAKLUMAT PERJALANAN</sys:String>
+
+    <sys:String x:Key="IN_PROGRESS_Label">Kerja sedang dijalankan..</sys:String>
+    <sys:String x:Key="SOLD_OUT_Label">HABIS</sys:String>
+
+    <sys:String x:Key="LOADING_IN_PROGRESS_Label">Sedang dimuat turun</sys:String>
+    <sys:String x:Key="DEPART_TRIP_MODE_Label">Berlepas</sys:String>
+    <sys:String x:Key="RETURN_TRIP_MODE_Label">Pulang</sys:String>
+
+    <sys:String x:Key="SELECT_DEPART_DATE_Label">Sila pilih tarikh berlepas anda</sys:String>
+    <sys:String x:Key="SELECT_RETURN_DATE_Label">Sila pilih tarikh pemulangan anda</sys:String>
+    <sys:String x:Key="SELECT_DATE_Label">Sila pilih tarikh</sys:String>
+
+    <sys:String x:Key="TIME_FILTER_Label">Penapis Masa</sys:String>
+    <sys:String x:Key="TIME_FILTER_FROM_Label">Dari</sys:String>
+    <sys:String x:Key="TIME_FILTER_TO_Label">Hingga</sys:String>
+    <sys:String x:Key="TIME_FILTER_APPLY_Label">Menapis</sys:String>
+
+    <sys:String x:Key="SEAT_QUERY_ERROR_Label">Tidak dapat membaca data tempat duduk yang berkaitan dari Pihak Operasi Bas; Sila pilih perjalanan lain;</sys:String>
+
+</ResourceDictionary>

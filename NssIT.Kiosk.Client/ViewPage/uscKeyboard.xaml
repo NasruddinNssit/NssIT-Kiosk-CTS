@@ -1,0 +1,162 @@
+﻿<UserControl x:Class="NssIT.Kiosk.Client.ViewPage.uscKeyboard"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:NssIT.Kiosk.Client.ViewPage"
+             mc:Ignorable="d" 
+             d:DesignHeight="280" d:DesignWidth="750" Background="#CCCCCC">
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <Style x:Key="KeyBtn" TargetType="{x:Type Button}">
+                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                <Setter Property="FontSize" Value="19"/>
+                <Setter Property="FontFamily" Value="Roboto"/>
+                <Setter Property="Foreground" Value="#444444"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Border CornerRadius="11" Background="#FFFFFF">
+                                <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="20"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="1" Grid.Row="1" ButtonBase.Click="Key_Pressed">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Button Content="1" Style="{StaticResource KeyBtn}" Margin="0 0 5 5"/>
+            <Button Content="2" Grid.Column="1" Style="{StaticResource KeyBtn}" Margin="0 0 5 5"/>
+            <Button Content="3" Grid.Column="2" Style="{StaticResource KeyBtn}" Margin="0 0 5 5"/>
+            <Button Content="4" Grid.Column="3" Style="{StaticResource KeyBtn}" Margin="0 0 5 5"/>
+            <Button Content="5" Grid.Column="4" Style="{StaticResource KeyBtn}" Margin="0 0 5 5"/>
+            <Button Content="6" Grid.Column="5" Style="{StaticResource KeyBtn}" Margin="0 0 5 5"/>
+            <Button Content="7" Grid.Column="6" Style="{StaticResource KeyBtn}" Margin="0 0 5 5"/>
+            <Button Content="8" Grid.Column="7" Style="{StaticResource KeyBtn}" Margin="0 0 5 5"/>
+            <Button Content="9" Grid.Column="8" Style="{StaticResource KeyBtn}" Margin="0 0 5 5"/>
+            <Button Content="0" Grid.Column="9" Style="{StaticResource KeyBtn}" Margin="0 0 5 5"/>
+            <Button Tag="Keyboard" Grid.Column="10" Style="{StaticResource KeyBtn}" Margin="0 0 0 5">
+                <Image Source="/Resources/icon-keyboard.png" Margin="15 15"/>
+            </Button>
+        </Grid>
+
+        <Grid Grid.Column="1" Grid.Row="2" ButtonBase.Click="Key_Pressed">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Button Content="Q" Style="{StaticResource KeyBtn}" Margin="0 5 5 0"/>
+            <Button Content="W" Grid.Column="1" Style="{StaticResource KeyBtn}" Margin="0 5 5 0"/>
+            <Button Content="E" Grid.Column="2" Style="{StaticResource KeyBtn}" Margin="0 5 5 0"/>
+            <Button Content="R" Grid.Column="3" Style="{StaticResource KeyBtn}" Margin="0 5 5 0"/>
+            <Button Content="T" Grid.Column="4" Style="{StaticResource KeyBtn}" Margin="0 5 5 0"/>
+            <Button Content="Y" Grid.Column="5" Style="{StaticResource KeyBtn}" Margin="0 5 5 0"/>
+            <Button Content="U" Grid.Column="6" Style="{StaticResource KeyBtn}" Margin="0 5 5 0"/>
+            <Button Content="I" Grid.Column="7" Style="{StaticResource KeyBtn}" Margin="0 5 5 0"/>
+            <Button Content="O" Grid.Column="8" Style="{StaticResource KeyBtn}" Margin="0 5 5 0"/>
+            <Button Content="P" Grid.Column="9" Style="{StaticResource KeyBtn}" Margin="0 5 5 0"/>
+            <Button Tag="Backspace" Grid.Column="10" Style="{StaticResource KeyBtn}" Margin="0 5 0 0">
+                <Image Source="/Resources/icon-back.png" Margin="15 15"/>
+            </Button>
+        </Grid>
+
+        <Grid Grid.Column="1" Grid.Row="3" ButtonBase.Click="Key_Pressed">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="25"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="25"/>
+            </Grid.ColumnDefinitions>
+
+            <Button Content="A" Grid.Column="1" Style="{StaticResource KeyBtn}" Margin="0 5 5 0"/>
+            <Button Content="S" Grid.Column="2" Style="{StaticResource KeyBtn}" Margin="0 5 5 0"/>
+            <Button Content="D" Grid.Column="3" Style="{StaticResource KeyBtn}" Margin="0 5 5 0"/>
+            <Button Content="F" Grid.Column="4" Style="{StaticResource KeyBtn}" Margin="0 5 5 0"/>
+            <Button Content="G" Grid.Column="5" Style="{StaticResource KeyBtn}" Margin="0 5 5 0"/>
+            <Button Content="H" Grid.Column="6" Style="{StaticResource KeyBtn}" Margin="0 5 5 0"/>
+            <Button Content="J" Grid.Column="7" Style="{StaticResource KeyBtn}" Margin="0 5 5 0"/>
+            <Button Content="K" Grid.Column="8" Style="{StaticResource KeyBtn}" Margin="0 5 5 0"/>
+            <Button Content="L" Grid.Column="9" Style="{StaticResource KeyBtn}" Margin="0 5 5 0"/>
+            <Button Tag="Enter" Grid.Column="10" Style="{StaticResource KeyBtn}" Margin="0 5 0 0">
+                <Image Source="/Resources/icon-enter.png" Margin="13 13"/>
+            </Button>
+        </Grid>
+
+        <Grid Grid.Column="1" Grid.Row="4" ButtonBase.Click="Key_Pressed">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Button Content="-" Style="{StaticResource KeyBtn}" Margin="0 5 5 0"/>
+            <Button Content="Z" Grid.Column="1" Style="{StaticResource KeyBtn}" Margin="0 5 5 0"/>
+            <Button Content="X" Grid.Column="2" Style="{StaticResource KeyBtn}" Margin="0 5 5 0"/>
+            <Button Content="C" Grid.Column="3" Style="{StaticResource KeyBtn}" Margin="0 5 5 0"/>
+            <Button Content="V" Grid.Column="4" Style="{StaticResource KeyBtn}" Margin="0 5 5 0"/>
+            <Button Content="B" Grid.Column="5" Style="{StaticResource KeyBtn}" Margin="0 5 5 0"/>
+            <Button Content="N" Grid.Column="6" Style="{StaticResource KeyBtn}" Margin="0 5 5 0"/>
+            <Button Content="M" Grid.Column="7" Style="{StaticResource KeyBtn}" Margin="0 5 5 0"/>
+            <Button Content="SPACE" Grid.Column="8" Grid.ColumnSpan="3" Style="{StaticResource KeyBtn}" Margin="0 5 5 0"/>
+        </Grid>
+    </Grid>
+</UserControl>

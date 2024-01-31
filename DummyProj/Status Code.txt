@@ -1,0 +1,7 @@
+﻿Sale Status Code
+
+0	: Success
+21	: Token Expired
+20	: No Valid Token
+90	: Not Record Found
+99	: System Error

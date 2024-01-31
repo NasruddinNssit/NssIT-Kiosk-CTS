@@ -1,0 +1,136 @@
+﻿<Page x:Class="NssIT.Kiosk.Client.ViewPage.Payment.pgPaymentTypes"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:NssIT.Kiosk.Client.ViewPage.Payment"
+      xmlns:sys="clr-namespace:System;assembly=mscorlib"
+      mc:Ignorable="d" 
+      Height="410" d:DesignWidth="472"
+      FontFamily="Segoe UI" 
+      Title="Payment Type" Loaded="Page_Loaded" Unloaded="Page_Unloaded">
+
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="rosPaymentEnglish.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="70"/>
+        </Grid.RowDefinitions>
+
+        <Border Background="White">
+            <!--Header-->
+            <TextBlock Grid.Column="0" Grid.ColumnSpan="2" Text="{DynamicResource CHOOSE_PAYMENT_METHOD_Label}" Foreground="#777777"
+                   FontFamily="Roboto" FontSize="22" VerticalAlignment="Bottom" Margin="20 0 0 10"/>
+        </Border>
+
+        <ScrollViewer Grid.Column="0" Grid.Row="1" Background="#D2E9F5"
+                      VerticalScrollBarVisibility="Auto" FontFamily="Roboto" PanningMode="VerticalOnly"
+                      CanContentScroll="False" Margin="0,0,0,0" x:Name="SvPaymentType">
+
+            <ScrollViewer.Resources>
+                <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">25</sys:Double>
+            </ScrollViewer.Resources>
+
+            <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center"
+                   Margin="0,7,0,0"
+                   x:Name="WrpPaymentGatewayContainer">
+                <Border  Background="#FFF3F0F0" Height="84" Width="200" CornerRadius="10" Margin="5" 
+                     BorderThickness="1.3" BorderBrush="#FFA2B9FF"
+                     MouseLeftButtonUp="Cash_Click" x:Name="BdCash">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="20"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="10"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Text="{DynamicResource CASH_Label}" FontSize="12" VerticalAlignment="Bottom" HorizontalAlignment="Center" />
+                        <Image Grid.Row="1" Source="/Resources/Duit12.png" HorizontalAlignment="Center" />
+                    </Grid>
+                </Border>
+                <Border  Background="#FFF3F0F0" Height="84" Width="200" CornerRadius="10" Margin="5" 
+      BorderThickness="1.3" BorderBrush="#FFA2B9FF"
+      MouseLeftButtonUp="Credit_Click" x:Name="BdCredit">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="20"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="10"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Text="{DynamicResource CASH_Label}" FontSize="12" VerticalAlignment="Bottom" HorizontalAlignment="Center" />
+                        <Image Grid.Row="1" Source="/Resources/Master_Visa_Debit_Card01.png" HorizontalAlignment="Center" />
+                    </Grid>
+                </Border>
+                <Border Background="#FFF3F0F0" Height="84" Width="200" CornerRadius="10" Margin="5" Visibility="Visible" Tag="" 
+                    BorderThickness="1.3" BorderBrush="#FFA2B9FF"
+                    x:Name="BdDesignBoost">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="20"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="10"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Text="Boost (eWallet)" FontSize="12" VerticalAlignment="Bottom" HorizontalAlignment="Center" x:Name="TxtBoostDesc"/>
+                        <Image Grid.Row="1" Source="/Resources/boost.png" HorizontalAlignment="Center" Tag="" x:Name="imgBoost"/>
+                    </Grid>
+                </Border>
+                <Border Background="#FFF3F0F0" Height="84" Width="200" CornerRadius="10" Margin="5" Visibility="Visible" Tag="" 
+                    BorderThickness="1.3" BorderBrush="#FFA2B9FF"
+                    x:Name="BdDesignTng">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="20"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="10"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Text="Touch n Go (eWallet)" FontSize="12" VerticalAlignment="Bottom" HorizontalAlignment="Center"  x:Name="TxtTnGDesc"/>
+                        <Image Grid.Row="1" Source="/Resources/TnG00.png" HorizontalAlignment="Center" Tag="" x:Name="imgTnG"/>
+                    </Grid>
+                </Border>
+                <Border Background="#FFF3F0F0" Height="84" Width="200" CornerRadius="10" Margin="5" 
+                    BorderThickness="1.3" BorderBrush="#FFA2B9FF"
+                    x:Name="BdLoadingeWallet">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Text="Loading eWallet payment .." FontSize="16" TextWrapping="WrapWithOverflow" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                    </Grid>
+                </Border>
+
+            </WrapPanel>
+
+        </ScrollViewer>
+
+        <Grid Grid.Column="0" Grid.Row="2" Background="#D2E9F5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Column="0" Text="(62)" FontSize="24" Foreground="#FF777777" VerticalAlignment="Top" HorizontalAlignment="Left"  Margin="50,0,0,0" x:Name="TxtTimer"/>
+
+            <TextBlock Grid.Column="0" Text="Exp.At: 10:28:57am" FontSize="8" Foreground="#FF777777" VerticalAlignment="Bottom" HorizontalAlignment="Left"  Margin="40,0,0,25" x:Name="TxtExpiredTime"/>
+
+            <Border Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Top"
+                    Margin="0,0,45,0"
+                    Background="#FFF48220" Width="110" Height="45" CornerRadius="10" 
+                    MouseLeftButtonUp="Cancel_Click" 
+                    x:Name="BdCancel">
+                <TextBlock Text="{DynamicResource CANCEL_Label}" FontSize="18" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,0" x:Name="TxtCancelLabel"/>
+            </Border>
+        </Grid>
+
+    </Grid>
+</Page>

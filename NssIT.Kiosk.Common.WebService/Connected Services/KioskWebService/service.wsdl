@@ -1,0 +1,1230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="https://ctskiosk.com/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="https://ctskiosk.com/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="https://ctskiosk.com/">
+      <s:element name="Timestamp">
+        <s:complexType />
+      </s:element>
+      <s:element name="TimestampResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TimestampResult" type="tns:timestamp_status" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="timestamp_status">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="code" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="msg" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="expdatetime" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CheckKioskSalesStatus">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="kioskid" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckKioskSalesStatusResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CheckKioskSalesStatusResult" type="tns:checkkiosksalesstatus_status" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="checkkiosksalesstatus_status">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="code" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="msg" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="UpdateKioskCash">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="kioskid" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="kiosktoken" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="intCash1" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="intCash2" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="intCash3" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateKioskCashResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpdateKioskCashResult" type="tns:updatekioskcash_status" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="updatekioskcash_status">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="code" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="msg" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="UpdateKioskCoin">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="kioskid" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="kiosktoken" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="intCoin" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateKioskCoinResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpdateKioskCoinResult" type="tns:updatekioskcoin_status" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="updatekioskcoin_status">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="code" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="msg" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SystemLock">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="kioskid" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="kiosktoken" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SystemLockResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SystemLockResult" type="tns:systemlock_status" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="systemlock_status">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="code" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="msg" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="Login">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="kioskid" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cipherString" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="kioskip" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LoginResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LoginResult" type="tns:login_status" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="login_status">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="code" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="msg" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="kiosktoken" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="Destination">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="kiosktoken" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="from" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DestinationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DestinationResult" type="tns:destination_status" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="destination_status">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="details" type="tns:destination_details" />
+          <s:element minOccurs="0" maxOccurs="1" name="statedetails" type="tns:destination_statedetails" />
+          <s:element minOccurs="1" maxOccurs="1" name="code" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="msg" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="destination_details">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="detail" type="tns:destination_detail" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="destination_detail">
+        <s:attribute name="code" type="s:string" />
+        <s:attribute name="desc" type="s:string" />
+        <s:attribute name="State" type="s:string" />
+      </s:complexType>
+      <s:complexType name="destination_statedetails">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="detail" type="tns:destination_statedetail" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="destination_statedetail">
+        <s:attribute name="state" type="s:string" />
+        <s:attribute name="desc" type="s:string" />
+      </s:complexType>
+      <s:element name="CompanyLogo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="kiosktoken" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="date" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CompanyLogoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CompanyLogoResult" type="tns:logo_status" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="logo_status">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="details" type="tns:logo_details" />
+          <s:element minOccurs="1" maxOccurs="1" name="code" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="msg" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="logo_details">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="detail" type="tns:logo_detail" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="logo_detail">
+        <s:attribute name="imgid" type="s:string" />
+        <s:attribute name="imgbin" type="s:base64Binary" />
+      </s:complexType>
+      <s:element name="Trip">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="kioskid" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="kiosktoken" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="date" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="from" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="to" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TripResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TripResult" type="tns:trip_status" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="trip_status">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="details" type="tns:trip_details" />
+          <s:element minOccurs="1" maxOccurs="1" name="code" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="msg" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="companyLogoURL" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="trip_details">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="detail" type="tns:trip_detail" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="trip_detail">
+        <s:attribute name="complogoid" type="s:string" />
+        <s:attribute name="compdesc" type="s:string" />
+        <s:attribute name="departtime" type="s:string" />
+        <s:attribute name="price" type="s:decimal" use="required" />
+        <s:attribute name="tripid" type="s:string" />
+        <s:attribute name="tripdate" type="s:string" />
+        <s:attribute name="tripno" type="s:string" />
+        <s:attribute name="seatoccupied" type="s:int" use="required" />
+        <s:attribute name="totalseat" type="s:int" use="required" />
+        <s:attribute name="timeposi" type="s:short" use="required" />
+        <s:attribute name="routedetail" type="s:string" />
+        <s:attribute name="currency" type="s:string" />
+        <s:attribute name="embed" type="s:string" />
+        <s:attribute name="from" type="s:string" />
+        <s:attribute name="to" type="s:string" />
+        <s:attribute name="insurance" type="s:decimal" use="required" />
+      </s:complexType>
+      <s:element name="GetDepartureDate">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="kioskid" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="kiosktoken" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="from" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="to" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDepartureDateResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDepartureDateResult" type="tns:getDepartureDate_status" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="getDepartureDate_status">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="details" type="tns:getDepartureDate_details" />
+          <s:element minOccurs="1" maxOccurs="1" name="code" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="msg" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="getDepartureDate_details">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="detail" type="tns:getDepartureDate_detail" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="getDepartureDate_detail">
+        <s:attribute name="departdate" type="s:string" />
+      </s:complexType>
+      <s:element name="Seat">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="kioskid" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="kiosktoken" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="tripid" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="tripno" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="departdate" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="tripdate" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="from" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="to" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="timeposi" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SeatResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SeatResult" type="tns:seat_status" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="seat_status">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="details" type="tns:seat_details" />
+          <s:element minOccurs="0" maxOccurs="1" name="pick_details" type="tns:pick_details" />
+          <s:element minOccurs="0" maxOccurs="1" name="drop_details" type="tns:drop_details" />
+          <s:element minOccurs="1" maxOccurs="1" name="code" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="msg" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="departdate" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="bustype" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="col1" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="col2" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="row" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="insurance" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="terminalcharge" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="msgtocust" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="tripcode" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="adultprice" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="adultextra" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="adultdisc" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="onlineqrcharge" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="MaxSeatAllow" type="s:decimal" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="seat_details">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="detail" type="tns:seat_detail" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="seat_detail">
+        <s:attribute name="seq" type="s:int" use="required" />
+        <s:attribute name="desn" type="s:string" />
+        <s:attribute name="seatid" type="s:long" use="required" />
+        <s:attribute name="avai" type="s:string" />
+        <s:attribute name="type" type="s:string" />
+      </s:complexType>
+      <s:complexType name="pick_details">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="pick_detail" type="tns:pick_detail" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="pick_detail">
+        <s:attribute name="pick" type="s:string" />
+        <s:attribute name="desn" type="s:string" />
+        <s:attribute name="time" type="s:string" />
+      </s:complexType>
+      <s:complexType name="drop_details">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="drop_detail" type="tns:drop_detail" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="drop_detail">
+        <s:attribute name="drop" type="s:string" />
+        <s:attribute name="desn" type="s:string" />
+      </s:complexType>
+      <s:element name="SeatConfirm">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="kioskid" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="kiosktoken" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="tripid" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="tripdate" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="departdate" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="departtime" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="bustype" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="from" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="to" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="adultprice" type="s:decimal" />
+            <s:element minOccurs="0" maxOccurs="1" name="adultextra" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="adultdisc" type="s:decimal" />
+            <s:element minOccurs="1" maxOccurs="1" name="terminalcharge" type="s:decimal" />
+            <s:element minOccurs="1" maxOccurs="1" name="onlineqrcharge" type="s:decimal" />
+            <s:element minOccurs="1" maxOccurs="1" name="insurance" type="s:decimal" />
+            <s:element minOccurs="1" maxOccurs="1" name="tripcode" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="pick" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pick_desn" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pick_time" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="drop" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="drop_desn" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="totalamount" type="s:decimal" />
+            <s:element minOccurs="0" maxOccurs="1" name="cust_seat_details" type="tns:cust_seat" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="cust_seat">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="detail" type="tns:cust_seat_detail" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="cust_seat_detail">
+        <s:attribute name="desn" type="s:string" />
+        <s:attribute name="seatid" type="s:long" use="required" />
+        <s:attribute name="name" type="s:string" />
+        <s:attribute name="ic" type="s:string" />
+        <s:attribute name="contact" type="s:string" />
+      </s:complexType>
+      <s:element name="SeatConfirmResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SeatConfirmResult" type="tns:seatconfirm_status" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="seatconfirm_status">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="code" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="msg" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="transaction_no" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ChangeTicketName">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="kiosktoken" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="transaction_no" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="tripdate" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="departdate" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cust_name_details" type="tns:cust_name" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="cust_name">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="detail" type="tns:cust_name_detail" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="cust_name_detail">
+        <s:attribute name="seatid" type="s:long" use="required" />
+        <s:attribute name="name" type="s:string" />
+        <s:attribute name="ic" type="s:string" />
+        <s:attribute name="contact" type="s:string" />
+      </s:complexType>
+      <s:element name="ChangeTicketNameResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ChangeTicketNameResult" type="tns:changeticketname_status" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="changeticketname_status">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="code" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="msg" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SeatRelease">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="kioskid" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="kiosktoken" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="transaction_no" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SeatReleaseResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SeatReleaseResult" type="tns:seatrelease_status" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="seatrelease_status">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="code" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="msg" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="TransComplete">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="kiosktoken" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="transaction_no" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="totalamount" type="s:decimal" />
+            <s:element minOccurs="0" maxOccurs="1" name="paymentmethod" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="reference_no" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TransCompleteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TransCompleteResult" type="tns:transcomplete_status" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="transcomplete_status">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="details" type="tns:tick_details" />
+          <s:element minOccurs="1" maxOccurs="1" name="code" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="msg" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="companyname" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="tripno" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="from" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="to" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="departuredate" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="departuretime" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="currency" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="gateno" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="platformno" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="QRLink" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="OnlineSurvey" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="tick_details">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="detail" type="tns:tick_detail" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="tick_detail">
+        <s:attribute name="ticketno" type="s:string" />
+        <s:attribute name="seatdesn" type="s:string" />
+        <s:attribute name="name" type="s:string" />
+        <s:attribute name="ic" type="s:string" />
+        <s:attribute name="contact" type="s:string" />
+        <s:attribute name="refn" type="s:string" />
+        <s:attribute name="seattypedesn" type="s:string" />
+        <s:attribute name="price" type="s:decimal" use="required" />
+        <s:attribute name="insurance" type="s:decimal" use="required" />
+        <s:attribute name="terminalcharge" type="s:decimal" use="required" />
+        <s:attribute name="onlineqrcharge" type="s:decimal" use="required" />
+        <s:attribute name="barcodevalue" type="s:string" />
+        <s:attribute name="extraamount" type="s:decimal" use="required" />
+        <s:attribute name="extra" type="s:string" />
+        <s:attribute name="vege" type="s:boolean" use="required" />
+        <s:attribute name="pick" type="s:string" />
+        <s:attribute name="pick_time" type="s:string" />
+        <s:attribute name="drop" type="s:string" />
+        <s:attribute name="messagetocustomer" type="s:string" />
+        <s:attribute name="salesinfo" type="s:string" />
+      </s:complexType>
+      <s:element name="GetSalesStatus">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="reference_no" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="date" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSalesStatusResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSalesStatusResult" type="tns:getsales_status" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="getsales_status">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="code" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="msg" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="BoardingCompany">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="kiosktoken" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BoardingCompanyResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="BoardingCompanyResult" type="tns:boardingcompany_status" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="boardingcompany_status">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="details" type="tns:boardingcompany_details" />
+          <s:element minOccurs="1" maxOccurs="1" name="code" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="msg" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="companyLogoURL" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="boardingcompany_details">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="detail" type="tns:boardingcompany_detail" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="boardingcompany_detail">
+        <s:attribute name="companycode" type="s:string" />
+        <s:attribute name="companydesn" type="s:string" />
+        <s:attribute name="companyimgid" type="s:string" />
+      </s:complexType>
+      <s:element name="BoardingQueryTicket">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="kioskid" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="kiosktoken" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="companycode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="departdate" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ticketno" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BoardingQueryTicketResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="BoardingQueryTicketResult" type="tns:boardingqueryticket_status" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="boardingqueryticket_status">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="code" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="msg" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="contact" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ic" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="operouteid" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="tripno" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="tripdate" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="from" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="to" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="fromdesn" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="todesn" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="seatno" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="seattype" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="sellingprice" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="facilitycharge" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="qrcharge" type="s:decimal" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="BoardingCollectTicket">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="kioskid" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="kiosktoken" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="companycode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ticketno" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="departdate" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="tripdate" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="operouteid" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="tripno" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="from" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="to" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="name" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="contact" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="icno" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="seatno" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="seattype" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="sellingprice" type="s:decimal" />
+            <s:element minOccurs="1" maxOccurs="1" name="facilitycharge" type="s:decimal" />
+            <s:element minOccurs="1" maxOccurs="1" name="qrcharge" type="s:decimal" />
+            <s:element minOccurs="0" maxOccurs="1" name="paymentmethod" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="reference_no" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BoardingCollectTicketResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="BoardingCollectTicketResult" type="tns:boardingcollectticket_status" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="boardingcollectticket_status">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="details" type="tns:tick_details" />
+          <s:element minOccurs="1" maxOccurs="1" name="code" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="msg" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="companyname" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="tripno" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="from" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="to" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="departuredate" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="departuretime" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="currency" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="gateno" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="platformno" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="QRLink" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="OnlineSurvey" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="TimestampSoapIn">
+    <wsdl:part name="parameters" element="tns:Timestamp" />
+  </wsdl:message>
+  <wsdl:message name="TimestampSoapOut">
+    <wsdl:part name="parameters" element="tns:TimestampResponse" />
+  </wsdl:message>
+  <wsdl:message name="CheckKioskSalesStatusSoapIn">
+    <wsdl:part name="parameters" element="tns:CheckKioskSalesStatus" />
+  </wsdl:message>
+  <wsdl:message name="CheckKioskSalesStatusSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckKioskSalesStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateKioskCashSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateKioskCash" />
+  </wsdl:message>
+  <wsdl:message name="UpdateKioskCashSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateKioskCashResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateKioskCoinSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateKioskCoin" />
+  </wsdl:message>
+  <wsdl:message name="UpdateKioskCoinSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateKioskCoinResponse" />
+  </wsdl:message>
+  <wsdl:message name="SystemLockSoapIn">
+    <wsdl:part name="parameters" element="tns:SystemLock" />
+  </wsdl:message>
+  <wsdl:message name="SystemLockSoapOut">
+    <wsdl:part name="parameters" element="tns:SystemLockResponse" />
+  </wsdl:message>
+  <wsdl:message name="LoginSoapIn">
+    <wsdl:part name="parameters" element="tns:Login" />
+  </wsdl:message>
+  <wsdl:message name="LoginSoapOut">
+    <wsdl:part name="parameters" element="tns:LoginResponse" />
+  </wsdl:message>
+  <wsdl:message name="DestinationSoapIn">
+    <wsdl:part name="parameters" element="tns:Destination" />
+  </wsdl:message>
+  <wsdl:message name="DestinationSoapOut">
+    <wsdl:part name="parameters" element="tns:DestinationResponse" />
+  </wsdl:message>
+  <wsdl:message name="CompanyLogoSoapIn">
+    <wsdl:part name="parameters" element="tns:CompanyLogo" />
+  </wsdl:message>
+  <wsdl:message name="CompanyLogoSoapOut">
+    <wsdl:part name="parameters" element="tns:CompanyLogoResponse" />
+  </wsdl:message>
+  <wsdl:message name="TripSoapIn">
+    <wsdl:part name="parameters" element="tns:Trip" />
+  </wsdl:message>
+  <wsdl:message name="TripSoapOut">
+    <wsdl:part name="parameters" element="tns:TripResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDepartureDateSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDepartureDate" />
+  </wsdl:message>
+  <wsdl:message name="GetDepartureDateSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDepartureDateResponse" />
+  </wsdl:message>
+  <wsdl:message name="SeatSoapIn">
+    <wsdl:part name="parameters" element="tns:Seat" />
+  </wsdl:message>
+  <wsdl:message name="SeatSoapOut">
+    <wsdl:part name="parameters" element="tns:SeatResponse" />
+  </wsdl:message>
+  <wsdl:message name="SeatConfirmSoapIn">
+    <wsdl:part name="parameters" element="tns:SeatConfirm" />
+  </wsdl:message>
+  <wsdl:message name="SeatConfirmSoapOut">
+    <wsdl:part name="parameters" element="tns:SeatConfirmResponse" />
+  </wsdl:message>
+  <wsdl:message name="ChangeTicketNameSoapIn">
+    <wsdl:part name="parameters" element="tns:ChangeTicketName" />
+  </wsdl:message>
+  <wsdl:message name="ChangeTicketNameSoapOut">
+    <wsdl:part name="parameters" element="tns:ChangeTicketNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="SeatReleaseSoapIn">
+    <wsdl:part name="parameters" element="tns:SeatRelease" />
+  </wsdl:message>
+  <wsdl:message name="SeatReleaseSoapOut">
+    <wsdl:part name="parameters" element="tns:SeatReleaseResponse" />
+  </wsdl:message>
+  <wsdl:message name="TransCompleteSoapIn">
+    <wsdl:part name="parameters" element="tns:TransComplete" />
+  </wsdl:message>
+  <wsdl:message name="TransCompleteSoapOut">
+    <wsdl:part name="parameters" element="tns:TransCompleteResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSalesStatusSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSalesStatus" />
+  </wsdl:message>
+  <wsdl:message name="GetSalesStatusSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSalesStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="BoardingCompanySoapIn">
+    <wsdl:part name="parameters" element="tns:BoardingCompany" />
+  </wsdl:message>
+  <wsdl:message name="BoardingCompanySoapOut">
+    <wsdl:part name="parameters" element="tns:BoardingCompanyResponse" />
+  </wsdl:message>
+  <wsdl:message name="BoardingQueryTicketSoapIn">
+    <wsdl:part name="parameters" element="tns:BoardingQueryTicket" />
+  </wsdl:message>
+  <wsdl:message name="BoardingQueryTicketSoapOut">
+    <wsdl:part name="parameters" element="tns:BoardingQueryTicketResponse" />
+  </wsdl:message>
+  <wsdl:message name="BoardingCollectTicketSoapIn">
+    <wsdl:part name="parameters" element="tns:BoardingCollectTicket" />
+  </wsdl:message>
+  <wsdl:message name="BoardingCollectTicketSoapOut">
+    <wsdl:part name="parameters" element="tns:BoardingCollectTicketResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ServiceSoap">
+    <wsdl:operation name="Timestamp">
+      <wsdl:input message="tns:TimestampSoapIn" />
+      <wsdl:output message="tns:TimestampSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckKioskSalesStatus">
+      <wsdl:input message="tns:CheckKioskSalesStatusSoapIn" />
+      <wsdl:output message="tns:CheckKioskSalesStatusSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateKioskCash">
+      <wsdl:input message="tns:UpdateKioskCashSoapIn" />
+      <wsdl:output message="tns:UpdateKioskCashSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateKioskCoin">
+      <wsdl:input message="tns:UpdateKioskCoinSoapIn" />
+      <wsdl:output message="tns:UpdateKioskCoinSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SystemLock">
+      <wsdl:input message="tns:SystemLockSoapIn" />
+      <wsdl:output message="tns:SystemLockSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Login">
+      <wsdl:input message="tns:LoginSoapIn" />
+      <wsdl:output message="tns:LoginSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Destination">
+      <wsdl:input message="tns:DestinationSoapIn" />
+      <wsdl:output message="tns:DestinationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CompanyLogo">
+      <wsdl:input message="tns:CompanyLogoSoapIn" />
+      <wsdl:output message="tns:CompanyLogoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Trip">
+      <wsdl:input message="tns:TripSoapIn" />
+      <wsdl:output message="tns:TripSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDepartureDate">
+      <wsdl:input message="tns:GetDepartureDateSoapIn" />
+      <wsdl:output message="tns:GetDepartureDateSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Seat">
+      <wsdl:input message="tns:SeatSoapIn" />
+      <wsdl:output message="tns:SeatSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SeatConfirm">
+      <wsdl:input message="tns:SeatConfirmSoapIn" />
+      <wsdl:output message="tns:SeatConfirmSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangeTicketName">
+      <wsdl:input message="tns:ChangeTicketNameSoapIn" />
+      <wsdl:output message="tns:ChangeTicketNameSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SeatRelease">
+      <wsdl:input message="tns:SeatReleaseSoapIn" />
+      <wsdl:output message="tns:SeatReleaseSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TransComplete">
+      <wsdl:input message="tns:TransCompleteSoapIn" />
+      <wsdl:output message="tns:TransCompleteSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSalesStatus">
+      <wsdl:input message="tns:GetSalesStatusSoapIn" />
+      <wsdl:output message="tns:GetSalesStatusSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BoardingCompany">
+      <wsdl:input message="tns:BoardingCompanySoapIn" />
+      <wsdl:output message="tns:BoardingCompanySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BoardingQueryTicket">
+      <wsdl:input message="tns:BoardingQueryTicketSoapIn" />
+      <wsdl:output message="tns:BoardingQueryTicketSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BoardingCollectTicket">
+      <wsdl:input message="tns:BoardingCollectTicketSoapIn" />
+      <wsdl:output message="tns:BoardingCollectTicketSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ServiceSoap" type="tns:ServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Timestamp">
+      <soap:operation soapAction="https://ctskiosk.com/Timestamp" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckKioskSalesStatus">
+      <soap:operation soapAction="https://ctskiosk.com/CheckKioskSalesStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateKioskCash">
+      <soap:operation soapAction="https://ctskiosk.com/UpdateKioskCash" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateKioskCoin">
+      <soap:operation soapAction="https://ctskiosk.com/UpdateKioskCoin" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SystemLock">
+      <soap:operation soapAction="https://ctskiosk.com/SystemLock" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Login">
+      <soap:operation soapAction="https://ctskiosk.com/Login" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Destination">
+      <soap:operation soapAction="https://ctskiosk.com/Destination" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CompanyLogo">
+      <soap:operation soapAction="https://ctskiosk.com/CompanyLogo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Trip">
+      <soap:operation soapAction="https://ctskiosk.com/Trip" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDepartureDate">
+      <soap:operation soapAction="https://ctskiosk.com/GetDepartureDate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Seat">
+      <soap:operation soapAction="https://ctskiosk.com/Seat" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SeatConfirm">
+      <soap:operation soapAction="https://ctskiosk.com/SeatConfirm" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeTicketName">
+      <soap:operation soapAction="https://ctskiosk.com/ChangeTicketName" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SeatRelease">
+      <soap:operation soapAction="https://ctskiosk.com/SeatRelease" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TransComplete">
+      <soap:operation soapAction="https://ctskiosk.com/TransComplete" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSalesStatus">
+      <soap:operation soapAction="https://ctskiosk.com/GetSalesStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BoardingCompany">
+      <soap:operation soapAction="https://ctskiosk.com/BoardingCompany" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BoardingQueryTicket">
+      <soap:operation soapAction="https://ctskiosk.com/BoardingQueryTicket" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BoardingCollectTicket">
+      <soap:operation soapAction="https://ctskiosk.com/BoardingCollectTicket" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ServiceSoap12" type="tns:ServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Timestamp">
+      <soap12:operation soapAction="https://ctskiosk.com/Timestamp" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckKioskSalesStatus">
+      <soap12:operation soapAction="https://ctskiosk.com/CheckKioskSalesStatus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateKioskCash">
+      <soap12:operation soapAction="https://ctskiosk.com/UpdateKioskCash" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateKioskCoin">
+      <soap12:operation soapAction="https://ctskiosk.com/UpdateKioskCoin" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SystemLock">
+      <soap12:operation soapAction="https://ctskiosk.com/SystemLock" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Login">
+      <soap12:operation soapAction="https://ctskiosk.com/Login" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Destination">
+      <soap12:operation soapAction="https://ctskiosk.com/Destination" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CompanyLogo">
+      <soap12:operation soapAction="https://ctskiosk.com/CompanyLogo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Trip">
+      <soap12:operation soapAction="https://ctskiosk.com/Trip" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDepartureDate">
+      <soap12:operation soapAction="https://ctskiosk.com/GetDepartureDate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Seat">
+      <soap12:operation soapAction="https://ctskiosk.com/Seat" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SeatConfirm">
+      <soap12:operation soapAction="https://ctskiosk.com/SeatConfirm" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeTicketName">
+      <soap12:operation soapAction="https://ctskiosk.com/ChangeTicketName" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SeatRelease">
+      <soap12:operation soapAction="https://ctskiosk.com/SeatRelease" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TransComplete">
+      <soap12:operation soapAction="https://ctskiosk.com/TransComplete" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSalesStatus">
+      <soap12:operation soapAction="https://ctskiosk.com/GetSalesStatus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BoardingCompany">
+      <soap12:operation soapAction="https://ctskiosk.com/BoardingCompany" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BoardingQueryTicket">
+      <soap12:operation soapAction="https://ctskiosk.com/BoardingQueryTicket" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BoardingCollectTicket">
+      <soap12:operation soapAction="https://ctskiosk.com/BoardingCollectTicket" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Service">
+    <wsdl:port name="ServiceSoap" binding="tns:ServiceSoap">
+      <soap:address location="http://203.115.193.19/ws_kiosk_test/service.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ServiceSoap12" binding="tns:ServiceSoap12">
+      <soap12:address location="http://203.115.193.19/ws_kiosk_test/service.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

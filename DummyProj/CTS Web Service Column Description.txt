@@ -1,0 +1,7 @@
+﻿
+DepartDate : Passenger Depart Date; The date refer to passenger checkin into vehicle.
+TripDate : Vehicle Depart Date; The date refer to vehicle depart from first station.
+
+seat_detail.avai => Y:Available; N:Occupied;
+
+tick_detail.extraamount => an amount that has included in seat_status.adultprice

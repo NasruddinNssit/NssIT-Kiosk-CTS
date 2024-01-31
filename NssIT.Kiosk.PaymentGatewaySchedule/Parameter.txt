@@ -1,0 +1,22 @@
+WebApiURL=http://203.115.193.19/paymentgateway/api
+KioskId=BTnGCleanUpSchd
+
+xxxxx
+* Use "xxxxx" (5"x") to indicate end of Parameters setting.
+* Use "=" to assign value
+* A Space " " is not allowed in parameter setting.
+
+* WebApiURL :  Web API URL for any data transaction.
+* IsDebugMode : This is an optionanl parameter. Remove this parameter if not necessary.
+			: Example -> IsDebugMode=true
+
+* KioskId : Id of Kiosk Machine;
+
+Sample Parameter
+==================
+WebApiURL=http://203.115.193.19/paymentgateway/api
+WebApiURL=http://10.238.1.4/paymentgateway/api
+WebApiURL=https://10.238.1.5/paymentgateway/api
+WebApiURL=https://paymentgateway.nssit.com.my/api
+KioskId=BTnGCleanUpSchd
+IsDebugMode=true

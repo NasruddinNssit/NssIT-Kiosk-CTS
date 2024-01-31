@@ -1,0 +1,61 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                    xmlns:local="clr-namespace:NssIT.Kiosk.Client.ViewPage.Payment">
+
+    <!-- pgCASH -->
+    <sys:String x:Key="CASH_PAYMENT_Label">Tunai Sahaja</sys:String>
+    <sys:String x:Key="PLEASE_PAY__Label">Sila Bayar</sys:String>
+    <sys:String x:Key="PAID_Label">Dibayar</sys:String>
+    <sys:String x:Key="BALANCE_Label">Tunggakan</sys:String>
+    <sys:String x:Key="CANCEL_Label">Batalkan</sys:String>
+    <sys:String x:Key="ONLY_ACCEPT_BILL_Label">Cuma terima wang kertas {0} {1}</sys:String>
+
+    <!-- pgPaymentInfo -->
+    <sys:String x:Key="PAYMENT_Label">Bayaran</sys:String>
+    <sys:String x:Key="FARE_DETAIL_Label">Butir Tambang Perjalanan</sys:String>
+    <sys:String x:Key="DEPART_Label">Berlepas</sys:String>
+    <sys:String x:Key="TOTAL_Label">JUMLAH</sys:String>
+
+    <!-- pgPrintTicket2 -->
+    <sys:String x:Key="TICKET_PRINTING_Label">Tiket sedang dicetak</sys:String>
+    <sys:String x:Key="TRANS_NO_Label">No. Transaksi :</sys:String>
+    <sys:String x:Key="THANKS_FOR_Label">Terima kasih dan Selamat Jalan</sys:String>
+    <sys:String x:Key="STATION_NAME_Label">Tiket Mesin Vending</sys:String>
+    <sys:String x:Key="TICKET_VENDING_Label">Melaka Sentral</sys:String>
+    <sys:String x:Key="HAVE_A_NICE_DAY_Label">.</sys:String>
+    <sys:String x:Key="I_AM_DONE_Label">SELESAI</sys:String>
+    <sys:String x:Key="PLEASE_CLEAR__Label">SILA KOSONGKAN</sys:String>
+    <sys:String x:Key="THE_SCREEN__Label">SKRIN INI</sys:String>
+    <sys:String x:Key="PAUSE_Label">HUBUNGI SOKONGAN KAUNTER</sys:String>
+    <sys:String x:Key="SCREEN__Label">SKRIN</sys:String>
+    <sys:String x:Key="WE_SORRY_Label">Haraf Maaf,</sys:String>
+    <sys:String x:Key="UNABLE_COMPLETE_TRANS_Label">pembayaran anda tidak berjaya.</sys:String>
+    <sys:String x:Key="YOUR_TRANS_Label">No. Transaksi Anda Ialah </sys:String>
+    <sys:String x:Key="PLEASE_PAUSE_SCREEN_Label">Sila tekan berhenti seketika,</sys:String>
+    <sys:String x:Key="TAKE_SCREEN_PHOTO_Label">ambil gambar skrin dan slip transaksi yang telah dicetak.</sys:String>
+    <sys:String x:Key="CONTACT_COUNTER_Label">Dan hubungi Kaunter dengan segera.</sys:String>
+    <sys:String x:Key="NOTE_PRINTERED_Label">Nota Transaksi Akan Dicetakan. Sila Ambil Nota Ini.</sys:String>
+
+    <sys:String x:Key="PAYMENT_DEPART_AMOUNT_DESCRIPTION_Label">Dewasa ({0} {1} x {2})</sys:String>
+
+    <!-- pgPaymentTypes -->
+    <sys:String x:Key="CASH_Label">Wang Tunai</sys:String>
+    <sys:String x:Key="CHOOSE_PAYMENT_METHOD_Label">Sila pilih kaedah pembayaran</sys:String>
+
+    <!-- pgCreditCardPayWave -->
+    <sys:String x:Key="CARD_PAYMENT_Label">BAYARAN KAD</sys:String>
+    <sys:String x:Key="CARD_PAYMENT_MESSAGE_Label">Sila masukkan PIN anda untuk bayaran melebihi RM250​</sys:String>
+    <sys:String x:Key="EWALLET_PAYMENT_Label">BAYARAN e-DOMPET</sys:String>
+    <sys:String x:Key="EWALLET_PAYMENT_MESSAGE_Label">Sila selesaikan pembayaran sebelum tamat masa. Sekiranya tamat masa, transaksi akan dibatalkan.</sys:String>
+
+    <!-- pgBTnGPayment -->
+    <sys:String x:Key="PLEASE_SCAN_QR_Label">Sila imbaskan kod QR untuk membayar</sys:String>
+    <sys:String x:Key="QR_LOADING_Label">Memuat QR kod ..</sys:String>
+    <sys:String x:Key="QR_PROCESSING_Label">Memproses ..</sys:String>
+    <sys:String x:Key="QR_PAYMENT_RECEIVED_Label">Bayaran diterima</sys:String>
+    <sys:String x:Key="QR_CANCELED_Label">Dibatalkan ..</sys:String>
+    <sys:String x:Key="QR_TIMEOUT_Label">Masa tamat</sys:String>
+    <sys:String x:Key="QR_FAIL_Label">Gagal</sys:String>
+
+</ResourceDictionary>

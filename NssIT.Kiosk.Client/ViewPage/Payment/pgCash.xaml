@@ -1,0 +1,221 @@
+﻿<Page x:Class="NssIT.Kiosk.Client.ViewPage.Payment.pgCash"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:NssIT.Kiosk.Client.ViewPage.Payment"
+      mc:Ignorable="d"  Stylus.IsPressAndHoldEnabled="False"
+      d:DesignHeight="410" d:DesignWidth="472"
+      FontFamily="Segoe UI" Background="White"
+      Title="Cash Payment" Loaded="Page_Loaded" Unloaded="Page_Unloaded">
+
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="rosPaymentEnglish.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+
+    <Grid x:Name="GrdMain">
+        <Grid.Resources>
+            <Style x:Key="btnChangePay" TargetType="Button">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Border CornerRadius="8" Background="#2B9CDB">
+                                <ContentPresenter x:Name="contentPresenter" 
+                                                  ContentTemplate="{TemplateBinding ContentTemplate}" 
+                                                  Content="{TemplateBinding Content}" 
+                                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                                  Margin="{TemplateBinding Padding}" 
+                                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <Style x:Key="btnCancel" TargetType="Button">
+                <Setter Property="Foreground" Value="#FFFFFF"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Border CornerRadius="8" Background="#F48220">
+                                <ContentPresenter x:Name="contentPresenter" 
+                                                  ContentTemplate="{TemplateBinding ContentTemplate}" 
+                                                  Content="{TemplateBinding Content}" 
+                                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                                  Margin="{TemplateBinding Padding}" 
+                                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <Style x:Key="btnCancelDisabled" TargetType="Button">
+                <Setter Property="Foreground" Value="#FFFFFF"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Border CornerRadius="8" Background="#999999">
+                                <ContentPresenter x:Name="contentPresenter" 
+                                                  ContentTemplate="{TemplateBinding ContentTemplate}" 
+                                                  Content="{TemplateBinding Content}" 
+                                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                                  Margin="{TemplateBinding Padding}" 
+                                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </Grid.Resources>
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1.5*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="80"/>
+        </Grid.RowDefinitions>
+
+        <!--Header-->
+        <TextBlock Grid.Column="0" Grid.ColumnSpan="2" Text="{DynamicResource CASH_PAYMENT_Label}" Foreground="#777777"
+                   FontFamily="Roboto" FontSize="22" VerticalAlignment="Bottom" Margin="20 0 0 10"/>
+
+        <Button Grid.Column="1" Background="#2B9CDB" BorderThickness="0" Margin="10 10 0 0" HorizontalContentAlignment="Stretch" Padding="10 0 10 0"
+                Style="{StaticResource btnChangePay}" Visibility="Collapsed">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#FFFFFF">
+                    <Run Text="CHANGE TO"/>
+                    <LineBreak/>
+                    <Run Text="CARD PAYMENT"/>
+                </TextBlock>
+
+                <Image Grid.Column="1" Source="/Resources/Paypasscard-white.png" HorizontalAlignment="Right"/>
+            </Grid>
+        </Button>
+
+        <!--Blue grid-->
+        <Grid Grid.ColumnSpan="2" Grid.Row="1" Grid.RowSpan="2" Background="#D2E9F5" Margin="0 10 0 0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="60"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1.5*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!--Please pay-->
+            <TextBlock VerticalAlignment="Center" FontSize="18" Foreground="#777777" Margin="20 0 0 0">
+                <Run Text="{DynamicResource PLEASE_PAY__Label}" />
+                <LineBreak/>
+                <Run x:Name="TxtTotalTicketAmount" Text="RM 73.60" FontSize="25" Foreground="#FF00BB00" FontWeight="Bold" />
+            </TextBlock>
+            <!--Paid-->
+            <TextBlock Grid.Row="1" VerticalAlignment="Center" FontSize="18" Foreground="#777777" Margin="20 0 0 0">
+                <Run Text="{DynamicResource PAID_Label}" />
+                <LineBreak/>
+                <Run x:Name="TxtPaidAmount" Text="RM 50.00" />
+            </TextBlock>
+            <!--Balance-->
+            <TextBlock Grid.Row="2" VerticalAlignment="Center" FontSize="18" Foreground="#777777" Margin="20 0 0 0">
+                <Run Text="{DynamicResource BALANCE_Label}" />
+                <LineBreak/>
+                <Run x:Name="TxtBalance" Text="RM 23.60" FontSize="25" Foreground="Red" FontWeight="Bold" />
+            </TextBlock>
+            <!--Cancel button-->
+            <Grid Grid.Row="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!--Cancel button-->
+                <Button Style="{StaticResource btnCancel}" Content="{DynamicResource CANCEL_Label}" Width="110" Height="45" HorizontalAlignment="Left" FontSize="18" Margin="20,0,0,0" Click="BtnCancel_Click" x:Name="BtnCancel"/>
+                <!--Counting timer-->
+                <TextBlock Grid.Column="1" Text="(62)" VerticalAlignment="Center" FontSize="18" Foreground="#777777" Margin="10 0 0 0" x:Name="TxtCountDown"/>
+            </Grid>
+
+            <TextBlock Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" Text="Error Message" Foreground="Red" x:Name="TxtError" Visibility="Visible" TextWrapping="WrapWithOverflow" Margin="0,0,10,0"/>
+
+            <!--Money image-->
+            <!--<Image Grid.Column="2" Grid.RowSpan="4" Source="/Resources/Cash-do.png" HorizontalAlignment="Right" Margin="10 10 20 40"/>-->
+            <Grid Grid.Column="2" Grid.RowSpan="4" Margin="0,0,3,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Image Grid.Column="0" Grid.Row="1" Source="/Resources/Cash-do v2 - 1RM.png" HorizontalAlignment="Right" Width="98" Height="28"/>
+                <Image Grid.Column="0" Grid.Row="2" Source="/Resources/Cash-do v2 - 5RM.png" HorizontalAlignment="Right" Width="98" Height="28"/>
+                <Image Grid.Column="0" Grid.Row="3" Source="/Resources/Cash-do v2 - 10RM.png" HorizontalAlignment="Right" Width="98" Height="28"/>
+                <Image Grid.Column="0" Grid.Row="4" Source="/Resources/Cash-do v2 - 20RM.png" HorizontalAlignment="Right" Width="98" Height="28"/>
+                <Image Grid.Column="0" Grid.Row="5" Source="/Resources/Cash-do v2 - 50RM.png" HorizontalAlignment="Right" Width="98" Height="28"/>
+                <Image Grid.Column="0" Grid.Row="6" Source="/Resources/Cash-do v2 - 100RM.png" HorizontalAlignment="Right" Width="98" Height="28"/>
+
+                <Image Grid.Column="1" Grid.Row="1" Source="/Resources/icon-tick-green.png" x:Name="Img1RMTick" HorizontalAlignment="Right" Margin="7,7,7,7" Width="16" Height="16"/>
+                <Image Grid.Column="1" Grid.Row="1" Source="/Resources/icon-x-red.png" x:Name="Img1RMXX" HorizontalAlignment="Right" Margin="8,8,8,8" Visibility="Collapsed" Width="16" Height="16"/>
+
+                <Image Grid.Column="1" Grid.Row="2" Source="/Resources/icon-tick-green.png" x:Name="Img5RMTick" HorizontalAlignment="Right" Margin="7,7,7,7" Width="16" Height="16"/>
+                <Image Grid.Column="1" Grid.Row="2" Source="/Resources/icon-x-red.png" x:Name="Img5RMXX" HorizontalAlignment="Right" Margin="8,8,8,8" Visibility="Collapsed" Width="16" Height="16"/>
+
+                <Image Grid.Column="1" Grid.Row="3" Source="/Resources/icon-tick-green.png" x:Name="Img10RMTick" HorizontalAlignment="Right" Margin="7,7,7,7" Width="16" Height="16"/>
+                <Image Grid.Column="1" Grid.Row="3" Source="/Resources/icon-x-red.png" x:Name="Img10RMXX" HorizontalAlignment="Right" Margin="8,8,8,8" Visibility="Collapsed" Width="16" Height="16"/>
+
+                <Image Grid.Column="1" Grid.Row="4" Source="/Resources/icon-tick-green.png" x:Name="Img20RMTick" HorizontalAlignment="Right" Margin="7,7,7,7" Width="16" Height="16"/>
+                <Image Grid.Column="1" Grid.Row="4" Source="/Resources/icon-x-red.png" x:Name="Img20RMXX" HorizontalAlignment="Right" Margin="8,8,8,8" Visibility="Collapsed" Width="16" Height="16"/>
+
+                <Image Grid.Column="1" Grid.Row="5" Source="/Resources/icon-tick-green.png" x:Name="Img50RMTick" HorizontalAlignment="Right" Margin="7,7,7,7" Width="16" Height="16"/>
+                <Image Grid.Column="1" Grid.Row="5" Source="/Resources/icon-x-red.png" x:Name="Img50RMXX" HorizontalAlignment="Right" Margin="8,8,8,8" Visibility="Collapsed" Width="16" Height="16"/>
+
+                <Image Grid.Column="1" Grid.Row="6" Source="/Resources/icon-x-red.png" HorizontalAlignment="Right" Margin="8,8,8,8" Width="16" Height="16"/>
+
+                <!--Info-->
+                <Image Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="2" Source="/Resources/icon-exclamation-light.png" HorizontalAlignment="Left" Height="20" Margin="0 0 30 0"/>
+                <!--<TextBlock Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="2" FontSize="8" Foreground="#777777" VerticalAlignment="Center" Margin="25 0 3 0"
+                    Text="Cuma terima wang kertas RM1, RM5, RM10, RM20, RM50" TextWrapping="Wrap" />-->
+
+                <TextBlock Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="2" FontSize="8" Foreground="#777777" VerticalAlignment="Center" Margin="25 0 3 0" TextWrapping="Wrap">
+                    <Run x:Name="TxtBillMsg1" Text="Only RM 1, 5, 10, 20, 50 notes are accepted"/>
+                </TextBlock>
+
+            </Grid>
+            <!--Info-->
+            <!--<Image Grid.Column="2" Grid.Row="3" Source="/Resources/icon-exclamation-light.png" HorizontalAlignment="Left" Height="20" Margin="0 10 30 0"/>
+            <TextBlock Grid.Column="2" Grid.Row="3" FontSize="8" Foreground="#777777" VerticalAlignment="Center" Margin="25 10 5 0">
+                <Run Text="Only RM 1, 5, 10, 20, 50 bills"/>
+                <LineBreak/>
+                <Run Text="are accepted"/>
+            </TextBlock>-->
+
+            <TextBlock Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="2" Text="In Progress Message ...." x:Name="TxtProgressMsg" Margin="0,0,5,5"
+                       FontSize="6" VerticalAlignment="Top" HorizontalAlignment="Right" TextWrapping="WrapWithOverflow" />
+        </Grid>
+    </Grid>
+</Page>

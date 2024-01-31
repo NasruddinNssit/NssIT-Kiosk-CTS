@@ -1,0 +1,12 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
+    <sys:String x:Key="PREVLabel">PREV</sys:String>
+    <sys:String x:Key="NEXTLabel">NEXT</sys:String>
+    
+    <sys:String x:Key="SELECT_BOARDING_DATE_Label">SELECT YOUR BOARDING DATE</sys:String>
+    <sys:String x:Key="SEARCHLabel">CONTINUE</sys:String>
+
+    <sys:String x:Key="IN_PROGRESS_Label">In progress..</sys:String>
+</ResourceDictionary>

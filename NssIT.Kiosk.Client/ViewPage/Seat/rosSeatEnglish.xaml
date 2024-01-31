@@ -1,0 +1,36 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                    xmlns:local="clr-namespace:NssIT.Kiosk.Client.ViewPage.Seat">
+
+    <!--<sys:String x:Key="LOWER_DECK_Label">Lower Deck</sys:String>
+    <sys:String x:Key="UPPER_DECK_Label">Upper Deck</sys:String>-->
+
+    <sys:String x:Key="IN_PROGRESS_Label">In progress..</sys:String>
+
+    <sys:String x:Key="LOWER_DECK_Label">.</sys:String>
+    <sys:String x:Key="UPPER_DECK_Label">..</sys:String>
+
+    <sys:String x:Key="AVAILABLE_Label">Available</sys:String>
+    <sys:String x:Key="OCCUPIED_Label">Occupied</sys:String>
+    <sys:String x:Key="SELECTED_Label">Selected</sys:String>
+    <sys:String x:Key="DRIVER_Label">Driver</sys:String>
+    <sys:String x:Key="MAXIMUM_SEAT_ADVICE_Label">Maximum {0} seats per trip</sys:String>
+    <sys:String x:Key="MANDATORY_SEAT_ADVICE_Label">Please select {0} seat/s</sys:String>
+
+    <sys:String x:Key="SEATS_Label">Seat(s) selected:</sys:String>
+
+    <sys:String x:Key="TOTAL_Label">Total</sys:String>
+
+    <sys:String x:Key="INCLUDE_Label">Include</sys:String>
+
+    <sys:String x:Key="ADMIN_FEE_Label">and Admin Fee</sys:String>
+
+    <sys:String x:Key="INS_AMOUNT_Label">Amount :</sys:String>
+    <sys:String x:Key="INS_PER_PERSON_Label">per Person</sys:String>
+    <sys:String x:Key="CONFIRM_SEATS_Label">Proceed</sys:String>
+
+    <sys:String x:Key="CUST_ERROR_MAX_SEAT_Label">Only maximum {0} seats is allowed.</sys:String>
+    
+    
+</ResourceDictionary>

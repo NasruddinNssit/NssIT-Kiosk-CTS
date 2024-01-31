@@ -1,0 +1,42 @@
+﻿Kiosk New Page Implementation Steps
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+Server
+========
+enum UISalesInst & CommInstruction
+<UIData> / <UIDataRequest> / <UIDataSubmission>
+	: public CommInstruction Instruction { get; }
+	: Additional Data
+AccessDB.CommandExec
+	: New comand class refer to IAccessDBCommand
+	: New command code refer to AccessDBCommandCode
+AccessDB
+	: AccessDB.GetCommandExec
+Session
+MelakaSentralAppPlan
+ServerSalesApplication
+
+
+Client
+=========
+AppSalesSvcEventsHandler
+MainWindow  - IMainScreenControl
+Page
+NetClientSalesService
+Language
+Page
+Info - Header
+Menu Show
+**
+Kiosk Edit Page Implementation Steps
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+MainWindow.ExecMenu_OnEditMenuItem
+NetClientSalesService.EditSalesDetail
+MelakaSentralAppPlan.SetEditingSession
+MelakaSentralAppPlan.NextInstruction
+MainWindow.DisplayMenu
+
+
+
+
+

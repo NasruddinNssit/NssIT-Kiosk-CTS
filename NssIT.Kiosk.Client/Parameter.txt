@@ -1,0 +1,46 @@
+LocalServerPort=7385
+ClientPort=23838
+AppGroupCode=Melaka 
+IsDebugMode=Yes
+MyKadScanner=Yes
+//NoPaymentNeed=Yes
+
+xxxxx
+* Use "xxxxx" (5"x") to indicate end of Parameters setting.
+* Use "=" to assign value
+* A Space " " is not allowed in parameter setting except a file path.
+
+* ClientPort      : Port number used for data receiving in client application (NssIT.Kiosk.Client.exe)
+* LocalServerPort : Port number used for data receiving at Local Server (NssIT.Kiosk.Server.exe / Windows Service)
+
+* IsDebugMode	: This is an optionanl parameter. 
+				: Example -> IsDebugMode=Yes
+				: Default is "No". 
+
+* NoPaymentNeed	: This is an optionanl parameter. 
+				: Example -> NoPaymentNeed=Yes
+				: A "Yes" will ignored all payment (Like Cash or Credit Card) process. 
+				: A "No" or these parameter not found will follow normal way accordingly for payment transaction.
+				: Default is "No".
+
+* MyKadScanner	: This is an optionanl parameter. 
+				: Example -> MyKadScanner=Yes
+				: A "Yes" indicate a MyKad Scanner is ready.
+				: Default is "No".
+
+* AppGroupCode	: Optional Parameter.
+				: Default value is Melaka.
+				: If this parameter has not set, this value is default to Melaka(Melaka Sentral)
+				: The Valid value is Melaka / Larkin / Gombak / Klang.
+
+* IsDemo		: Optional Parameter.
+				: Show demo screen.
+
+Sample Reference
+=============================
+ClientPort=23838
+LocalServerPort=7385
+IsDebugMode=Yes
+NoPaymentNeed=Yes
+MyKadScanner=Yes
+IsDemo=Yes

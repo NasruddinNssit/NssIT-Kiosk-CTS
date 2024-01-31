@@ -1,0 +1,1153 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{4E1A96D1-943E-438C-ADBA-8967C021B091}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>NssIT.Kiosk.Client</RootNamespace>
+    <AssemblyName>NssIT.Kiosk.Client</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Gma.QrCodeNet.Encoding, Version=0.4.0.0, Culture=neutral, PublicKeyToken=e8a75d24b142be49, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\KTMB_Kiosk\Code\NssIT.Kiosk.Client\DLL\Gma.QrCodeNet.Encoding.dll</HintPath>
+    </Reference>
+    <Reference Include="LibShowMessageWindow">
+      <HintPath>..\..\..\KTMB_Kiosk\Code\LibShowMessageWindow\bin\Debug\LibShowMessageWindow.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.140.1000.523\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.140.1000.523\lib\net40\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Design, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.140.1000.523\lib\net40\Microsoft.ReportViewer.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.140.1000.523\lib\net40\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.140.1000.523\lib\net40\Microsoft.ReportViewer.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.SQLite, Version=1.0.115.5, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.115.5\lib\net46\System.Data.SQLite.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.SQLite.EF6, Version=1.0.115.5, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.SQLite.EF6.1.0.115.5\lib\net46\System.Data.SQLite.EF6.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.SQLite.Linq, Version=1.0.115.5, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.SQLite.Linq.1.0.115.5\lib\net46\System.Data.SQLite.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Windows" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Presentation" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="AppCollectTicketSvcEventsHandler.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AppHelper.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AppSalesSvcEventsHandler.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Base\CommonFunc.cs" />
+    <Compile Include="Base\DateTimeCulture.cs" />
+    <Compile Include="Base\frmWaiting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Base\frmWaiting.Designer.cs">
+      <DependentUpon>frmWaiting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Base\KioskServiceSwitching.cs" />
+    <Compile Include="Base\LocalDevices\ICPassHttpReader.cs" />
+    <Compile Include="Base\LocalDevices\IIdentityReader.cs" />
+    <Compile Include="Base\NetServiceAnswerMan.cs" />
+    <Compile Include="Base\PassengerIdentity.cs" />
+    <Compile Include="Base\ScreenImageManager.cs" />
+    <Compile Include="Base\ShieldErrorScreen.xaml.cs">
+      <DependentUpon>ShieldErrorScreen.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Base\SysLog.cs" />
+    <Compile Include="Base\TicketTypeTranslator.cs" />
+    <Compile Include="Base\Time\CollectTicketCountDown.cs" />
+    <Compile Include="Base\Time\ResetTimeoutManager.cs" />
+    <Compile Include="Base\WebImageCacheX.cs" />
+    <Compile Include="IMainScreenControl.cs" />
+    <Compile Include="NetClient\NetClientBTnGService.cs" />
+    <Compile Include="NetClient\NetClientCashPaymentService.cs" />
+    <Compile Include="NetClient\NetClientCollectTicketService.cs" />
+    <Compile Include="NetClient\NetClientSalesService.cs" />
+    <Compile Include="NetClient\NetClientService.cs" />
+    <Compile Include="NetClient\ReceivedNetProcessIdTracker.cs" />
+    <Compile Include="Reports\DsMelakaCentralErrorTicketMessage.Designer.cs" />
+    <Compile Include="Reports\DsMelakaCentralTicket.Designer.cs" />
+    <Compile Include="Reports\ImagePrintingTools.cs" />
+    <Compile Include="Reports\PDFTools.cs" />
+    <Compile Include="Reports\QRGen.cs" />
+    <Compile Include="Reports\RdlcImageRendering.cs" />
+    <Compile Include="Reports\ReportDataQuery.cs" />
+    <Compile Include="Reports\ReportPDFFileManager.cs" />
+    <Compile Include="SqlServerTypes\Loader.cs" />
+    <Compile Include="SysLocalParam.cs" />
+    <Compile Include="ViewPage\Alert\IAlertPage.cs" />
+    <Compile Include="ViewPage\Alert\pgOutofOrder.xaml.cs">
+      <DependentUpon>pgOutofOrder.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewPage\BoardingPass\BoardingDate\ICTBoardingDate.cs" />
+    <Compile Include="ViewPage\BoardingPass\BoardingDate\pgBoardingDate.xaml.cs">
+      <DependentUpon>pgBoardingDate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewPage\BoardingPass\BusCompany\BusCompanyViewList.cs" />
+    <Compile Include="ViewPage\BoardingPass\BusCompany\BusCompanyViewListHelper.cs" />
+    <Compile Include="ViewPage\BoardingPass\BusCompany\BusCompanyViewRow.cs" />
+    <Compile Include="ViewPage\BoardingPass\BusCompany\BusCompanyViewSearch.cs" />
+    <Compile Include="ViewPage\BoardingPass\BusCompany\ICTBusCompany.cs" />
+    <Compile Include="ViewPage\BoardingPass\BusCompany\pgBusCompany.xaml.cs">
+      <DependentUpon>pgBusCompany.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewPage\BoardingPass\CTPayment\ICTPayment.cs" />
+    <Compile Include="ViewPage\BoardingPass\CTPayment\pgCTPayment.xaml.cs">
+      <DependentUpon>pgCTPayment.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewPage\BoardingPass\CTPayment\pgCTPaymentInfo.xaml.cs">
+      <DependentUpon>pgCTPaymentInfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewPage\BoardingPass\CTPayment\pgCTPayment_BTnGPaymentProxy.cs" />
+    <Compile Include="ViewPage\BoardingPass\CTPayment\pgCTPayment_CashPaymentProxy.cs" />
+    <Compile Include="ViewPage\BoardingPass\CTPayment\pgCTPrintTicket.xaml.cs">
+      <DependentUpon>pgCTPrintTicket.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewPage\BoardingPass\Navigation\uscCTNavigation.xaml.cs">
+      <DependentUpon>uscCTNavigation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewPage\BoardingPass\PassengerInfo\ICTPassengerInfo.cs" />
+    <Compile Include="ViewPage\BoardingPass\PassengerInfo\PassengerInfoEntryProxy.cs" />
+    <Compile Include="ViewPage\BoardingPass\PassengerInfo\PassengerInfoEntryValidator.cs" />
+    <Compile Include="ViewPage\BoardingPass\PassengerInfo\pgCTMyKad.xaml.cs">
+      <DependentUpon>pgCTMyKad.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewPage\BoardingPass\PassengerInfo\pgPassengerInfo.xaml.cs">
+      <DependentUpon>pgPassengerInfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewPage\BoardingPass\TicketNumber\ICTTicketNo.cs" />
+    <Compile Include="ViewPage\BoardingPass\TicketNumber\pgTicketNo.xaml.cs">
+      <DependentUpon>pgTicketNo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewPage\CustInfo\CustInfoKeyBoardEntry.cs" />
+    <Compile Include="ViewPage\CustInfo\CustInfoVerticalMover.cs" />
+    <Compile Include="ViewPage\CustInfo\EndOfMyKadScanEventArgs.cs" />
+    <Compile Include="ViewPage\CustInfo\ICustInfo.cs" />
+    <Compile Include="ViewPage\CustInfo\PassengerInfo.cs" />
+    <Compile Include="ViewPage\CustInfo\PassengerInfoManager.cs" />
+    <Compile Include="ViewPage\CustInfo\PassengerSeatNo.cs" />
+    <Compile Include="ViewPage\CustInfo\pgCustInfo.xaml.cs">
+      <DependentUpon>pgCustInfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewPage\CustInfo\pgMyKad.xaml.cs">
+      <DependentUpon>pgMyKad.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewPage\DateSelectedEventArgs.cs" />
+    <Compile Include="ViewPage\Date\CalendarDayCell.cs" />
+    <Compile Include="ViewPage\Date\CellState.cs" />
+    <Compile Include="ViewPage\Date\ITravelDate.cs" />
+    <Compile Include="ViewPage\Date\pgDate.xaml.cs">
+      <DependentUpon>pgDate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewPage\IKioskViewPage.cs" />
+    <Compile Include="ViewPage\Info\IInfo.cs" />
+    <Compile Include="ViewPage\Info\InfoCode.cs" />
+    <Compile Include="ViewPage\Info\pgInfo.xaml.cs">
+      <DependentUpon>pgInfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewPage\Insurance\IInsuranse.cs" />
+    <Compile Include="ViewPage\Insurance\pgInsuranse.xaml.cs">
+      <DependentUpon>pgInsuranse.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewPage\Insurance\SeatDetailViewList.cs" />
+    <Compile Include="ViewPage\Insurance\SeatDetailViewRow.cs" />
+    <Compile Include="ViewPage\Intro\BeginEventArgs.cs" />
+    <Compile Include="ViewPage\Intro\IIntroAdjustPage.cs" />
+    <Compile Include="ViewPage\Intro\IntroUIAnimateHelper.cs" />
+    <Compile Include="ViewPage\Intro\pgIntro.xaml.cs">
+      <DependentUpon>pgIntro.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewPage\Intro\uscIntroEnglish.xaml.cs">
+      <DependentUpon>uscIntroEnglish.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewPage\Intro\uscIntroMalay.xaml.cs">
+      <DependentUpon>uscIntroMalay.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewPage\KeyboardEventArgs.cs" />
+    <Compile Include="ViewPage\Language\ILanguage.cs" />
+    <Compile Include="ViewPage\Language\pgLanguage.xaml.cs">
+      <DependentUpon>pgLanguage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewPage\Menu\IMenuExec.cs" />
+    <Compile Include="ViewPage\Menu\MenuEditTemporarySwitch.cs" />
+    <Compile Include="ViewPage\Menu\pgMenu.xaml.cs">
+      <DependentUpon>pgMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewPage\Menu\Section\DepartDateSection.cs" />
+    <Compile Include="ViewPage\Menu\Section\DepartOperatorSection.cs" />
+    <Compile Include="ViewPage\Menu\Section\DepartSeatSection.cs" />
+    <Compile Include="ViewPage\Menu\Section\FromStationSection.cs" />
+    <Compile Include="ViewPage\Menu\Section\IMenuItemSection.cs" />
+    <Compile Include="ViewPage\Menu\Section\MenuItemEditEventArgs.cs" />
+    <Compile Include="ViewPage\Menu\Section\MenuItemPageNavigateEventArgs.cs" />
+    <Compile Include="ViewPage\Menu\Section\PassengerSection.cs" />
+    <Compile Include="ViewPage\Menu\Section\PaymentSection.cs" />
+    <Compile Include="ViewPage\Menu\Section\ReturnDateSection.cs" />
+    <Compile Include="ViewPage\Menu\Section\ReturnOperatorSection.cs" />
+    <Compile Include="ViewPage\Menu\Section\ReturnSeatSection.cs" />
+    <Compile Include="ViewPage\Menu\Section\ToStationSection.cs" />
+    <Compile Include="ViewPage\Payment\EndOfPaymentEventArgs.cs" />
+    <Compile Include="ViewPage\Payment\IBTnG.cs" />
+    <Compile Include="ViewPage\Payment\ICash.cs" />
+    <Compile Include="ViewPage\Payment\IPayment.cs" />
+    <Compile Include="ViewPage\Payment\IPaymentTraffitController.cs" />
+    <Compile Include="ViewPage\Payment\pgBTnGPayment.xaml.cs">
+      <DependentUpon>pgBTnGPayment.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewPage\Payment\pgCash.xaml.cs">
+      <DependentUpon>pgCash.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewPage\Payment\pgCashDemoNoPay.xaml.cs">
+      <DependentUpon>pgCashDemoNoPay.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewPage\Payment\pgCreditCardPayWave.xaml.cs">
+      <DependentUpon>pgCreditCardPayWave.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewPage\Payment\pgPayment.xaml.cs">
+      <DependentUpon>pgPayment.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewPage\Payment\pgPaymentInfo.xaml.cs">
+      <DependentUpon>pgPaymentInfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewPage\Payment\pgPaymentTypes.xaml.cs">
+      <DependentUpon>pgPaymentTypes.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewPage\Payment\pgPayment_BTnGPayment.cs" />
+    <Compile Include="ViewPage\Payment\pgPrintTicket.xaml.cs">
+      <DependentUpon>pgPrintTicket.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewPage\Payment\pgPrintTicket2.xaml.cs">
+      <DependentUpon>pgPrintTicket2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewPage\Payment\PrintTicketMsgCode.cs" />
+    <Compile Include="ViewPage\Payment\uscPaymentGateway.xaml.cs">
+      <DependentUpon>uscPaymentGateway.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewPage\PickupNDrop\IPickupNDrop.cs" />
+    <Compile Include="ViewPage\PickupNDrop\LocationSelectedEventArgs.cs" />
+    <Compile Include="ViewPage\PickupNDrop\LocationViewHelper.cs" />
+    <Compile Include="ViewPage\PickupNDrop\LocationViewList.cs" />
+    <Compile Include="ViewPage\PickupNDrop\LocationViewRow.cs" />
+    <Compile Include="ViewPage\PickupNDrop\pgPickupNDrop.xaml.cs">
+      <DependentUpon>pgPickupNDrop.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewPage\PurchaseType\pgPurchaseType.xaml.cs">
+      <DependentUpon>pgPurchaseType.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewPage\Seat\ISeat.cs" />
+    <Compile Include="ViewPage\Seat\pgSeat.xaml.cs">
+      <DependentUpon>pgSeat.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewPage\Seat\SeatCalibrator.cs" />
+    <Compile Include="ViewPage\Seat\SeatDeckCollection.cs" />
+    <Compile Include="ViewPage\Seat\SeatInfo.cs" />
+    <Compile Include="ViewPage\Seat\SeatState.cs" />
+    <Compile Include="ViewPage\Seat\SeatViewVerticalMover.cs" />
+    <Compile Include="ViewPage\StationTerminal\IStation.cs" />
+    <Compile Include="ViewPage\StationTerminal\pgStation.xaml.cs">
+      <DependentUpon>pgStation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewPage\StationTerminal\StateChangedEventArgs.cs" />
+    <Compile Include="ViewPage\StationTerminal\StateViewList.cs" />
+    <Compile Include="ViewPage\StationTerminal\StateViewListHelper.cs" />
+    <Compile Include="ViewPage\StationTerminal\StateViewRow.cs" />
+    <Compile Include="ViewPage\StationTerminal\StationViewList.cs" />
+    <Compile Include="ViewPage\StationTerminal\StationViewListHelper.cs" />
+    <Compile Include="ViewPage\StationTerminal\StationViewRow.cs" />
+    <Compile Include="ViewPage\TextMessageEventArgs.cs" />
+    <Compile Include="ViewPage\Trip\DayCellInfo.cs" />
+    <Compile Include="ViewPage\Trip\DayCellSelector.cs" />
+    <Compile Include="ViewPage\Trip\ITimeFilterPage.cs" />
+    <Compile Include="ViewPage\Trip\ITrip.cs" />
+    <Compile Include="ViewPage\Trip\pgTimeFilter.xaml.cs">
+      <DependentUpon>pgTimeFilter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewPage\Trip\pgTrip.xaml.cs">
+      <DependentUpon>pgTrip.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewPage\Trip\ThumbMoveHelper.cs" />
+    <Compile Include="ViewPage\Trip\TimeFilterEventArgs.cs" />
+    <Compile Include="ViewPage\Trip\TripDetailEnt.cs" />
+    <Compile Include="ViewPage\Trip\TripDetailViewList.cs" />
+    <Compile Include="ViewPage\Trip\TripDetailViewListHelper.cs" />
+    <Compile Include="ViewPage\Trip\TripDetailViewRow.cs" />
+    <Compile Include="ViewPage\Trip\TripMode.cs" />
+    <Compile Include="ViewPage\uscKeyboard.xaml.cs">
+      <DependentUpon>uscKeyboard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewPage\ViewModelBase.cs" />
+    <Compile Include="WndTestingMonitor.xaml.cs">
+      <DependentUpon>WndTestingMonitor.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Base\ShieldErrorScreen.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="ViewPage\Alert\pgOutofOrder.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ViewPage\BoardingPass\BoardingDate\pgBoardingDate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Resource Include="Resources\CreditCardPayWave01.png" />
+    <Content Include="ViewPage\BoardingPass\BoardingDate\rosBoardingDateEnglish.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ViewPage\BoardingPass\BoardingDate\rosBoardingDateMalay.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Page Include="ViewPage\BoardingPass\BusCompany\pgBusCompany.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Content Include="ViewPage\BoardingPass\BusCompany\rosBusCompanyEnglish.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ViewPage\BoardingPass\BusCompany\rosBusCompanyMalay.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Page Include="ViewPage\BoardingPass\CTPayment\pgCTPayment.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ViewPage\BoardingPass\CTPayment\pgCTPaymentInfo.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ViewPage\BoardingPass\CTPayment\pgCTPrintTicket.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Content Include="ViewPage\BoardingPass\CTPayment\rosCTPaymentEnglish.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ViewPage\BoardingPass\CTPayment\rosCTPaymentMalay.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ViewPage\BoardingPass\Navigation\rocNavigationEnglish.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ViewPage\BoardingPass\Navigation\rocNavigationMalay.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Page Include="ViewPage\BoardingPass\Navigation\uscCTNavigation.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ViewPage\BoardingPass\PassengerInfo\pgCTMyKad.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ViewPage\BoardingPass\PassengerInfo\pgPassengerInfo.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Content Include="ViewPage\BoardingPass\PassengerInfo\rosPassengerInfoEnglish.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ViewPage\BoardingPass\PassengerInfo\rosPassengerInfoMalay.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Page Include="ViewPage\BoardingPass\TicketNumber\pgTicketNo.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Content Include="ViewPage\BoardingPass\TicketNumber\rosTicketNoEnglish.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ViewPage\BoardingPass\TicketNumber\rosTicketNoMalay.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Page Include="ViewPage\CustInfo\pgCustInfo.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ViewPage\CustInfo\pgMyKad.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Content Include="ViewPage\CustInfo\rosCustInfoEnglish.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ViewPage\CustInfo\rosCustInfoMalay.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Page Include="ViewPage\Date\pgDate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Content Include="ViewPage\Date\rosDateEnglish.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ViewPage\Date\rosDateMalay.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Page Include="ViewPage\Info\pgInfo.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Content Include="ViewPage\Info\rosInfoEnglish.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ViewPage\Info\rosInfoMalay.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Page Include="ViewPage\Insurance\pgInsuranse.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Content Include="ViewPage\Insurance\rosInsuranceEnglish.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ViewPage\Insurance\rosInsuranceMalay.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Page Include="ViewPage\Intro\pgIntro.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ViewPage\Intro\uscIntroEnglish.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ViewPage\Intro\uscIntroMalay.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ViewPage\Language\pgLanguage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Content Include="ViewPage\Menu\LanguageEnglish01.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ViewPage\Menu\LanguageMalay01.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Page Include="ViewPage\Menu\pgMenu.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ViewPage\Payment\pgBTnGPayment.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ViewPage\Payment\pgCash.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ViewPage\Payment\pgCashDemoNoPay.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ViewPage\Payment\pgCreditCardPayWave.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ViewPage\Payment\pgPayment.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ViewPage\Payment\pgPaymentInfo.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ViewPage\Payment\pgPaymentTypes.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ViewPage\Payment\pgPrintTicket.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ViewPage\Payment\pgPrintTicket2.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Content Include="ViewPage\Payment\rosPaymentEnglish.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ViewPage\Payment\rosPaymentMalay.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Page Include="ViewPage\Payment\uscPaymentGateway.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ViewPage\PickupNDrop\pgPickupNDrop.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Content Include="ViewPage\PickupNDrop\rosPickupNDropEnglish.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ViewPage\PickupNDrop\rosPickupNDropMalay.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Page Include="ViewPage\PurchaseType\pgPurchaseType.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Content Include="ViewPage\PurchaseType\rosPurchaseTypeEnglish.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ViewPage\PurchaseType\rosPurchaseTypeMalay.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Page Include="ViewPage\Seat\pgSeat.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Content Include="ViewPage\Seat\rosSeatEnglish.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ViewPage\Seat\rosSeatMalay.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Page Include="ViewPage\StationTerminal\pgStation.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Content Include="ViewPage\StationTerminal\rosStationEng.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ViewPage\StationTerminal\rosStationMalay.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Page Include="ViewPage\Trip\pgTimeFilter.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ViewPage\Trip\pgTrip.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Content Include="ViewPage\Trip\rosTripEnglish.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ViewPage\Trip\rosTripMalay.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Page Include="ViewPage\uscKeyboard.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="WndTestingMonitor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <Content Include="Reports\TicketKlangSentral.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\TicketKlangSentralErrorMessage.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\TicketLarkinSentral.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\TicketLarkinSentralErrorMessage.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\TicketMelakaSentralErrorMessage.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\TicketMelakaSentralX1.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\TicketTerminalBersepaduGombak.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\TicketTerminalBersepaduGombakErrorMessage.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Reports\DsMelakaCentralErrorTicketMessage.xsc">
+      <DependentUpon>DsMelakaCentralErrorTicketMessage.xsd</DependentUpon>
+    </None>
+    <None Include="Reports\DsMelakaCentralErrorTicketMessage.xsd" />
+    <None Include="Reports\DsMelakaCentralErrorTicketMessage.xss">
+      <DependentUpon>DsMelakaCentralErrorTicketMessage.xsd</DependentUpon>
+    </None>
+    <None Include="Reports\DsMelakaCentralTicket.xsc">
+      <DependentUpon>DsMelakaCentralTicket.xsd</DependentUpon>
+    </None>
+    <None Include="Reports\DsMelakaCentralTicket.xsd" />
+    <None Include="Reports\DsMelakaCentralTicket.xss">
+      <DependentUpon>DsMelakaCentralTicket.xsd</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\NssIT.Kiosk.AppDecorator\NssIT.Kiosk.AppDecorator.csproj">
+      <Project>{1cc91bda-e1d3-4eab-9d67-7d04b224f837}</Project>
+      <Name>NssIT.Kiosk.AppDecorator</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NssIT.Kiosk.Client.Service.Adaptor\NssIT.Kiosk.Client.Service.Adaptor.csproj">
+      <Project>{1a58c91a-2d5d-4551-a8e8-277183d0e57e}</Project>
+      <Name>NssIT.Kiosk.Client.Service.Adaptor</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NssIT.Kiosk.Common.AppService\NssIT.Kiosk.Common.AppService.csproj">
+      <Project>{f66f5f1a-5a2a-44d6-b627-9b4a3ce403ed}</Project>
+      <Name>NssIT.Kiosk.Common.AppService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NssIT.Kiosk.Common.Tools\NssIT.Kiosk.Common.Tools.csproj">
+      <Project>{c1d10fa5-9e91-4390-8f8a-888ade28cab0}</Project>
+      <Name>NssIT.Kiosk.Common.Tools</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NssIT.Kiosk.Common.WebAPI\NssIT.Kiosk.Common.WebAPI.csproj">
+      <Project>{755f7baf-3f2d-47bf-8050-e6bcb8170d61}</Project>
+      <Name>NssIT.Kiosk.Common.WebAPI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NssIT.Kiosk.Common.WebService\NssIT.Kiosk.Common.WebService.csproj">
+      <Project>{6450360b-dd19-42ae-ae77-25dc5800c23e}</Project>
+      <Name>NssIT.Kiosk.Common.WebService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NssIT.Kiosk.Log.DB\NssIT.Kiosk.Log.DB.csproj">
+      <Project>{92b559f6-ad65-4818-9300-badd7f849853}</Project>
+      <Name>NssIT.Kiosk.Log.DB</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DLL\Gma.QrCodeNet.Encoding.dll" />
+    <Content Include="Parameter.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Parameters Reference.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\BC.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\BoardingPassPayment.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\boost.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Boost00.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\cash white.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Cash-do v2 - 100RM.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Cash-do v2 - 10RM.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Cash-do v2 - 1RM.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Cash-do v2 - 20RM.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Cash-do v2 - 50RM.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Cash-do v2 - 5RM.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Cash-do.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\cash-image.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\docscan-black.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\docscan-green.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\docscan-red.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Duit02.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Duit12.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\eWallet00.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\help-green.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\help-grey.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\icon-back.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\icon-bottom-bm.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\icon-bottom-cash-eng-01.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\icon-bottom-cash-eng-02.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\icon-bottom-cash-eng-03.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\icon-bottom-credit-eng-01.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\icon-bottom-eWallet-02.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\icon-bottom-eWallet-bm-03.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\icon-bottom-eWallet-eng-03.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\icon-bottom-kredit-bm-01.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\icon-bottom-tunai-bm-01.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\icon-bottom-tunai-bm-02.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\icon-bottom-tunai-bm-03.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\icon-bottom.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\icon-chevron-left-light.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\icon-chevron-right-dark.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\icon-driver.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\icon-edit.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\icon-enter.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\icon-exclamation-dark.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\icon-exclamation-light.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\icon-keyboard.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\icon-sq-tick-green-2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\icon-sq-tick-green.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\icon-tick-green.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\icon-x-red.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\ID-scan-green.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\ID-scan-grey.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\ID-scan-red.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Klang Sentral Girl_BI.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Klang Sentral Girl_BM.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Klang Sentral Terminal 00 - Vertical.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Klang Sentral Terminal 00.jpeg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\larkin-logo-reverse.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\LarkinSentral-Logo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\LarkinSentral-Logo_Vertical.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Mark-2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Mark-3.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Master_Visa_Debit_Card01.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\MelakaSentral-logo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\MelSenLogo.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\MelSenLogo_Vertical.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\NSS poweredby logo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\NSS-poweredby logo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\OperatorLogoTest01.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Paypasscard-black.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Paypasscard-white.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\paypasslogo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\paywavelogo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\redwhitebox.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\TBS logo - white.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\TBSlogo-blue.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\TerminalBersepaduGombak-logo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\TerminalBersepaduGombak-logo_ORG.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\TerminalBersepaduGombak-logo_Vertical.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\ThumbFilter1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\ThumbFilterFrom.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\ThumbFilterFrom2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\ThumbFilterFrom3.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\ThumbFilterFrom4.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\ThumbFilterFrom5.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\ThumbFilterTo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\ThumbFilterTo2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\ThumbFilterTo3.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\ThumbFilterTo4.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\ThumbFilterTo5.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\TicketGirl - Melaka - EN.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\TicketGirl - Melaka.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\TicketGirl - TBS - EN.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\TicketGirl - TBS.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\TicketGirl-larkin-EN.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\TicketGirl-larkin.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\TicketGirl-TBG-EN.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\TicketGirl-TBG.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\tixgirl.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\tng.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\TnG00.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Transnasional.bmp">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\TVM-bg.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\readme.htm" />
+    <Content Include="SqlServerTypes\x64\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x64\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Reports\Backup\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+    <Error Condition="!Exists('..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.115.5\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.115.5\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+  <Import Project="..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.115.5\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets" Condition="Exists('..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.115.5\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets')" />
+</Project>

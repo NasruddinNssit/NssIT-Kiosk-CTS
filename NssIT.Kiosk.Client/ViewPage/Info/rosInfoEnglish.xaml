@@ -1,0 +1,17 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                    xmlns:local="clr-namespace:NssIT.Kiosk.Client.ViewPage.Info">
+
+    <sys:String x:Key="ORIGIN_INFO_Label">Where is your departure location ?</sys:String>
+    <sys:String x:Key="DESTINATION_INFO_Label">Where are you travelling to ?</sys:String>
+    <sys:String x:Key="TRAVEL_DATE_INFO_Label">When do you want to travel?</sys:String>
+
+    <sys:String x:Key="TRAVEL_DEPART_TIME_INFO_Label">Select your departure time</sys:String>
+
+    <sys:String x:Key="DEPART_TRIP_INFO_Label">Please choose a departing trip</sys:String>
+    <sys:String x:Key="DEPART_SEAT_INFO_Label">Pick your seat</sys:String>
+    <sys:String x:Key="DEPART_PICKUP_DROPOFF_INFO_Label">Select both your preferred pickup and drop-off locations</sys:String>
+    <sys:String x:Key="PASSENGER_INFO_Label">Please provide the following personal details</sys:String>
+
+</ResourceDictionary>

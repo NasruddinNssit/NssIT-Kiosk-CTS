@@ -1,0 +1,19 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                    xmlns:local="clr-namespace:NssIT.Kiosk.Client.ViewPage.Insurance">
+
+    <sys:String x:Key="ORIGIN_Label">Lokasi Asal</sys:String>
+    <sys:String x:Key="DESTINATION_Label">Destinasi</sys:String>
+    <sys:String x:Key="DATE_Label">Tarikh</sys:String>
+    <sys:String x:Key="Time_Label">Masa</sys:String>
+    <sys:String x:Key="SEAT_Label">Tempat Duduk</sys:String>
+    <sys:String x:Key="TOTAL_Label">Jumlah</sys:String>
+    <sys:String x:Key="NO_Label">Tidak</sys:String>
+    <sys:String x:Key="YES_Label">Ya(Teruskan)</sys:String>
+
+    <sys:String x:Key="INSURENCE_A_1_Label">Sila sertakan {0} dan Yuran Pentadbiran({1} {2:0.00} setiap Penumpang) di dalam tiket saya.</sys:String>
+
+    <sys:String x:Key="INSURENCE_B_1_Label">* Insurans ini tidak sah untuk penumpang melebihi 80 tahun dan kewarganegaraan dari Iran, Cuba, Syria, Sudan, Korea Utara dan Wilayah Crimea dari Ukraine dan jika dibeli, polisi itu akan menjadi tidak sah dan premium tidak boleh dikembalikan.</sys:String>
+    
+</ResourceDictionary>

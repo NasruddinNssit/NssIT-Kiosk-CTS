@@ -1,0 +1,13 @@
+﻿
+To check Ticket printing status
+===================================
+* Google : c# get printer status
+* PrintServer.GetPrintQueues()
+* PrintQueue.GetPrintJobInfoCollection()
+* PrintQueuePurge()
+* PrintQueuePause()
+* PrintQueueResume()
+* PrintQueueRefresh()
+* PrintQueueAddJob()
+* PrintQueue.QueueStatus
+* ref : https://stackoverflow.com/questions/5001920/c-sharp-check-printer-status
