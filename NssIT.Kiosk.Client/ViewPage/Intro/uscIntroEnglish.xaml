@@ -148,6 +148,12 @@
                     <TextBlock x:Name="TxtCollectBoardingPassDisabled" Visibility="Collapsed" Text="IN PROGRESS.." />
                 </StackPanel>
             </Button>
+            <Button x:Name="BtnDoSetelment" Grid.Column="1" Grid.Row="1" Margin="0 10 0 10" Style="{StaticResource GreenButton}" Click="BtnDoSettlement">
+                <StackPanel Orientation="Vertical">
+                    <TextBlock  Text="Do Settlement" TextWrapping="WrapWithOverflow" TextAlignment="Center" />
+                    <TextBlock  Visibility="Collapsed" Text="IN PROGRESS.." />
+                </StackPanel>
+            </Button>
         </Grid>
     </Grid>
 

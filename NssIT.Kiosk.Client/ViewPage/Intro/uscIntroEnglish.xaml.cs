@@ -1,5 +1,6 @@
 ﻿using NssIT.Kiosk.AppDecorator.Common.AppService.Sales;
 using NssIT.Kiosk.Common.Tools.ThreadMonitor;
+using NssIT.Kiosk.Device.PAX.IM20.AccessSDK;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,7 +33,23 @@ namespace NssIT.Kiosk.Client.ViewPage.Intro
 
 		public bool _buttonEnabled = true;
 
-		public uscIntroEnglish()
+        private PayECRAccess _payWaveAccs = null;
+
+        private PayECRAccess PayWaveAccs
+        {
+            get
+            {
+                return _payWaveAccs ?? (_payWaveAccs = NewPayECRAccess());
+
+                PayECRAccess NewPayECRAccess()
+                {
+                    PayECRAccess payWvAccs = PayECRAccess.GetPayECRAccess("COM3", PayECRAccess.SaleMaxWaitingSec); /*, @"C:\eTicketing_Log\ECR_Receipts\", @"C:\eTicketing_Log\ECR_LOG", true, true);*/
+                  
+                    return payWvAccs;
+                }
+            }
+        }
+        public uscIntroEnglish()
 		{
 			InitializeComponent();
 
@@ -40,6 +57,8 @@ namespace NssIT.Kiosk.Client.ViewPage.Intro
 			_buttonDisabledStyle = this.FindResource("DisabledButton") as Style;
 
 			TxtSysVer.Text = App.SystemVersion ?? "*";
+
+			
 		}
 
 		private void BtnBegin_Click(object sender, RoutedEventArgs e)
@@ -72,7 +91,19 @@ namespace NssIT.Kiosk.Client.ViewPage.Intro
 			}
 		}
 
-		private void RaiseOnBeginTransaction(TransactionType transactionType)
+		private void BtnDoSettlement(object sender, RoutedEventArgs e)
+		{
+			if(App.HostNumberForSettlementsTesting.Count > 0)
+			{
+				foreach(var hostNo in App.HostNumberForSettlementsTesting)
+				{
+					PayWaveAccs.SettlePayment(Guid.NewGuid().ToString(), hostNo.Trim());
+				}
+			}
+		}
+
+
+        private void RaiseOnBeginTransaction(TransactionType transactionType)
 		{
 			if (OnBegin != null)
 			{

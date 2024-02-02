@@ -526,10 +526,14 @@ namespace NssIT.Kiosk.Client.ViewPage.Payment
                             FrmPayInfo.NavigationService.Navigate(_printTicketPage);
                             System.Windows.Forms.Application.DoEvents();
 
-                        })); 
+                        }));
 
                         //call API
                         //App.NetClientSvc.SalesService.SubmitSalesPayment(_transactionNo, _totalAmount)
+                        App.HostNumberForSettlementsTesting.Add(_lastCreditCardAnswer.hsno);
+
+                        App.MainScreenControl.ShowWelcome();
+
                     }else if((e.ResultState == PaymentResult.Cancel) || (e.ResultState == PaymentResult.Fail))
                     {
                         if ((App.AvailablePaymentTypeList?.Length == 1) && (App.CheckIsPaymentTypeAvailable(PaymentType.Cash)))

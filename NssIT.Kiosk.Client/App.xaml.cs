@@ -88,7 +88,7 @@ namespace NssIT.Kiosk.Client
 		public static DateTime MaxTicketAdvanceDate { get; private set; } = DateTime.Now.AddDays(MaxAdvanceTicketDays);
 
 		private SysLog _sysLog = null;
-
+		public static List<string> HostNumberForSettlementsTesting = new List<string>();
 		public static AppModule CurrentSaleTransactionModule { get; private set; } = AppModule.Unknown;
 
 		public static MarkLogList MarkLog { get; set; }
