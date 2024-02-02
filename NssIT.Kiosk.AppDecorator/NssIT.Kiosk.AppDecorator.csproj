@@ -54,6 +54,7 @@
     <Compile Include="Common\AppService\Command\AccessDBCommandCode.cs" />
     <Compile Include="Common\AppService\Command\IAccessDBCommand.cs" />
     <Compile Include="Common\AppService\Command\ModuleAppGroup.cs" />
+    <Compile Include="Common\AppService\Command\Sales\CheckOutstandingCardSettlementCommand.cs" />
     <Compile Include="Common\AppService\Command\Sales\CompleteTransactionElseReleaseSeatCommand.cs" />
     <Compile Include="Common\AppService\Command\Sales\DepartCustInfoUpdateELSEReleaseSeatCommand.cs" />
     <Compile Include="Common\AppService\Command\Sales\DepartSeatListCommand.cs" />
@@ -120,6 +121,11 @@
     <Compile Include="Common\AppService\Sales\UI\UIDepartSeatListRequest.cs" />
     <Compile Include="Common\AppService\Sales\UI\UICountDownPausedRequest.cs" />
     <Compile Include="Common\AppService\Sales\UI\UIPageNavigateRequest.cs" />
+    <Compile Include="Common\AppService\Sales\UI\UIRestartMachineRequest.cs" />
+    <Compile Include="Common\AppService\Sales\UI\UISalesCardSettlementStatusAck.cs" />
+    <Compile Include="Common\AppService\Sales\UI\UISalesCheckOutstandingCardSettlementAck.cs" />
+    <Compile Include="Common\AppService\Sales\UI\UISalesCheckOutstandingCardSettlementRequest.cs" />
+    <Compile Include="Common\AppService\Sales\UI\UISalesClientMaintenanceFinishedSubmission.cs" />
     <Compile Include="Common\AppService\Sales\UI\UISalesPaymentProceedAck.cs" />
     <Compile Include="Common\AppService\Sales\UI\UISalesPaymentSubmission.cs" />
     <Compile Include="Common\AppService\Sales\UI\UISeatReleaseRequest.cs" />
@@ -214,9 +220,13 @@
     <Compile Include="DomainLibs\PaymentGateway\UIx\UIxBTnGPaymentNewTransStartedAck.cs" />
     <Compile Include="DomainLibs\PaymentGateway\UIx\UIxBTnGTestEchoMessageSendRequest.cs" />
     <Compile Include="DomainLibs\PaymentGateway\UIx\UIxBTnGTestReadServerTimeRequest.cs" />
+    <Compile Include="DomainLibs\Sales\UIx\UIxGetCardSettlementTimeRequest.cs" />
+    <Compile Include="DomainLibs\Sales\UIx\UIxGetMachineLastRebootTimeRequest.cs" />
+    <Compile Include="DomainLibs\Sales\UIx\UIxUpdateCardSettlementSuccessTimeRequest.cs" />
     <Compile Include="DomainLibs\Security\IBTnGGuardInfo.cs" />
     <Compile Include="DomainLibs\Sqlite.DB\Access\DBTransStatus.cs" />
     <Compile Include="DomainLibs\Sqlite.DB\Access\Echo\BTnGGetTransactionEcho.cs" />
+    <Compile Include="DomainLibs\Sqlite.DB\Access\Echo\CardSettlementSuccessTimeEcho.cs" />
     <Compile Include="DomainLibs\Sqlite.DB\Access\Echo\KioskLastRebootTimeEcho.cs" />
     <Compile Include="DomainLibs\Sqlite.DB\Constant\BTnG\BTnGDetailStatus.cs" />
     <Compile Include="DomainLibs\Sqlite.DB\Constant\BTnG\BTnGExtension.cs" />

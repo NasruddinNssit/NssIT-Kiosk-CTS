@@ -31,6 +31,7 @@ using NssIT.Kiosk.Client.ViewPage.BoardingPass.BoardingDate;
 using NssIT.Kiosk.Client.ViewPage.BoardingPass.TicketNumber;
 using NssIT.Kiosk.Client.ViewPage.BoardingPass.PassengerInfo;
 using NssIT.Kiosk.Client.ViewPage.BoardingPass.CTPayment;
+using NssIT.Kiosk.Device.PAX.IM20.PayECRApp;
 
 namespace NssIT.Kiosk.Client
 {
@@ -109,7 +110,13 @@ namespace NssIT.Kiosk.Client
 			ExecMenu.OnPageNavigateChanged += ExecMenu_OnPageNavigateChanged;
 		}
 
-		public ICash CashierPage
+		public void InitiateMaintenance(PayWaveSettlementScheduler cardSettScheduler)
+		{
+			
+		}
+
+
+        public ICash CashierPage
         {
             get
             {

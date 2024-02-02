@@ -267,7 +267,9 @@ namespace NssIT.Kiosk.Server.AccessDB
 
 				if (commandCode == AccessDBCommandCode.OriginListRequest)
 					return new GetOriginExecution();
-				else if (commandCode == AccessDBCommandCode.DestinationListRequest)
+				else if(commandCode == AccessDBCommandCode.CheckOutstandingCardSettlementRequest)
+                    return new CheckOutstandingSettlementExecution();
+                else if (commandCode == AccessDBCommandCode.DestinationListRequest)
 					return new GetDestinationExecution();
 				else if (commandCode == AccessDBCommandCode.WebServerLogonRequest)
 					return new WebServerLogonExecution();

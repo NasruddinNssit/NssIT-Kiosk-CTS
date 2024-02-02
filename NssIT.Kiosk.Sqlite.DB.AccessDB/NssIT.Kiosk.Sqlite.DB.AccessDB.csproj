@@ -71,6 +71,7 @@
     <Compile Include="Works\BTnGNewPaymentAx.cs" />
     <Compile Include="Works\GetKioskLastRebootTimeAx.cs" />
     <Compile Include="Works\UpSertKioskLastRebootTimeAx.cs" />
+    <Compile Include="Works\UpSertLastCardSettlementSuccessTimeAx.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

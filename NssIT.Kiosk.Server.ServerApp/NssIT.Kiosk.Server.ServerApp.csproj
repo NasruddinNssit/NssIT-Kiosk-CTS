@@ -72,11 +72,16 @@
     <Compile Include="CustomApp\IServerAppPlan.cs" />
     <Compile Include="CustomApp\MelakaSentralAppPlan.cs" />
     <Compile Include="IAppAccessCallBackPlan.cs" />
+    <Compile Include="JobApp\KioskStatesJobMan.cs" />
     <Compile Include="ServerSalesApplication.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SessionSupervisor.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\repos\KTMB_KTMBKiosk2_new\KTMBKiosk\NssIT.Kiosk.Tools\NssIT.Kiosk.Tools.csproj">
+      <Project>{2B735ED3-D8F9-4B25-9992-F8D0ABDC4221}</Project>
+      <Name>NssIT.Kiosk.Tools</Name>
+    </ProjectReference>
     <ProjectReference Include="..\NssIT.Kiosk.AppDecorator\NssIT.Kiosk.AppDecorator.csproj">
       <Project>{1cc91bda-e1d3-4eab-9d67-7d04b224f837}</Project>
       <Name>NssIT.Kiosk.AppDecorator</Name>
@@ -96,6 +101,10 @@
     <ProjectReference Include="..\NssIT.Kiosk.Server.AccessDB\NssIT.Kiosk.Server.AccessDB.csproj">
       <Project>{ee33ef5e-7375-4fd6-979c-194de1109e17}</Project>
       <Name>NssIT.Kiosk.Server.AccessDB</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NssIT.Kiosk.Sqlite.DB.AccessDB\NssIT.Kiosk.Sqlite.DB.AccessDB.csproj">
+      <Project>{1DCAB475-1CD4-4E21-AD9C-714C35D14EC1}</Project>
+      <Name>NssIT.Kiosk.Sqlite.DB.AccessDB</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

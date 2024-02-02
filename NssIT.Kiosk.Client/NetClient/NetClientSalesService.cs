@@ -650,9 +650,166 @@ namespace NssIT.Kiosk.Client.NetClient
 				}
 			}
 		}
+        public void RestartMachineRequest()
+        {
+            _log.LogText(_logChannel, "-", "Start - StartSales", "A01", "NetClientSalesService.ResetTimeout");
 
+            UIRestartMachineRequest res = new UIRestartMachineRequest("-", DateTime.Now);
+            NetMessagePack msgPack = new NetMessagePack(res) { DestinationPort = GetServerPort() };
 
-		public void SubmitDepartTrip(DateTime departPassengerDate,
+            _log.LogText(_logChannel, "-", msgPack, "A05", "NetClientSalesService.ResetTimeout",
+                extraMsg: "MsgObject: NetMessagePack");
+
+            _netInterface.SendMsgPack(msgPack);
+        }
+
+        public void SubmitFinishedMaintenance()
+        {
+            Guid lastNetProcessId;
+
+            _log.LogText(_logChannel, "-", "Start - SubmitFinishedMaintenance", "A01", "NetClientSalesService.SubmitFinishedMaintenance");
+
+            UISalesClientMaintenanceFinishedSubmission subm = new UISalesClientMaintenanceFinishedSubmission("-", DateTime.Now);
+
+            NetMessagePack msgPack = new NetMessagePack(subm) { DestinationPort = GetServerPort() };
+            lastNetProcessId = msgPack.NetProcessId;
+
+            _log.LogText(_logChannel, "-",
+                msgPack, "A05", "NetClientSalesService.SubmitFinishedMaintenance", extraMsg: "MsgObject: NetMessagePack");
+
+            _netInterface.SendMsgPack(msgPack);
+
+            _log.LogText(_logChannel, "-",
+                $@"End - SubmitFinishedMaintenance",
+                "A100",
+                "NetClientSalesService.SubmitFinishedMaintenance");
+        }
+
+        public void RequestOutstandingCardSettlementStatus(out bool isServerResponded, int waitDelaySec = 60)
+        {
+            isServerResponded = false;
+
+            Guid lastNetProcessId;
+
+            waitDelaySec = (waitDelaySec < 0) ? 20 : waitDelaySec;
+
+            _log.LogText(_logChannel, "-", "Start - RequestOutstandingCardSettlementStatus", "A01", "NetClientSalesService.RequestOutstandingCardSettlementStatus");
+
+            UISalesCheckOutstandingCardSettlementRequest req = new UISalesCheckOutstandingCardSettlementRequest("-", DateTime.Now);
+
+            NetMessagePack msgPack = new NetMessagePack(req) { DestinationPort = GetServerPort() };
+            lastNetProcessId = msgPack.NetProcessId;
+
+            _log.LogText(_logChannel, "-",
+                msgPack, "A05", "NetClientSalesService.RequestOutstandingCardSettlementStatus", extraMsg: "MsgObject: NetMessagePack");
+
+            _netInterface.SendMsgPack(msgPack);
+
+            DateTime startTime = DateTime.Now;
+            DateTime endTime = startTime.AddSeconds(waitDelaySec);
+
+            while (endTime.Subtract(DateTime.Now).TotalSeconds > 0)
+            {
+                if (_recvedNetProcIdTracker.CheckReceivedResponded(lastNetProcessId) == false)
+                    Task.Delay(100).Wait();
+                else
+                {
+                    isServerResponded = true;
+                    break;
+                }
+            }
+
+            bool alreadyExpired = false;
+
+            if (isServerResponded == false)
+                alreadyExpired = _netInterface.SetExpiredNetProcessId(msgPack.NetProcessId);
+
+            if (alreadyExpired)
+            {
+                _log.LogText(_logChannel, "-", $@"Unable to read from Local Server; (EXIT9000090)", "A20",
+                    "NetClientSalesService.RequestOutstandingCardSettlementStatus", NssIT.Kiosk.AppDecorator.Log.MessageType.Error);
+            }
+            else if (isServerResponded == false)
+            {
+                _log.LogText(_logChannel, "-", $@"Unable to read from Local Server; (EXIT9000091); Adnormal result !!;", "A21",
+                    "NetClientSalesService.RequestOutstandingCardSettlementStatus", NssIT.Kiosk.AppDecorator.Log.MessageType.Error);
+            }
+            else
+            {
+                isServerResponded = true;
+            }
+
+            _log.LogText(_logChannel, "-",
+                $@"End - IsLocalServerResponded: {isServerResponded};",
+                "A100",
+                "NetClientSalesService.RequestOutstandingCardSettlementStatus");
+        }
+
+        public void SubmitCardSettlement(string processId, string hostNo, string batchNumber, string batchCount, decimal batchCurrencyAmount,
+            string statusCode, string machineId, string errorMessage,
+            out bool isServerResponded, int waitDelaySec = 60)
+        {
+            isServerResponded = false;
+            processId = string.IsNullOrWhiteSpace(processId) ? "*" : processId;
+
+            Guid lastNetProcessId;
+
+            waitDelaySec = (waitDelaySec < 0) ? 20 : waitDelaySec;
+
+            _log.LogText(_logChannel, "-", "Start - SubmitCardSettlement", "A01", "NetClientSalesService.SubmitCardSettlement");
+
+            UISalesCardSettlementSubmission req = new UISalesCardSettlementSubmission(processId, DateTime.Now,
+                hostNo, batchNumber, batchCount, batchCurrencyAmount, statusCode, machineId, errorMessage);
+
+            NetMessagePack msgPack = new NetMessagePack(req) { DestinationPort = GetServerPort() };
+            lastNetProcessId = msgPack.NetProcessId;
+
+            _log.LogText(_logChannel, "-",
+                msgPack, "A05", "NetClientSalesService.SubmitCardSettlement", extraMsg: "MsgObject: NetMessagePack");
+
+            _netInterface.SendMsgPack(msgPack);
+
+            DateTime startTime = DateTime.Now;
+            DateTime endTime = startTime.AddSeconds(waitDelaySec);
+
+            while (endTime.Subtract(DateTime.Now).TotalSeconds > 0)
+            {
+                if (_recvedNetProcIdTracker.CheckReceivedResponded(lastNetProcessId) == false)
+                    Task.Delay(100).Wait();
+                else
+                {
+                    isServerResponded = true;
+                    break;
+                }
+            }
+
+            bool alreadyExpired = false;
+
+            if (isServerResponded == false)
+                alreadyExpired = _netInterface.SetExpiredNetProcessId(msgPack.NetProcessId);
+
+            if (alreadyExpired)
+            {
+                _log.LogText(_logChannel, "-", $@"Unable to read from Local Server; (EXIT9000092)", "A20",
+                    "NetClientSalesService.SubmitCardSettlement", NssIT.Kiosk.AppDecorator.Log.MessageType.Error);
+            }
+            else if (isServerResponded == false)
+            {
+                _log.LogText(_logChannel, "-", $@"Unable to read from Local Server; (EXIT9000093); Adnormal result !!;", "A21",
+                    "NetClientSalesService.SubmitCardSettlement", NssIT.Kiosk.AppDecorator.Log.MessageType.Error);
+            }
+            else
+            {
+                isServerResponded = true;
+            }
+
+            _log.LogText(_logChannel, "-",
+                $@"End - IsLocalServerResponded: {isServerResponded};",
+                "A100",
+                "NetClientSalesService.SubmitCardSettlement");
+        }
+
+        public void SubmitDepartTrip(DateTime departPassengerDate,
 			string departPassengerDepartTime, string departCurrency,
 			string departOperatorDesc, string departOperatorLogoUrl, 
 			decimal departPrice,

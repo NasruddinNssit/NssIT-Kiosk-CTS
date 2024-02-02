@@ -79,6 +79,7 @@
     <Compile Include="AxCommand\CTCollectTicket\AxCTGetTicket.cs" />
     <Compile Include="AxCommand\IAx.cs" />
     <Compile Include="AxCommand\IAxCommand.cs" />
+    <Compile Include="CommandExec\CheckOutstandingSettlementExecution.cs" />
     <Compile Include="CommandExec\CompleteTransactionElseReleaseSeatExecution.cs" />
     <Compile Include="CommandExec\DepartCustInfoUpdateElseReleaseSeatExecution.cs" />
     <Compile Include="CommandExec\DepartSeatConfirmExecution.cs" />

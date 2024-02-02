@@ -164,6 +164,7 @@
     <Compile Include="NetClient\NetClientCashPaymentService.cs" />
     <Compile Include="NetClient\NetClientCollectTicketService.cs" />
     <Compile Include="NetClient\NetClientSalesService.cs" />
+    <Compile Include="NetClient\NetClientSalesServiceV2.cs" />
     <Compile Include="NetClient\NetClientService.cs" />
     <Compile Include="NetClient\ReceivedNetProcessIdTracker.cs" />
     <Compile Include="Reports\DsMelakaCentralErrorTicketMessage.Designer.cs" />
@@ -177,8 +178,12 @@
     <Compile Include="SqlServerTypes\Loader.cs" />
     <Compile Include="SysLocalParam.cs" />
     <Compile Include="ViewPage\Alert\IAlertPage.cs" />
+    <Compile Include="ViewPage\Alert\IMaintenance.cs" />
     <Compile Include="ViewPage\Alert\pgOutofOrder.xaml.cs">
       <DependentUpon>pgOutofOrder.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewPage\Alert\pgUnderMaintenance.xaml.cs">
+      <DependentUpon>pgUnderMaintenance.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewPage\BoardingPass\BoardingDate\ICTBoardingDate.cs" />
     <Compile Include="ViewPage\BoardingPass\BoardingDate\pgBoardingDate.xaml.cs">
@@ -397,6 +402,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="ViewPage\Alert\pgOutofOrder.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ViewPage\Alert\pgUnderMaintenance.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -793,6 +802,10 @@
     <ProjectReference Include="..\..\..\..\repos\KTMB_KTMBKiosk2_new\KTMBKiosk\NssIT.Kiosk.Device.PAX.IM20.OrgAPI\NssIT.Kiosk.Device.PAX.IM20.OrgAPI.csproj">
       <Project>{C0478A28-B53B-4184-B246-AEEA8A096D43}</Project>
       <Name>NssIT.Kiosk.Device.PAX.IM20.OrgAPI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\repos\KTMB_KTMBKiosk2_new\KTMBKiosk\NssIT.Kiosk.Device.PAX.IM20.PayECRApp\NssIT.Kiosk.Device.PAX.IM20.PayECRApp.csproj">
+      <Project>{D8E01CFD-2E1B-46E1-A53C-DC3C3F3C874D}</Project>
+      <Name>NssIT.Kiosk.Device.PAX.IM20.PayECRApp</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\..\repos\KTMB_KTMBKiosk2_new\KTMBKiosk\NssIT.Kiosk.Tools\NssIT.Kiosk.Tools.csproj">
       <Project>{2B735ED3-D8F9-4B25-9992-F8D0ABDC4221}</Project>

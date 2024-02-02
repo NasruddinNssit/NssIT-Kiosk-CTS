@@ -18,6 +18,8 @@ namespace NssIT.Kiosk.Client.NetClient
 		public NetClientCashPaymentService CashPaymentService { get; private set; } = null;
 		public NetClientBTnGService BTnGService { get; private set; } = null;
 		public NetClientSalesService SalesService { get; private set; } = null;
+
+		public NetClientSalesServiceV2 SalesServiceV2 { get; private set; } = null;
 		public NetClientCollectTicketService CollectTicketService { get; private set; } = null;
 
 		public NetClientService()
@@ -27,7 +29,9 @@ namespace NssIT.Kiosk.Client.NetClient
 			CashPaymentService = new NetClientCashPaymentService(_netInterface);
 			BTnGService = new NetClientBTnGService(_netInterface);
 			SalesService = new NetClientSalesService(_netInterface);
-			CollectTicketService = new NetClientCollectTicketService(_netInterface);
+            SalesServiceV2 = new NetClientSalesServiceV2(_netInterface);
+
+            CollectTicketService = new NetClientCollectTicketService(_netInterface);
 		}
 
 		public INetMediaInterface NetInterface { get => _netInterface; }

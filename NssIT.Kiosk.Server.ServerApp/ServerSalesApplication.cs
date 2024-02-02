@@ -11,6 +11,7 @@ using NssIT.Kiosk.AppDecorator.UI;
 using NssIT.Kiosk.Log.DB;
 using NssIT.Kiosk.Server.AccessDB;
 using NssIT.Kiosk.Server.ServerApp.CustomApp;
+using NssIT.Kiosk.Server.ServerApp.JobApp;
 using System;
 using System.Collections.Concurrent;
 using System.Threading;
@@ -33,6 +34,7 @@ namespace NssIT.Kiosk.Server.ServerApp
         private const string LogChannel = "ServerApplication";
 
         private bool _disposed = false;
+        private bool _clientAppUnderMaintenance = false;
 
         private UserSession _session = new UserSession();
         private ServerAccess _svrAccess = null;
@@ -42,6 +44,7 @@ namespace NssIT.Kiosk.Server.ServerApp
         //private List<Guid> _sessionNetProcessIDList = new List<Guid>();
 
         private SessionSupervisor _SessionSuper = new SessionSupervisor();
+        private KioskStatesJobMan _kioskStatesJobMan = new KioskStatesJobMan();
 
         public event EventHandler<UIMessageEventArgs> OnShowResultMessage;
 
@@ -178,11 +181,23 @@ namespace NssIT.Kiosk.Server.ServerApp
                         if (netProcessId.HasValue == false)
                             throw new Exception("Fail to start CountDown; NetProcessID Not found; (EXIT21321)");
 
+                        _clientAppUnderMaintenance = false;
                         _session.NewSession(netProcessId.Value);
 
                         _appCountDown.SetNewCountDown(_maxProcessPeriodSec, _session.SessionId);
                         _SessionSuper.CleanNetProcessId();
                         _SessionSuper.AddNetProcessId(netProcessId.Value);
+                    }else if(svcMsg.Instruction == (CommInstruction)UISalesInst.ClientMaintenanceFinishedSubmission)
+                    {
+                        _clientAppUnderMaintenance = false;
+                    }
+                    else if ((svcMsg.Instruction == (CommInstruction)UISalesInst.CheckOutstandingCardSettlementRequest)
+                       || (svcMsg.Instruction == (CommInstruction)UISalesInst.CardSettlementSubmission)
+                       || (svcMsg.Instruction == (CommInstruction)UISalesInst.CheckOutstandingCardSettlementAck)
+                       || (svcMsg.Instruction == (CommInstruction)UISalesInst.CardSettlementStatusAck))
+                    {
+                        /*By Pass*/
+                        string tt1 = "Test-Here-X01";
                     }
                     else if (svcMsg is UIReq<UIxResetUserSessionSendOnlyRequest>)
                     {
@@ -196,16 +211,31 @@ namespace NssIT.Kiosk.Server.ServerApp
                             || (svcMsg.Instruction == (CommInstruction)UISalesInst.WebServerLogonStatusAck)
                             )
                     {
+                        _clientAppUnderMaintenance = true;
                         /*By Pass*/
                     }
                     else if (svcMsg is UITimeoutChangeRequest)
                     {
                         /*By Pass*/
+                    }else if(svcMsg is UIRestartMachineRequest)
+                    {
+                        try
+                        {
+                            Thread tWorker = new Thread(new ThreadStart(ShutdownThreadWorking));
+                            tWorker.IsBackground = true;
+                            tWorker.Priority = ThreadPriority.Highest;
+                            tWorker.Start();
+                        }
+                        catch (Exception ex)
+                        {
+                            string msg = ex.Message;
+                        }
                     }
                     else if ((_session.SessionId.Equals(Guid.Empty) == false))
                     {
                         if ((_session.Expired == false))
                         {
+                            _clientAppUnderMaintenance = false;
                             if (_appCountDown.UpdateCountDown(_maxProcessPeriodSec, _session.SessionId, isMandatoryExtensionChange: false, out bool isMatchedSession1) == false)
                             {
                                 if (isMatchedSession1 == false)
@@ -224,11 +254,22 @@ namespace NssIT.Kiosk.Server.ServerApp
                 }
                 // -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
 
+
                 if (svcMsg.Instruction == (CommInstruction)UISalesInst.ServerApplicationStatusRequest)
                     GetServerStatus(processId, netProcessId);
 
                 // -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
 
+                else if(svcMsg.Instruction == (CommInstruction)UISalesInst.ClientMaintenanceFinishedSubmission)
+                {
+                    //By Pass
+                }
+
+                // ----- Card Settlement ----- 
+                else if (svcMsg.Instruction == (CommInstruction)UISalesInst.CheckOutstandingCardSettlementRequest)
+                {
+                    CheckOutstandingCardSettlement(processId, netProcessId);
+                }
                 else if (svcMsg.Instruction == (CommInstruction)UISalesInst.WebServerLogonRequest)
                     ReLogon(processId, netProcessId);
 
@@ -443,10 +484,58 @@ namespace NssIT.Kiosk.Server.ServerApp
 
             //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
             //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+            void ShutdownThreadWorking()
+            {
+                try
+                {
+                    _kioskStatesJobMan.UpdateKioskLastRebootTime(DateTime.Now, out _);
+
+                    var cmd = new System.Diagnostics.ProcessStartInfo("shutdown.exe", "-r -f -t 0");
+                    cmd.CreateNoWindow = true;
+                    cmd.UseShellExecute = false;
+                    cmd.ErrorDialog = false;
+                    System.Diagnostics.Process.Start(cmd);
+                }
+                catch (Exception ex)
+                {
+                    Log.LogError(LogChannel, processId, new Exception($@"Error found. Net Process Id: {netProcessId}", ex), "EX05", "ServerSalesApplication.ShutdownThreadWorking");
+                }
+            }
+
+
             void RedirectDataToClient(string procId, Guid? netProcId, IKioskMsg kioskMsg)
             {
                 MessageType msgTyp = string.IsNullOrWhiteSpace(kioskMsg.ErrorMessage) ? MessageType.NormalType : MessageType.ErrorType;
                 RaiseOnShowResultMessage(netProcId, kioskMsg, msgTyp);
+            }
+
+
+            void CheckOutstandingCardSettlement(string procId, Guid? netProcId)
+            {
+                try
+                {
+                    if (_disposed)
+                        throw new Exception("System is shutting down (EXIT21336);");
+
+                    CheckOutstandingCardSettlementCommand command = new CheckOutstandingCardSettlementCommand(procId, netProcId);
+
+                    Log.LogText(LogChannel, procId, $@"Start - CheckOutstandingCardSettlement; Net Process Id:{netProcId}", $@"A02", classNMethodName: "ServerSalesApplication.CheckOutstandingCardSettlement");
+
+                    bool addCommandResult = _svrAccess.AddCommand(new AccessCommandPack(command), out string errorMsg);
+
+                    if (addCommandResult == false)
+                    {
+                        if (string.IsNullOrWhiteSpace(errorMsg) == false)
+                            throw new Exception(errorMsg);
+                        else
+                            throw new Exception("Unknown error (EXIT21337).");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    RaiseOnShowResultMessage(netProcId, null, MessageType.ErrorType, "Server error; Error when sending internal service command (Check Outstanding Card Settlement); " + ex.Message);
+                }
             }
 
             void GetServerStatus(string procId, Guid? netProcId)
@@ -999,7 +1088,10 @@ namespace NssIT.Kiosk.Server.ServerApp
 
                 _showResultMessageLock.WaitAsync().Wait();
 
-
+                if(_clientAppUnderMaintenance)
+                {
+                    return;
+                }
                 if (kioskMsg != null)
                 {
                     bool proceed = false;

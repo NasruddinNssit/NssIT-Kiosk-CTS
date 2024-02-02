@@ -20,8 +20,9 @@ namespace NssIT.Kiosk.AppDecorator.Common.AppService.Instruction
 
 		ServerApplicationStatusRequest = CommInstruction.UISalesServerApplicationStatusRequest,
 		ServerApplicationStatusAck = CommInstruction.UISalesServerApplicationStatusAck,
+        ClientMaintenanceFinishedSubmission = CommInstruction.UISalesClientMaintenanceFinishedSubmission,
 
-		OriginListRequest = CommInstruction.UISalesOriginListRequest,
+        OriginListRequest = CommInstruction.UISalesOriginListRequest,
 		OriginListAck = CommInstruction.UISalesOriginListAck,
 		OriginSubmission = CommInstruction.UISalesOriginSubmission,
 
@@ -79,6 +80,11 @@ namespace NssIT.Kiosk.AppDecorator.Common.AppService.Instruction
 
 		CountDownPausedRequest = CommInstruction.UISalesCountDownPausedRequest,
 		PageNavigateRequest = CommInstruction.UISalesPageNavigateRequest,
-		TimeoutChangeRequest = CommInstruction.UISalesTimeoutChangeRequest
-	}
+		TimeoutChangeRequest = CommInstruction.UISalesTimeoutChangeRequest,
+
+        CheckOutstandingCardSettlementRequest = CommInstruction.UISalesCheckOutstandingCardSettlementRequest,
+        CheckOutstandingCardSettlementAck = CommInstruction.UISalesCheckOutstandingCardSettlementAck,
+        CardSettlementSubmission = CommInstruction.UISalesCardSettlementSubmission,
+        CardSettlementStatusAck = CommInstruction.UISalesCardSettlementStatusAck
+    }
 }
