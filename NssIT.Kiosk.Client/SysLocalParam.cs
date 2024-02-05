@@ -84,6 +84,8 @@ namespace NssIT.Kiosk.Client
 					return AppGroup.Gombak;
 				else if (grpCode.IndexOf("KLANG") >= 0)
 					return AppGroup.Klang;
+				else if (grpCode.IndexOf("GENTING") >= 0)
+					return AppGroup.Genting;
 				else
 					return AppGroup.MelakaSentral;
 			}

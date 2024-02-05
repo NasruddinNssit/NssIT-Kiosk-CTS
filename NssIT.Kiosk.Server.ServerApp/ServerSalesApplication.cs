@@ -55,7 +55,8 @@ namespace NssIT.Kiosk.Server.ServerApp
 
             else if (appGroup == AppGroup.Gombak)
                 _svrAppPlan = new MelakaSentralAppPlan();
-
+            else if(appGroup == AppGroup.Genting)
+                _svrAppPlan = new GentingAppPlan(); 
             else
                 _svrAppPlan = new MelakaSentralAppPlan();
 

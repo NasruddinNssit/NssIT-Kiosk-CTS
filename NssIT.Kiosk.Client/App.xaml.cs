@@ -138,12 +138,14 @@ namespace NssIT.Kiosk.Client
 				// AG : Application Group
 				if (App.SysParam.PrmAppGroup == AppDecorator.Common.AppGroup.Larkin)
 					AppGroupStr = "AG:Larkin";
-				else if(App.SysParam.PrmAppGroup == AppDecorator.Common.AppGroup.Gombak)
+				else if (App.SysParam.PrmAppGroup == AppDecorator.Common.AppGroup.Gombak)
 					AppGroupStr = "AG:Gombak";
 				else if (App.SysParam.PrmAppGroup == AppDecorator.Common.AppGroup.Klang)
 					AppGroupStr = "AG:Klang";
 				else if (App.SysParam.PrmAppGroup == AppDecorator.Common.AppGroup.Unknown)
 					AppGroupStr = "AG:#";
+				else if (App.SysParam.PrmAppGroup == AppGroup.Genting)
+					AppGroupStr = "AG:Genting";
 				else
 					AppGroupStr = "AG:Melaka";
 			}
@@ -158,7 +160,9 @@ namespace NssIT.Kiosk.Client
 					AppGroupStr = "CNT:Klang";
 				else if (App.SysParam.PrmAppGroup == AppDecorator.Common.AppGroup.Unknown)
 					AppGroupStr = "CNT:#";
-				else
+                else if (App.SysParam.PrmAppGroup == AppGroup.Genting)
+                    AppGroupStr = "AG:Genting";
+                else
 					AppGroupStr = "CNT:Melaka";
 
 				// SVR : Server
@@ -170,7 +174,9 @@ namespace NssIT.Kiosk.Client
 					AppGroupStr += ";SVR:Klang";
 				else if (App.ServerAppGroup == AppDecorator.Common.AppGroup.Unknown)
 					AppGroupStr += ";SVR:#";
-				else
+                else if (App.SysParam.PrmAppGroup == AppGroup.Genting)
+                    AppGroupStr = "AG:Genting";
+                else
 					AppGroupStr += ";SVR:Melaka";
 			}
 			
@@ -240,6 +246,9 @@ namespace NssIT.Kiosk.Client
 				else if (App.SysParam.PrmAppGroup == AppDecorator.Common.AppGroup.Klang)
 					cntVer = "Klang";
 
+				else if (App.SysParam.PrmAppGroup == AppGroup.Genting)
+					cntVer = "Genting";
+
 				else
 					cntVer = "Melaka";
 
@@ -250,11 +259,15 @@ namespace NssIT.Kiosk.Client
 				else if (App.ServerAppGroup == AppDecorator.Common.AppGroup.Gombak)
 					svrVer = "Gombak";
 
+				else if (App.ServerAppGroup == AppGroup.Genting)
+					svrVer = "Genting";
 				else if (App.ServerAppGroup == AppDecorator.Common.AppGroup.Klang)
 					svrVer = "Klang";
 
 				else
 					svrVer = "Melaka";
+
+				
 
 				errorMessage = $@"Application Group setting mismatch. (EXIT500035); Client Version : {cntVer}; Server Version : {svrVer}";
 

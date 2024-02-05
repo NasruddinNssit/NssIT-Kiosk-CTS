@@ -12,7 +12,8 @@ namespace NssIT.Kiosk.AppDecorator.Common
         MelakaSentral = 1, /* Default Value */
         Larkin = 2,
         Gombak = 3,
-        Klang = 4
+        Klang = 4,
+        Genting = 5
     }
 
     public static class AppStationCode
@@ -22,6 +23,8 @@ namespace NssIT.Kiosk.AppDecorator.Common
         public static string Gombak => "TBG";
         public static string Larkin => "LAR";
         public static string Klang => "KLG";
+
+        public static string Genting => "GTG";
 
         public static void GetStationInfo(AppGroup appGroup, out string stationCode, out string stationName)
         {
@@ -42,6 +45,10 @@ namespace NssIT.Kiosk.AppDecorator.Common
             {
                 stationCode = Klang;
                 stationName = "KLANG";
+            }else if(appGroup == AppGroup.Genting)
+            {
+                stationCode = Genting;
+                stationName = "GENTING";
             }
             else
             {

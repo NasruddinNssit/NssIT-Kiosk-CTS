@@ -1,11 +1,11 @@
 WebServiceURL=http://203.115.193.19/ws_kiosk_test/service.asmx
 LocalServerPort=7385
 PayMethod=T,D
-AppGroupCode=Melaka 
+AppGroupCode=Genting 
 //IsBoardingPassEnabled=true
 IsDebugMode=true
 BTnGMinimumWaitingPeriod=600
-
+Is
 xxxxx
 * Use "xxxxx" (5"x") to indicate end of Parameters setting.
 * Use "=" to assign value

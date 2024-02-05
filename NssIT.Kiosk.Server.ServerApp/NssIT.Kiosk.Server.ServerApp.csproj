@@ -68,6 +68,7 @@
     <Compile Include="CustomApp\CollectTicketApp\ITicketCollectionHelperApp.cs" />
     <Compile Include="CustomApp\CollectTicketApp\MelTicketCollectionAppPlan.cs" />
     <Compile Include="CustomApp\CollectTicketApp\MelTicketCollectionApp_AccessCallBackPlan.cs" />
+    <Compile Include="CustomApp\GentingAppPlan.cs" />
     <Compile Include="CustomApp\LarkinAppPlan.cs" />
     <Compile Include="CustomApp\IServerAppPlan.cs" />
     <Compile Include="CustomApp\MelakaSentralAppPlan.cs" />
