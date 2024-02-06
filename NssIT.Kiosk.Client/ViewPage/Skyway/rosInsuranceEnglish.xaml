@@ -1,0 +1,15 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                    xmlns:local="clr-namespace:NssIT.Kiosk.Client.ViewPage.Skyway">
+
+
+    <sys:String x:Key="Buy_Label">Do you buy cable car Ticket?</sys:String>
+   
+    <sys:String x:Key="NO_Label">No</sys:String>
+    <sys:String x:Key="YES_Label">Yes(Proceed)</sys:String>
+
+   
+
+
+</ResourceDictionary>

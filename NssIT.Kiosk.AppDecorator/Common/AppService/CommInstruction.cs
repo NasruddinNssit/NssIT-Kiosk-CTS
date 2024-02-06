@@ -130,7 +130,9 @@ namespace NssIT.Kiosk.AppDecorator.Common.AppService
 
 		UISalesCountDownPausedRequest = 2287,
 		UISalesPageNavigateRequest = 2288,
-		UISalesTimeoutChangeRequest = 2289
+		UISalesTimeoutChangeRequest = 2289,
 
+		UISkyWaySubmission = 3001,
+		SkyWayAck = 3010,
 	}
 }

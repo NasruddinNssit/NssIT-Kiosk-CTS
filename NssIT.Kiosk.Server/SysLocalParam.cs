@@ -44,7 +44,7 @@ namespace NssIT.Kiosk.Server
 		public int PrmLocalServerPort { get; private set; } = -1;
 		public string PrmPayMethod { get; private set; } = "C";
 		public string PrmAppGroupCode { get; private set; } = "Melaka";
-
+		public bool IsOnSkyWaySell { get; private set; } = false;
 		public PaymentType[] PrmAvailablePaymentTypeList { get; private set; } = new PaymentType[0];
 
 		/// <summary>
@@ -88,8 +88,9 @@ namespace NssIT.Kiosk.Server
 				PrmAppGroupCode = "Melaka";
 				PrmBTnGMinimumWaitingPeriod = _bTnGMinimumWaitingPeriod;
 				PrmAvailablePaymentTypeList = new PaymentType[0];
+                IsOnSkyWaySell = false;
 
-				ReadAllValues(retParam);
+                ReadAllValues(retParam);
 
 				//if ((PrmWebServiceURL.Length == 0) || (PrmLocalServicePort.Length == 0) || (PrmPayMethod.Length == 0))
 				//{
@@ -114,7 +115,9 @@ namespace NssIT.Kiosk.Server
 					return AppGroup.Gombak;
 				else if (grpCode.IndexOf("KLANG") >= 0)
 					return AppGroup.Klang;
-				else
+                else if (grpCode.IndexOf("GENTING") >= 0)
+                    return AppGroup.Genting;
+                else
 					return AppGroup.MelakaSentral;
 			}
 		}
@@ -161,6 +164,20 @@ namespace NssIT.Kiosk.Server
 					else
 					{
 						PrmIsDebugMode = false;
+					}
+				}
+				else if(prmNm.ToUpper().Equals("IsOnSkyWaySell", StringComparison.InvariantCultureIgnoreCase))
+				{
+					if(bool.TryParse(prmVal,out bool res))
+					{
+						IsOnSkyWaySell = res;
+					}else if (prmNm.Substring(0, 1).ToUpper().Equals("T"))
+					{
+						IsOnSkyWaySell = true;
+					}
+					else
+					{
+						IsOnSkyWaySell = false;
 					}
 				}
 

@@ -41,6 +41,8 @@ namespace NssIT.Kiosk.Client
 		void ChooseDepartSeat(UIDepartSeatListAck uiDepartSeatList, UserSession session);
 		void ChoosePickupNDrop(UIDepartPickupNDropAck uiIDepartPickupNDrop);
 		void ChooseInsurance(UIInsuranceAck uiInsurnace);
+
+		void ChooseSkyWay(UISkyWayAck uiSkyWay);
 		void EnterPassengerInfo(UICustInfoAck uiCustInfo);
 		void MakeTicketPayment(UISalesPaymentProceedAck uiSalesPayment);
 		void UpdateTransactionCompleteStatus(UICompleteTransactionResult uiCompltResult);

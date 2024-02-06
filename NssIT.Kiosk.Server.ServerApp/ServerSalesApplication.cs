@@ -38,14 +38,14 @@ namespace NssIT.Kiosk.Server.ServerApp
         private ServerAccess _svrAccess = null;
         private AppCountDown _appCountDown = null;
         private IServerAppPlan _svrAppPlan = null;
-
+        private bool _IsOnSkyWaySell = false;
         //private List<Guid> _sessionNetProcessIDList = new List<Guid>();
 
         private SessionSupervisor _SessionSuper = new SessionSupervisor();
 
         public event EventHandler<UIMessageEventArgs> OnShowResultMessage;
 
-        public ServerSalesApplication(AppGroup appGroup)
+        public ServerSalesApplication(AppGroup appGroup, bool IsOnSkyWaySell)
         {
             _svrAccess = ServerAccess.GetAccessServer();
             _appCountDown = new AppCountDown(this);
@@ -59,6 +59,11 @@ namespace NssIT.Kiosk.Server.ServerApp
                 _svrAppPlan = new GentingAppPlan(); 
             else
                 _svrAppPlan = new MelakaSentralAppPlan();
+
+            if(IsOnSkyWaySell)
+               _IsOnSkyWaySell = true;
+            else
+               _IsOnSkyWaySell = false;
 
             _svrAccess.OnSendMessage += _b2bAccess_OnSendMessage;
 
@@ -180,7 +185,7 @@ namespace NssIT.Kiosk.Server.ServerApp
                             throw new Exception("Fail to start CountDown; NetProcessID Not found; (EXIT21321)");
 
                         _session.NewSession(netProcessId.Value);
-
+                        _session.IsOnSkyWaySell = _IsOnSkyWaySell;
                         _appCountDown.SetNewCountDown(_maxProcessPeriodSec, _session.SessionId);
                         _SessionSuper.CleanNetProcessId();
                         _SessionSuper.AddNetProcessId(netProcessId.Value);
@@ -338,6 +343,10 @@ namespace NssIT.Kiosk.Server.ServerApp
                     {
                         _session.CurrentEditMenuItemCode = TickSalesMenuItemCode.DepartSeat;
                         SelectInsuranceAck(processId, netProcessId);
+                    }
+                    else if(inst == UISalesInst.SkyWayAck)
+                    {
+                        SelectSkyWayAck(processId, netProcessId);
                     }
 
                     else if (inst == UISalesInst.DepartSeatConfirmRequest)
@@ -732,6 +741,23 @@ namespace NssIT.Kiosk.Server.ServerApp
                 catch (Exception ex)
                 {
                     RaiseOnShowResultMessage(netProcId, null, MessageType.ErrorType, "Server error; Error when sending internal service command (Get Depart Seat List). " + ex.Message);
+                }
+            }
+
+            void SelectSkyWayAck(string procId, Guid? netProcId)
+            {
+                try
+                {
+                    if(_disposed)
+                        throw new Exception("System is shutting down (EXIT2136781);");
+                    UISkyWayAck uISkyWay = new UISkyWayAck(netProcId, procId, DateTime.Now);
+                    RaiseOnShowResultMessage(netProcId, uISkyWay, MessageType.NormalType);
+
+                }
+                catch (Exception ex)
+                {
+                    Log.LogError(LogChannel, processId, new Exception($@"Error found. Net Process Id: {netProcessId}", ex), "E01", "ServerSalesApplication.SelectSkyWayAck");
+
                 }
             }
 

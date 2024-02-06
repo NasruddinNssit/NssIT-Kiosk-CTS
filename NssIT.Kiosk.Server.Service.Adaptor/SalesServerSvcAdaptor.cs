@@ -22,7 +22,7 @@ namespace NssIT.Kiosk.Server.Service.Adaptor
         private NetInfoRepository _netInfoRepository;
         private IUIApplicationJob _salesJopApp;
 
-        public SalesServerSvcAdaptor(INetMediaInterface netMediaInterface, NetInfoRepository netInfoRepo, AppGroup appGroup)
+        public SalesServerSvcAdaptor(INetMediaInterface netMediaInterface, NetInfoRepository netInfoRepo, AppGroup appGroup, bool IsOnSkyWaySell)
         {
             _log = NssIT.Kiosk.Log.DB.DbLog.GetDbLog();
 
@@ -31,7 +31,7 @@ namespace NssIT.Kiosk.Server.Service.Adaptor
 
             _netInterface.OnDataReceived += _netInterface_OnDataReceived;
 
-            _salesJopApp = new ServerSalesApplication(appGroup);
+            _salesJopApp = new ServerSalesApplication(appGroup, IsOnSkyWaySell);
             _salesJopApp.OnShowResultMessage += _salesJopApp_OnShowResultMessage;
         }
 

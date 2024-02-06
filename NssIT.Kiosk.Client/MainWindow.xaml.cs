@@ -31,6 +31,7 @@ using NssIT.Kiosk.Client.ViewPage.BoardingPass.BoardingDate;
 using NssIT.Kiosk.Client.ViewPage.BoardingPass.TicketNumber;
 using NssIT.Kiosk.Client.ViewPage.BoardingPass.PassengerInfo;
 using NssIT.Kiosk.Client.ViewPage.BoardingPass.CTPayment;
+using NssIT.Kiosk.Client.ViewPage.Skyway;
 
 namespace NssIT.Kiosk.Client
 {
@@ -66,6 +67,8 @@ namespace NssIT.Kiosk.Client
 		private pgIntro _pgIntro = null;
 		private pgSeat _debugSeatPage = null;
 
+		private pgSkyWay _pgSkyWay = null;
+
 		private CultureInfo _provider = CultureInfo.InvariantCulture;
 
 		public IMenuExec ExecMenu { get; set; }
@@ -79,7 +82,7 @@ namespace NssIT.Kiosk.Client
 
 			_pgIntro = new pgIntro();
 			LanguagePage = new pgLanguage();
-
+			_pgSkyWay = new pgSkyWay();
 			TimeFilterPage = new pgTimeFilter();
 
 			ExecMenu = new pgMenu();
@@ -675,6 +678,34 @@ namespace NssIT.Kiosk.Client
 				Alert(detailMsg: $@"Error: {ex.Message}; (EXIT10000304)");
 				App.ShowDebugMsg($@"Error: {ex.Message}; At MainWindow.ChoosePickupNDrop;");
 			}
+		}
+
+		public void ChooseSkyWay(UISkyWayAck uISkyWayAck)
+		{
+			try
+			{
+				this.Dispatcher.Invoke(new Action(() =>
+				{
+
+                    UserInfo.ShowInfo("Your Selected Ticket");
+                    DisplayInfo(_infoHeightNormal);
+                    DisplayMenu(_menuWidthNormal, uISkyWayAck.Session, TickSalesMenuItemCode.DepartSeat);
+
+                    frmWorkDetail.Content = null;
+                    frmWorkDetail.NavigationService.RemoveBackEntry();
+                    ExecMenu.UnShieldMenu();
+                   
+                    frmWorkDetail.NavigationService.Navigate(_pgSkyWay);
+                    // ---------------------------------------------------
+
+                    System.Windows.Forms.Application.DoEvents();
+                }));
+			}catch (Exception ex)
+			{
+                App.Log.LogError(LogChannel, "-", new Exception($@"Error: {ex.Message}; (EXIT10000421)", ex), classNMethodName: "MainWindow.ChooseSkyWay");
+                Alert(detailMsg: $@"Error: {ex.Message}; (EXIT10000421)");
+                App.ShowDebugMsg($@"Error: {ex.Message}; (EXIT10000421); At MainWindow.ChooseSkyWay;");
+            }
 		}
 
 		public void ChooseInsurance(UIInsuranceAck uiInsurnace)

@@ -294,6 +294,20 @@ namespace NssIT.Kiosk.Client
                     }), "AppSalesSvcEventsHandler.SalesService_OnDataReceived##UIInsuranceAck##", 30, _logChannel);
                 }
 
+                else if (e?.ReceivedData?.MsgObject is UISkyWayAck uISkyWay)
+                {
+                    relatedStage = "*Select Sky Way*";
+                    App.LatestUserSession = uISkyWay.Session;
+                    App.ShowDebugMsg($@"Sky Way Selection Page");
+
+
+                    _commonSalesTMan?.AbortRequest(out _, 300);
+                    _commonSalesTMan = new RunThreadMan(new Action(() =>
+                    {
+                        App.MainScreenControl.ChooseSkyWay(uISkyWay);
+                    }), "AppSalesSvcEventsHandler.SalesService_OnDataReceived##UISkyWayAck##", 30, _logChannel);
+                }
+
                 else if (e?.ReceivedData?.MsgObject is UIDepartSeatConfirmFailAck uiDpStCfmFail)
                 {
                     relatedStage = "*Depart Seat Confirm Fail*";

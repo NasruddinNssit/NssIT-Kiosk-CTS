@@ -537,7 +537,7 @@ namespace NssIT.Kiosk.Client.ViewPage.Trip
 					//	//{
 
 					/////// CYA-DEBUG - Test With Embed
-					embed = "1";
+					embed = "0";
 
 					//	//}
 					////	_debugInx++;

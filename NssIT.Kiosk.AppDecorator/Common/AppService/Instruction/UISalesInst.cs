@@ -29,6 +29,9 @@ namespace NssIT.Kiosk.AppDecorator.Common.AppService.Instruction
 		DestinationListAck = CommInstruction.UISalesDestinationListAck,
 		DestinationSubmission = CommInstruction.UISalesDestinationSubmission,
 
+		SkyWaySubmission = CommInstruction.UISkyWaySubmission,
+		SkyWayAck = CommInstruction.SkyWayAck,
+
 		TravelDatesEnteringAck = CommInstruction.UISalesTravelDatesEnteringAck,
 		TravelDatesSubmission = CommInstruction.UISalesTravelDatesSubmission,
 

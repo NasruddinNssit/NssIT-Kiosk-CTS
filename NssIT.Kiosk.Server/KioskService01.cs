@@ -105,7 +105,7 @@ namespace NssIT.Kiosk.Server
 				_sysSetting.BTnGMinimumWaitingPeriod = SysParam.PrmBTnGMinimumWaitingPeriod;
 				_sysSetting.AvailablePaymentTypeList = SysParam.PrmAvailablePaymentTypeList;
 				_sysSetting.IsBoardingPassEnabled = SysParam.PrmIsBoardingPassEnabled;
-
+				_sysSetting.IsOnSkyWaySell = SysParam.IsOnSkyWaySell;
 				if (_sysSetting.IsDebugMode)
 				{
 					//_sysSetting.IPAddress = "10.1.1.111";
@@ -139,7 +139,7 @@ namespace NssIT.Kiosk.Server
 
 				// Standard Server Service Adaptors ---------- ---------- ---------- ---------- ---------- ---------- ---------- 
 				// Module : UIKioskSales
-				_salesSvr = new SalesServerSvcAdaptor(_netInterface, _netInfoRepository, _sysSetting.ApplicationGroup);
+				_salesSvr = new SalesServerSvcAdaptor(_netInterface, _netInfoRepository, _sysSetting.ApplicationGroup, _sysSetting.IsOnSkyWaySell);
 				// Module : UIPayment
 		     _cashPaymentSvc = new CashPaymentServerSvcAdaptor(_netInterface, _cashPaymentApp, _netInfoRepository);
 

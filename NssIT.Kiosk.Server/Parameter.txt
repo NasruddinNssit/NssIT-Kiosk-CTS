@@ -5,7 +5,7 @@ AppGroupCode=Genting
 //IsBoardingPassEnabled=true
 IsDebugMode=true
 BTnGMinimumWaitingPeriod=600
-Is
+IsOnSkyWaySell = true
 xxxxx
 * Use "xxxxx" (5"x") to indicate end of Parameters setting.
 * Use "=" to assign value

@@ -344,6 +344,9 @@
     <Compile Include="ViewPage\Seat\SeatInfo.cs" />
     <Compile Include="ViewPage\Seat\SeatState.cs" />
     <Compile Include="ViewPage\Seat\SeatViewVerticalMover.cs" />
+    <Compile Include="ViewPage\Skyway\pgSkyWay.xaml.cs">
+      <DependentUpon>pgSkyWay.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewPage\StationTerminal\IStation.cs" />
     <Compile Include="ViewPage\StationTerminal\pgStation.xaml.cs">
       <DependentUpon>pgStation.xaml</DependentUpon>
@@ -675,6 +678,20 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="ViewPage\Seat\rosSeatMalay.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Page Include="ViewPage\Skyway\pgSkyWay.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Content Include="ViewPage\Skyway\rosInsuranceMalay.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ViewPage\Skyway\rosInsuranceEnglish.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

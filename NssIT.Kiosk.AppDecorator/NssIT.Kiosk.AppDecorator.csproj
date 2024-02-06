@@ -106,6 +106,8 @@
     <Compile Include="Common\AppService\Sales\UI\UIDepartSeatSubmission.cs" />
     <Compile Include="Common\AppService\Sales\UI\UIDepartTripSubmission.cs" />
     <Compile Include="Common\AppService\Sales\UI\UIDepartTripSubmissionErrorAck.cs" />
+    <Compile Include="Common\AppService\Sales\UI\UISkyWayAck.cs" />
+    <Compile Include="Common\AppService\Sales\UI\UISkyWaySubmission.cs" />
     <Compile Include="Common\AppService\Sales\UI\UIOriginSubmission.cs" />
     <Compile Include="Common\AppService\Sales\UI\UIOriginListAck.cs" />
     <Compile Include="Common\AppService\Sales\UI\UIDetailEditRequest.cs" />

@@ -862,7 +862,63 @@ namespace NssIT.Kiosk.Client.NetClient
 				"NetClientSalesService.SubmitPickupNDrop");
 		}
 
-		public void SubmitInsurance(bool isIncludeInsurance, out bool isServerResponded, int waitDelaySec = 60)
+		public void SubmitSkyWay(bool isIncludeSkyWay, out bool isServerResponded, int waitDelaySec = 60)
+		{
+            isServerResponded = false;
+
+            Guid lastNetProcessId;
+            waitDelaySec = (waitDelaySec < 0) ? 20 : waitDelaySec;
+
+            _log.LogText(_logChannel, "-", "Start - SubmitSkyWayBuyTicketRequest", "A01", "NetClientSalesService.SubmitSkyWayBuyTicketRequest");
+			UISkyWaySubmission res = new UISkyWaySubmission("-", DateTime.Now, isIncludeSkyWay);
+            NetMessagePack msgPack = new NetMessagePack(res) { DestinationPort = GetServerPort() };
+            lastNetProcessId = msgPack.NetProcessId;
+
+            _log.LogText(_logChannel, "-",
+                msgPack, "A05", "NetClientSalesService.SubmitSkyWay", extraMsg: "MsgObject: NetMessagePack");
+            _netInterface.SendMsgPack(msgPack);
+            DateTime startTime = DateTime.Now;
+            DateTime endTime = startTime.AddSeconds(waitDelaySec);
+
+            while (endTime.Subtract(DateTime.Now).TotalSeconds > 0)
+            {
+                if (_recvedNetProcIdTracker.CheckReceivedResponded(lastNetProcessId, out _) == false)
+                    Task.Delay(100).Wait();
+                else
+                {
+                    isServerResponded = true;
+                    break;
+                }
+            }
+
+
+            bool alreadyExpired = false;
+
+            if (isServerResponded == false)
+                alreadyExpired = _netInterface.SetExpiredNetProcessId(msgPack.NetProcessId);
+
+            if (alreadyExpired)
+            {
+                _log.LogText(_logChannel, "-", $@"Unable to read from Local Server; (EXIT9000007)", "A201",
+                    "NetClientSalesService.SubmitSkyWay", NssIT.Kiosk.AppDecorator.Log.MessageType.Error);
+            }
+            else if (isServerResponded == false)
+            {
+                _log.LogText(_logChannel, "-", $@"Unable to read from Local Server; (EXIT9000008); Adnormal result !!;", "A211",
+                    "NetClientSalesService.SubmitSkyWay", NssIT.Kiosk.AppDecorator.Log.MessageType.Error);
+            }
+            else
+            {
+                isServerResponded = true;
+            }
+
+            _log.LogText(_logChannel, "-",
+                $@"End - IsLocalServerResponded: {isServerResponded};",
+                "A100",
+                "NetClientSalesService.SubmitSkyWay");
+        }
+
+        public void SubmitInsurance(bool isIncludeInsurance, out bool isServerResponded, int waitDelaySec = 60)
 		{
 			isServerResponded = false;
 
