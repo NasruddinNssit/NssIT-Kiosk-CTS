@@ -90,6 +90,13 @@ namespace NssIT.Kiosk.Client.ViewPage.Intro
 			System.Windows.Forms.Application.DoEvents();
 		}
 
+		public void SetOperationState(bool state, DateTime? startTime, DateTime? endTime)
+		{
+            ((uscIntroMalay)_introPicture[0]).SetOperationState(state, startTime, endTime);
+            ((uscIntroEnglish)_introPicture[1]).SetOperationState(state, startTime, endTime);
+            System.Windows.Forms.Application.DoEvents();
+        }
+
 		private void Intro_OnBegin(object sender, BeginEventArgs e)
 		{
 			if (_allowSelection == false)

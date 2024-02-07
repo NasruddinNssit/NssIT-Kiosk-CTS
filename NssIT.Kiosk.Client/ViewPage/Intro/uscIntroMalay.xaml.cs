@@ -79,6 +79,44 @@ namespace NssIT.Kiosk.Client.ViewPage.Intro
 			}
 		}
 
+		public void SetOperationState(bool state, DateTime? startTime, DateTime? endTime)
+		{
+			this.Dispatcher.Invoke(new Action(() =>
+			{
+				if (state)
+				{
+
+					if (App.IsBoardingPassEnabled)
+						BtnCollectTicket.Visibility = Visibility.Hidden;
+					else
+						BtnCollectTicket.Visibility = Visibility.Visible;
+
+					BtnStart.Visibility = Visibility.Visible;
+
+					BtnOffOperation.Visibility = Visibility.Hidden;
+				}
+				else
+				{
+                    string meridiem = (startTime.Value.Hour < 12) ? "AM" : "PM";
+
+					string endMer = (endTime.Value.Hour < 12) ? "AM" : "PM";
+                    // Format time as HH:MM AM/PM
+                    string startTimeOpr = $"{(startTime.Value.Hour % 12 == 0 ? 12 : startTime.Value.Hour % 12):00}:{startTime.Value.Minute:00} {meridiem}";
+
+					string endTimeOpr = $"{(endTime.Value.Hour % 12 == 0 ? 12 : endTime.Value.Hour % 12):00}:{endTime.Value.Minute:00} {endMer}";
+
+                    TimeStart.Text = startTimeOpr;
+					TimeEnd.Text = endTimeOpr;
+					BtnStart.Visibility = Visibility.Hidden;
+
+                   BtnCollectTicket.Visibility = Visibility.Hidden;
+
+					BtnOffOperation.Visibility = Visibility.Visible;
+                }
+
+			}));
+		}
+
 		public void SetStartButtonEnabled(bool enabled)
 		{
 			this.Dispatcher.Invoke(new Action(() => {

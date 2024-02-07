@@ -133,6 +133,7 @@
     <Compile Include="AppHelper.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AppOperationHandler.cs" />
     <Compile Include="AppSalesSvcEventsHandler.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>

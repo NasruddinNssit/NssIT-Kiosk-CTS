@@ -31,7 +31,7 @@ namespace NssIT.Kiosk.AppDecorator.Config
 		private static SemaphoreSlim _manLock = new SemaphoreSlim(1);
 		private static Setting _setting = null;
 		public static string NullVersion { get => "**#**"; }
-
+		private bool _isNoOperationTime = false;
 		public string TVMKey { get; set; }
 		public string HashSecretKey { get; set; }
 
@@ -149,6 +149,18 @@ namespace NssIT.Kiosk.AppDecorator.Config
                 _isOnSkyWaySell = value;
             }
         }
+
+		public bool NoOperationTime
+		{
+			get
+			{
+				return _isNoOperationTime;
+			}
+			set
+			{
+				_isNoOperationTime = value;
+			}
+		}
 
         public string KioskId
 		{

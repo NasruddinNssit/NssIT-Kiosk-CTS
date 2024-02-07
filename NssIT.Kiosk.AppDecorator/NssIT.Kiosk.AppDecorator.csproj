@@ -259,6 +259,7 @@
     <Compile Include="UI\IUIApplicationJob.cs" />
     <Compile Include="UI\IUIPayment.cs" />
     <Compile Include="UI\MessageType.cs" />
+    <Compile Include="UI\OnCloseOperationTimeEventArgs.cs" />
     <Compile Include="UI\UIMessageEventArgs.cs" />
   </ItemGroup>
   <ItemGroup>

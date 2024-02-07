@@ -50,6 +50,7 @@ namespace NssIT.Kiosk.Client
 
 		public static bool IsBoardingPassEnabled = false;
 
+		public static AppDecorator.Config.Setting _sysSetting = null;
 		public static AppHelper AppHelp { get; private set; } = null;
 
 		public static bool IsLocalServerReady { get; set; } = false;
@@ -90,6 +91,8 @@ namespace NssIT.Kiosk.Client
 		private SysLog _sysLog = null;
 		public static List<string> HostNumberForSettlementsTesting = new List<string>();
 		public static AppModule CurrentSaleTransactionModule { get; private set; } = AppModule.Unknown;
+
+		private static AppOperationHandler _appOperationHandler = null;
 
 		public static MarkLogList MarkLog { get; set; }
 		public static void ResetMaxTicketAdvanceDate()
@@ -308,6 +311,7 @@ namespace NssIT.Kiosk.Client
 				Log.LogText(_logChannel, "-", $@"Start - App XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
 						"A01", "App.OnStartup");
 
+				_sysSetting = AppDecorator.Config.Setting.GetSetting();
 				SysParam = new SysLocalParam();
 				SysParam.ReadParameters();
 
@@ -317,6 +321,8 @@ namespace NssIT.Kiosk.Client
 				//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 				//System Parameter Validation
 				//-----------------------------
+
+				_sysSetting.NoOperationTime = SysParam.IsNoOperationTime;
 
 				bool passSysParameterCheck = true;
 
@@ -419,12 +425,12 @@ namespace NssIT.Kiosk.Client
 
 				TimeoutManager = ResetTimeoutManager.GetLocalTimeoutManager();
 				CollectBoardingPassCountDown = new CollectTicketCountDown();
-
+				_appOperationHandler = new AppOperationHandler(SysParam.StartOperationTime, SysParam.EndOperationTime);
 				//WndTestingMonitor testMon = null;
 
 				MainWindow main = new MainWindow();
 				_mainScreenControl = (IMainScreenControl)main;
-
+				_mainScreenControl.InitForOperationTimeScheduler(_appOperationHandler);
 				main.WindowState = WindowState.Maximized;
 
 				if ((SysParam.PrmIsDebugMode == false) || (SysParam.PrmIsDemo == true))

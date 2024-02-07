@@ -18,6 +18,12 @@
                 <GradientStop Color="#43D82C" Offset="0.8"/>
             </LinearGradientBrush>
 
+            <!--<LinearGradientBrush x:Key="CloseButtonBackground" StartPoint="0.5,0" EndPoint="0.5,1">
+                <GradientStop Color="#9feb93" Offset="0"/>
+                <GradientStop Color="#79e368" Offset="0.445"/>
+                <GradientStop Color="#43D82C" Offset="0.8"/>
+            </LinearGradientBrush>-->
+
             <LinearGradientBrush x:Key="DisabledButtonBackground" StartPoint="0.5,0" EndPoint="0.5,1">
                 <GradientStop Color="#888888" Offset="0"/>
                 <GradientStop Color="#555555" Offset="0.445"/>
@@ -33,6 +39,24 @@
                     <Setter.Value>
                         <ControlTemplate TargetType="Button">
                             <Border CornerRadius="15" Background="{StaticResource ButtonBackground}">
+                                <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+
+            <Style x:Key="CloseButton" TargetType="{x:Type Button}">
+                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                
+                <Setter Property="FontSize" Value="30"/>
+                <Setter Property="FontWeight" Value="DemiBold"/>
+                <Setter Property="Foreground" Value="White"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Border CornerRadius="15" Background="{StaticResource DisabledButtonBackground}">
                                 <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
                             </Border>
                         </ControlTemplate>
@@ -136,11 +160,28 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <Button x:Name="BtnStart" Grid.Column="1" Grid.Row="0" Margin="0 10 0 10" Style="{StaticResource GreenButton}" Click="BtnBegin_Click">
+            <Button x:Name="BtnStart" Grid.Column="1" Grid.Row="0" Margin="0 10 0 10" Style="{StaticResource GreenButton}" Click="BtnBegin_Click" >
                 <StackPanel Orientation="Vertical">
                     <TextBlock x:Name="TxtBuyTicket" Text="BUY TICKET"/>
                     <TextBlock x:Name="TxtBuyTicketDisabled" Visibility="Collapsed" Text="IN PROGRESS.."/>
+                   
+
                 </StackPanel>
+                
+            </Button>
+
+            <Button x:Name="BtnOffOperation" Grid.Column="1" Grid.Row="0" Margin="0 10 0 10" Style="{StaticResource CloseButton}" Visibility="Hidden">
+                <StackPanel Orientation="Vertical">
+                    <TextBlock x:Name="TxtOprTime"   TextWrapping="WrapWithOverflow">
+             
+             <Run Text="           Close"/>
+             <LineBreak/>
+             <Run Text="10:00 AM" x:Name="TimeStart"/> - <Run Text="11:45 PM" x:Name="TimeEnd"/>
+
+                    </TextBlock>
+
+                </StackPanel>
+
             </Button>
             <Button x:Name="BtnCollectTicket" Grid.Column="1" Grid.Row="1" Margin="0 10 0 10" Style="{StaticResource GreenButton}" Click="BtnCollectTicket_Click">
                 <StackPanel Orientation="Vertical">
@@ -148,12 +189,12 @@
                     <TextBlock x:Name="TxtCollectBoardingPassDisabled" Visibility="Collapsed" Text="IN PROGRESS.." />
                 </StackPanel>
             </Button>
-            <Button x:Name="BtnDoSetelment" Grid.Column="1" Grid.Row="1" Margin="0 10 0 10" Style="{StaticResource GreenButton}" Click="BtnDoSettlement">
+            <!--<Button x:Name="BtnDoSetelment" Grid.Column="1" Grid.Row="1" Margin="0 10 0 10" Style="{StaticResource GreenButton}" Click="BtnDoSettlement">
                 <StackPanel Orientation="Vertical">
                     <TextBlock  Text="Do Settlement" TextWrapping="WrapWithOverflow" TextAlignment="Center" />
                     <TextBlock  Visibility="Collapsed" Text="IN PROGRESS.." />
                 </StackPanel>
-            </Button>
+            </Button>-->
         </Grid>
     </Grid>
 

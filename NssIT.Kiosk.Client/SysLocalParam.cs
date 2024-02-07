@@ -1,6 +1,7 @@
 ﻿using NssIT.Kiosk.AppDecorator.Common;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -53,8 +54,11 @@ namespace NssIT.Kiosk.Client
 		public bool PrmIsDemo { get; private set; } = false;
 		public bool PrmMyKadScanner { get; private set; } = false;
 		public string PrmAppGroupCode { get; private set; } = "Melaka";
-
+		public bool IsNoOperationTime { get; private set; } = false;
 		public string PrmPayWaveCOM { get; private set; } = null;
+
+		public string StartOperationTime { get; private set; } = null;
+		public string EndOperationTime { get; private set; } = null;
 		public SysLocalParam() { }
 
 		private string FullParamFileName
@@ -113,7 +117,9 @@ namespace NssIT.Kiosk.Client
 				PrmNoPaymentNeed = false;
 				PrmMyKadScanner = false;
                 PrmPayWaveCOM = null;
-
+				IsNoOperationTime = false;
+				StartOperationTime = null;
+				EndOperationTime = null;
 				ReadAllValues(retParam);
 
 				//if ((PrmBaseURL.Length == 0) || (PrmDBServer.Length == 0) || (PrmKioskID.Length == 0))
@@ -187,6 +193,17 @@ namespace NssIT.Kiosk.Client
 					}
 				}
 
+				else if(prmNm.ToUpper().Equals("IsNoOperationTime", StringComparison.InvariantCultureIgnoreCase))
+				{
+					string char1 = "";
+					if(prmVal.Trim().Length > 0)
+						char1 = prmVal.Trim().Substring(0,1).ToUpper();
+					if(char1.Equals("Y", StringComparison.InvariantCultureIgnoreCase))
+						IsNoOperationTime = true;
+					else
+						IsNoOperationTime = false;
+				}
+
 				else if (prmNm.ToUpper().Equals("NoPaymentNeed", StringComparison.InvariantCultureIgnoreCase))
 				{
 					string char1 = "";
@@ -248,6 +265,29 @@ namespace NssIT.Kiosk.Client
 							PrmLocalServerPort = -1;
 					}
 				}
+				else if(prmNm.ToUpper().Equals("StartOperationTime", StringComparison.InvariantCultureIgnoreCase))
+				{
+					string timeString = prmVal.Trim();
+					if(CheckIsTimeStringValid(timeString) == false)
+					{
+                        throw new Exception("Invalid StartOperationTime parameter. Please entry time in HH:mm (24Hours format).");
+
+                    }
+
+					StartOperationTime = string.IsNullOrWhiteSpace(prmVal) ? null : timeString;
+                }
+
+				else if(prmNm.ToUpper().Equals("EndOperationTime", StringComparison.InvariantCultureIgnoreCase))
+				{
+					string timeString = prmVal.Trim();
+					if(CheckIsTimeStringValid(timeString) == false)
+					{
+                        throw new Exception("Invalid EndOperationtime parameter. Please entry time in HH:mm (24Hours format).");
+
+                    }
+
+					EndOperationTime = string.IsNullOrWhiteSpace(prmVal)? null : timeString;
+                }
 				//else if (prmNm.ToUpper().Equals("AcroRd32", StringComparison.InvariantCultureIgnoreCase))
 				//{
 				//	PrmAcroRd32FilePath = string.IsNullOrWhiteSpace(prmVal) ? null : prmVal.Trim();
@@ -266,22 +306,33 @@ namespace NssIT.Kiosk.Client
 			}
 		}
 
-		//public bool IsPayMethodValid
-		//{
-		//	get
-		//	{
-		//		bool result = false;
 
-		//		if (PrmPayMethod is null)
-		//			result = false;
-		//		else if (PrmPayMethod.Equals("C"))
-		//			result = true;
-				
-		//		return result;
-		//	}
-		//}
+		private CultureInfo _dateProvider = CultureInfo.InvariantCulture;
+		private bool CheckIsTimeStringValid(string timeString)
+		{
+            string dateStr = $@"2020/09/16 {timeString}";
+            if (DateTime.TryParseExact(dateStr, "yyyy/MM/dd HH:mm", _dateProvider, DateTimeStyles.None, out DateTime res) == true)
+                return true;
+            else
+                return false;
+        }
 
-		public void Dispose()
+        //public bool IsPayMethodValid
+        //{
+        //	get
+        //	{
+        //		bool result = false;
+
+        //		if (PrmPayMethod is null)
+        //			result = false;
+        //		else if (PrmPayMethod.Equals("C"))
+        //			result = true;
+
+        //		return result;
+        //	}
+        //}
+
+        public void Dispose()
 		{  }
 	}
 }

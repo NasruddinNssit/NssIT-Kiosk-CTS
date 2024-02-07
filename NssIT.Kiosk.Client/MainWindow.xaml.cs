@@ -112,7 +112,15 @@ namespace NssIT.Kiosk.Client
 			ExecMenu.OnPageNavigateChanged += ExecMenu_OnPageNavigateChanged;
 		}
 
-		public ICash CashierPage
+		public void InitForOperationTimeScheduler(AppOperationHandler appOperationHandler)
+		{
+			appOperationHandler.OnRequestOnOperation += _pgIntro.AppOperationTimeScheduler_OnRequestOnOperation;
+			appOperationHandler.OnRequestOffOperation += _pgIntro.AppOperationTimeScheduler_OnRequestOffOperation;
+
+			appOperationHandler.Load();
+		}
+
+        public ICash CashierPage
         {
             get
             {

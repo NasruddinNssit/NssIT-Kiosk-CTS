@@ -1,4 +1,5 @@
 ﻿using NssIT.Kiosk.AppDecorator;
+using NssIT.Kiosk.AppDecorator.UI;
 using NssIT.Kiosk.Client.Base;
 using System;
 using System.Collections.Generic;
@@ -24,11 +25,11 @@ namespace NssIT.Kiosk.Client.ViewPage.Intro
 	public partial class pgIntro : Page
 	{
 		private const string LogChannel = "ViewPage";
-
+		private bool _pageLoaded = false; 
 		private IntroUIAnimateHelper _introAniHelp = null;
 
 		private Thread _sysInitThreadWorker = null;
-
+		private Thread _operationTimeThreadWorker = null;
 		public pgIntro()
 		{
 			InitializeComponent();
@@ -72,7 +73,68 @@ namespace NssIT.Kiosk.Client.ViewPage.Intro
 			}
 		}
 
-		private NetServiceAnswerMan _netClientSvcAnswerMan = null;
+		public void AppOperationTimeScheduler_OnRequestOnOperation(object sender, EventArgs e)
+		{
+			try
+			{
+                //if (_pageLoaded == false) return;
+
+                if (_operationTimeThreadWorker != null)
+                {
+                    if (((_operationTimeThreadWorker?.ThreadState & ThreadState.Aborted) == ThreadState.Aborted)
+                              || ((_operationTimeThreadWorker?.ThreadState & ThreadState.Stopped) == ThreadState.Stopped)
+                              )
+                    {
+                        _operationTimeThreadWorker = null;
+                    }
+                    else
+                    {
+                        if (_operationTimeThreadWorker != null)
+                        {
+
+                            try
+                            {
+                                _operationTimeThreadWorker?.Abort();
+                            }
+                            catch { /* By Pass Any Error */}
+                            Thread.Sleep(1000);
+
+                            _operationTimeThreadWorker = null;
+                        }
+                    }
+                }
+
+                if (_operationTimeThreadWorker == null)
+                {
+                    _operationTimeThreadWorker = new Thread(new ThreadStart(StartOperationTimeTreadWorking));
+                    _operationTimeThreadWorker.IsBackground = true;
+                    _operationTimeThreadWorker.Start();
+
+                }
+            }
+            catch(Exception ex)
+			{
+                App.Log.LogError(LogChannel, "-", ex, "EX01", classNMethodName: "pgIntro.MaintenanceScheduler_OnRequestSettlement");
+
+            }
+
+        }
+
+		public void AppOperationTimeScheduler_OnRequestOffOperation(object sender, OnCloseOperationTimeEventArgs e)
+		{
+			
+			_introAniHelp.SetOperationState(false, e.StartOperationTime ,e.EndOperationTime);
+		}
+
+
+		private void StartOperationTimeTreadWorking()
+		{
+			
+            _introAniHelp.SetOperationState(true, null, null);
+        }
+
+
+        private NetServiceAnswerMan _netClientSvcAnswerMan = null;
 		private void Submit(TransactionType transactionType)
 		{
 			System.Windows.Forms.Application.DoEvents();
@@ -127,6 +189,7 @@ namespace NssIT.Kiosk.Client.ViewPage.Intro
 
 		private void Page_Loaded(object sender, RoutedEventArgs e)
 		{
+			_pageLoaded = true;
 			App.ShowDebugMsg("pgIntro->Page_Loaded : Check Event Routing; Loaded event found; ");
 
 			_introAniHelp.InitOnLoad();
@@ -146,6 +209,7 @@ namespace NssIT.Kiosk.Client.ViewPage.Intro
 
 		private void Page_Unloaded(object sender, RoutedEventArgs e)
 		{
+			_pageLoaded = false;
 			_introAniHelp.OnPageUnload();
 			try
 			{
