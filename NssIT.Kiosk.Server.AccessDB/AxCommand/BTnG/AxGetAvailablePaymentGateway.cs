@@ -86,6 +86,8 @@ namespace NssIT.Kiosk.Server.AccessDB.AxCommand.BTnG
 
                 AppDecorator.Config.Setting setting = NssIT.Kiosk.AppDecorator.Config.Setting.GetSetting();
 
+                setting.ApplicationGroup = AppDecorator.Common.AppGroup.MelakaSentral;
+
                 NssIT.Kiosk.AppDecorator.Common.AppStationCode.GetStationInfo(setting.ApplicationGroup, out string stationCode, out _);
 
                 if (string.IsNullOrWhiteSpace(bTngWebApiVerStr) == false)
