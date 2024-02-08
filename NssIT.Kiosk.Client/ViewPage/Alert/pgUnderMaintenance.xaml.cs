@@ -125,36 +125,36 @@ namespace NssIT.Kiosk.Client.ViewPage.Alert
                     {
                         ShowProblemMessage("");
 
-                        if (e.RebootMachineRequest)
-                        {
-                            if (App.NetClientSvc.SalesServiceV2.QueryKioskLastRebootTime(out KioskLastRebootTimeEcho kioskLastRebootTime, out _) == true)
-                            {
-                                bool proceedtoShutdown = false;
+                        //if (e.RebootMachineRequest)
+                        //{
+                        //    if (App.NetClientSvc.SalesServiceV2.QueryKioskLastRebootTime(out KioskLastRebootTimeEcho kioskLastRebootTime, out _) == true)
+                        //    {
+                        //        bool proceedtoShutdown = false;
 
-                                if (kioskLastRebootTime.LastRebootTime.HasValue == false)
-                                    proceedtoShutdown = true;
+                        //        if (kioskLastRebootTime.LastRebootTime.HasValue == false)
+                        //            proceedtoShutdown = true;
 
-                                else
-                                {
-                                    int rebootIntervalHours = 12;
-                                    DateTime rebootTime = kioskLastRebootTime.LastRebootTime.Value.AddHours(rebootIntervalHours);
+                        //        else
+                        //        {
+                        //            int rebootIntervalHours = 12;
+                        //            DateTime rebootTime = kioskLastRebootTime.LastRebootTime.Value.AddHours(rebootIntervalHours);
 
-                                    if (DateTime.Now.Ticks > rebootTime.Ticks)
-                                        proceedtoShutdown = true;
-                                }
+                        //            if (DateTime.Now.Ticks > rebootTime.Ticks)
+                        //                proceedtoShutdown = true;
+                        //        }
 
-                                if (proceedtoShutdown)
-                                {
-                                    App.ShutdownX();
-                                    App.NetClientSvc.SalesService.RestartMachineRequest();
-                                    Thread.Sleep(5000); /* Sleep to allow Restart Machine procedure */
-                                }
-                            }
-                            else
-                            {
-                                App.Log.LogError(LogChannel, "", new Exception("Fail to read Last Kiosk Reboot Time ; (EXIT10000051)"), "EX05", "pgUnderMaintenance.MaintenanceScheduler_OnSettlementDone");
-                            }
-                        }
+                        //        if (proceedtoShutdown)
+                        //        {
+                        //            App.ShutdownX();
+                        //            App.NetClientSvc.SalesService.RestartMachineRequest();
+                        //            Thread.Sleep(5000); /* Sleep to allow Restart Machine procedure */
+                        //        }
+                        //    }
+                        //    else
+                        //    {
+                        //        App.Log.LogError(LogChannel, "", new Exception("Fail to read Last Kiosk Reboot Time ; (EXIT10000051)"), "EX05", "pgUnderMaintenance.MaintenanceScheduler_OnSettlementDone");
+                        //    }
+                        //}
                         App.NetClientSvc.SalesService.SubmitFinishedMaintenance();
                     }
                 }

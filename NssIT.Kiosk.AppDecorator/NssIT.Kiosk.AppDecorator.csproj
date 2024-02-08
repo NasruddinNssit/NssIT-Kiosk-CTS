@@ -107,7 +107,11 @@
     <Compile Include="Common\AppService\Sales\UI\UIDepartTripSubmission.cs" />
     <Compile Include="Common\AppService\Sales\UI\UIDepartTripSubmissionErrorAck.cs" />
     <Compile Include="Common\AppService\Sales\UI\UISalesCardSettlementStatusAck.cs" />
+    <Compile Include="Common\AppService\Sales\UI\UISalesCardSettlementSubmission.cs" />
     <Compile Include="Common\AppService\Sales\UI\UISalesCheckOutstandingCardSettlementAck.cs" />
+    <Compile Include="Common\AppService\Sales\UI\UISalesCheckOutstandingCardSettlementRequest.cs" />
+    <Compile Include="Common\AppService\Sales\UI\UISalesClientMaintenanceFinishedSubmission.cs" />
+    <Compile Include="Common\AppService\Sales\UI\UISalesClientMaintenanceRequest.cs" />
     <Compile Include="Common\AppService\Sales\UI\UISkyWayAck.cs" />
     <Compile Include="Common\AppService\Sales\UI\UISkyWaySubmission.cs" />
     <Compile Include="Common\AppService\Sales\UI\UIOriginSubmission.cs" />

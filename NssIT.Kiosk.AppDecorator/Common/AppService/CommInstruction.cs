@@ -56,9 +56,13 @@ namespace NssIT.Kiosk.AppDecorator.Common.AppService
 		UIB2BAllCassetteInfoRequest = 2001,
 		UIB2BAllCassetteInfo = 2002,
 
-		// Below code used for Sales Application -- 2201 - 2500
+        // Below code used for Sales Application -- 2201 - 2500
 
-		UISalesCountDownStartRequest = 2206,
+        UISalesClientMaintenanceRequest = 2203,
+        UISalesClientMaintenanceAck = 2204,
+        UISalesClientMaintenanceFinishedSubmission = 2205,
+
+        UISalesCountDownStartRequest = 2206,
 		UISalesCountDownExpiredAck = 2207,
 
 		UISalesLanguageSubmission = 2211,
@@ -134,5 +138,11 @@ namespace NssIT.Kiosk.AppDecorator.Common.AppService
 
 		UISkyWaySubmission = 3001,
 		SkyWayAck = 3010,
-	}
+
+        // Below used for Credit Card Settlement
+        UISalesCheckOutstandingCardSettlementRequest = 2360,
+        UISalesCheckOutstandingCardSettlementAck = 2361,
+        UISalesCardSettlementSubmission = 2362,
+        UISalesCardSettlementStatusAck = 2363,
+    }
 }
