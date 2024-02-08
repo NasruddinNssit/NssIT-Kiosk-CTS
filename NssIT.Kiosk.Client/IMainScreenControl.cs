@@ -7,6 +7,7 @@ using NssIT.Kiosk.Client.ViewPage.Alert;
 using NssIT.Kiosk.Client.ViewPage.Info;
 using NssIT.Kiosk.Client.ViewPage.Menu;
 using NssIT.Kiosk.Client.ViewPage.Payment;
+using NssIT.Kiosk.Device.PAX.IM20.PayECRApp;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,7 +32,9 @@ namespace NssIT.Kiosk.Client
 		IBTnG BTnGCounter { get; }
 
 		void ShowWelcome();
-		void InitForOperationTimeScheduler(AppOperationHandler appOperationHandler);
+        void InitiateMaintenance(PayWaveSettlementScheduler cardSettScheduler);
+
+        void InitForOperationTimeScheduler(AppOperationHandler appOperationHandler);
 		void ChooseLanguage(AppModule module);
 		void ChooseOriginStation(UIOriginListAck uiOrig, UserSession session);
 		void ChooseDestinationStation(UIDestinationListAck uiDest, UserSession session);

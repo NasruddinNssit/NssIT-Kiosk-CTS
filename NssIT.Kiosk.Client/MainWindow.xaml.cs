@@ -32,6 +32,7 @@ using NssIT.Kiosk.Client.ViewPage.BoardingPass.TicketNumber;
 using NssIT.Kiosk.Client.ViewPage.BoardingPass.PassengerInfo;
 using NssIT.Kiosk.Client.ViewPage.BoardingPass.CTPayment;
 using NssIT.Kiosk.Client.ViewPage.Skyway;
+using NssIT.Kiosk.Device.PAX.IM20.PayECRApp;
 
 namespace NssIT.Kiosk.Client
 {
@@ -73,6 +74,7 @@ namespace NssIT.Kiosk.Client
 
 		public IMenuExec ExecMenu { get; set; }
 
+		private IMaintenance _pgMaintenance { get; set; }
 		public MainWindow()
 		{
 			InitializeComponent();
@@ -81,6 +83,7 @@ namespace NssIT.Kiosk.Client
 			StationPage = new pgStation();
 
 			_pgIntro = new pgIntro();
+			_pgMaintenance = new pgUnderMaintenance();
 			LanguagePage = new pgLanguage();
 			_pgSkyWay = new pgSkyWay();
 			TimeFilterPage = new pgTimeFilter();
@@ -112,7 +115,21 @@ namespace NssIT.Kiosk.Client
 			ExecMenu.OnPageNavigateChanged += ExecMenu_OnPageNavigateChanged;
 		}
 
-		public void InitForOperationTimeScheduler(AppOperationHandler appOperationHandler)
+        public void InitiateMaintenance(PayWaveSettlementScheduler cardSettScheduler)
+        {
+            _pgMaintenance.InitMaintenance(cardSettScheduler);
+
+            cardSettScheduler.OnRequestSettlement += _pgIntro.MaintenanceScheduler_OnRequestSettlement;
+            cardSettScheduler.OnSettlementDone += _pgIntro.MaintenanceScheduler_OnSettlementDone;
+            cardSettScheduler.OnSettlementDone += _pgMaintenance.MaintenanceScheduler_OnSettlementDone;
+
+            cardSettScheduler.Load(
+                _pgMaintenance.RequestOutstandingSettlementInfoHandler,
+                _pgMaintenance.UpdateSettlementInfoHandler
+               );
+        }
+
+        public void InitForOperationTimeScheduler(AppOperationHandler appOperationHandler)
 		{
 			appOperationHandler.OnRequestOnOperation += _pgIntro.AppOperationTimeScheduler_OnRequestOnOperation;
 			appOperationHandler.OnRequestOffOperation += _pgIntro.AppOperationTimeScheduler_OnRequestOffOperation;
@@ -362,6 +379,7 @@ namespace NssIT.Kiosk.Client
 					frmWorkDetail.Content = null;
 					frmWorkDetail.NavigationService.RemoveBackEntry();
 					System.Windows.Forms.Application.DoEvents();
+					_pgIntro.InitPage();
 					frmWorkDetail.NavigationService.Navigate(_pgIntro);
 					System.Windows.Forms.Application.DoEvents();
 				}));
