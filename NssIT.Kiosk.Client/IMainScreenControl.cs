@@ -33,7 +33,9 @@ namespace NssIT.Kiosk.Client
 
 		void ShowWelcome();
         void InitiateMaintenance(PayWaveSettlementScheduler cardSettScheduler);
+        void AcknowledgeOutstandingCardSettlement(UISalesCheckOutstandingCardSettlementAck outstandingCardSettlement);
 
+        void ShowMaintenance();
         void InitForOperationTimeScheduler(AppOperationHandler appOperationHandler);
 		void ChooseLanguage(AppModule module);
 		void ChooseOriginStation(UIOriginListAck uiOrig, UserSession session);

@@ -140,7 +140,7 @@ namespace NssIT.Kiosk.Client.NetClient
 			DateTime startTime = DateTime.Now;
 			DateTime endTime = startTime.AddSeconds(waitDelaySec);
 
-			while(endTime.Subtract(DateTime.Now).TotalSeconds < 0)
+			while(endTime.Subtract(DateTime.Now).TotalSeconds > 0)
 			{
 				if (_recvedNetProcIdTracker.CheckReceivedResponded(lastNetProcessId, out _) == false)
 					Task.Delay(100).Wait();

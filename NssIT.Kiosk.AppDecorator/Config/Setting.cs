@@ -28,7 +28,9 @@ namespace NssIT.Kiosk.AppDecorator.Config
 		private string _stationCode = null;
 		private bool _isBoardingPassEnabled = false;
 		private bool _isOnSkyWaySell = false;
-		private static SemaphoreSlim _manLock = new SemaphoreSlim(1);
+		private bool _noCardSettlement = false;
+
+        private static SemaphoreSlim _manLock = new SemaphoreSlim(1);
 		private static Setting _setting = null;
 		public static string NullVersion { get => "**#**"; }
 		private bool _isNoOperationTime = false;
@@ -161,6 +163,18 @@ namespace NssIT.Kiosk.AppDecorator.Config
 				_isNoOperationTime = value;
 			}
 		}
+        public bool NoCardSettlement
+        {
+            get
+            {
+                return _noCardSettlement;
+            }
+            set
+            {
+                _noCardSettlement = value;
+            }
+        }
+
 
         public string KioskId
 		{

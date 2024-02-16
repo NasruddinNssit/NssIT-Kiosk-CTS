@@ -79,6 +79,7 @@
     <Compile Include="AxCommand\CTCollectTicket\AxCTGetTicket.cs" />
     <Compile Include="AxCommand\IAx.cs" />
     <Compile Include="AxCommand\IAxCommand.cs" />
+    <Compile Include="CommandExec\CheckOutstandingSettlementExecutionHC.cs" />
     <Compile Include="CommandExec\CompleteTransactionElseReleaseSeatExecution.cs" />
     <Compile Include="CommandExec\DepartCustInfoUpdateElseReleaseSeatExecution.cs" />
     <Compile Include="CommandExec\DepartSeatConfirmExecution.cs" />
@@ -124,6 +125,10 @@
     <ProjectReference Include="..\NssIT.Kiosk.Sqlite.DB\NssIT.Kiosk.Sqlite.DB.csproj">
       <Project>{df6a256f-99b3-4510-9667-199fcf0deb0d}</Project>
       <Name>NssIT.Kiosk.Sqlite.DB</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NssIT.Train.Kiosk.Common\NssIT.Kiosk.Common.csproj">
+      <Project>{29c81a11-7add-4508-8cd2-054d0524d7de}</Project>
+      <Name>NssIT.Kiosk.Common</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

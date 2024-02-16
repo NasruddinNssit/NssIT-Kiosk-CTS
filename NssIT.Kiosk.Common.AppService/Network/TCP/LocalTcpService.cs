@@ -13,6 +13,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using NssIT.Kiosk.AppDecorator.Common.AppService.Network;
 using NssIT.Kiosk.AppDecorator.Common.AppService;
 using NssIT.Kiosk.Log.DB;
+using NssIT.Kiosk.AppDecorator.Common.AppService.Instruction;
 
 namespace NssIT.Kiosk.Common.AppService.Network.TCP
 {
@@ -324,6 +325,19 @@ namespace NssIT.Kiosk.Common.AppService.Network.TCP
 					{
 						recvData = GetNextReceivedData();
 
+						if(recvData != null)
+						{
+                            if (recvData.Instruction == (CommInstruction)UISalesInst.CheckOutstandingCardSettlementRequest)
+                            {
+                                var test = "asdasdasd";
+                            }
+
+                            if (recvData.Instruction == (CommInstruction)UISalesInst.CheckOutstandingCardSettlementAck)
+                            {
+                                var teas = "dasdasdasda";
+                            }
+                        }
+						
 						if (recvData != null)
 						{
 							lock (_expiredNetProcess.ExpiredNetProcessIdList)

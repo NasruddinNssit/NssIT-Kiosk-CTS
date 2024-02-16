@@ -395,6 +395,53 @@ namespace NssIT.Kiosk.Client
 			}
 		}
 
+        public void AcknowledgeOutstandingCardSettlement(UISalesCheckOutstandingCardSettlementAck outstandingCardSettlement)
+		{
+			try
+			{
+                App.ShowDebugMsg("MainWindow.AcknowledgeCardOutstandingSettlement");
+
+                this.Dispatcher.Invoke(new Action(() =>
+                {
+                    _pgMaintenance.ProceedOutstandingMaintenance(outstandingCardSettlement);
+                    System.Windows.Forms.Application.DoEvents();
+                }));
+            }
+            catch (Exception ex) 
+			{
+                App.Log.LogError(LogChannel, "-", new Exception($@"Error: {ex.Message}; (EXIT10000328)", ex), classNMethodName: "MainWindow.AcknowledgeCardOutstandingSettlement");
+                Alert(detailMsg: $@"Error: {ex.Message}; (EXIT10000328)");
+                App.ShowDebugMsg($@"Error: {ex.Message}; At MainWindow.AcknowledgeCardOutstandingSettlement;");
+            }
+		}
+
+
+        public void ShowMaintenance()
+		{
+			try
+			{
+                App.Log.LogText(LogChannel, "-", "ShowMaintenance", classNMethodName: "MainWindow.ShowMaintenance");
+
+				this.Dispatcher.Invoke(new Action(() =>
+				{
+					frmWorkDetail.Content = null;
+					frmWorkDetail.NavigationService.RemoveBackEntry();
+					System.Windows.Forms.Application.DoEvents();
+
+					frmWorkDetail.NavigationService.Navigate(_pgMaintenance);
+                    System.Windows.Forms.Application.DoEvents();
+
+                }));
+			}
+			catch (ThreadAbortException) { }
+			catch (Exception ex)
+			{
+                App.Log.LogError(LogChannel, "-", new Exception($@"Error: {ex.Message}; (EXIT10000329)", ex), classNMethodName: "MainWindow.ShowMaintenance");
+                Alert(detailMsg: $@"Error: {ex.Message}; (EXIT10000329)");
+                App.ShowDebugMsg($@"Error: {ex.Message}; At MainWindow.ShowMaintenance;");
+            }
+
+        }
 		public void ChooseLanguage(AppModule module)
 		{
 			try

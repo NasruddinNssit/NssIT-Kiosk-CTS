@@ -51,6 +51,20 @@ namespace NssIT.Kiosk.Client
             string relatedStage = "";
             try
             {
+                if(e?.ReceivedData?.MsgObject is UISalesClientMaintenanceAck uiMtn)
+                {
+                    relatedStage = "*Client Maintenance";
+                    App.ShowDebugMsg($@"Found client Maintenance Ack Instruction");
+                    App.MainScreenControl?.ShowMaintenance();
+                }
+
+                if(e?.ReceivedData?.MsgObject is UISalesCheckOutstandingCardSettlementAck outCrdSettAck)
+                {
+                    relatedStage = "*Check Outstanding Card Settlement*";
+                    App.ShowDebugMsg($@"Found Outstanding Card Settlement answer");
+                    App.MainScreenControl?.AcknowledgeOutstandingCardSettlement(outCrdSettAck);
+                }
+
                 if (e?.ReceivedData?.MsgObject is UILanguageSelectionAck uiLang)
                 {
                     relatedStage = "*Language Selection*";

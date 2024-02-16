@@ -54,6 +54,7 @@
     <Compile Include="Common\AppService\Command\AccessDBCommandCode.cs" />
     <Compile Include="Common\AppService\Command\IAccessDBCommand.cs" />
     <Compile Include="Common\AppService\Command\ModuleAppGroup.cs" />
+    <Compile Include="Common\AppService\Command\Sales\CheckOutstandingCardSettlementCommand.cs" />
     <Compile Include="Common\AppService\Command\Sales\CompleteTransactionElseReleaseSeatCommand.cs" />
     <Compile Include="Common\AppService\Command\Sales\DepartCustInfoUpdateELSEReleaseSeatCommand.cs" />
     <Compile Include="Common\AppService\Command\Sales\DepartSeatListCommand.cs" />
@@ -110,6 +111,7 @@
     <Compile Include="Common\AppService\Sales\UI\UISalesCardSettlementSubmission.cs" />
     <Compile Include="Common\AppService\Sales\UI\UISalesCheckOutstandingCardSettlementAck.cs" />
     <Compile Include="Common\AppService\Sales\UI\UISalesCheckOutstandingCardSettlementRequest.cs" />
+    <Compile Include="Common\AppService\Sales\UI\UISalesClientMaintenanceAck.cs" />
     <Compile Include="Common\AppService\Sales\UI\UISalesClientMaintenanceFinishedSubmission.cs" />
     <Compile Include="Common\AppService\Sales\UI\UISalesClientMaintenanceRequest.cs" />
     <Compile Include="Common\AppService\Sales\UI\UISkyWayAck.cs" />

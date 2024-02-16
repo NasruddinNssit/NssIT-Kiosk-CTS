@@ -6,6 +6,7 @@ using NssIT.Kiosk.Client.Base.Time;
 using NssIT.Kiosk.Client.NetClient;
 using NssIT.Kiosk.Client.Reports;
 using NssIT.Kiosk.Client.ViewPage.Menu;
+using NssIT.Kiosk.Device.PAX.IM20.PayECRApp;
 using NssIT.Kiosk.Log.DB;
 using System;
 using System.Collections.Generic;
@@ -93,8 +94,8 @@ namespace NssIT.Kiosk.Client
 		public static AppModule CurrentSaleTransactionModule { get; private set; } = AppModule.Unknown;
 
 		private static AppOperationHandler _appOperationHandler = null;
-
-		public static MarkLogList MarkLog { get; set; }
+        public static PayWaveSettlementScheduler CardSettlementScheduler { get; private set; } = null;
+        public static MarkLogList MarkLog { get; set; }
 		public static void ResetMaxTicketAdvanceDate()
 		{
 			DateTime dateTime = DateTime.Now.AddDays(MaxAdvanceTicketDays);
@@ -323,7 +324,7 @@ namespace NssIT.Kiosk.Client
 				//-----------------------------
 
 				_sysSetting.NoOperationTime = SysParam.IsNoOperationTime;
-
+				_sysSetting.NoCardSettlement = SysParam.PrmNoCardSettlement;
 				bool passSysParameterCheck = true;
 
 				//Server & Client Port Checking
@@ -337,6 +338,16 @@ namespace NssIT.Kiosk.Client
 					passSysParameterCheck = false;
 					MessageBox.Show("Invalid ClientPort parameter", "System Parameter Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
 				}
+                else if ((SysParam.PrmPayWaveCOM is null))
+                {
+                    passSysParameterCheck = false;
+                    MessageBox.Show("COM Port for credit card machine is missing. Please make sure COM Port has installed properly. And assign the COM Port into parameter file.", "System Parameter Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                }
+                else if ((SysParam.PrmCardSettlementTime is null))
+                {
+                    passSysParameterCheck = false;
+                    MessageBox.Show("CardSettlementTime parameter is missing. Please enter a time in HH:mm (24Hours format).", "System Parameter Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                }
                 //// Payment Method Checking
                 //else if ((SysParam.IsPayMethodValid == false))
                 //{
@@ -368,7 +379,7 @@ namespace NssIT.Kiosk.Client
                 //		MessageBox.Show($@"Error when clarify AcroRd32 parameter {SysParam.PrmAcroRd32FilePath}; {ex.Message}; Please verify the path of the file.", "System Parameter Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 //	}
                 //}
-                
+
 
                 if (passSysParameterCheck == false)
 				{
@@ -426,11 +437,12 @@ namespace NssIT.Kiosk.Client
 				TimeoutManager = ResetTimeoutManager.GetLocalTimeoutManager();
 				CollectBoardingPassCountDown = new CollectTicketCountDown();
 				_appOperationHandler = new AppOperationHandler(SysParam.StartOperationTime, SysParam.EndOperationTime);
-				//WndTestingMonitor testMon = null;
-
-				MainWindow main = new MainWindow();
+                //WndTestingMonitor testMon = null;
+                CardSettlementScheduler = new PayWaveSettlementScheduler(SysParam.PrmPayWaveCOM, SysParam.PrmCardSettlementTime);
+                MainWindow main = new MainWindow();
 				_mainScreenControl = (IMainScreenControl)main;
 				_mainScreenControl.InitForOperationTimeScheduler(_appOperationHandler);
+				_mainScreenControl.InitiateMaintenance(CardSettlementScheduler);
 				main.WindowState = WindowState.Maximized;
 
 				if ((SysParam.PrmIsDebugMode == false) || (SysParam.PrmIsDemo == true))

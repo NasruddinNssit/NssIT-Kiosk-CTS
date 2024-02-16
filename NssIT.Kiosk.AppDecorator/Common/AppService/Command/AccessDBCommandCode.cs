@@ -22,6 +22,11 @@ namespace NssIT.Kiosk.AppDecorator.Common.AppService.Command
 		DepartCustInfoUpdateELSEReleaseSeatRequest = UISalesInst.CustInfoUpdateELSEReleaseSeatRequest,
 		CompleteTransactionElseReleaseSeatRequest = UISalesInst.CompleteTransactionElseReleaseSeatRequest,
 
-		TicketReleaseRequest = UISalesInst.SeatReleaseRequest
-	}
+		TicketReleaseRequest = UISalesInst.SeatReleaseRequest,
+
+        CheckOutstandingCardSettlementRequest = UISalesInst.CheckOutstandingCardSettlementRequest,
+        CardSettlementSubmission = UISalesInst.CardSettlementSubmission
+
+
+    }
 }

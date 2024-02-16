@@ -532,6 +532,8 @@ namespace NssIT.Kiosk.Client.ViewPage.Payment
                         //App.NetClientSvc.SalesService.SubmitSalesPayment(_transactionNo, _totalAmount)
                         App.HostNumberForSettlementsTesting.Add(_lastCreditCardAnswer.hsno);
 
+                        WriteHostNumberToTxtFile(_lastCreditCardAnswer.hsno);
+
                         App.MainScreenControl.ShowWelcome();
 
                     }else if((e.ResultState == PaymentResult.Cancel) || (e.ResultState == PaymentResult.Fail))
@@ -557,6 +559,16 @@ namespace NssIT.Kiosk.Client.ViewPage.Payment
                 }
             }
 
+        }
+
+        private string filePath = @"C:\NssITKiosk\Settlement\parameter.txt";
+
+        private void WriteHostNumberToTxtFile(string hostNumber)
+        {
+            using(StreamWriter writer = new StreamWriter(filePath, true))
+            {
+                writer.WriteLine(hostNumber);
+            }
         }
 
         private void StartBTnGPaymentDelgWorking(string paymentGateWay, string paymentGatewayLogoUrl, string paymentMethod)
