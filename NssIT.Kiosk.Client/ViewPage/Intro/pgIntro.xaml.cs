@@ -55,8 +55,8 @@ namespace NssIT.Kiosk.Client.ViewPage.Intro
 				//	App.IsLocalServerReady = true;
 				//	_hasBegun = true;
 
-				App.ResetMaxTicketAdvanceDate(); 
-
+				App.ResetMaxTicketAdvanceDate();
+				App.MainScreenControl.TestPrint();
 				Submit(e.TransactionType);
 					//App.NetClientSvc.SalesService.StartNewSessionCountDown(out bool isServerResponded);
 

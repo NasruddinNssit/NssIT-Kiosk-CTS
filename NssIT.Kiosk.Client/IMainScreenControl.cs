@@ -31,6 +31,8 @@ namespace NssIT.Kiosk.Client
 		IBTnG BTnGCounter { get; }
 
 		void ShowWelcome();
+
+		void TestPrint();
 		void InitForOperationTimeScheduler(AppOperationHandler appOperationHandler);
 		void ChooseLanguage(AppModule module);
 		void ChooseOriginStation(UIOriginListAck uiOrig, UserSession session);

@@ -27,6 +27,7 @@ using static NssIT.Kiosk.Client.ViewPage.Payment.pgPaymentTypes;
 using NssIT.Kiosk.AppDecorator;
 using NssIT.Kiosk.Log.DB;
 using NssIT.Kiosk.AppDecorator.DomainLibs.Common.CreditDebitCharge;
+using System.Data.Entity.Infrastructure;
 
 namespace NssIT.Kiosk.Client.ViewPage.Payment
 {
@@ -182,6 +183,14 @@ namespace NssIT.Kiosk.Client.ViewPage.Payment
                     return "TicketKlangSentral";
                 else
                     return "TicketMelakaSentralX1";
+            }
+        }
+
+        private string TicketSkyWayTicketSourceName
+        {
+            get
+            {
+                return "TicketSkyWay";
             }
         }
 
@@ -872,13 +881,69 @@ namespace NssIT.Kiosk.Client.ViewPage.Payment
             _bTnGPaymentStaff.BTnGShowPaymentInfo(kioskMsg);
         }
 
+        List<SkyWayTicketHardCode> _skyWayTicketHardCodes = new List<SkyWayTicketHardCode>();
+
+
+        public void TestPrint()
+        {
+
+
+
+            _skyWayTicketHardCodes.Add(new SkyWayTicketHardCode()
+            {
+                Address = "LOT 1988/488, JALAN SEGAMBUT TENGAH, 51200 KUALA LUMPUR",
+                ServiceTaxId = "C11-1808-320000003",
+                TransactionNo = "000000000000SKY200000002",
+                CompanyRegNo = "199201017704",
+                TicketPrice = 10M,
+                ValidFrom = DateTime.Now.ToShortDateString(),
+                ValidTo = DateTime.Now.AddDays(1).ToShortDateString()
+            });
+
+            // Adding another ticket
+            _skyWayTicketHardCodes.Add(new SkyWayTicketHardCode()
+            {
+                Address = "LOT 123, JALAN BUKIT BINTANG, 55100 KUALA LUMPUR",
+                ServiceTaxId = "C11-1234-567890",
+                TransactionNo = "000000000000SKY200000003",
+                CompanyRegNo = "201001011234",
+                TicketPrice = 15M,
+                ValidFrom = DateTime.Now.AddDays(2).ToShortDateString(),
+                ValidTo = DateTime.Now.AddDays(3).ToShortDateString()
+            });
+
+
+            Stream[] streamSkywayTicketList = null;
+            ReportImageSize skyWayTicketSize = new ReportImageSize(3.2M, 8.2M, 0, 0, 0, 0, ReportImageSizeUnitMeasurement.Inch);
+
+            if (_skyWayTicketHardCodes.Count > 0)
+            {
+                var hardCodes = _skyWayTicketHardCodes.ToArray();
+
+                LocalReport skyWayRep = RdlcImageRendering.CreateLocalReport($@"{App.ExecutionFolderPath}\Reports\{TicketSkyWayTicketSourceName}.rdlc",
+                new ReportDataSource[] { new ReportDataSource("DataSet1", new List<SkyWayTicketHardCode>(_skyWayTicketHardCodes)) });
+                streamSkywayTicketList = RdlcImageRendering.Export(skyWayRep, skyWayTicketSize);
+
+            }
+
+            ImagePrintingTools.InitService();
+
+            if (_skyWayTicketHardCodes.Count > 0)
+                ImagePrintingTools.AddPrintDocument(streamSkywayTicketList, "", skyWayTicketSize);
+
+            ImagePrintingTools.ExecutePrinting("");
+
+            _skyWayTicketHardCodes.Clear();
+        }
+
         private void PrintTicket(UICompleteTransactionResult uiCompltResult)
         {
             UserSession session = uiCompltResult.Session;
             string transactionNo = "-";
-            
+
             //Reports.RdlcRendering rpRen = null;
 
+           
             try
             {
                 transactionNo = session.DepartSeatConfirmTransNo;
@@ -916,8 +981,26 @@ namespace NssIT.Kiosk.Client.ViewPage.Payment
                     ReportImageSize ticketSize = new ReportImageSize(8.0M, 3.0M, 0, 0, 0, 0, ReportImageSizeUnitMeasurement.Inch);
                     Stream[] streamticketList = RdlcImageRendering.Export(ticketRep, ticketSize);
 
+
+                    ReportImageSize skyWayTicketSize = new ReportImageSize(3.2M, 8.2M, 0, 0, 0, 0, ReportImageSizeUnitMeasurement.Inch);
+
+                    Stream[] streamSkywayTicketList = null;
+                    if (_skyWayTicketHardCodes.Count > 0)
+                    {
+                        var hardCodes = _skyWayTicketHardCodes.ToArray();
+
+                        LocalReport skyWayRep = RdlcImageRendering.CreateLocalReport($@"{App.ExecutionFolderPath}\Reports\{TicketSkyWayTicketSourceName}.rdlc",
+                        new ReportDataSource[] { new ReportDataSource("DataSet1", new List<SkyWayTicketHardCode>(hardCodes)) });
+                        streamSkywayTicketList = RdlcImageRendering.Export(skyWayRep, ticketSize);
+
+                    }
+
                     ImagePrintingTools.InitService();
                     ImagePrintingTools.AddPrintDocument(streamticketList, transactionNo, ticketSize);
+
+                    if(_skyWayTicketHardCodes.Count > 0)
+                        ImagePrintingTools.AddPrintDocument(streamSkywayTicketList, transactionNo, ticketSize);
+
 
                     App.Log.LogText(_logChannel, transactionNo, "Start to print ticket", "A02", classNMethodName: "pgPayment.PrintTicket",
                         adminMsg: "Start to print receipt");

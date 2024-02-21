@@ -16,5 +16,7 @@ namespace NssIT.Kiosk.Client.ViewPage.Payment
         void BTnGShowPaymentInfo(IKioskMsg kioskMsg);
         ICash GetCashierPage();
         IBTnG GetBTnGCounterPage();
+
+        void TestPrint();
     }
 }

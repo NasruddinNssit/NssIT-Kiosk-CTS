@@ -45,4 +45,21 @@ namespace NssIT.Kiosk.AppDecorator.Common.AppService.Sales.UI
 			MessageData = null;
 		}
 	}
+
+
+	public class SkyWayTicketHardCode
+	{
+		public string TransactionNo { get; set; }
+		
+		public string CompanyRegNo { get; set; }
+
+	    public string Address { get; set; }
+
+		public string ServiceTaxId { get; set; }
+		public string ValidFrom { get; set; }
+		public string ValidTo { get; set; }
+
+		public decimal TicketPrice { get; set; }
+
+	}
 }

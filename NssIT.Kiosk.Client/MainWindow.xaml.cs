@@ -152,6 +152,11 @@ namespace NssIT.Kiosk.Client
 			System.Windows.Forms.Application.DoEvents();
 		}
 
+		public void TestPrint()
+		{
+			PaymentPage.TestPrint();
+		}
+
 		public Dispatcher MainFormDispatcher { get => this.Dispatcher; }
 
 		//private bool _editSalesDetailFlag = false;
