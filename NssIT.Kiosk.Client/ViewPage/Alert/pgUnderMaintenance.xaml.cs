@@ -3,6 +3,7 @@ using NssIT.Kiosk.AppDecorator.Common.AppService.Sales.UI;
 using NssIT.Kiosk.AppDecorator.DomainLibs.Common.CreditDebitCharge;
 using NssIT.Kiosk.AppDecorator.DomainLibs.Sqlite.DB.Access.Echo;
 using NssIT.Kiosk.Device.PAX.IM20.PayECRApp;
+using NssIT.Train.Kiosk.Common.Data.Response;
 using System;
 using System.Collections.Generic;
 using System.Linq;
