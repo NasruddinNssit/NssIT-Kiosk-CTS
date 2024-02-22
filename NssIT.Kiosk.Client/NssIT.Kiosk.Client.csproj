@@ -856,6 +856,10 @@
       <Project>{92b559f6-ad65-4818-9300-badd7f849853}</Project>
       <Name>NssIT.Kiosk.Log.DB</Name>
     </ProjectReference>
+    <ProjectReference Include="..\NssIT.Train.Kiosk.Common\NssIT.Kiosk.Common.csproj">
+      <Project>{29C81A11-7ADD-4508-8CD2-054D0524D7DE}</Project>
+      <Name>NssIT.Kiosk.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="DLL\Gma.QrCodeNet.Encoding.dll" />

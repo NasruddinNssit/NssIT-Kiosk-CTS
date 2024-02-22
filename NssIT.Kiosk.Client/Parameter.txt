@@ -4,12 +4,15 @@ PayWaveCOM=COM3
 AppGroupCode=Genting 
 IsDebugMode=Yes
 MyKadScanner=Yes
-CardSettlementTime=11:50
-NoCardSettlement=Yes
+CardSettlementTime=17:00
+NoCardSettlement=No
 //NoPaymentNeed=Yes
 IsNoOperationTime = Yes
 StartOperationTime = 05:00
 EndOperationTime = 14:39
+
+
+
 
 xxxxx
 * Use "xxxxx" (5"x") to indicate end of Parameters setting.
