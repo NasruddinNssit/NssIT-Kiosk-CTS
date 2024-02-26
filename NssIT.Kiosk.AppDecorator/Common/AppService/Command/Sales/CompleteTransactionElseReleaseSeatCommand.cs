@@ -33,6 +33,23 @@ namespace NssIT.Kiosk.AppDecorator.Common.AppService.Command.Sales
 
 		public string PaymentMethodCode { get; set; } = "C";
 
+
+		public string BankReferenceNo { get; private set; }
+		public CreditCardResponse CardCreditAnswer { get; private set; }
+
+		public CompleteTransactionElseReleaseSeatCommand(string processId, Guid? netProcessId, string transactionNo,decimal totalAmount, 
+			string bankReferenceNo, CreditCardResponse creditCardAnswer)
+		{
+			ProcessId = processId;
+			NetProcessId = netProcessId;
+			TotalAmount = totalAmount;
+			TransactionNo = transactionNo;
+			TypeOfPayment = PaymentType.CreditCard;
+			BankReferenceNo = bankReferenceNo;
+			CardCreditAnswer = creditCardAnswer;
+			PaymentMethodCode = "D";
+		}
+
 		public CompleteTransactionElseReleaseSeatCommand(string processId, Guid? netProcessId, string transactionNo, decimal totalAmount,
 			int cassette1NoteCount, int cassette2NoteCount, int cassette3NoteCount, int refundCoinAmount, 
 			PaymentType paymentType, string paymentMethodCode, string paymentRefNo)

@@ -46,6 +46,11 @@ namespace NssIT.Kiosk.AppDecorator.Common.AppService.Sales.UI
 		/// <summary>
 		/// Refer to KTMBCTS table PaymentGatewayMappings.PaymentMethod; Or NssIT.Train.Kiosk.Common.Constants.FinancePaymentMethod.
 		/// </summary>
+		/// 
+
+		//For Credit Card Payment transaction
+		public string BankReferenceNo { get; private set; }
+		public CreditCardResponse CreditCardAnswer { get; private set; }
 
 		//==================================================================
 
@@ -92,6 +97,21 @@ namespace NssIT.Kiosk.AppDecorator.Common.AppService.Sales.UI
 			PaymentRefNo = paymentRefNo;
 			PaymentMethodCode = paymentMethod;
 			TypeOfPayment = paymentType;
+		}
+
+		public UISalesPaymentSubmission(string processId, DateTime timeStamp, string transactionNo, decimal totalAmount, 
+			string bankReferenceNo, CreditCardResponse creditCardAnswer)
+		{
+			BaseNetProcessId = Guid.NewGuid();
+			RefNetProcessId = BaseNetProcessId;
+			ProcessId = processId;
+			TimeStamp = timeStamp;
+			TransactionNo = transactionNo;
+			TotalAmount = totalAmount;
+			PaymentMethodCode = "D";
+			TypeOfPayment = PaymentType.CreditCard;
+			BankReferenceNo = bankReferenceNo;
+			CreditCardAnswer = creditCardAnswer;
 		}
 
 		public void Dispose()

@@ -435,7 +435,7 @@ namespace NssIT.Kiosk.Server.ServerApp
                     else if (inst == UISalesInst.CompleteTransactionElseReleaseSeatRequest)
                     {
                         _session.CurrentEditMenuItemCode = TickSalesMenuItemCode.AfterPayment;
-                        CompleteTransactionRequest(processId, netProcessId, _session);
+                        CompleteTransactionRequest(processId, netProcessId, _session, svcMsg);
                     }
 
                     else if (inst == UISalesInst.SeatReleaseRequest)
@@ -1001,18 +1001,30 @@ namespace NssIT.Kiosk.Server.ServerApp
                 }
             }
 
-            void CompleteTransactionRequest(string procId, Guid? netProcId, UserSession session)
+            void CompleteTransactionRequest(string procId, Guid? netProcId, UserSession session, IKioskMsg kioskMsg)
             {
                 try
                 {
                     if (_disposed)
                         throw new Exception("System is shutting down (EXIT21360);");
 
-                    CompleteTransactionElseReleaseSeatCommand command = new CompleteTransactionElseReleaseSeatCommand(procId, netProcId,
-                        session.DepartSeatConfirmTransNo, session.DepartTotalAmount,
-                        session.Cassette1NoteCount, session.Cassette2NoteCount, session.Cassette3NoteCount, session.RefundCoinAmount, 
-                        session.TypeOfPayment, session.PaymentMethodCode, session.PaymentRefNo);
 
+                    UISalesPaymentSubmission paySubm = (UISalesPaymentSubmission)kioskMsg;
+                    CompleteTransactionElseReleaseSeatCommand command = null;
+                      
+
+                    if(paySubm.TypeOfPayment == PaymentType.CreditCard) 
+                    {
+                        command = new CompleteTransactionElseReleaseSeatCommand(procId, netProcessId, session.DepartSeatConfirmTransNo, session.DepartTotalAmount, 
+                            paySubm.BankReferenceNo, paySubm.CreditCardAnswer);
+                    }
+                    else
+                    {
+                        command = new CompleteTransactionElseReleaseSeatCommand(procId, netProcId,
+                      session.DepartSeatConfirmTransNo, session.DepartTotalAmount,
+                      session.Cassette1NoteCount, session.Cassette2NoteCount, session.Cassette3NoteCount, session.RefundCoinAmount,
+                      session.TypeOfPayment, session.PaymentMethodCode, session.PaymentRefNo);
+                    }
                     Log.LogText(LogChannel, procId, $@"Start - CompleteTransactionRequest; Net Process Id:{netProcId}", $@"A02", classNMethodName: "ServerSalesApplication.CompleteTransactionRequest");
 
                     bool addCommandResult = _svrAccess.AddCommand(new AccessCommandPack(command), out string errorMsg);

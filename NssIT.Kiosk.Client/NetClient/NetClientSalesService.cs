@@ -1264,6 +1264,26 @@ namespace NssIT.Kiosk.Client.NetClient
 			isServerResponded = isServerRespondedX;
 		}
 
+		///<summary>
+		///Credit card payment Submission
+		///</summary>
+		///<param name="transactionNo"></param>
+		///<param name="totalAmount"></param>
+		///<param name="bankReferenceNo"></param>
+		///<pram name="creditCardAnswer"></pram>
+		///<param name="isServerResponded"></param>
+		///<param name="waitDelaySec"></param>
+		
+		public void SubmitSalesPayment(string transactionNo, decimal totalAmount, string bankReferenceNo, CreditCardResponse creditCardAnswer,
+			out bool isServerResponded, int waitDelaySec = 120)
+		{
+			isServerResponded = false;
+			UISalesPaymentSubmission res = new UISalesPaymentSubmission("-", DateTime.Now, transactionNo, totalAmount, bankReferenceNo, creditCardAnswer);
+
+			DoSubmitSalesPayment(res, out bool isServerRespondedX, waitDelaySec);
+			isServerResponded = isServerRespondedX;
+		}
+
 		/// <summary>
 		/// Payment Gateway Sale Payment Submission
 		/// </summary>

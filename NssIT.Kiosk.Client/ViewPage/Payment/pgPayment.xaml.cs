@@ -425,7 +425,7 @@ namespace NssIT.Kiosk.Client.ViewPage.Payment
                 FrmGoPay.NavigationService.RemoveBackEntry();
                 _lastPaymentType = PaymentType.CreditCard;
                 _lastPaymentMethodString = "D";
-
+                _pgCreditCardPayWave.Width = FrmGoPay.ActualWidth;
                 FrmGoPay.NavigationService.Navigate(_pgCreditCardPayWave);
                 System.Windows.Forms.Application.DoEvents();
 
@@ -528,15 +528,31 @@ namespace NssIT.Kiosk.Client.ViewPage.Payment
 
                         }));
 
-                        //call API
-                        //App.NetClientSvc.SalesService.SubmitSalesPayment(_transactionNo, _totalAmount)
-                        App.HostNumberForSettlementsTesting.Add(_lastCreditCardAnswer.hsno);
+                        ////call API
+                        ////App.NetClientSvc.SalesService.SubmitSalesPayment(_transactionNo, _totalAmount)
+                        //App.HostNumberForSettlementsTesting.Add(_lastCreditCardAnswer.hsno);
 
-                        WriteHostNumberToTxtFile(_lastCreditCardAnswer.hsno);
+                        //WriteHostNumberToTxtFile(_lastCreditCardAnswer.hsno);
 
-                        App.MainScreenControl.ShowWelcome();
+                        //App.MainScreenControl.ShowWelcome();
 
-                    }else if((e.ResultState == PaymentResult.Cancel) || (e.ResultState == PaymentResult.Fail))
+                        App.NetClientSvc.SalesService.SubmitSalesPayment(_transactionNo, _totalAmount, bankRefNo, _lastCreditCardAnswer, out bool isServerRespond);
+
+                        if(isServerRespond == false)
+                        {
+                            _printTicketPage.UpdateCompleteTransactionState(isTransactionSuccess: false, language: _language);
+                            string probMsg = "Local Server not responding (EXIT10000914)";
+                            probMsg = $@"{probMsg}; Transation No.:{_transactionNo}";
+                            App.Log.LogError(_logChannel, _transactionNo, new Exception(probMsg), "EX01", "pgPayment.OnEndPaymentThreadWorking");
+
+                            _printingThreadWorker = new Thread(new ThreadStart(PrintErrorThreadWorking));
+                            _printingThreadWorker.IsBackground = true;
+                            _printingThreadWorker.Start();
+                        }
+
+
+                    }
+                    else if((e.ResultState == PaymentResult.Cancel) || (e.ResultState == PaymentResult.Fail))
                     {
                         if ((App.AvailablePaymentTypeList?.Length == 1) && (App.CheckIsPaymentTypeAvailable(PaymentType.Cash)))
                             CancelPaymentDelgWorking();
@@ -556,6 +572,24 @@ namespace NssIT.Kiosk.Client.ViewPage.Payment
                 finally
                 {
                     _endPaymentThreadWorker = null;
+                }
+            }
+
+            void PrintErrorThreadWorking()
+            {
+                try
+                {
+                    PrintTicketError2(_transactionNo);
+                    App.ShowDebugMsg("Print Sales Receipt on Fail Completed Transaction ..; pgPayment.OnEndPaymentThreadWorking");
+
+                }
+                catch (ThreadAbortException) { }
+
+                catch(Exception ex)
+                {
+
+                    App.ShowDebugMsg($@"{ex.Message}; EX02;pgPayment.PrintErrorThreadWorking");
+                    App.Log.LogError(_logChannel, "-", ex, "EX03", "pgPayment.PrintErrorThreadWorking");
                 }
             }
 
