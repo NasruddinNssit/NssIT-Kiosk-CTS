@@ -24,7 +24,7 @@ namespace WFmServerApplicationTest
         {
             InitializeComponent();
 
-            _serverApp = new ServerSalesApplication(NssIT.Kiosk.AppDecorator.Common.AppGroup.MelakaSentral, false);
+            _serverApp = new ServerSalesApplication(NssIT.Kiosk.AppDecorator.Common.AppGroup.MelakaSentral);
 
             _serverApp.OnShowResultMessage += _serverApp_OnShowResultMessage;
         }

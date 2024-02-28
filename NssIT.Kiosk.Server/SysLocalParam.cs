@@ -44,7 +44,7 @@ namespace NssIT.Kiosk.Server
 		public int PrmLocalServerPort { get; private set; } = -1;
 		public string PrmPayMethod { get; private set; } = "C";
 		public string PrmAppGroupCode { get; private set; } = "Melaka";
-		public bool IsOnSkyWaySell { get; private set; } = false;
+		
 		public PaymentType[] PrmAvailablePaymentTypeList { get; private set; } = new PaymentType[0];
 
 		/// <summary>
@@ -88,7 +88,7 @@ namespace NssIT.Kiosk.Server
 				PrmAppGroupCode = "Melaka";
 				PrmBTnGMinimumWaitingPeriod = _bTnGMinimumWaitingPeriod;
 				PrmAvailablePaymentTypeList = new PaymentType[0];
-                IsOnSkyWaySell = false;
+               
 
                 ReadAllValues(retParam);
 
@@ -166,21 +166,7 @@ namespace NssIT.Kiosk.Server
 						PrmIsDebugMode = false;
 					}
 				}
-				else if(prmNm.ToUpper().Equals("IsOnSkyWaySell", StringComparison.InvariantCultureIgnoreCase))
-				{
-					if(bool.TryParse(prmVal,out bool res))
-					{
-						IsOnSkyWaySell = res;
-					}else if (prmNm.Substring(0, 1).ToUpper().Equals("T"))
-					{
-						IsOnSkyWaySell = true;
-					}
-					else
-					{
-						IsOnSkyWaySell = false;
-					}
-				}
-
+				
 				else if (prmNm.ToUpper().Equals("IsBoardingPassEnabled", StringComparison.InvariantCultureIgnoreCase))
 				{
 					if (bool.TryParse(prmVal, out bool res))

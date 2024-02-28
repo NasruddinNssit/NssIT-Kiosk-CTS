@@ -36,12 +36,14 @@ namespace NssIT.Kiosk.AppDecorator.Common.AppService.Sales.UI
 		public decimal DepartAdultDisc { get; private set; } = 0M;
 		public decimal DepartOnlineQrCharge { get; private set; } = 0M;
 
+		public decimal DepartSkyWayAmount { get; private set; } = 0M;
+
 		public UIDepartSeatSubmission(string processId, DateTime timeStamp, CustSeatDetail[] custSeatDetailList, PickupNDropList pickupAndDropList,
 			string departDate, string departBusType,
 			decimal departInsurance, decimal departTerminalCharge,
 			int departTripCode, decimal departAdultPrice,
 			string departAdultExtra, decimal departAdultDisc,
-			decimal departOnlineQrCharge)
+			decimal departOnlineQrCharge,decimal departSkyWayAmount)
 		{
 			BaseNetProcessId = Guid.NewGuid();
 			RefNetProcessId = BaseNetProcessId;
@@ -59,6 +61,7 @@ namespace NssIT.Kiosk.AppDecorator.Common.AppService.Sales.UI
 			DepartAdultExtra = departAdultExtra;
 			DepartAdultDisc = departAdultDisc;
 			DepartOnlineQrCharge = departOnlineQrCharge;
+			DepartSkyWayAmount = departSkyWayAmount;
 		}
 
 		public void Dispose()

@@ -134,7 +134,7 @@ namespace NssIT.Kiosk.Server.ServerApp.CustomApp
 
                     else if (svcMsg.Instruction == (CommInstruction)UISalesInst.DepartSeatSubmission)
                     {
-                        if (session.IsOnSkyWaySell)
+                        if (session.DepartSkyWayAmount > 0)
                         {
                             return UISalesInst.SkyWayAck;
                         }
@@ -289,6 +289,7 @@ namespace NssIT.Kiosk.Server.ServerApp.CustomApp
                 userSession.DepartPassengerDepartTime = uiDTripSubm.DepartPassengerDepartTime;
                 userSession.DepartRouteDetail = uiDTripSubm.DepartRouteDetail;
                 userSession.DepartTimeposi = uiDTripSubm.DepartTimePosi;
+                userSession.DepartSkyWayAmount = uiDTripSubm.DepartSkyWayAmount;
                 //userSession.DepartTotalAmount = 
                 userSession.DepartTripId = uiDTripSubm.DepartTripId;
                 userSession.DepartTripNo = uiDTripSubm.DepartTripNo;
@@ -310,6 +311,7 @@ namespace NssIT.Kiosk.Server.ServerApp.CustomApp
                 userSession.DepartBusType = uiDSeatSubm.DepartBusType;
                 userSession.SetTravelDate(userSession.TravelMode, DateTime.ParseExact(uiDSeatSubm.DepartDate, "dd/MM/yyyy", _provider), userSession.ReturnPassengerDate);
                 userSession.DepartInsurance = uiDSeatSubm.DepartInsurance;
+                userSession.DepartSkyWayAmount = uiDSeatSubm.DepartSkyWayAmount;
                 userSession.DepartOnlineQrCharge = uiDSeatSubm.DepartOnlineQrCharge;
                 userSession.DepartTerminalCharge = uiDSeatSubm.DepartTerminalCharge;
                 userSession.DepartTripCode = uiDSeatSubm.DepartTripCode;
@@ -333,12 +335,12 @@ namespace NssIT.Kiosk.Server.ServerApp.CustomApp
                 if (uiInsurnSubm.IsIncludeInsurance == false)
                 {
                     userSession.DepartInsurance = 0M;
-                    userSession.DepartTotalAmount = (userSession.DepartAdultPrice + userSession.DepartTerminalCharge + userSession.DepartOnlineQrCharge + userSession.SkyWayTicketPrice)
+                    userSession.DepartTotalAmount = (userSession.DepartAdultPrice + userSession.DepartTerminalCharge + userSession.DepartOnlineQrCharge)
                         * userSession.PassengerSeatDetailList.Length;
                 }
                 else
                 {
-                    userSession.DepartTotalAmount = (userSession.DepartAdultPrice + userSession.DepartInsurance + userSession.DepartTerminalCharge + userSession.DepartOnlineQrCharge + userSession.SkyWayTicketPrice)
+                    userSession.DepartTotalAmount = (userSession.DepartAdultPrice + userSession.DepartInsurance + userSession.DepartTerminalCharge + userSession.DepartOnlineQrCharge)
                         * userSession.PassengerSeatDetailList.Length;
                 }
             }
@@ -347,11 +349,14 @@ namespace NssIT.Kiosk.Server.ServerApp.CustomApp
 
                 if(uISkyWaySubm.IsIncludeSkyWay == false)
                 {
-                    userSession.SkyWayTicketPrice = 0M;
+                    userSession.DepartSkyWayAmount = 0M;
+                    userSession.DepartTotalAmount = (userSession.DepartAdultPrice + userSession.DepartTerminalCharge + userSession.DepartOnlineQrCharge)
+                         * userSession.PassengerSeatDetailList.Length;
                 }
                 else
                 {
-                    userSession.SkyWayTicketPrice = 10M;
+                    userSession.DepartTotalAmount = (userSession.DepartAdultPrice + userSession.DepartSkyWayAmount + userSession.DepartTerminalCharge + userSession.DepartOnlineQrCharge)
+                        * userSession.PassengerSeatDetailList.Length;
                 }
             }
 

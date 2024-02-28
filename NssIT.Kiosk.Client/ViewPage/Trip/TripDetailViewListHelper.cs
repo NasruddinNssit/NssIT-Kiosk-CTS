@@ -583,7 +583,9 @@ namespace NssIT.Kiosk.Client.ViewPage.Trip
 									PassengerActualToStationCode = td.to,
 									Insurance = td.insurance,
 									// Will NOT Used in Session
-									SeatOccupied = td.seatoccupied
+									SeatOccupied = td.seatoccupied,
+									Skywayamount = td.skywayamount,
+									
 								};
 
 								tripRowArr[inx] = nRow;

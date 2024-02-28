@@ -196,6 +196,19 @@ namespace NssIT.Kiosk.Client.ViewPage.Seat
 			}
 		}
 
+		public decimal _skyWayAmount = 0.0m;
+
+		public decimal SkyWayAmount
+		{
+			get
+			{
+				return _skyWayAmount;
+			}private set
+			{
+				_skyWayAmount = value;
+			}
+		}
+
 		private bool _pageDataLoaded = false;
 		private void Page_Loaded(object sender, RoutedEventArgs e)
 		{
@@ -250,7 +263,7 @@ namespace NssIT.Kiosk.Client.ViewPage.Seat
 					_hasConfirmed = true;
 
 					Submit(submitSeatList, pndList, _passengerDate, _busType, InsurancePrice,
-						_terminalCharge, _tripCode, _adultPrice, _adultExtra, _adultDisc, _onlineQrCharge);
+						_terminalCharge, _tripCode, _adultPrice, _adultExtra, _adultDisc, _onlineQrCharge, _skyWayAmount);
 
 					//Submit(submitSeatList, pndList, _passengerDate, _busType, (InsuranceRequested ? InsurancePrice : 0M),
 					//	_terminalCharge, _tripCode, _adultPrice, _adultExtra, _adultDisc, _onlineQrCharge);
@@ -270,7 +283,7 @@ namespace NssIT.Kiosk.Client.ViewPage.Seat
 			decimal departInsurance, decimal departTerminalCharge,
 			int departTripCode, decimal departAdultPrice,
 			string departAdultExtra, decimal departAdultDisc,
-			decimal departOnlineQrCharge)
+			decimal departOnlineQrCharge, decimal skyWayAmount)
 		{
 			ShieldPage();
 			System.Windows.Forms.Application.DoEvents();
@@ -279,7 +292,7 @@ namespace NssIT.Kiosk.Client.ViewPage.Seat
 				try
 				{
 					App.NetClientSvc.SalesService.SubmitSeatList(custSeatDetailList, pickupAndDropList, departDate, departBusType, departInsurance,
-						departTerminalCharge, departTripCode, departAdultPrice, departAdultExtra, departAdultDisc, departOnlineQrCharge,
+						departTerminalCharge, departTripCode, departAdultPrice, departAdultExtra, departAdultDisc, departOnlineQrCharge,skyWayAmount,
 						out bool isServerResponded);
 
 					if (isServerResponded == false)
@@ -346,6 +359,8 @@ namespace NssIT.Kiosk.Client.ViewPage.Seat
 			Currency = string.IsNullOrWhiteSpace(session.DepartCurrency) ? "RM" : session.DepartCurrency.Trim();
 			//InsuranceRequested = true;
 			InsurancePrice = seatState.insurance;
+
+			SkyWayAmount = seatState.skywayprice;
 
 			if (_travalMode == TripMode.Return)
 				_passengerDate = session.ReturnPassengerDate.Value.ToString("dd/MM/yyyy");
@@ -426,7 +441,7 @@ namespace NssIT.Kiosk.Client.ViewPage.Seat
 				_dropDetail = null;
 			}
 
-			decimal defaultSeatPrice = _adultPrice + InsurancePrice + _terminalCharge + _onlineQrCharge;
+			decimal defaultSeatPrice = _adultPrice + InsurancePrice + SkyWayAmount + _terminalCharge + _onlineQrCharge;
 
 			SeatDeckCollection seatDeckColl = _seatCalibrator.GenerateSeatDeckCollection(seatState.col1, seatState.col2, seatState.row, defaultSeatPrice, seatState.details);
 

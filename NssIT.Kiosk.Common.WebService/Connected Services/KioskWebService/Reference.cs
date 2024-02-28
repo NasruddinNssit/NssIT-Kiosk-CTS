@@ -1953,6 +1953,7 @@ namespace NssIT.Kiosk.Common.WebService.KioskWebService {
         private int rowField;
         
         private decimal insuranceField;
+        private decimal skywaypriceField;
         
         private decimal terminalchargeField;
         
@@ -2104,6 +2105,8 @@ namespace NssIT.Kiosk.Common.WebService.KioskWebService {
                 this.RaisePropertyChanged("insurance");
             }
         }
+
+        
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=11)]
@@ -2152,9 +2155,24 @@ namespace NssIT.Kiosk.Common.WebService.KioskWebService {
                 this.RaisePropertyChanged("adultprice");
             }
         }
-        
+
+
+        [System.Xml.Serialization.XmlElementAttribute(Order = 15)]
+        public decimal skywayprice
+        {
+            get
+            {
+                return this.skywaypriceField;
+            }
+            set
+            {
+                this.skywaypriceField = value;
+                this.RaisePropertyChanged("skywayprice");
+            }
+        }
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=15)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=16)]
         public string adultextra {
             get {
                 return this.adultextraField;
@@ -2166,7 +2184,7 @@ namespace NssIT.Kiosk.Common.WebService.KioskWebService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=16)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=17)]
         public decimal adultdisc {
             get {
                 return this.adultdiscField;
@@ -2178,7 +2196,7 @@ namespace NssIT.Kiosk.Common.WebService.KioskWebService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=17)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=18)]
         public decimal onlineqrcharge {
             get {
                 return this.onlineqrchargeField;
@@ -2190,7 +2208,7 @@ namespace NssIT.Kiosk.Common.WebService.KioskWebService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=18)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=19)]
         public decimal MaxSeatAllow {
             get {
                 return this.maxSeatAllowField;
@@ -2343,6 +2361,8 @@ namespace NssIT.Kiosk.Common.WebService.KioskWebService {
         private string toField;
         
         private decimal insuranceField;
+
+        private decimal skywayamountField;
         
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
@@ -2533,6 +2553,20 @@ namespace NssIT.Kiosk.Common.WebService.KioskWebService {
             set {
                 this.insuranceField = value;
                 this.RaisePropertyChanged("insurance");
+            }
+        }
+
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public decimal skywayamount
+        {
+            get
+            {
+                return this.skywayamountField;
+            }
+            set
+            {
+                this.skywayamountField = value;
+                this.RaisePropertyChanged("skywayamount");
             }
         }
         

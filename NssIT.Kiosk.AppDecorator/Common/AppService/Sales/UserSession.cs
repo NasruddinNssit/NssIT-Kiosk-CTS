@@ -59,7 +59,7 @@ namespace NssIT.Kiosk.AppDecorator.Common.AppService.Sales
         public decimal DepartTerminalCharge { get; set; }
         public decimal DepartOnlineQrCharge { get; set; }
         public decimal DepartInsurance { get; set; }
-
+        public decimal DepartSkyWayAmount { get; set; } 
         public decimal SkyWayTicketPrice { get; set; }
         public int DepartTripCode { get; set; }
         public string DepartPick { get; set; }
@@ -202,6 +202,7 @@ namespace NssIT.Kiosk.AppDecorator.Common.AppService.Sales
             DepartTerminalCharge = 0M;
             DepartOnlineQrCharge = 0M;
             DepartInsurance = 0M;
+            DepartSkyWayAmount = 0M;
             DepartTripCode = -1;
             DepartPick = null;
             DepartPickDesn = null;
@@ -262,7 +263,7 @@ namespace NssIT.Kiosk.AppDecorator.Common.AppService.Sales
             ReturnSeatConfirmTransNo = null;
             ReturnSeatConfirmMessage = null;
 
-            IsOnSkyWaySell = false;
+            
         }
 
         public void SetTravelDate(TravelMode travelMode, DateTime? passengerDepartDate, DateTime? passengerReturnDate)

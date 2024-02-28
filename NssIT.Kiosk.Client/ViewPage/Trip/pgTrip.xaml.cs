@@ -547,7 +547,7 @@ namespace NssIT.Kiosk.Client.ViewPage.Trip
 
 				_tripSelected = true;
 				Submit(_selectedDay, row.OrgTimeStr, row.Currency, row.OperatorDesc, row.OperatorImgPath, row.Price, row.TripId, row.TripDate, row.TripNo,
-					row.TimePosi, row.TripDetail, embed, row.PassengerActualFromStationCode, row.PassengerActualToStationCode, row.Insurance);
+					row.TimePosi, row.TripDetail, embed, row.PassengerActualFromStationCode, row.PassengerActualToStationCode, row.Insurance, row.Skywayamount);
 			}
 		}
 
@@ -558,7 +558,7 @@ namespace NssIT.Kiosk.Client.ViewPage.Trip
 			string departTripNo, short departTimePosi,
 			string departRouteDetail, string departEmbed,
 			string departPassengerActualFromStationCode, string departPassengerActualToStationCode,
-			decimal departInsurance)
+			decimal departInsurance, decimal departSkyWayAmount)
 		{
 
 			ShieldPage();
@@ -568,7 +568,7 @@ namespace NssIT.Kiosk.Client.ViewPage.Trip
 				try
 				{
 					App.NetClientSvc.SalesService.SubmitDepartTrip(departPassengerDate, departPassengerDepartTime, departCurrency, departOperatorDesc, departOperatorLogoUrl, departPrice, departTripId, departVehicleTripDate, departTripNo,
-								departTimePosi, departRouteDetail, departEmbed, departPassengerActualFromStationCode, departPassengerActualToStationCode, departInsurance, out bool isServerResponded);
+								departTimePosi, departRouteDetail, departEmbed, departPassengerActualFromStationCode, departPassengerActualToStationCode, departInsurance,departSkyWayAmount, out bool isServerResponded);
 
 					if (isServerResponded == false)
 						App.MainScreenControl.Alert(detailMsg: "Local Server not responding (EXIT10000482)");

@@ -1,4 +1,4 @@
-WebServiceURL=http://203.115.193.19/ws_kiosk_test/service.asmx
+WebServiceURL=http://203.115.193.19/ws_kiosk_genting_test/service.asmx
 LocalServerPort=7385
 PayMethod=T,D
 AppGroupCode=Genting 

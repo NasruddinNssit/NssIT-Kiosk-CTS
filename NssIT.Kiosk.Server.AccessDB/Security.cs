@@ -198,6 +198,7 @@ namespace NssIT.Kiosk.Server.AccessDB
 
                     string encStr = SecurityCommon.Encrypt(strToBeEncr, passWordHashed);
 
+                    var stringIp = AppDecorator.Config.Setting.GetSetting().IPAddress;
                     login_status lgn = _soap.Login(usrId, encStr, AppDecorator.Config.Setting.GetSetting().IPAddress);
 
                     // lgn.Code => 0: success, 1: Blank Parameter found; 2: No such User Id; 3: expired, 4: Inactive User Id; 5: Invalid IP; 6: User Id not match with encrypted data; 99 is other error

@@ -38,6 +38,7 @@ namespace NssIT.Kiosk.AppDecorator.Common.AppService.Sales.UI
 		public string DepartPassengerActualFromStationCode { get; set; } = null;
 		public string DepartPassengerActualToStationCode { get; set; } = null;
 		public decimal DepartInsurance { get; set; } = 0M;
+		public decimal DepartSkyWayAmount { get; set; } = 0M;
 
 		public UIDepartTripSubmission(string processId, DateTime timeStamp,
 			DateTime departPassengerDate,
@@ -48,7 +49,7 @@ namespace NssIT.Kiosk.AppDecorator.Common.AppService.Sales.UI
 			string departTripNo, short departTimePosi,
 			string departRouteDetail, string departEmbed,
 			string departPassengerActualFromStationCode, string departPassengerActualToStationCode,
-			decimal departInsurance)
+			decimal departInsurance, decimal departSkyWayAmount)
 		{
 			BaseNetProcessId = Guid.NewGuid();
 			RefNetProcessId = BaseNetProcessId;
@@ -70,6 +71,7 @@ namespace NssIT.Kiosk.AppDecorator.Common.AppService.Sales.UI
 			DepartPassengerActualFromStationCode = departPassengerActualFromStationCode;
 			DepartPassengerActualToStationCode = departPassengerActualToStationCode;
 			DepartInsurance = departInsurance;
+			DepartSkyWayAmount = departSkyWayAmount;
 		}
 
 		public void Dispose() { }

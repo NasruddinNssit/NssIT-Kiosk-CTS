@@ -60,7 +60,7 @@ namespace KioskServerTcpTest
 				cashPaymentApp = new B2BPaymentApplication();
 
 				// Kiosk's Standard Server Service Adaptors
-				salesSvr = new SalesServerSvcAdaptor(netInterface, netInfoRepository, NssIT.Kiosk.AppDecorator.Common.AppGroup.MelakaSentral, false);
+				salesSvr = new SalesServerSvcAdaptor(netInterface, netInfoRepository, NssIT.Kiosk.AppDecorator.Common.AppGroup.MelakaSentral);
 				cashPaymentSvr = new CashPaymentServerSvcAdaptor(netInterface, cashPaymentApp, netInfoRepository);
 
 				// Custom Device Server Service Adaptors

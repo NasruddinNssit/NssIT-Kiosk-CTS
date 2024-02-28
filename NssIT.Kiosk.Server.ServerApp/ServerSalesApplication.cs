@@ -45,7 +45,7 @@ namespace NssIT.Kiosk.Server.ServerApp
 
         public event EventHandler<UIMessageEventArgs> OnShowResultMessage;
 
-        public ServerSalesApplication(AppGroup appGroup, bool IsOnSkyWaySell)
+        public ServerSalesApplication(AppGroup appGroup)
         {
             _svrAccess = ServerAccess.GetAccessServer();
             _appCountDown = new AppCountDown(this);
@@ -59,11 +59,6 @@ namespace NssIT.Kiosk.Server.ServerApp
                 _svrAppPlan = new GentingAppPlan(); 
             else
                 _svrAppPlan = new MelakaSentralAppPlan();
-
-            if(IsOnSkyWaySell)
-               _IsOnSkyWaySell = true;
-            else
-               _IsOnSkyWaySell = false;
 
             _svrAccess.OnSendMessage += _b2bAccess_OnSendMessage;
 
@@ -191,7 +186,7 @@ namespace NssIT.Kiosk.Server.ServerApp
                         _clientAppUnderMaintenance = false;
 
                         _session.NewSession(netProcessId.Value);
-                        _session.IsOnSkyWaySell = _IsOnSkyWaySell;
+                     
                         _appCountDown.SetNewCountDown(_maxProcessPeriodSec, _session.SessionId);
                         _SessionSuper.CleanNetProcessId();
                         _SessionSuper.AddNetProcessId(netProcessId.Value);

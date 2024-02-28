@@ -861,7 +861,8 @@ namespace NssIT.Kiosk.Client.NetClient
 			string departTripNo, short departTimePosi,
 			string departRouteDetail, string departEmbed,
 			string departPassengerActualFromStationCode, string departPassengerActualToStationCode,
-			decimal departInsurance, 
+			decimal departInsurance,
+			decimal departSkyWatAmount,
 			out bool isServerResponded, int waitDelaySec = 60)
 		{
 			isServerResponded = false;
@@ -879,7 +880,7 @@ namespace NssIT.Kiosk.Client.NetClient
 						departTripNo, departTimePosi,
 						departRouteDetail, departEmbed,
 						departPassengerActualFromStationCode, departPassengerActualToStationCode,
-						departInsurance);
+						departInsurance,departSkyWatAmount);
 
 			NetMessagePack msgPack = new NetMessagePack(res) { DestinationPort = GetServerPort() };
 			lastNetProcessId = msgPack.NetProcessId;
@@ -934,7 +935,7 @@ namespace NssIT.Kiosk.Client.NetClient
 			decimal departInsurance, decimal departTerminalCharge,
 			int departTripCode, decimal departAdultPrice,
 			string departAdultExtra, decimal departAdultDisc,
-			decimal departOnlineQrCharge, 
+			decimal departOnlineQrCharge,decimal deaprtSkyWayAmount, 
 			out bool isServerResponded, int waitDelaySec = 60)
 		{
 			isServerResponded = false;
@@ -951,7 +952,7 @@ namespace NssIT.Kiosk.Client.NetClient
 				departInsurance, departTerminalCharge,
 				departTripCode, departAdultPrice,
 				departAdultExtra, departAdultDisc,
-				departOnlineQrCharge);
+				departOnlineQrCharge,deaprtSkyWayAmount);
 
 			NetMessagePack msgPack = new NetMessagePack(res) { DestinationPort = GetServerPort() };
 			lastNetProcessId = msgPack.NetProcessId;

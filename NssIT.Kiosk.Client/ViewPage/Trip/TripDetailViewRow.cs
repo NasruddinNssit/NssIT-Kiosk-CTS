@@ -353,6 +353,23 @@ namespace NssIT.Kiosk.Client.ViewPage.Trip
             }
         }
 
+        private decimal _skywayamount;
+        public decimal Skywayamount
+        {
+            get
+            {
+                return _skywayamount;
+            }
+            set
+            {
+                if(_skywayamount != value)
+                {
+                    _skywayamount = value;
+                    this.OnPropertyChanged("Skywayamount");
+                }
+            }
+        }
+
         public string _tripClass;
         public string TripClass
         {
