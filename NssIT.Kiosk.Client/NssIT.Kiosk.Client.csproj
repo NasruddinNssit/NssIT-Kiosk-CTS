@@ -167,14 +167,21 @@
     <Compile Include="NetClient\NetClientSalesService.cs" />
     <Compile Include="NetClient\NetClientService.cs" />
     <Compile Include="NetClient\ReceivedNetProcessIdTracker.cs" />
+    <Compile Include="Reports\DSCreditCardReceipt.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DSCreditCardReceipt.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Reports\DsMelakaCentralErrorTicketMessage.Designer.cs" />
     <Compile Include="Reports\DsMelakaCentralTicket.Designer.cs" />
+    <Compile Include="Reports\DsSkyWayTicket.Desiner.cs" />
     <Compile Include="Reports\ImagePrintingTools.cs" />
     <Compile Include="Reports\PDFTools.cs" />
     <Compile Include="Reports\QRGen.cs" />
     <Compile Include="Reports\RdlcImageRendering.cs" />
     <Compile Include="Reports\ReportDataQuery.cs" />
     <Compile Include="Reports\ReportPDFFileManager.cs" />
+    <Compile Include="Reports\SkyWayTicketModel.cs" />
     <Compile Include="SqlServerTypes\Loader.cs" />
     <Compile Include="SysLocalParam.cs" />
     <Compile Include="ViewPage\Alert\IMaintenance.cs" />
@@ -417,6 +424,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Resource Include="Resources\CreditCardPayWave01.png" />
+    <Content Include="Resources\genting.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="ViewPage\BoardingPass\BoardingDate\rosBoardingDateEnglish.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -791,10 +801,35 @@
     <Content Include="Reports\TicketSkyWay.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Reports\RPTCreditCardReceipt.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Reports\DSCreditCardReceipt.xsc">
+      <DependentUpon>DSCreditCardReceipt.xsd</DependentUpon>
+    </None>
+    <None Include="Reports\DSCreditCardReceipt.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DSCreditCardReceipt.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Reports\DSCreditCardReceipt.xss">
+      <DependentUpon>DSCreditCardReceipt.xsd</DependentUpon>
+    </None>
+    <None Include="Reports\DsSkyWayTicket.xsc">
+      <DependentUpon>DsSkyWayTicket.xsd</DependentUpon>
+    </None>
+    <None Include="Reports\DsSkyWayTicket.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DsSkyWayTicket.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Reports\DsSkyWayTicket.xss">
+      <DependentUpon>DsSkyWayTicket.xsd</DependentUpon>
     </None>
     <None Include="Reports\DsMelakaCentralErrorTicketMessage.xsc">
       <DependentUpon>DsMelakaCentralErrorTicketMessage.xsd</DependentUpon>

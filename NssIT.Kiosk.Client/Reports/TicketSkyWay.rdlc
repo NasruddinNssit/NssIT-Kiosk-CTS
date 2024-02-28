@@ -11,34 +11,35 @@
           </TablixColumns>
           <TablixRows>
             <TablixRow>
-              <Height>3.84667in</Height>
+              <Height>2.96538in</Height>
               <TablixCells>
                 <TablixCell>
                   <CellContents>
                     <Rectangle Name="Rectangle1">
                       <ReportItems>
                         <Image Name="Image2">
-                          <Source>Embedded</Source>
-                          <Value>QR</Value>
+                          <Source>Database</Source>
+                          <Value>=Fields!QrTicketData.Value</Value>
+                          <MIMEType>image/png</MIMEType>
                           <Sizing>Fit</Sizing>
-                          <Top>5.50462cm</Top>
-                          <Left>1.42065cm</Left>
-                          <Height>1.08195in</Height>
-                          <Width>1.67901in</Width>
+                          <Top>4.25265cm</Top>
+                          <Left>1.9539cm</Left>
+                          <Height>0.70695in</Height>
+                          <Width>1.16734in</Width>
                           <Style>
                             <Border>
                               <Style>None</Style>
                             </Border>
                           </Style>
                         </Image>
-                        <Textbox Name="TimeStr">
+                        <Textbox Name="Textbox4">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!ServiceTaxId.Value</Value>
+                                  <Value>=Fields!address3.Value</Value>
                                   <Style>
                                     <FontSize>8pt</FontSize>
                                   </Style>
@@ -47,47 +48,12 @@
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>TimeStr</rd:DefaultName>
-                          <Top>1.69608in</Top>
-                          <Left>1.27722in</Left>
-                          <Height>0.19735in</Height>
-                          <Width>1.4861in</Width>
-                          <ZIndex>1</ZIndex>
-                          <Style>
-                            <Border>
-                              <Style>None</Style>
-                            </Border>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                            <WritingMode>Horizontal</WritingMode>
-                          </Style>
-                        </Textbox>
-                        <Textbox Name="Textbox4">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value>SERVICE TAX ID :</Value>
-                                  <Style>
-                                    <FontSize>8pt</FontSize>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style>
-                                <TextAlign>Right</TextAlign>
-                              </Style>
-                            </Paragraph>
-                          </Paragraphs>
                           <rd:DefaultName>Textbox4</rd:DefaultName>
-                          <Top>1.69608in</Top>
-                          <Left>0.15291in</Left>
+                          <Top>1.20318in</Top>
+                          <Left>0.13731in</Left>
                           <Height>0.19735in</Height>
-                          <Width>1.05487in</Width>
-                          <ZIndex>2</ZIndex>
+                          <Width>2.61042in</Width>
+                          <ZIndex>1</ZIndex>
                           <Style>
                             <Border>
                               <Style>None</Style>
@@ -118,11 +84,11 @@
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox4</rd:DefaultName>
-                          <Top>1.92121in</Top>
-                          <Left>0.15291in</Left>
+                          <Top>1.42831in</Top>
+                          <Left>0.13731in</Left>
                           <Height>0.19041in</Height>
                           <Width>2.61042in</Width>
-                          <ZIndex>3</ZIndex>
+                          <ZIndex>2</ZIndex>
                           <Style>
                             <Border>
                               <Style>None</Style>
@@ -154,11 +120,11 @@
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox4</rd:DefaultName>
-                          <Top>3.30468in</Top>
-                          <Left>0.15291in</Left>
+                          <Top>2.38122in</Top>
+                          <Left>0.13731in</Left>
                           <Height>0.25708in</Height>
                           <Width>0.50694in</Width>
-                          <ZIndex>4</ZIndex>
+                          <ZIndex>3</ZIndex>
                           <Style>
                             <Border>
                               <Style>None</Style>
@@ -177,7 +143,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!ValidFrom.Value</Value>
+                                  <Value>=Fields!skywaydatefrom.Value</Value>
                                   <Style>
                                     <FontSize>8pt</FontSize>
                                   </Style>
@@ -193,11 +159,12 @@
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox9</rd:DefaultName>
-                          <Top>3.30468in</Top>
-                          <Left>0.66765in</Left>
+                          <Top>2.38122in</Top>
+                          <Left>0.65205in</Left>
                           <Height>0.25708in</Height>
                           <Width>0.69305in</Width>
-                          <ZIndex>5</ZIndex>
+                          <ZIndex>4</ZIndex>
+                          <ToolTip>=Fields!skywaydatefrom.Value</ToolTip>
                           <Style>
                             <Border>
                               <Style>None</Style>
@@ -209,14 +176,14 @@
                             <WritingMode>Horizontal</WritingMode>
                           </Style>
                         </Textbox>
-                        <Textbox Name="ValidTo">
+                        <Textbox Name="skywaydateto">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!ValidTo.Value</Value>
+                                  <Value>=Fields!skywaydateto.Value</Value>
                                   <Style>
                                     <FontSize>8pt</FontSize>
                                   </Style>
@@ -225,13 +192,12 @@
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>ValidTo</rd:DefaultName>
-                          <Top>3.30468in</Top>
-                          <Left>1.36069in</Left>
+                          <Top>2.38122in</Top>
+                          <Left>1.34509in</Left>
                           <Height>0.25708in</Height>
                           <Width>0.5993in</Width>
-                          <ZIndex>6</ZIndex>
-                          <ToolTip>=Fields!ValidTo.Value</ToolTip>
+                          <ZIndex>5</ZIndex>
+                          <ToolTip>=Fields!skywaydateto.Value</ToolTip>
                           <Style>
                             <Border>
                               <Style>None</Style>
@@ -250,7 +216,14 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Price : RM10</Value>
+                                  <Value>Price : </Value>
+                                  <Style>
+                                    <FontSize>8pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                                <TextRun>
+                                  <Value>=Fields!skyggpamnt.Value</Value>
                                   <Style>
                                     <FontSize>8pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
@@ -261,11 +234,11 @@
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox12</rd:DefaultName>
-                          <Top>3.30468in</Top>
-                          <Left>1.97388in</Left>
+                          <Top>2.38122in</Top>
+                          <Left>1.95828in</Left>
                           <Height>0.25708in</Height>
                           <Width>0.78945in</Width>
-                          <ZIndex>7</ZIndex>
+                          <ZIndex>6</ZIndex>
                           <Style>
                             <Border>
                               <Style>None</Style>
@@ -284,7 +257,13 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!Address.Value</Value>
+                                  <Value>=Fields!address1.Value</Value>
+                                  <Style>
+                                    <FontSize>8pt</FontSize>
+                                  </Style>
+                                </TextRun>
+                                <TextRun>
+                                  <Value>=Fields!address2.Value</Value>
                                   <Style>
                                     <FontSize>8pt</FontSize>
                                   </Style>
@@ -294,11 +273,11 @@
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox13</rd:DefaultName>
-                          <Top>1.30012in</Top>
-                          <Left>0.15291in</Left>
-                          <Height>0.32652in</Height>
+                          <Top>0.94263in</Top>
+                          <Left>0.13731in</Left>
+                          <Height>0.1911in</Height>
                           <Width>2.61042in</Width>
-                          <ZIndex>8</ZIndex>
+                          <ZIndex>7</ZIndex>
                           <Style>
                             <Border>
                               <Style>None</Style>
@@ -333,11 +312,11 @@
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox14</rd:DefaultName>
-                          <Top>0.76886in</Top>
-                          <Left>0.65985in</Left>
+                          <Top>0.41137in</Top>
+                          <Left>0.64425in</Left>
                           <Height>0.51736in</Height>
                           <Width>2.10348in</Width>
-                          <ZIndex>9</ZIndex>
+                          <ZIndex>8</ZIndex>
                           <Style>
                             <Border>
                               <Style>None</Style>
@@ -353,11 +332,11 @@
                           <Source>Embedded</Source>
                           <Value>QR</Value>
                           <Sizing>FitProportional</Sizing>
-                          <Top>0.74109in</Top>
-                          <Left>0.15291in</Left>
+                          <Top>0.3836in</Top>
+                          <Left>0.13731in</Left>
                           <Height>0.54514in</Height>
                           <Width>0.50694in</Width>
-                          <ZIndex>10</ZIndex>
+                          <ZIndex>9</ZIndex>
                           <Style>
                             <Border>
                               <Style>None</Style>
@@ -371,7 +350,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!TransactionNo.Value</Value>
+                                  <Value>=Fields!skytickn.Value</Value>
                                   <Style>
                                     <FontSize>8pt</FontSize>
                                   </Style>
@@ -383,11 +362,11 @@
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox15</rd:DefaultName>
-                          <Top>0.53679in</Top>
-                          <Left>0.15291in</Left>
+                          <Top>0.1793in</Top>
+                          <Left>0.13731in</Left>
                           <Height>0.2043in</Height>
                           <Width>2.61042in</Width>
-                          <ZIndex>11</ZIndex>
+                          <ZIndex>10</ZIndex>
                           <Style>
                             <Border>
                               <Style>None</Style>
@@ -418,11 +397,10 @@
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox16</rd:DefaultName>
-                          <Top>0.17694in</Top>
-                          <Left>0.15291in</Left>
-                          <Height>0.3043in</Height>
+                          <Left>0.14511in</Left>
+                          <Height>0.1793in</Height>
                           <Width>2.61042in</Width>
-                          <ZIndex>12</ZIndex>
+                          <ZIndex>11</ZIndex>
                           <Style>
                             <Border>
                               <Style>None</Style>
@@ -441,7 +419,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>[1U] 06/02/2024 13:05</Value>
+                                  <Value>=Fields!creationdatetime.Value</Value>
                                   <Style>
                                     <FontSize>8pt</FontSize>
                                   </Style>
@@ -453,11 +431,11 @@
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox1</rd:DefaultName>
-                          <Top>3.655in</Top>
-                          <Left>0.15291in</Left>
+                          <Top>2.6383in</Top>
+                          <Left>0.13731in</Left>
                           <Height>0.19167in</Height>
                           <Width>2.61042in</Width>
-                          <ZIndex>13</ZIndex>
+                          <ZIndex>12</ZIndex>
                           <Style>
                             <Border>
                               <Style>None</Style>
@@ -498,7 +476,7 @@
         <PageBreak>
           <BreakLocation>End</BreakLocation>
         </PageBreak>
-        <Height>3.84667in</Height>
+        <Height>2.96538in</Height>
         <Width>2.76333in</Width>
         <Style>
           <Border>
@@ -507,7 +485,7 @@
         </Style>
       </Tablix>
     </ReportItems>
-    <Height>3.84667in</Height>
+    <Height>2.96538in</Height>
     <Style />
   </Body>
   <Width>2.76333in</Width>
@@ -535,33 +513,53 @@
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
-        <Field Name="TransactionNo">
-          <DataField>TransactionNo</DataField>
+        <Field Name="tickettype">
+          <DataField>tickettype</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="CompanyRegNo">
-          <DataField>RegNo</DataField>
+        <Field Name="skytickn">
+          <DataField>skytickn</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="Address">
-          <DataField>Address</DataField>
+        <Field Name="skyggpamnt">
+          <DataField>skyggpamnt</DataField>
+          <rd:TypeName>System.decimal</rd:TypeName>
+        </Field>
+        <Field Name="address1">
+          <DataField>address1</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="ServiceTaxId">
-          <DataField>ServiceTaxId</DataField>
+        <Field Name="address2">
+          <DataField>address2</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="ValidFrom">
-          <DataField>ValidFrom</DataField>
+        <Field Name="address3">
+          <DataField>address3</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="ValidTo">
-          <DataField>ValidTo</DataField>
+        <Field Name="barvalueskyway">
+          <DataField>barvalueskyway</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="TicketPrice">
-          <DataField>ValidTo</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
+        <Field Name="skywaydatefrom">
+          <DataField>skywaydatefrom</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="skywaydateto">
+          <DataField>skywaydateto</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="linccout">
+          <DataField>linccout</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="creationdatetime">
+          <DataField>creationdatetime</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QrTicketData">
+          <DataField>QrTicketData</DataField>
+          <rd:TypeName>System.Byte[]</rd:TypeName>
         </Field>
       </Fields>
       <rd:DataSetInfo>

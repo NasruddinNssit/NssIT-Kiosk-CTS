@@ -135,7 +135,7 @@ namespace NssIT.Kiosk.AppDecorator.Common.AppService.Sales
         public string ReturnSeatConfirmTransNo { get; set; }
         public string ReturnSeatConfirmMessage { get; set; }
 
-        public bool IsOnSkyWaySell { get; set; }
+        public bool IsIncludeSkyWayTicket { get; set; }
 
         //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
         ///// Collection Boarding Pass    

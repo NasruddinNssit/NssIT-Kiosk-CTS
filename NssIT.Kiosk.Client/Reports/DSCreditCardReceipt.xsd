@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DSCreditCardReceipt" targetNamespace="http://tempuri.org/DSCreditCardReceipt.xsd" xmlns:mstns="http://tempuri.org/DSCreditCardReceipt.xsd" xmlns="http://tempuri.org/DSCreditCardReceipt.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DSCreditCardReceipt" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DSCreditCardReceipt" msprop:Generator_UserDSName="DSCreditCardReceipt">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="DSCreditCardReceipt" msprop:Generator_TableClassName="DSCreditCardReceiptDataTable" msprop:Generator_TableVarName="tableDSCreditCardReceipt" msprop:Generator_RowChangedName="DSCreditCardReceiptRowChanged" msprop:Generator_TablePropName="_DSCreditCardReceipt" msprop:Generator_RowDeletingName="DSCreditCardReceiptRowDeleting" msprop:Generator_RowChangingName="DSCreditCardReceiptRowChanging" msprop:Generator_RowEvHandlerName="DSCreditCardReceiptRowChangeEventHandler" msprop:Generator_RowDeletedName="DSCreditCardReceiptRowDeleted" msprop:Generator_RowClassName="DSCreditCardReceiptRow" msprop:Generator_UserTableName="DSCreditCardReceipt" msprop:Generator_RowEvArgName="DSCreditCardReceiptRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="TransactionType" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInRow="TransactionType" msprop:Generator_ColumnVarNameInTable="columnTransactionType" msprop:Generator_ColumnPropNameInTable="TransactionTypeColumn" msprop:Generator_UserColumnName="TransactionType" type="xs:string" minOccurs="0" />
+              <xs:element name="CardNo" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInRow="CardNo" msprop:Generator_ColumnVarNameInTable="columnCardNo" msprop:Generator_ColumnPropNameInTable="CardNoColumn" msprop:Generator_UserColumnName="CardNo" type="xs:string" minOccurs="0" />
+              <xs:element name="ExpDate" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInRow="ExpDate" msprop:Generator_ColumnVarNameInTable="columnExpDate" msprop:Generator_ColumnPropNameInTable="ExpDateColumn" msprop:Generator_UserColumnName="ExpDate" type="xs:string" minOccurs="0" />
+              <xs:element name="Status" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInRow="Status" msprop:Generator_ColumnVarNameInTable="columnStatus" msprop:Generator_ColumnPropNameInTable="StatusColumn" msprop:Generator_UserColumnName="Status" type="xs:string" minOccurs="0" />
+              <xs:element name="Approval" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInRow="Approval" msprop:Generator_ColumnVarNameInTable="columnApproval" msprop:Generator_ColumnPropNameInTable="ApprovalColumn" msprop:Generator_UserColumnName="Approval" type="xs:string" minOccurs="0" />
+              <xs:element name="RRN" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInRow="RRN" msprop:Generator_ColumnVarNameInTable="columnRRN" msprop:Generator_ColumnPropNameInTable="RRNColumn" msprop:Generator_UserColumnName="RRN" type="xs:string" minOccurs="0" />
+              <xs:element name="TransactionTrace" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInRow="TransactionTrace" msprop:Generator_ColumnVarNameInTable="columnTransactionTrace" msprop:Generator_ColumnPropNameInTable="TransactionTraceColumn" msprop:Generator_UserColumnName="TransactionTrace" type="xs:string" minOccurs="0" />
+              <xs:element name="BatchNo" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInRow="BatchNo" msprop:Generator_ColumnVarNameInTable="columnBatchNo" msprop:Generator_ColumnPropNameInTable="BatchNoColumn" msprop:Generator_UserColumnName="BatchNo" type="xs:string" minOccurs="0" />
+              <xs:element name="HostNo" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInRow="HostNo" msprop:Generator_ColumnVarNameInTable="columnHostNo" msprop:Generator_ColumnPropNameInTable="HostNoColumn" msprop:Generator_UserColumnName="HostNo" type="xs:string" minOccurs="0" />
+              <xs:element name="Terminal_Id" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInRow="Terminal_Id" msprop:Generator_ColumnVarNameInTable="columnTerminal_Id" msprop:Generator_ColumnPropNameInTable="Terminal_IdColumn" msprop:Generator_UserColumnName="Terminal_Id" type="xs:string" minOccurs="0" />
+              <xs:element name="Merchant_Id" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInRow="Merchant_Id" msprop:Generator_ColumnVarNameInTable="columnMerchant_Id" msprop:Generator_ColumnPropNameInTable="Merchant_IdColumn" msprop:Generator_UserColumnName="Merchant_Id" type="xs:string" minOccurs="0" />
+              <xs:element name="AID" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInRow="AID" msprop:Generator_ColumnVarNameInTable="columnAID" msprop:Generator_ColumnPropNameInTable="AIDColumn" msprop:Generator_UserColumnName="AID" type="xs:string" minOccurs="0" />
+              <xs:element name="TC" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInRow="TC" msprop:Generator_ColumnVarNameInTable="columnTC" msprop:Generator_ColumnPropNameInTable="TCColumn" msprop:Generator_UserColumnName="TC" type="xs:string" minOccurs="0" />
+              <xs:element name="CardHolder_Name" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInRow="CardHolder_Name" msprop:Generator_ColumnVarNameInTable="columnCardHolder_Name" msprop:Generator_ColumnPropNameInTable="CardHolder_NameColumn" msprop:Generator_UserColumnName="CardHolder_Name" type="xs:string" minOccurs="0" />
+              <xs:element name="CardType" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInRow="CardType" msprop:Generator_ColumnVarNameInTable="columnCardType" msprop:Generator_ColumnPropNameInTable="CardTypeColumn" msprop:Generator_UserColumnName="CardType" type="xs:string" minOccurs="0" />
+              <xs:element name="TransactionDate" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInRow="TransactionDate" msprop:Generator_ColumnVarNameInTable="columnTransactionDate" msprop:Generator_ColumnPropNameInTable="TransactionDateColumn" msprop:Generator_UserColumnName="TransactionDate" type="xs:string" minOccurs="0" />
+              <xs:element name="AmountString" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInRow="AmountString" msprop:Generator_ColumnVarNameInTable="columnAmountString" msprop:Generator_ColumnPropNameInTable="AmountStringColumn" msprop:Generator_UserColumnName="AmountString" type="xs:string" minOccurs="0" />
+              <xs:element name="RefNumber" msprop:Generator_ColumnVarNameInTable="columnRefNumber" msprop:Generator_ColumnPropNameInRow="RefNumber" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInTable="RefNumberColumn" msprop:Generator_UserColumnName="RefNumber" type="xs:string" minOccurs="0" />
+              <xs:element name="MachineId" msprop:Generator_ColumnVarNameInTable="columnMachineId" msprop:Generator_ColumnPropNameInRow="MachineId" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInTable="MachineIdColumn" msprop:Generator_UserColumnName="MachineId" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

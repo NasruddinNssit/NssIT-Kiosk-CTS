@@ -134,7 +134,7 @@ namespace NssIT.Kiosk.Client
                             _commonSalesTMan = new RunThreadMan(new Action(() => {
                                 App.MainScreenControl.ChooseDestinationStation(uiDest, uiDest.Session);
                             }), "AppSalesSvcEventsHandler.SalesService_OnDataReceived##UIDestinationListAck##", 30, _logChannel);
-                        }
+                        }   
                         else
                         {
                             App.ShowDebugMsg($@"Unabled to read Destination station list; (EXIT500023); WebCode: {destList.code}; ErrMsg: {destList.msg}");

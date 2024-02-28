@@ -338,14 +338,14 @@ namespace NssIT.Kiosk.Server.ServerApp.CustomApp
                     userSession.DepartTotalAmount = (userSession.DepartAdultPrice + userSession.DepartTerminalCharge + userSession.DepartOnlineQrCharge)
                         * userSession.PassengerSeatDetailList.Length;
 
-                    userSession.DepartTotalAmount = 1M;
+                    
                 }
                 else
                 {
                     userSession.DepartTotalAmount = (userSession.DepartAdultPrice + userSession.DepartInsurance + userSession.DepartTerminalCharge + userSession.DepartOnlineQrCharge)
                         * userSession.PassengerSeatDetailList.Length;
 
-                    userSession.DepartTotalAmount = 1M;
+                   
                 }
             }
             else if(svcMsg is UISkyWaySubmission uISkyWaySubm)
@@ -353,12 +353,14 @@ namespace NssIT.Kiosk.Server.ServerApp.CustomApp
 
                 if(uISkyWaySubm.IsIncludeSkyWay == false)
                 {
+                    userSession.IsIncludeSkyWayTicket = false;
                     userSession.DepartSkyWayAmount = 0M;
                     userSession.DepartTotalAmount = (userSession.DepartAdultPrice + userSession.DepartTerminalCharge + userSession.DepartOnlineQrCharge)
                          * userSession.PassengerSeatDetailList.Length;
                 }
                 else
                 {
+                    userSession.IsIncludeSkyWayTicket = true;
                     userSession.DepartTotalAmount = (userSession.DepartAdultPrice + userSession.DepartSkyWayAmount + userSession.DepartTerminalCharge + userSession.DepartOnlineQrCharge)
                         * userSession.PassengerSeatDetailList.Length;
                 }

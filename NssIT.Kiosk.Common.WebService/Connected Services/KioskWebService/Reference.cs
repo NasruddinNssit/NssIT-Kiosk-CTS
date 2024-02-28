@@ -513,6 +513,29 @@ namespace NssIT.Kiosk.Common.WebService.KioskWebService {
         private string messagetocustomerField;
         
         private string salesinfoField;
+
+        private string tickettypeField;
+
+        private string skyticknField;
+
+        private decimal skyggpamntField;
+
+        private string address1Field;
+
+        private string address2Field;
+
+        private string address3Field;
+
+        private string barvalueskywayField;
+
+        private string skywaydatefromField;
+
+        private string skywaydatetoField;
+
+        private string linccoutField;
+
+        private string creationdatetimeField;
+
         
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
@@ -753,7 +776,160 @@ namespace NssIT.Kiosk.Common.WebService.KioskWebService {
                 this.RaisePropertyChanged("salesinfo");
             }
         }
-        
+
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string tickettype
+        {
+            get
+            {
+                return this.tickettypeField;
+            }
+            set
+            {
+                this.tickettypeField = value;
+                this.RaisePropertyChanged("tickettype");
+            }
+        }
+
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string skytickn
+        {
+            get
+            {
+                return this.skyticknField;
+            }
+            set
+            {
+                this.skyticknField = value;
+                this.RaisePropertyChanged("skytickn");
+            }
+        }
+
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public decimal skyggpamnt
+        {
+            get
+            {
+                return this.skyggpamntField;
+            }
+            set
+            {
+                this.skyggpamntField = value;
+                this.RaisePropertyChanged("skyggpamnt");
+            }
+        }
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string address1
+        {
+            get
+            {
+                return this.address1Field;
+            }
+            set
+            {
+                this.address1Field = value;
+                this.RaisePropertyChanged("address1");
+            }
+        }
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string address2
+        {
+            get
+            {
+                return this.address2Field;
+            }
+            set
+            {
+                this.address2Field = value;
+                this.RaisePropertyChanged("address2");
+            }
+        }
+
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string address3
+        {
+            get
+            {
+                return this.address3Field;
+            }
+            set
+            {
+                this.address3Field = value;
+                this.RaisePropertyChanged("address3");
+            }
+        }
+
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string barvalueskyway
+        {
+            get
+            {
+                return this.barvalueskywayField;
+            }
+            set
+            {
+                this.barvalueskywayField = value;
+                this.RaisePropertyChanged("barvalueskyway");
+            }
+        }
+
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string skywaydatefrom
+        {
+            get
+            {
+                return this.skywaydatefromField;
+            }
+            set
+            {
+                this.skywaydatefromField = value;
+                this.RaisePropertyChanged("skywaydatefrom");
+            }
+        }
+
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string skywaydateto
+        {
+            get
+            {
+                return this.skywaydatetoField;
+            }
+            set
+            {
+                this.skywaydatetoField = value;
+                this.RaisePropertyChanged("skywaydateto");
+            }
+        }
+
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string linccout
+        {
+            get
+            {
+                return this.linccoutField;
+            }
+            set
+            {
+                this.linccoutField = value;
+                this.RaisePropertyChanged("linccout");
+            }
+        }
+
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string creationdatetime
+        {
+            get
+            {
+                return this.creationdatetimeField;
+            }
+            set
+            {
+                this.creationdatetimeField = value;
+                this.RaisePropertyChanged("creationdatetime");
+            }
+        }
+
+
         public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
         
         protected void RaisePropertyChanged(string propertyName) {

@@ -208,7 +208,13 @@ namespace NssIT.Kiosk.Client.ViewPage.Payment
                     return "TicketMelakaSentralErrorMessage";
             }
         }
-
+        private static string CreditCardReceiptReportSourceName
+        {
+            get
+            {
+                return "RPTCreditCardReceipt";
+            }
+        }
         private void _printTicketPage_OnDoneClick(object sender, EventArgs e)
         {
             try
@@ -860,6 +866,8 @@ namespace NssIT.Kiosk.Client.ViewPage.Payment
             _printingThreadWorker.IsBackground = true;
             _printingThreadWorker.Start();
 
+           
+
             void PrintThreadWorking()
             {
                 try
@@ -886,7 +894,46 @@ namespace NssIT.Kiosk.Client.ViewPage.Payment
                         System.Windows.Forms.Application.DoEvents();
                         App.ShowDebugMsg("Printing Ticket ..; pgPayment.UpdateTransCompleteStatus");
 
-                        PrintTicket(uiCompltResult);
+
+                        transcomplete_status transcomplete_Status_length = (transcomplete_status)uiCompltResult.MessageData;
+                        var len = transcomplete_Status_length.details.Length;
+                        List<SkyWayTicketModel> skyWayTicketModels = new List<SkyWayTicketModel>();
+
+                        if (!uiCompltResult.Session.IsIncludeSkyWayTicket)
+                        {
+                            foreach (var model in transcomplete_Status_length.details)
+                            {
+                                byte[] QrCode = null;
+
+                                if (string.IsNullOrWhiteSpace(model.barvalueskyway) == false)
+                                   QrCode  = QRGen.GetQRCodeData(model.barvalueskyway);
+                                else
+                                    QrCode = null;
+
+                                SkyWayTicketModel sky = new SkyWayTicketModel
+                                {
+
+                                    tickettype = model.tickettype,
+                                    skytickn = model.skytickn,
+
+                                    skyggpamnt = model.skyggpamnt,
+                                    address1 = model.address1,
+                                    address2 = model.address2,
+                                    address3 = model.address3,
+                                    barvalueskyway = model.barvalueskyway,
+                                    skywaydatefrom = model.skywaydatefrom,
+                                    skywaydateto = model.skywaydateto,
+                                    linccout = model.linccout,
+                                    creationdatetime = model.creationdatetime,
+                                    QrTicketData = QrCode
+                                };
+
+                                skyWayTicketModels.Add(sky);
+                            }
+                            
+                        }
+
+                        PrintTicket(uiCompltResult, skyWayTicketModels.ToArray());
 
                         if (_isPauseOnPrinting == false)
                             App.MainScreenControl.ShowWelcome();
@@ -982,14 +1029,14 @@ namespace NssIT.Kiosk.Client.ViewPage.Payment
             _skyWayTicketHardCodes.Clear();
         }
 
-        private void PrintTicket(UICompleteTransactionResult uiCompltResult)
+        private void PrintTicket(UICompleteTransactionResult uiCompltResult, SkyWayTicketModel[] skyWayTicketModels)
         {
             UserSession session = uiCompltResult.Session;
             string transactionNo = "-";
 
             //Reports.RdlcRendering rpRen = null;
 
-           
+            DSCreditCardReceipt.DSCreditCardReceiptDataTable dtPayWave = null;
             try
             {
                 transactionNo = session.DepartSeatConfirmTransNo;
@@ -1022,30 +1069,76 @@ namespace NssIT.Kiosk.Client.ViewPage.Payment
                     /////XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXxxXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
                     ///// Phase 2 Print Solution
                     /////XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+                    ///
+                  
+
+                    if(_lastCreditCardAnswer != null)
+                    {
+                        var creditCardAnswer = _lastCreditCardAnswer;
+                        dtPayWave = new DSCreditCardReceipt.DSCreditCardReceiptDataTable();
+                        DSCreditCardReceipt.DSCreditCardReceiptRow rw = dtPayWave.NewDSCreditCardReceiptRow();
+                        rw.AID = creditCardAnswer.aid;
+                        rw.Approval = creditCardAnswer.apvc;
+                        rw.BatchNo = creditCardAnswer.bcno;
+                        rw.CardHolder_Name = creditCardAnswer.cdnm;
+
+                        var cdno = (creditCardAnswer.cdno ?? "#").Trim();
+                        rw.CardNo = cdno.Length >= 4 ? $@"**** **** **** {cdno.Substring((cdno.Length - 4))}" : creditCardAnswer.cdno;
+
+                        rw.CardType = creditCardAnswer.cdty;
+                        rw.ExpDate = "";
+                        rw.HostNo = creditCardAnswer.hsno;
+                        rw.Merchant_Id = creditCardAnswer.mid;
+                        rw.RRN = creditCardAnswer.rrn;
+                        rw.Status = creditCardAnswer.stcd;
+                        rw.TC = creditCardAnswer.trcy;
+                        rw.Terminal_Id = creditCardAnswer.tid;
+                        rw.TransactionType = "SALE";
+                        rw.TransactionDate = creditCardAnswer.trdt.ToString("dd MMM yyyy hh:mm:ss tt");
+                        rw.TransactionTrace = creditCardAnswer.ttce;
+                        rw.AmountString = "MYR" + _totalAmount;
+                        rw.MachineId = "";
+                        rw.RefNumber = _transactionNo;
+                        dtPayWave.Rows.Add(rw);
+                        dtPayWave.AcceptChanges();
+                    }
+                    _lastCreditCardAnswer = null;
+
+                    ReportImageSize receiptSize = new ReportImageSize(3.2M, 8.2M, 0, 0, 0, 0, ReportImageSizeUnitMeasurement.Inch);
+                    Stream[] streamReceiptList = null;
+
+
+                    if (dtPayWave != null)
+                    {
+                        LocalReport receiptRep = RdlcImageRendering.CreateLocalReport($@"{App.ExecutionFolderPath}\Reports\{CreditCardReceiptReportSourceName}.rdlc",
+                        new ReportDataSource[] { new ReportDataSource("DataSet1", (DataTable)dtPayWave) });
+                        streamReceiptList = RdlcImageRendering.Export(receiptRep, receiptSize);
+                    }
+
                     LocalReport ticketRep = RdlcImageRendering.CreateLocalReport($@"{App.ExecutionFolderPath}\Reports\{TicketReportSourceName}.rdlc",
                         new ReportDataSource[] { new ReportDataSource("DataSet1", ds.Tables[0]) });
                     ReportImageSize ticketSize = new ReportImageSize(8.0M, 3.0M, 0, 0, 0, 0, ReportImageSizeUnitMeasurement.Inch);
                     Stream[] streamticketList = RdlcImageRendering.Export(ticketRep, ticketSize);
 
 
-                    ReportImageSize skyWayTicketSize = new ReportImageSize(3.2M, 8.2M, 0, 0, 0, 0, ReportImageSizeUnitMeasurement.Inch);
+                    ReportImageSize skyWayTicketSize = new ReportImageSize(3.2M, 5.2M, 0, 0, 0, 0, ReportImageSizeUnitMeasurement.Inch);
 
                     Stream[] streamSkywayTicketList = null;
-                    if (_skyWayTicketHardCodes.Count > 0)
+                    if (skyWayTicketModels.Length > 0)
                     {
-                        var hardCodes = _skyWayTicketHardCodes.ToArray();
-
                         LocalReport skyWayRep = RdlcImageRendering.CreateLocalReport($@"{App.ExecutionFolderPath}\Reports\{TicketSkyWayTicketSourceName}.rdlc",
-                        new ReportDataSource[] { new ReportDataSource("DataSet1", new List<SkyWayTicketHardCode>(hardCodes)) });
-                        streamSkywayTicketList = RdlcImageRendering.Export(skyWayRep, ticketSize);
+                        new ReportDataSource[] { new ReportDataSource("DataSet1", new List<SkyWayTicketModel>(skyWayTicketModels)) });
+                        streamSkywayTicketList = RdlcImageRendering.Export(skyWayRep, skyWayTicketSize);
 
                     }
 
                     ImagePrintingTools.InitService();
                     ImagePrintingTools.AddPrintDocument(streamticketList, transactionNo, ticketSize);
 
-                    if(_skyWayTicketHardCodes.Count > 0)
-                        ImagePrintingTools.AddPrintDocument(streamSkywayTicketList, transactionNo, ticketSize);
+                    if(skyWayTicketModels.Length > 0)
+                        ImagePrintingTools.AddPrintDocument(streamSkywayTicketList, transactionNo, skyWayTicketSize);
+                    if(streamReceiptList != null)
+                        ImagePrintingTools.AddPrintDocument(streamReceiptList, "test", receiptSize);
 
 
                     App.Log.LogText(_logChannel, transactionNo, "Start to print ticket", "A02", classNMethodName: "pgPayment.PrintTicket",
