@@ -64,7 +64,7 @@ namespace NssIT.Kiosk.Client.ViewPage.Intro
 				//	_hasBegun = true;
 
 				App.ResetMaxTicketAdvanceDate();
-				App.MainScreenControl.TestPrint();
+				
 				Submit(e.TransactionType);
 
 			    
