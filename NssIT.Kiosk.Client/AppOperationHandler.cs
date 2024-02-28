@@ -259,8 +259,8 @@ namespace NssIT.Kiosk.Client
                     {
                         if((_endOperationTime.HasValue) && (_endOperationTime.Value.Subtract(DateTime.Now).TotalHours > 1))
                         {
-                            //Thread.Sleep(10 * 60 * 1000);
-                            Thread.Sleep(3 * 1000);
+                            Thread.Sleep(10 * 60 * 1000);
+                            //Thread.Sleep(3 * 1000);
                         }
                         else
                         {
@@ -271,8 +271,8 @@ namespace NssIT.Kiosk.Client
                     {
                         if((_startOperationTime.HasValue) && (_startOperationTime.Value.Subtract(DateTime.Now).TotalHours > 1))
                         {
-                            //Thread.Sleep(10 * 60 * 1000);
-                            Thread.Sleep(3 * 1000);
+                            Thread.Sleep(10 * 60 * 1000);
+                            //Thread.Sleep(3 * 1000);
                         }
                         else
                         {

@@ -7,9 +7,9 @@ MyKadScanner=Yes
 CardSettlementTime=17:00
 NoCardSettlement=Yes
 //NoPaymentNeed=Yes
-IsNoOperationTime = Yes
+IsNoOperationTime = No
 StartOperationTime = 05:00
-EndOperationTime = 14:39
+EndOperationTime = 09:07
 
 
 
