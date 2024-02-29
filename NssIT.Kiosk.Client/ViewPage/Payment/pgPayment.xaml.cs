@@ -899,7 +899,7 @@ namespace NssIT.Kiosk.Client.ViewPage.Payment
                         var len = transcomplete_Status_length.details.Length;
                         List<SkyWayTicketModel> skyWayTicketModels = new List<SkyWayTicketModel>();
 
-                        if (!uiCompltResult.Session.IsIncludeSkyWayTicket)
+                        if (uiCompltResult.Session.IsIncludeSkyWayTicket)
                         {
                             foreach (var model in transcomplete_Status_length.details)
                             {

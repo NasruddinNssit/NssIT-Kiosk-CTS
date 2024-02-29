@@ -812,6 +812,7 @@ namespace NssIT.Kiosk.Server.ServerApp
                         session.DepartPickTime,
                         session.DepartDrop,
                         session.DepartDropDesn,
+                        session.DepartSkyWayAmount,
                         session.PassengerSeatDetailList);
 
                     Log.LogText(LogChannel, procId, $@"Start - GetDepartSeatList; Net Process Id:{netProcId}", $@"A02", classNMethodName: "ServerSalesApplication.GetDepartSeatList");

@@ -14,7 +14,9 @@ namespace NssIT.Kiosk.Client.ViewPage.Info
         DepartTripInfo = 15,
         DepartSeatInfo = 20,
         DepartPickupNDrop = 25,
-        PassengerInfo = 30
+        PassengerInfo = 30,
+        SkyWaySelectInfo =40,
+        InsuranceSelectInfo = 50
 
     }
 }

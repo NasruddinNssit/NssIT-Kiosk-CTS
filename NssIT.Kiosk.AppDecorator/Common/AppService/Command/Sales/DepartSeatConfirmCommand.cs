@@ -29,6 +29,8 @@ namespace NssIT.Kiosk.AppDecorator.Common.AppService.Command.Sales
 		public decimal TerminalCharge { get; private set; }
 		public decimal OnlineQRCharge { get; private set; }
 		public decimal Insurance { get; private set; }
+
+		public decimal SkyWayPrice { get; private set; }
 		public int TripCode { get; private set; }
 		public decimal TotalAmount { get; private set; }
 		public string PickLocationCode { get; private set; }
@@ -59,6 +61,7 @@ namespace NssIT.Kiosk.AppDecorator.Common.AppService.Command.Sales
 					string pickTime,
 					string dropLocationCode,
 					string dropLocationDesn,
+					decimal skywayprice,
 					CustSeatDetail[] passengerSeatDetail)
 		{
 			ProcessId = processId;
@@ -84,6 +87,7 @@ namespace NssIT.Kiosk.AppDecorator.Common.AppService.Command.Sales
 			DropLocationCode = dropLocationCode;
 			DropLocationDesn = dropLocationDesn;
 			PassengerSeatDetail = passengerSeatDetail;
+			SkyWayPrice = skywayprice;
 		}
 
 		public void Dispose()

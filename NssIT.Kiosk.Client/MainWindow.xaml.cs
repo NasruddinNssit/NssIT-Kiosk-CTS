@@ -765,14 +765,15 @@ namespace NssIT.Kiosk.Client
 				this.Dispatcher.Invoke(new Action(() =>
 				{
 
-                    UserInfo.ShowInfo("Your Selected Ticket");
+                    UserInfo.ShowInfo(InfoCode.SkyWaySelectInfo, uISkyWayAck.Session.Language);
+
                     DisplayInfo(_infoHeightNormal);
                     DisplayMenu(_menuWidthNormal, uISkyWayAck.Session, TickSalesMenuItemCode.DepartSeat);
 
                     frmWorkDetail.Content = null;
                     frmWorkDetail.NavigationService.RemoveBackEntry();
                     ExecMenu.UnShieldMenu();
-                   
+					_pgSkyWay.InitSkyWayData(uISkyWayAck.Session);
                     frmWorkDetail.NavigationService.Navigate(_pgSkyWay);
                     // ---------------------------------------------------
 
@@ -794,9 +795,9 @@ namespace NssIT.Kiosk.Client
 
 				this.Dispatcher.Invoke(new Action(() =>
 				{
-					UserInfo.ShowInfo("Your Selected Ticket");
+                    UserInfo.ShowInfo(InfoCode.InsuranceSelectInfo, uiInsurnace.Session.Language);
 
-					DisplayInfo(_infoHeightNormal);
+                    DisplayInfo(_infoHeightNormal);
 					DisplayMenu(_menuWidthNormal, uiInsurnace.Session, TickSalesMenuItemCode.DepartSeat);
 
 					frmWorkDetail.Content = null;

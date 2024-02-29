@@ -89,7 +89,7 @@
                 <!-- R8, Insuranse Sentence -->
               
                 <!-- R9, Decision Button -->
-                <Grid Grid.Column="1" Grid.Row="10" Grid.ColumnSpan="5">
+                <Grid Grid.Column="1" Grid.Row="10" Grid.ColumnSpan="5" Margin="0,-30,0,0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>

@@ -13,5 +13,6 @@
     <sys:String x:Key="DEPART_SEAT_INFO_Label">Sila pilih tempat duduk anda</sys:String>
     <sys:String x:Key="DEPART_PICKUP_DROPOFF_INFO_Label">Sila pilih kedua-dua lokasi pengambilan dan penurunan yang dikehendaki anda</sys:String>
     <sys:String x:Key="PASSENGER_INFO_Label">Sila isikan maklumat peribadi berikut</sys:String>
-    
+    <sys:String x:Key="INSURANCE_INFO_Label">Adakah anda mahu sertakan insurans ?</sys:String>
+    <sys:String x:Key="SKYWAY_INFO_Label">Adakah anda mahu sertakan kereta kabel ?</sys:String>
 </ResourceDictionary>

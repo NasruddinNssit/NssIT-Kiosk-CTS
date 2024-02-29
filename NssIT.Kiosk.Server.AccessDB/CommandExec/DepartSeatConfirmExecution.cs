@@ -58,7 +58,7 @@ namespace NssIT.Kiosk.Server.AccessDB.CommandExec
                         _command.TripCode, _command.PickLocationCode, 
                         _command.PickLocationDesn, _command.PickTime, 
                         _command.DropLocationCode, _command.DropLocationDesn, 
-                        _command.TotalAmount, _command.PassengerSeatDetail 
+                        _command.TotalAmount, _command.SkyWayPrice,_command.PassengerSeatDetail 
                         , out isNetworkTimeout, 50);
                 else
                     confirmResult = new seatconfirm_status() { code = ServerAccess.NetworkTimeout, msg = "Network Timeout (II)" };
@@ -79,7 +79,7 @@ namespace NssIT.Kiosk.Server.AccessDB.CommandExec
                             _command.TripCode, _command.PickLocationCode,
                             _command.PickLocationDesn, _command.PickTime,
                             _command.DropLocationCode, _command.DropLocationDesn,
-                            _command.TotalAmount, _command.PassengerSeatDetail
+                            _command.TotalAmount,_command.SkyWayPrice, _command.PassengerSeatDetail
                             , out isNetworkTimeout, 50);
                     }
                     else
@@ -179,6 +179,7 @@ namespace NssIT.Kiosk.Server.AccessDB.CommandExec
                 string dropLocationCode,
                 string dropLocationDesn,
                 decimal totalAmount,
+                decimal skywayprice,
                 CustSeatDetail[] custSeatDetailArr,
             out bool isNetworkTimeout, int waitSec = 60, int maxRetryTimes = 3)
         {
@@ -252,7 +253,7 @@ namespace NssIT.Kiosk.Server.AccessDB.CommandExec
 
                         seatconfirm_status confirmState = _serverAccess.Soap.SeatConfirm(kioskId, token, tripId ?? "", tripDate ?? "", departDate ?? "",
                             departTime ?? "", busType ?? "", fromStationCode ?? "", toStationCode ?? "", adultPrice, adultExtra ?? "", adultDisc, 
-                            terminalCharge, onlineQrCharge, insurance, tripCode, pickLocationCode ?? "", pickLocationDesn ?? "",
+                            terminalCharge, onlineQrCharge, insurance, skywayprice,tripCode, pickLocationCode ?? "", pickLocationDesn ?? "",
                             pickTime ?? "", dropLocationCode ?? "", dropLocationDesn ?? "", totalAmount, seatDetailArr);
 
                         if (sysSetting.IsDebugMode)

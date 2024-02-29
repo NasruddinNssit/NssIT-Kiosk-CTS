@@ -46,6 +46,11 @@ namespace NssIT.Kiosk.Client.ViewPage.Skyway
 			_langEng = CommonFunc.GetXamlResource(@"ViewPage\Skyway\rosInsuranceEnglish.xaml");
 		}
 
+
+		public void InitSkyWayData(UserSession session)
+		{
+			_language = session.Language;
+		}
 		private void Page_Loaded(object sender, RoutedEventArgs e)
 		{
 			ResourceDictionary currLanguage = _langEng;

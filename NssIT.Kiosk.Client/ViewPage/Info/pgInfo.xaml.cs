@@ -91,6 +91,22 @@ namespace NssIT.Kiosk.Client.ViewPage.Info
                     TxtInfo.Text = "Please pick seat(s)";
             }
 
+            else if(info == InfoCode.SkyWaySelectInfo)
+            {
+                if (language == LanguageCode.Malay)
+                    TxtInfo.Text = _langMal["SKYWAY_INFO_Label"]?.ToString();
+                else
+                    TxtInfo.Text = _langEng["SKYWAY_INFO_Label"]?.ToString();
+            }
+
+            else if(info == InfoCode.InsuranceSelectInfo)
+            {
+                if (language == LanguageCode.Malay)
+                    TxtInfo.Text = _langMal["INSURANCE_INFO_Label"]?.ToString();
+                else
+                    TxtInfo.Text = _langEng["INSURANCE_INFO_Label"]?.ToString();
+            }
+
             else if (info == InfoCode.DepartPickupNDrop)
             {
                 if (language == LanguageCode.Malay)

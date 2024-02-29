@@ -8,6 +8,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System;
+
 namespace NssIT.Kiosk.Common.WebService.KioskWebService {
     
     
@@ -3414,29 +3416,32 @@ namespace NssIT.Kiosk.Common.WebService.KioskWebService {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="https://ctskiosk.com/", Order=14)]
         public decimal insurance;
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="https://ctskiosk.com/", Order=15)]
+
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "https://ctskiosk.com/", Order = 15)]
+        public decimal skywayprice;
+
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="https://ctskiosk.com/", Order=16)]
         public int tripcode;
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="https://ctskiosk.com/", Order=16)]
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="https://ctskiosk.com/", Order=17)]
         public string pick;
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="https://ctskiosk.com/", Order=17)]
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="https://ctskiosk.com/", Order=18)]
         public string pick_desn;
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="https://ctskiosk.com/", Order=18)]
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="https://ctskiosk.com/", Order=19)]
         public string pick_time;
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="https://ctskiosk.com/", Order=19)]
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="https://ctskiosk.com/", Order=20)]
         public string drop;
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="https://ctskiosk.com/", Order=20)]
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="https://ctskiosk.com/", Order=21)]
         public string drop_desn;
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="https://ctskiosk.com/", Order=21)]
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="https://ctskiosk.com/", Order=22)]
         public decimal totalamount;
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="https://ctskiosk.com/", Order=22)]
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="https://ctskiosk.com/", Order=23)]
         [System.Xml.Serialization.XmlArrayItemAttribute("detail", IsNullable=false)]
         public NssIT.Kiosk.Common.WebService.KioskWebService.cust_seat_detail[] cust_seat_details;
         
@@ -3697,6 +3702,7 @@ namespace NssIT.Kiosk.Common.WebService.KioskWebService {
                     decimal terminalcharge, 
                     decimal onlineqrcharge, 
                     decimal insurance, 
+                    decimal skywayprice,
                     int tripcode, 
                     string pick, 
                     string pick_desn, 
@@ -3721,6 +3727,7 @@ namespace NssIT.Kiosk.Common.WebService.KioskWebService {
             inValue.terminalcharge = terminalcharge;
             inValue.onlineqrcharge = onlineqrcharge;
             inValue.insurance = insurance;
+            inValue.skywayprice = skywayprice;
             inValue.tripcode = tripcode;
             inValue.pick = pick;
             inValue.pick_desn = pick_desn;
