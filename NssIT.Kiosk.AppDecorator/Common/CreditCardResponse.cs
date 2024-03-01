@@ -72,7 +72,7 @@ namespace NssIT.Kiosk.AppDecorator.Common
         /// <summary>
         /// Currency Amount
         /// </summary>
-        public decimal? camt { get; set; }
+        public decimal camt { get; set; }
         /// <summary>
         /// Terminal Id
         /// </summary>
@@ -84,7 +84,7 @@ namespace NssIT.Kiosk.AppDecorator.Common
         /// <summary>
         /// Batch Currency Amount
         /// </summary>
-        public decimal? bcam { get; set; }
+        public decimal bcam { get; set; }
         /// <summary>
         /// Machine Id
         /// </summary>

@@ -119,10 +119,10 @@ namespace NssIT.Kiosk.Common.WebService.KioskWebService {
         
         [System.ServiceModel.OperationContractAttribute(Action="https://ctskiosk.com/TransComplete", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        NssIT.Kiosk.Common.WebService.KioskWebService.transcomplete_status TransComplete(string kiosktoken, string transaction_no, decimal totalamount, string paymentmethod, string reference_no);
+        NssIT.Kiosk.Common.WebService.KioskWebService.transcomplete_status TransComplete(string kiosktoken, string transaction_no, decimal totalamount, string paymentmethod, string reference_no, DateTime trdt, string hsno, string mid, string rmsg, string cdno, string cdnm, string cdty, string stcd, string adat, string bcno, string ttce, string rrn, string apvc, string aid, string trcy, decimal camt, string tid, string btct, decimal bcam,string mcid,string erms, long stmTrid,string stmStcd);
         
         [System.ServiceModel.OperationContractAttribute(Action="https://ctskiosk.com/TransComplete", ReplyAction="*")]
-        System.Threading.Tasks.Task<NssIT.Kiosk.Common.WebService.KioskWebService.transcomplete_status> TransCompleteAsync(string kiosktoken, string transaction_no, decimal totalamount, string paymentmethod, string reference_no);
+        System.Threading.Tasks.Task<NssIT.Kiosk.Common.WebService.KioskWebService.transcomplete_status> TransCompleteAsync(string kiosktoken, string transaction_no, decimal totalamount, string paymentmethod, string reference_no, DateTime trdt, string hsno, string mid, string rmsg, string cdno, string cdnm, string cdty, string stcd, string adat, string bcno, string ttce, string rrn, string apvc, string aid, string trcy, decimal camt, string tid, string btct, decimal bcam, string mcid, string erms, long stmTrid, string stmStcd);
         
         [System.ServiceModel.OperationContractAttribute(Action="https://ctskiosk.com/GetSalesStatus", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
@@ -3835,12 +3835,12 @@ namespace NssIT.Kiosk.Common.WebService.KioskWebService {
             return base.Channel.SeatReleaseAsync(kioskid, kiosktoken, transaction_no);
         }
         
-        public NssIT.Kiosk.Common.WebService.KioskWebService.transcomplete_status TransComplete(string kiosktoken, string transaction_no, decimal totalamount, string paymentmethod, string reference_no) {
-            return base.Channel.TransComplete(kiosktoken, transaction_no, totalamount, paymentmethod, reference_no);
+        public NssIT.Kiosk.Common.WebService.KioskWebService.transcomplete_status TransComplete(string kiosktoken, string transaction_no, decimal totalamount, string paymentmethod, string reference_no, DateTime trdt, string hsno, string mid, string rmsg, string cdno, string cdnm, string cdty, string stcd, string adat, string bcno, string ttce, string rrn, string apvc, string aid, string trcy, decimal camt, string tid, string btct, decimal bcam, string mcid, string erms, long stmTrid, string stmStcd)  {
+            return base.Channel.TransComplete(kiosktoken, transaction_no, totalamount, paymentmethod, reference_no, trdt,  hsno,  mid,  rmsg,  cdno,  cdnm,  cdty,  stcd,  adat,  bcno,  ttce,  rrn,  apvc,  aid,  trcy,  camt,  tid,  btct,  bcam,  mcid,  erms,  stmTrid,  stmStcd);
         }
         
-        public System.Threading.Tasks.Task<NssIT.Kiosk.Common.WebService.KioskWebService.transcomplete_status> TransCompleteAsync(string kiosktoken, string transaction_no, decimal totalamount, string paymentmethod, string reference_no) {
-            return base.Channel.TransCompleteAsync(kiosktoken, transaction_no, totalamount, paymentmethod, reference_no);
+        public System.Threading.Tasks.Task<NssIT.Kiosk.Common.WebService.KioskWebService.transcomplete_status> TransCompleteAsync(string kiosktoken, string transaction_no, decimal totalamount, string paymentmethod, string reference_no, DateTime trdt, string hsno, string mid, string rmsg, string cdno, string cdnm, string cdty, string stcd, string adat, string bcno, string ttce, string rrn, string apvc, string aid, string trcy, decimal camt, string tid, string btct, decimal bcam, string mcid, string erms, long stmTrid, string stmStcd) {
+            return base.Channel.TransCompleteAsync(kiosktoken, transaction_no, totalamount, paymentmethod, reference_no, trdt, hsno, mid, rmsg, cdno, cdnm, cdty, stcd, adat, bcno, ttce, rrn, apvc, aid, trcy, camt, tid, btct, bcam, mcid, erms, stmTrid, stmStcd);
         }
         
         public NssIT.Kiosk.Common.WebService.KioskWebService.getsales_status GetSalesStatus(string reference_no, string date) {

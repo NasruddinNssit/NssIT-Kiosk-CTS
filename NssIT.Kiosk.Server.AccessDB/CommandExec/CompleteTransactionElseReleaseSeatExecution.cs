@@ -31,7 +31,7 @@ namespace NssIT.Kiosk.Server.AccessDB.CommandExec
         private PaymentType _paymentType = PaymentType.Cash;
         private string _paymentMethodCode = "C";
         private string _paymentRefNo = "";
-
+        private CreditCardResponse _creditCardResponse = null;
         private DbLog _log = null;
         private DbLog Log { get => (_log ?? (_log = DbLog.GetDbLog())); }
 
@@ -39,6 +39,7 @@ namespace NssIT.Kiosk.Server.AccessDB.CommandExec
         {
             _serverAccess = serverAccess;
             _commandPack = commPack;
+           
             bool eventSent = false;
             UICompleteTransactionResult uiCompleteResult;
 
@@ -52,14 +53,50 @@ namespace NssIT.Kiosk.Server.AccessDB.CommandExec
                 _paymentType = _command.TypeOfPayment;
                 _paymentMethodCode = _command.PaymentMethodCode;
                 _paymentRefNo = _command.PaymentRefNo ?? "";
-
-                transcomplete_status transCompltStatus = null;
+                _creditCardResponse = _command.CardCreditAnswer ?? null;
+               transcomplete_status transCompltStatus = null;
 
                 if (isWebServiceDetected)
-                    transCompltStatus = CompleteTransaction(_command.TransactionNo, _command.TotalAmount,
-                        _command.Cassette1NoteCount, _command.Cassette2NoteCount, _command.Cassette3NoteCount, _command.RefundCoinAmount,
-                        _paymentType, _paymentMethodCode, _paymentRefNo,
-                        out isNetworkTimeout, 60);
+
+
+                    if(_paymentMethodCode == "D" && _creditCardResponse != null)
+                    {
+                        transCompltStatus = CompleteTransaction(_command.TransactionNo, _command.TotalAmount,
+                       _command.Cassette1NoteCount, _command.Cassette2NoteCount, _command.Cassette3NoteCount, _command.RefundCoinAmount,
+                       _paymentType, _paymentMethodCode, _paymentRefNo,
+                       out isNetworkTimeout,_creditCardResponse.trdt, 
+                       _creditCardResponse.hsno, 
+                       _creditCardResponse.mid, 
+                       _creditCardResponse.rmsg, 
+                       _creditCardResponse.cdno, 
+                       
+                       _creditCardResponse.cdnm, 
+                       _creditCardResponse.cdty, 
+                       _creditCardResponse.stcd, 
+                       _creditCardResponse.adat, 
+                       _creditCardResponse.bcno, 
+                       _creditCardResponse.ttce, 
+                       _creditCardResponse.rrn, 
+                       _creditCardResponse.apvc, 
+                       _creditCardResponse.aid, 
+                       _creditCardResponse.trcy, 
+                       _creditCardResponse.camt, 
+                       _creditCardResponse.tid, 
+                       _creditCardResponse.btct, 
+                       _creditCardResponse.bcam, 
+                       _creditCardResponse.mcid, 
+                       _creditCardResponse.erms, 
+                       _creditCardResponse.stmTrid, 
+                       _creditCardResponse.stmStcd, 60);
+                    }
+                    else
+                    {
+                        transCompltStatus = CompleteTransaction(_command.TransactionNo, _command.TotalAmount,
+                      _command.Cassette1NoteCount, _command.Cassette2NoteCount, _command.Cassette3NoteCount, _command.RefundCoinAmount,
+                      _paymentType, _paymentMethodCode, _paymentRefNo,
+                      out isNetworkTimeout, DateTime.Now,"","", "", "","","", "", "", "", "", "", "", "", "", 0,"","", 0, "", "", 0, "",  60);
+                    }
+                   
                 else
                     transCompltStatus = new transcomplete_status() { code = ServerAccess.NetworkTimeout, msg = "Network Timeout (II)" };
 
@@ -69,10 +106,46 @@ namespace NssIT.Kiosk.Server.AccessDB.CommandExec
                     if (Security.ReDoLogin(out bool networkTimeout, out bool isValidAuthentication) == true)
                     {
                         isNetworkTimeout = false;
-                        transCompltStatus = CompleteTransaction(_command.TransactionNo, _command.TotalAmount,
-                            _command.Cassette1NoteCount, _command.Cassette2NoteCount, _command.Cassette3NoteCount, _command.RefundCoinAmount,
-                            _paymentType, _paymentMethodCode, _paymentRefNo,
-                            out isNetworkTimeout, 60);
+
+                        if(_paymentMethodCode == "D" && _creditCardResponse != null)
+                        {
+                            transCompltStatus = CompleteTransaction(_command.TransactionNo, _command.TotalAmount,
+                      _command.Cassette1NoteCount, _command.Cassette2NoteCount, _command.Cassette3NoteCount, _command.RefundCoinAmount,
+                      _paymentType, _paymentMethodCode, _paymentRefNo,
+                      out isNetworkTimeout, _creditCardResponse.trdt,
+                      _creditCardResponse.hsno,
+                      _creditCardResponse.mid,
+                      _creditCardResponse.rmsg,
+                      _creditCardResponse.cdno,
+
+                      _creditCardResponse.cdnm,
+                      _creditCardResponse.cdty,
+                      _creditCardResponse.stcd,
+                      _creditCardResponse.adat,
+                      _creditCardResponse.bcno,
+                      _creditCardResponse.ttce,
+                      _creditCardResponse.rrn,
+                      _creditCardResponse.apvc,
+                      _creditCardResponse.aid,
+                      _creditCardResponse.trcy,
+                      _creditCardResponse.camt,
+                      _creditCardResponse.tid,
+                      _creditCardResponse.btct,
+                      _creditCardResponse.bcam,
+                      _creditCardResponse.mcid,
+                      _creditCardResponse.erms,
+                      _creditCardResponse.stmTrid,
+                      _creditCardResponse.stmStcd, 60);
+                        }
+                        else
+                        {
+                            transCompltStatus = CompleteTransaction(_command.TransactionNo, _command.TotalAmount,
+                                _command.Cassette1NoteCount, _command.Cassette2NoteCount, _command.Cassette3NoteCount, _command.RefundCoinAmount,
+                                _paymentType, _paymentMethodCode, _paymentRefNo,
+                                out isNetworkTimeout, DateTime.Now, "", "", "", "", "", "", "", "", "", "", "", "", "", "", 0, "", "", 0, "", "", 0, "", 60);
+                        }
+
+                       
                     }
                     else
                     {
@@ -162,7 +235,7 @@ namespace NssIT.Kiosk.Server.AccessDB.CommandExec
         private transcomplete_status CompleteTransaction(string transactionNo, decimal totalAmount,
             int cassette1NoteCount, int cassette2NoteCount, int cassette3NoteCount, int refundCoinAmount,
             PaymentType paymentType, string paymentMethodCode, string paymentRefNo,
-            out bool isNetworkTimeout, int waitSec = 60, int maxRetryTimes = 3)
+            out bool isNetworkTimeout, DateTime trdt, string hsno, string mid, string rmsg, string cdno, string cdnm, string cdty, string stcd, string adat, string bcno, string ttce, string rrn, string apvc, string aid, string trcy, decimal camt, string tid, string btct, decimal bcam, string mcid, string erms, long stmTrid, string stmStcd, int waitSec = 60, int maxRetryTimes = 3)
         {
             isNetworkTimeout = false;
             waitSec = (waitSec < 5) ? 10 : waitSec;
@@ -221,7 +294,29 @@ namespace NssIT.Kiosk.Server.AccessDB.CommandExec
                     }
                     else
                     {
-                        transcomplete_status compltStatus = _serverAccess.Soap.TransComplete(token, transactionNo ?? "", totalAmount, paymentMethodCode, paymentRefNo);
+                        transcomplete_status compltStatus = _serverAccess.Soap.TransComplete(token, transactionNo ?? "", totalAmount, paymentMethodCode, paymentRefNo, 
+                            trdt, 
+                            hsno, 
+                            mid, 
+                            rmsg, 
+                            cdno, 
+                            cdnm, 
+                            cdty, 
+                            stcd, 
+                            adat,
+                            bcno, 
+                            ttce, 
+                            rrn, 
+                            apvc, 
+                            aid,
+                            trcy, 
+                            camt, 
+                            tid, 
+                            btct, 
+                            bcam, 
+                            mcid, 
+                            erms, 
+                            stmTrid,stmStcd);
 
                         if ((compltStatus.code == 0) && (paymentType == PaymentType.Cash))
                         {
