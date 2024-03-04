@@ -181,6 +181,8 @@ namespace NssIT.Kiosk.Client.ViewPage.Payment
                     return "TicketTerminalBersepaduGombak";
                 else if (App.SysParam.PrmAppGroup == AppGroup.Klang)
                     return "TicketKlangSentral";
+                else if (App.SysParam.PrmAppGroup == AppGroup.Genting)
+                    return "TicketGenting";
                 else
                     return "TicketMelakaSentralX1";
             }
@@ -1117,7 +1119,7 @@ namespace NssIT.Kiosk.Client.ViewPage.Payment
 
                     LocalReport ticketRep = RdlcImageRendering.CreateLocalReport($@"{App.ExecutionFolderPath}\Reports\{TicketReportSourceName}.rdlc",
                         new ReportDataSource[] { new ReportDataSource("DataSet1", ds.Tables[0]) });
-                    ReportImageSize ticketSize = new ReportImageSize(8.0M, 3.0M, 0, 0, 0, 0, ReportImageSizeUnitMeasurement.Inch);
+                    ReportImageSize ticketSize = new ReportImageSize(8.0M, 8.0M, 0, 0, 0, 0, ReportImageSizeUnitMeasurement.Inch);
                     Stream[] streamticketList = RdlcImageRendering.Export(ticketRep, ticketSize);
 
 
