@@ -138,6 +138,8 @@
             <Image HorizontalAlignment="Right" Margin="0 10 0 45" Height="100"
                Source="/Resources/icon-bottom-eWallet-eng-03.png" Visibility="Visible" x:Name="ImgEWallet"/>
             <Image HorizontalAlignment="Right" Margin="0 10 0 45" Height="100"
+Source="/Resources/icon-bottom-credit-eng-01.png" Visibility="Visible" x:Name="ImgCreditCard"/>
+            <Image HorizontalAlignment="Right" Margin="0 10 0 45" Height="100"
                Source="/Resources/icon-bottom-cash-eng-03.png" Visibility="Visible" x:Name="ImgCash"/>
         </StackPanel>
 

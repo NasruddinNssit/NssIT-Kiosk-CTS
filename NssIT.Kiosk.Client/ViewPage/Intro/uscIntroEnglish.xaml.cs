@@ -207,7 +207,7 @@ namespace NssIT.Kiosk.Client.ViewPage.Intro
 				{
 					ImgStationLogo.Source = new BitmapImage(new Uri("/Resources/genting.png", UriKind.RelativeOrAbsolute));
                     ImgTicketGirl.Source = new BitmapImage(new Uri("/Resources/Klang Sentral Girl_BI.png", UriKind.RelativeOrAbsolute));
-
+					ImgStationLogo.Height = 60;
                 }
                 else
 				{
@@ -254,6 +254,7 @@ namespace NssIT.Kiosk.Client.ViewPage.Intro
 					{
 						ImgCash.Visibility = Visibility.Collapsed;
 						ImgEWallet.Visibility = Visibility.Collapsed;
+						ImgCreditCard.Visibility = Visibility.Collapsed;
 					}));
 
 					DateTime expiredTime = DateTime.Now.AddSeconds(waitPeriodSec - 10);
@@ -279,8 +280,11 @@ namespace NssIT.Kiosk.Client.ViewPage.Intro
 							}
 							else if (pT == PaymentType.CreditCard)
 							{
-								//pStr = "Credit Card";
-							}
+                                this.Dispatcher.Invoke(new Action(() =>
+                                {
+                                    ImgCreditCard.Visibility = Visibility.Visible;
+                                }));
+                            }
 							else if (pT == PaymentType.PaymentGateway)
 							{
 								this.Dispatcher.Invoke(new Action(() =>
