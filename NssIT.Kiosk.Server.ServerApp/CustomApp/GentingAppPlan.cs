@@ -193,7 +193,16 @@ namespace NssIT.Kiosk.Server.ServerApp.CustomApp
                         if (session.DepartSeatConfirmCode?.Equals("0") == true)
                         {
                             // DepartSeatConfirmCode = "0" for confirm success
-                            return UISalesInst.CustInfoAck;
+                           
+
+                            if(session.IsNeedCustomerInfo == false)
+                            {
+                                return UISalesInst.CustInfoUpdateELSEReleaseSeatRequest;
+                            }
+                            else
+                            {
+                                return UISalesInst.CustInfoAck;
+                            }
                         }
                         else
                             return UISalesInst.DepartSeatConfirmFailAck;
@@ -252,7 +261,7 @@ namespace NssIT.Kiosk.Server.ServerApp.CustomApp
             {
                 userSession.CurrentEditMenuItemCode = null;
                 userSession.Language = uiLang.Language;
-
+                userSession.IsNeedCustomerInfo = uiLang.IsNeedCustomerInfo;
                 userSession.TravelMode = AppDecorator.Common.TravelMode.DepartOnly;
             }
 

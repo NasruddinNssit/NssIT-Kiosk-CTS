@@ -318,7 +318,15 @@ namespace NssIT.Kiosk.Client.NetClient
                 "NetClientSalesService.SubmitCardSettlement");
 
         }
-        public void WebServerLogon(out bool isServerResponded, out bool isLogonSuccess, out bool isNetworkTimeout, out bool isValidAuthentication, out bool isLogonErrorFound, out string errorMessage, int waitDelaySec = 120)
+        public void WebServerLogon(out bool isServerResponded, out bool isLogonSuccess, out bool isNetworkTimeout, out bool isValidAuthentication, out bool isLogonErrorFound, out string errorMessage,
+			out string operationFlag,
+			out string operationTimeFrom, 
+			out string operationTimeTo, 
+			out string settlementTime, 
+			out string settlementFlag, 
+			out string nameFlage, 
+			out string icFlag, 
+			out string contactFlag , int waitDelaySec = 120)
 		{
 			isServerResponded = false;
 			isLogonSuccess = false;
@@ -326,6 +334,15 @@ namespace NssIT.Kiosk.Client.NetClient
 			isValidAuthentication = false;
 			isLogonErrorFound = true;
 			errorMessage = null;
+			operationFlag = null;
+			operationTimeFrom = null;
+			operationTimeTo = null;
+			settlementFlag = null;
+			settlementTime = null;
+			nameFlage = null;
+			icFlag = null;
+			contactFlag = null;
+
 
 			_webServerLogonStatus = null;
 
@@ -392,6 +409,16 @@ namespace NssIT.Kiosk.Client.NetClient
 				isNetworkTimeout = _webServerLogonStatus.NetworkTimeout;
 				isValidAuthentication = _webServerLogonStatus.IsValidAuthentication;
 				isLogonErrorFound = _webServerLogonStatus.LogonErrorFound;
+
+				operationFlag = _webServerLogonStatus.OperationFlag;
+				operationTimeFrom = _webServerLogonStatus.OperationTimeFrom;
+				operationTimeTo = _webServerLogonStatus.OperationTimeTo;
+				settlementTime = _webServerLogonStatus.SettlementTime;
+				settlementFlag = _webServerLogonStatus.SettlementFlag;
+				nameFlage = _webServerLogonStatus.NameFlag;
+				icFlag = _webServerLogonStatus.ICFlag;
+				contactFlag = _webServerLogonStatus.ContactFlag;
+
 			}
 
 			_log.LogText(_logChannel, "-",
@@ -575,7 +602,7 @@ namespace NssIT.Kiosk.Client.NetClient
 			{
 				_log.LogText(_logChannel, "-", $@"Start - {runningTag}", "A01", "NetClientSalesService.QueryKomuterTicketTypePackage");
 
-				UILanguageSubmission res = new UILanguageSubmission("-", DateTime.Now, language);
+				UILanguageSubmission res = new UILanguageSubmission("-", DateTime.Now, language, App.AppHelp.NameFlag == "1" ? true: false);
 				NetMessagePack msgPack = new NetMessagePack(res) { DestinationPort = GetServerPort() };
 
 				retMan = new NetServiceAnswerMan(msgPack, runningTag,

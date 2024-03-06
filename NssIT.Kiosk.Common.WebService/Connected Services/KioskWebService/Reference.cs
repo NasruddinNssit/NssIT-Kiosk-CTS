@@ -3135,7 +3135,16 @@ namespace NssIT.Kiosk.Common.WebService.KioskWebService {
         private string msgField;
         
         private string kiosktokenField;
-        
+
+        private string operationFlagField;
+        private string operationTimeFromField;
+        private string operationTimeToField;
+        private string settlementTimeField;
+        private string settlementFlagField;
+        private string nameFlagField;
+        private string icFlagField;
+        private string contactFlagField;
+
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=0)]
         public int code {
@@ -3171,7 +3180,119 @@ namespace NssIT.Kiosk.Common.WebService.KioskWebService {
                 this.RaisePropertyChanged("kiosktoken");
             }
         }
-        
+
+
+        [System.Xml.Serialization.XmlElementAttribute(Order = 3)]
+        public string OperationFlag
+        {
+            get
+            {
+                return this.operationFlagField;
+            }
+            set
+            {
+                this.operationFlagField = value;
+                this.RaisePropertyChanged("OperationFlag");
+            }
+        }
+        [System.Xml.Serialization.XmlElementAttribute(Order = 4)]
+        public string OperationTimeFrom
+        {
+            get
+            {
+                return this.operationTimeFromField;
+            }
+            set
+            {
+                this.operationTimeFromField = value;
+                this.RaisePropertyChanged("OperationTimeFrom");
+            }
+        }
+
+        [System.Xml.Serialization.XmlElementAttribute(Order = 5)]
+        public string OperationTimeTo
+        {
+            get
+            {
+                return this.operationTimeToField;
+            }
+            set
+            {
+                this.operationTimeToField = value;
+                this.RaisePropertyChanged("OperationTimeTo");
+            }
+        }
+
+        [System.Xml.Serialization.XmlElementAttribute(Order = 6)]
+        public string SettlementTime
+        {
+            get
+            {
+                return this.settlementTimeField;
+            }
+            set
+            {
+                this.settlementTimeField = value;
+                this.RaisePropertyChanged("SettlementTime");
+            }
+        }
+
+        [System.Xml.Serialization.XmlElementAttribute(Order = 7)]
+        public string SettlementFlag
+        {
+            get
+            {
+                return this.settlementFlagField;
+            }
+            set
+            {
+                this.settlementFlagField = value;
+                this.RaisePropertyChanged("SettlementFlag");
+            }
+        }
+
+        [System.Xml.Serialization.XmlElementAttribute(Order = 8)]
+        public string NameFlag
+        {
+            get
+            {
+                return this.nameFlagField;
+            }
+            set
+            {
+                this.nameFlagField = value;
+                this.RaisePropertyChanged("NameFlag");
+            }
+        }
+
+        [System.Xml.Serialization.XmlElementAttribute(Order = 9)]
+        public string ICFlag
+        {
+            get
+            {
+                return this.icFlagField;
+            }
+            set
+            {
+                this.icFlagField = value;
+                this.RaisePropertyChanged("ICFlag");
+            }
+        }
+
+        [System.Xml.Serialization.XmlElementAttribute(Order = 10)]
+        public string ContactFlag
+        {
+            get
+            {
+                return this.contactFlagField;
+            }
+            set
+            {
+                this.contactFlagField = value;
+                this.RaisePropertyChanged("ContactFlag");
+            }
+        }
+
         public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
         
         protected void RaisePropertyChanged(string propertyName) {

@@ -156,7 +156,7 @@ namespace NssIT.Kiosk.AppDecorator.Common.AppService.Sales
         // BTnG & Credit Card
         public string PaymentRefNo { get; set; }
         //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-
+        public bool IsNeedCustomerInfo { get; set; } 
         public UserSession() { SessionReset(); }
 
         public void NewSession(Guid sessionId)
@@ -262,7 +262,7 @@ namespace NssIT.Kiosk.AppDecorator.Common.AppService.Sales
             ReturnSeatConfirmCode = null;
             ReturnSeatConfirmTransNo = null;
             ReturnSeatConfirmMessage = null;
-
+            IsNeedCustomerInfo = false; 
             
         }
 

@@ -37,6 +37,9 @@ namespace NssIT.Kiosk.Client
 
             _procIdPreFix = DateTime.Now.ToString("yyyyMMddHHmm") + "-";
 
+            startOperationTime = startOperationTime.Insert(2, ":");
+            endOprationTime = endOprationTime.Insert(2, ":");
+
             _startOperationTimeString = startOperationTime;
             _endOprationTimeString = endOprationTime;
 
@@ -47,9 +50,18 @@ namespace NssIT.Kiosk.Client
 
         public void Load()
         {
-            AppDecorator.Config.Setting setting = AppDecorator.Config.Setting.GetSetting();
+            //AppDecorator.Config.Setting setting = AppDecorator.Config.Setting.GetSetting();
 
-            if(setting.NoOperationTime == false)
+
+            bool IsOnOperationTime = false;
+
+            if(App.AppHelp.OperationFlag == "1")
+                IsOnOperationTime = true;
+            else
+                IsOnOperationTime = false;
+
+
+            if(!IsOnOperationTime)
             {
                 _worker = new Thread(new ThreadStart(SchecduleThreadWorking));
                 _worker.IsBackground = true;

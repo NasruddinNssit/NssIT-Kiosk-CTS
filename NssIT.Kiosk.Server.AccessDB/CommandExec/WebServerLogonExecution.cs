@@ -1,6 +1,7 @@
 ﻿using NssIT.Kiosk.AppDecorator.Common.AppService;
 using NssIT.Kiosk.AppDecorator.Common.AppService.Events;
 using NssIT.Kiosk.AppDecorator.Common.AppService.Sales.UI;
+using NssIT.Kiosk.Common.WebService.KioskWebService;
 using NssIT.Kiosk.Log.DB;
 using System;
 using System.Collections.Generic;
@@ -30,16 +31,19 @@ namespace NssIT.Kiosk.Server.AccessDB.CommandExec
             try
             {
                 //For Data Execution Code => 0: Success; 20: Invalid Token; 21: Token Expired
-                if (Security.ReDoLogin(out bool networkTimeout, out bool isValidAuthentication) == true)
+                if (Security.ReDoLogin(out bool networkTimeout, out bool isValidAuthentication, out login_status login_Status) == true)
                 {
-                    uiState = new UIWebServerLogonStatusAck(commPack.NetProcessId, commPack.ProcessId, DateTime.Now, true, false, true);
+                    uiState = new UIWebServerLogonStatusAck(commPack.NetProcessId, commPack.ProcessId, DateTime.Now, true, false, true, 
+                        login_Status.OperationFlag,login_Status.OperationTimeFrom, login_Status.OperationTimeTo, login_Status.SettlementTime,login_Status.SettlementFlag,
+                        login_Status.NameFlag, login_Status.ICFlag, login_Status.ContactFlag);
                     commPack.UpSertResult(false, uiState);
                     whenCompletedSendEvent(ResultStatus.Success, _commandPack.NetProcessId, _commandPack.ProcessId,
                           "WebServerLogonExecution.Execute:A05", uiState);
                 }
                 else
                 {
-                    uiState = new UIWebServerLogonStatusAck(commPack.NetProcessId, commPack.ProcessId, DateTime.Now, false, networkTimeout, isValidAuthentication);
+                    uiState = new UIWebServerLogonStatusAck(commPack.NetProcessId, commPack.ProcessId, DateTime.Now, false, networkTimeout, isValidAuthentication, login_Status.OperationFlag, login_Status.OperationTimeFrom, login_Status.OperationTimeTo, login_Status.SettlementTime, login_Status.SettlementFlag,
+                        login_Status.NameFlag, login_Status.ICFlag, login_Status.ContactFlag);
                     commPack.UpSertResult(true, uiState, $@"Fail logon; NetworkTimeout: {networkTimeout}; IsValidAuthentication: {isValidAuthentication}");
                     whenCompletedSendEvent(ResultStatus.Fail, _commandPack.NetProcessId, _commandPack.ProcessId,
                           "WebServerLogonExecution.Execute:A07", uiState, new Exception($@"Fail logon; NetworkTimeout: {networkTimeout}; IsValidAuthentication: {isValidAuthentication}"));
@@ -47,7 +51,7 @@ namespace NssIT.Kiosk.Server.AccessDB.CommandExec
             }
             catch (Exception ex)
             {
-                uiState = new UIWebServerLogonStatusAck(commPack.NetProcessId, commPack.ProcessId, DateTime.Now, false, false, false, true) { ErrorMessage = $@"Error when logon to web server; (EXIT21653), {ex.Message};" };
+                uiState = new UIWebServerLogonStatusAck(commPack.NetProcessId, commPack.ProcessId, DateTime.Now, false, false, false, "","","","","","","","", true) { ErrorMessage = $@"Error when logon to web server; (EXIT21653), {ex.Message};" };
                 commPack.UpSertResult(true, uiState, uiState.ErrorMessage);
                 whenCompletedSendEvent(ResultStatus.ErrorFound, _commandPack.NetProcessId, _commandPack.ProcessId,
                           "WebServerLogonExecution.Execute:A09", uiState, new Exception(uiState.ErrorMessage));

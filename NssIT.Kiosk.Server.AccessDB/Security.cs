@@ -50,8 +50,39 @@ namespace NssIT.Kiosk.Server.AccessDB
             }
         }
 
+        public static bool ReDoLogin(out bool networkTimeout, out bool isValidAuthentication, out login_status login_Status)
+        {
+            login_Status = null;
+            networkTimeout = false;
+            isValidAuthentication = false;
+            string accessToken = null;
+
+            _accessRight = LogonWebService(out accessToken, out bool networkTimeoutX, out bool isValidAuthenticationX, out login_Status);
+
+            if (_accessRight == true)
+            {
+                if (string.IsNullOrWhiteSpace(accessToken))
+                {
+                    _accessRight = false;
+                    _accessToken = null;
+                }
+                else
+                    _accessToken = accessToken;
+            }
+            else
+            {
+                _accessToken = null;
+            }
+
+            networkTimeout = networkTimeoutX;
+            isValidAuthentication = isValidAuthenticationX;
+
+            return _accessRight;
+        }
+
         public static bool ReDoLogin(out bool networkTimeout, out bool isValidAuthentication)
         {
+            
             networkTimeout = false;
             isValidAuthentication = false;
             string accessToken = null;
@@ -273,6 +304,9 @@ namespace NssIT.Kiosk.Server.AccessDB
                 }
             }
 
+
+
+
             //void GetUserIdentity(out string userId, out string password)
             //{
             //    userId = null;
@@ -304,6 +338,214 @@ namespace NssIT.Kiosk.Server.AccessDB
             //    }
             //}
         }
+
+
+        private static bool LogonWebService(out string accessToken, out bool networkTimeout, out bool isValidAuthentication, out login_status login_Status)
+        {
+            login_Status = null;
+            accessToken = null;
+            networkTimeout = false;
+            isValidAuthentication = false;
+
+            int maxRetryTimes = 3;
+            int waitSec = 60;
+
+            bool isValidAuthenticationX = false;
+            bool networkTimeoutX = false;
+            string accessTokenX = null;
+            bool retResult = false;
+            login_status login_StatusX = null;
+
+            for (int retryInx = 0; retryInx < maxRetryTimes; retryInx++)
+            {
+                try
+                {
+                    isValidAuthenticationX = false;
+                    networkTimeoutX = false;
+                    accessTokenX = null;
+
+                    Thread threadWorker = new Thread(new ThreadStart(LogonThreadWorking));
+                    threadWorker.IsBackground = true;
+
+                    DateTime timeOut = DateTime.Now.AddSeconds(waitSec);
+                    threadWorker.Start();
+
+                    while ((timeOut.Subtract(DateTime.Now).TotalMilliseconds > 0) && (accessTokenX is null) && (threadWorker.ThreadState.IsState(ThreadState.Stopped) == false))
+                    {
+                        Thread.Sleep(300);
+                    }
+
+                    if (string.IsNullOrWhiteSpace(accessTokenX))
+                    {
+                        try
+                        {
+                            threadWorker.Abort();
+                            Thread.Sleep(500);
+                        }
+                        catch { }
+
+                        accessTokenX = null;
+                        retResult = false;
+                    }
+                    else
+                    {
+                        retResult = true;
+                        break;
+                    }
+
+                    Thread.Sleep(ServerAccess.RetryIntervalSec * 1000);
+                }
+                catch (Exception ex)
+                {
+                    Log.LogError(LogChannel, "-", ex, classNMethodName: "Security.LogonWebService");
+                }
+            }
+
+            networkTimeout = networkTimeoutX;
+            accessToken = accessTokenX;
+            isValidAuthentication = isValidAuthenticationX;
+            login_Status = login_StatusX;
+
+            return retResult;
+
+            //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+            void LogonThreadWorking()
+            {
+                //For Data Execution Code => 20: Invalid Token; 21: Token Expired
+
+                try
+                {
+                    string usrId = KioskID;
+                    string passW = Password;
+
+                    if (usrId is null)
+                        throw new Exception("Unable to read logon kiosk/user id & password from local PC");
+
+                    //GetUserIdentity(out string usrId, out string passW);
+
+                    if (GetTimeStamp(out string timeStampStr) == false)
+                    {
+                        networkTimeoutX = true;
+                        return;
+                    }
+
+                    string passWordHashed = SecurityCommon.PassEncrypt(passW);
+                    string strToBeEncr = $@"{usrId},{timeStampStr}";
+
+                    string encStr = SecurityCommon.Encrypt(strToBeEncr, passWordHashed);
+
+                    var stringIp = AppDecorator.Config.Setting.GetSetting().IPAddress;
+                    login_status lgn = _soap.Login(usrId, encStr, AppDecorator.Config.Setting.GetSetting().IPAddress);
+
+                    // lgn.Code => 0: success, 1: Blank Parameter found; 2: No such User Id; 3: expired, 4: Inactive User Id; 5: Invalid IP; 6: User Id not match with encrypted data; 99 is other error
+
+                    if (lgn is null)
+                    {
+                        networkTimeoutX = true;
+                        isValidAuthenticationX = false;
+                    }
+                    else if (lgn.code != 0)
+                    {
+                        string errMsg = null;
+
+                        switch (lgn.code)
+                        {
+                            case 1:
+                                networkTimeoutX = false;
+                                isValidAuthenticationX = false;
+                                errMsg = "Error : Blank parameter found";
+                                break;
+
+                            case 2:
+                                networkTimeoutX = false;
+                                isValidAuthenticationX = false;
+                                errMsg = "Error : No such User Id";
+                                break;
+
+                            case 3:
+                                networkTimeoutX = true;
+                                isValidAuthenticationX = true;
+                                errMsg = "Error : Time expired";
+                                break;
+
+                            case 4:
+                                networkTimeoutX = false;
+                                isValidAuthenticationX = false;
+                                errMsg = "Error : Inactive User Id";
+                                break;
+
+                            case 5:
+                                networkTimeoutX = false;
+                                isValidAuthenticationX = false;
+                                errMsg = "Error : Invalid IP";
+                                break;
+
+                            case 6:
+                                networkTimeoutX = false;
+                                isValidAuthenticationX = false;
+                                errMsg = "Error : User Id not match with encrypted data";
+                                break;
+
+                            default:
+                                networkTimeoutX = false;
+                                isValidAuthenticationX = false;
+                                errMsg = $@"Error : {lgn.msg ?? "Fail login web service"}; Code : {lgn.code}";
+                                break;
+                        }
+
+
+                        Log.LogText(LogChannel, "-", errMsg, "A10", "Security:LogonWebService", AppDecorator.Log.MessageType.Error);
+                    }
+                    else
+                    {
+                        accessTokenX = lgn.kiosktoken;
+                        networkTimeoutX = false;
+                        isValidAuthenticationX = true;
+
+                        login_StatusX = lgn;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Log.LogError(LogChannel, "-", ex, "EX01", "Security:LogonWebService");
+                }
+            }
+
+
+
+
+            //void GetUserIdentity(out string userId, out string password)
+            //{
+            //    userId = null;
+            //    password = null;
+
+            //    userId = (string)Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\eTicketing", "UserID", null);
+            //    password = (string)Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\eTicketing", "UserPass", null);
+
+            //    //Note : 64 bits Windows will be re-routed to HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\eTicketing
+
+            //    if (userId == null)
+            //    {
+            //        userId = (string)Registry.GetValue(@"HKCU\SOFTWARE\eTicketing", "UserID", null);
+            //        password = (string)Registry.GetValue(@"HKCU\SOFTWARE\eTicketing", "UserPass", null);
+            //    }
+
+            //    if (userId is null)
+            //    {
+            //        isValidAuthenticationX = false;
+            //        Log.LogText(LogChannel, "-", "Invalid User Id", "E01", "Security.GetUserIdentity", AppDecorator.Log.MessageType.Error);
+            //        throw new Exception("Unable to read logon user id from local PC");
+            //    }
+
+            //    if (password is null)
+            //    {
+            //        isValidAuthenticationX = false;
+            //        Log.LogText(LogChannel, "-", "Invalid password Id", "E02", "Security.GetUserIdentity", AppDecorator.Log.MessageType.Error);
+            //        throw new Exception("Unable to read logon password from local PC");
+            //    }
+            //}
+        }
+
 
         private static string _kioskId = null;
         public static string KioskID

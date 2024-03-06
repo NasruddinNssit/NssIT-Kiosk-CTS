@@ -28,14 +28,15 @@ namespace NssIT.Kiosk.AppDecorator.Common.AppService.Sales.UI
 		public CommunicationDirection CommuCommandDirection { get; } = CommunicationDirection.SendOneResponseOne;
 
 		public LanguageCode Language { get; private set; } = LanguageCode.English;
-
-		public UILanguageSubmission(string processId, DateTime timeStamp, LanguageCode language)
+		public bool IsNeedCustomerInfo { get; set; } = false;
+		public UILanguageSubmission(string processId, DateTime timeStamp, LanguageCode language, bool isNeedCustomerInfo)
 		{
 			BaseNetProcessId = Guid.NewGuid();
 			RefNetProcessId = BaseNetProcessId;
 			ProcessId = processId;
 			TimeStamp = timeStamp;
 			Language = language;
+			IsNeedCustomerInfo = isNeedCustomerInfo;
 		}
 
 		public void Dispose()

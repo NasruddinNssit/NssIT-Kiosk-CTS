@@ -423,25 +423,28 @@ namespace NssIT.Kiosk.Client
 
 				AppHelp = new AppHelper();
 
+				
+
 				NetClientSvc = new NetClientService();
 
 				_appSalesSvcEventsHandler = new AppSalesSvcEventsHandler(NetClientSvc);
 
 				_appCollectTicketSvcEventsHandler = new AppCollectTicketSvcEventsHandler(NetClientSvc);
 
-				Log.LogText(_logChannel, "-", $@"XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX Client Application Init. XXXXXX ClientPort: {SysParam.PrmClientPort}; IsDebugMode: {SysParam.PrmIsDebugMode}; LocalServerPort: {SysParam.PrmLocalServerPort}; ApplicationGroup: {Enum.GetName(typeof(AppGroup), App.SysParam.PrmAppGroup)}; SystemVersion: {SystemVersion}; XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+
+                var test = AppHelp.SystemHealthCheck();
+                Log.LogText(_logChannel, "-", $@"XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX Client Application Init. XXXXXX ClientPort: {SysParam.PrmClientPort}; IsDebugMode: {SysParam.PrmIsDebugMode}; LocalServerPort: {SysParam.PrmLocalServerPort}; ApplicationGroup: {Enum.GetName(typeof(AppGroup), App.SysParam.PrmAppGroup)}; SystemVersion: {SystemVersion}; XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
 						"A10", "App.OnStartup");
 
 				ReportPDFFileMan = new ReportPDFFileManager();
 
 				TimeoutManager = ResetTimeoutManager.GetLocalTimeoutManager();
 				CollectBoardingPassCountDown = new CollectTicketCountDown();
-				_appOperationHandler = new AppOperationHandler(SysParam.StartOperationTime, SysParam.EndOperationTime);
                 //WndTestingMonitor testMon = null;
-                CardSettlementScheduler = new PayWaveSettlementScheduler(SysParam.PrmPayWaveCOM, SysParam.PrmCardSettlementTime);
+                CardSettlementScheduler = new PayWaveSettlementScheduler(SysParam.PrmPayWaveCOM, AppHelp.SettlementTime, AppHelp.SettlementFlag);
                 MainWindow main = new MainWindow();
 				_mainScreenControl = (IMainScreenControl)main;
-				_mainScreenControl.InitForOperationTimeScheduler(_appOperationHandler);
+				
 				_mainScreenControl.InitiateMaintenance(CardSettlementScheduler);
 				main.WindowState = WindowState.Maximized;
 
@@ -458,8 +461,9 @@ namespace NssIT.Kiosk.Client
 				App.IsClientReady = true;
 
 				System.Windows.Forms.Application.DoEvents();
-
-				if (SysParam.PrmIsDebugMode)
+                _appOperationHandler = new AppOperationHandler(AppHelp.OperationTimeFrom, AppHelp.OperationTimeTo);
+                _mainScreenControl.InitForOperationTimeScheduler(_appOperationHandler);
+                if (SysParam.PrmIsDebugMode)
 				{
 					//DEBUG-Testing .. testMon = new WndTestingMonitor(main);
 					//DEBUG-Testing .. testMon.Show();

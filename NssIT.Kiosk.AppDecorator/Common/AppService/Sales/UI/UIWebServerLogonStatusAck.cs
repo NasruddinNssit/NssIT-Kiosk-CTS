@@ -33,7 +33,28 @@ namespace NssIT.Kiosk.AppDecorator.Common.AppService.Sales.UI
 		/// </summary>
 		public object MessageData { get; private set; } = null;
 
-		public UIWebServerLogonStatusAck(Guid? refNetProcessId, string processId, DateTime timeStamp, bool isLogonSuccess, bool networkTimeout, bool isValidAuthentication, bool logonErrorFound = false)
+		public string OperationFlag { get; private set; } = null;
+		public string OperationTimeFrom { get; private set; } = null;
+		public string OperationTimeTo { get; private set; } = null;
+		public string SettlementTime { get; private set; } = null;
+		public string SettlementFlag { get; private set; } = null;
+		public string NameFlag { get; private set; } = null;
+		public string ICFlag { get; private set; } = null;
+		public string ContactFlag { get; private set; }
+		public UIWebServerLogonStatusAck(Guid? refNetProcessId, string processId,
+			DateTime timeStamp, 
+			bool isLogonSuccess, 
+			bool networkTimeout, 
+			bool isValidAuthentication,
+			string operationFlag,
+			string operationTimeFrom,
+			string operationTimeTo,
+			string settlementTime,
+			string settlementFlag,
+			string nameFlag,
+			string icFlag,
+			string contactFlag,
+			bool logonErrorFound = false)
 		{
 			RefNetProcessId = refNetProcessId;
 			ProcessId = processId;
@@ -42,6 +63,14 @@ namespace NssIT.Kiosk.AppDecorator.Common.AppService.Sales.UI
 			NetworkTimeout = networkTimeout;
 			IsValidAuthentication = isValidAuthentication;
 			LogonErrorFound = logonErrorFound;
+			OperationFlag = operationFlag;
+			OperationTimeFrom = operationTimeFrom;
+			OperationTimeTo = operationTimeTo;
+			SettlementTime = settlementTime;
+			SettlementFlag = settlementFlag;
+			NameFlag = nameFlag;
+			ICFlag = icFlag;
+			ContactFlag = contactFlag;
 		}
 
 		public void Dispose()

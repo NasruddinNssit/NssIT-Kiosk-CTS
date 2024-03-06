@@ -15,12 +15,19 @@ namespace NssIT.Kiosk.Client
 		private string _logChannel = "AppSys";
 
 		private bool _isClientStartedSuccessful = false;
-
-		/// <summary>
-		/// Return true when Valid Logon.
-		/// </summary>
-		/// <returns></returns>
-		public bool SystemHealthCheck()
+        public string OperationFlag { get; private set; } = null;
+        public string OperationTimeFrom { get; private set; } = null;
+        public string OperationTimeTo { get; private set; } = null;
+        public string SettlementTime { get; private set; } = null;
+        public string SettlementFlag { get; private set; } = null;
+        public string NameFlag { get; private set; } = null;
+        public string ICFlag { get; private set; } = null;
+        public string ContactFlag { get; private set; }
+        /// <summary>
+        /// Return true when Valid Logon.
+        /// </summary>
+        /// <returns></returns>
+        public bool SystemHealthCheck()
 		{
 			bool isServerResponded = false;
 			bool serverWebServiceIsDetected = false; 
@@ -36,13 +43,28 @@ namespace NssIT.Kiosk.Client
 				_isClientStartedSuccessful = true;
 
 				App.NetClientSvc.SalesService.WebServerLogon(out bool isServerRespondedX, out bool isLogonSuccessX,
-					out bool isNetworkTimeoutX, out bool isValidAuthenticationX, out bool isLogonErrorFoundX, out string errorMessageX, waitDelaySec: 90);
+					out bool isNetworkTimeoutX, out bool isValidAuthenticationX, out bool isLogonErrorFoundX, out string errorMessageX, 
+					out string operationFlag,
+            out string operationTimeFrom,
+            out string operationTimeTo,
+            out string settlementTime,
+            out string settlementFlag,
+            out string nameFlage,
+            out string icFlag,
+            out string contactFlag, waitDelaySec: 90);
 
 				if (isServerRespondedX && isValidAuthenticationX && (isLogonErrorFoundX == false))
 				{
 					bool isLowCoin = false;
 					bool isCoinMachRecoveryInProgressAfterDispense = false;
 					string errorMsg = null;
+
+					OperationFlag = operationFlag ;
+					OperationTimeFrom = operationTimeFrom;
+					OperationTimeTo = operationTimeTo;
+					SettlementTime = settlementTime;
+					SettlementFlag = settlementFlag;
+					NameFlag = nameFlage;
 
 					if (App.SysParam.PrmNoPaymentNeed)
 					{
@@ -132,5 +154,6 @@ namespace NssIT.Kiosk.Client
 				}
 			}
 		}
+
 	}
 }
