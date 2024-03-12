@@ -46,7 +46,7 @@ namespace NssIT.Kiosk.Server
 		/// Like "V1.R20200805.1" mean application Version is V1, the release Year is 2020, 5th (05) of August (08), and 1st (.1) release count of the day.
 		/// Note : With "XX#XX" for undeployable version. This version is not for any release purpose. Only for development process.
 		/// </summary>
-		private string SystemVersion = "V1.R240304.1";
+		private string SystemVersion = "V1.R240312.1";
 
 		public KioskService01()
 		{

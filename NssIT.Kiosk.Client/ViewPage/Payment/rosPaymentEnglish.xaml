@@ -39,6 +39,8 @@
 
     <sys:String x:Key="PAYMENT_DEPART_AMOUNT_DESCRIPTION_Label">Adult ({0} {1} x {2})</sys:String>
 
+    <sys:String x:Key="PAYMENT_DEPART_AMOUNT_DESCRIPTION_SKYWAY_Label">Skyway ({0} {1} x {2})</sys:String>
+
     <!-- pgPaymentTypes -->
     <sys:String x:Key="CASH_Label">Cash</sys:String>
     <sys:String x:Key="CHOOSE_PAYMENT_METHOD_Label">Please choose payment method</sys:String>

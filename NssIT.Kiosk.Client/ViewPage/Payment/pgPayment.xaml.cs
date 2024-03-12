@@ -63,6 +63,8 @@ namespace NssIT.Kiosk.Client.ViewPage.Payment
         private int _noOfPssg = 0;
         private decimal _departTotalAmount = 0M;
         private decimal _returnTotalAmount = 0M;
+        private decimal _skyWayPrice = 0M;
+        
         private decimal _totalAmount = 0M;
         private string _transactionNo = "";
         private PaymentType _lastPaymentType = PaymentType.Unknown;
@@ -299,7 +301,7 @@ namespace NssIT.Kiosk.Client.ViewPage.Payment
 
                 System.Windows.Forms.Application.DoEvents();
 
-                _paymentInfoPage.InitPaymentInfo(_currency, _transactionNo, _departTotalPricePerTicket, _noOfPssg, _departTotalAmount, _totalAmount, _language);
+                _paymentInfoPage.InitPaymentInfo(_currency, _transactionNo, _departTotalPricePerTicket, _noOfPssg, _departTotalAmount, _totalAmount, _language, _skyWayPrice);
                 FrmPayInfo.NavigationService.Navigate(_paymentInfoPage);
 
                 //_cashPaymentPage.InitSalesPayment(_transactionNo, _totalAmount, _transactionNo, _language, _currency);
@@ -826,7 +828,7 @@ namespace NssIT.Kiosk.Client.ViewPage.Payment
                 _returnTotalAmount = 0M;
                 _totalAmount = _departTotalAmount + _returnTotalAmount;
                 _transactionNo = session.DepartSeatConfirmTransNo;
-
+                _skyWayPrice = session.DepartSkyWayAmount;
                 _passgName = "-Bus Passenger-";
                 _passgContact = "111111111";
                 if (session.PassengerSeatDetailList?.Length > 0)

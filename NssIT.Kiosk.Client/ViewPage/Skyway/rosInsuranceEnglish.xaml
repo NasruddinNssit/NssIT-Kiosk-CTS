@@ -9,7 +9,18 @@
     <sys:String x:Key="NO_Label">No</sys:String>
     <sys:String x:Key="YES_Label">Yes(Proceed)</sys:String>
 
-   
+    <sys:String x:Key="ORIGIN_Label">Origin</sys:String>
+    <sys:String x:Key="DESTINATION_Label">Destination</sys:String>
+    <sys:String x:Key="DATE_Label">Date</sys:String>
+    <sys:String x:Key="Time_Label">Time</sys:String>
+    <sys:String x:Key="SEAT_Label">Seat</sys:String>
+    <sys:String x:Key="TOTAL_Label">Total</sys:String>
+    <sys:String x:Key="SKYWAY_label">Skyway Ticket Price</sys:String>
+
+
+    <sys:String x:Key="INSURENCE_A_1_Label">Please include skyway ticket in my ticket(s).</sys:String>
+
+    <sys:String x:Key="INSURENCE_B_1_Label">* This insurance is not valid for passenger age exceeded 80 years old and nationalities from Iran, Cuba, Syria, Sudan, North Korea and Crimea Region of Ukraine and that, if purchased, the policy will be void and the premium is not refundable.</sys:String>
 
 
 </ResourceDictionary>

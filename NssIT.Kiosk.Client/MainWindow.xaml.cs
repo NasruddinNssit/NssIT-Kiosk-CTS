@@ -773,7 +773,7 @@ namespace NssIT.Kiosk.Client
                     frmWorkDetail.Content = null;
                     frmWorkDetail.NavigationService.RemoveBackEntry();
                     ExecMenu.UnShieldMenu();
-					_pgSkyWay.InitSkyWayData(uISkyWayAck.Session);
+					_pgSkyWay.InitSkyWay(uISkyWayAck);
                     frmWorkDetail.NavigationService.Navigate(_pgSkyWay);
                     // ---------------------------------------------------
 

@@ -326,7 +326,7 @@ namespace NssIT.Kiosk.Server.ServerApp.CustomApp
                 userSession.DepartTripCode = uiDSeatSubm.DepartTripCode;
                 userSession.PassengerSeatDetailList = uiDSeatSubm.PassengerSeatDetailList;
                 userSession.DepartPickupNDropList = uiDSeatSubm.PickupAndDropList;
-                userSession.DepartTotalAmount = (uiDSeatSubm.DepartAdultPrice + userSession.DepartInsurance + uiDSeatSubm.DepartTerminalCharge + uiDSeatSubm.DepartOnlineQrCharge)
+                userSession.DepartTotalAmount = (uiDSeatSubm.DepartAdultPrice + userSession.DepartSkyWayAmount  + userSession.DepartInsurance + uiDSeatSubm.DepartTerminalCharge + uiDSeatSubm.DepartOnlineQrCharge)
                     * uiDSeatSubm.PassengerSeatDetailList.Length;
             }
 

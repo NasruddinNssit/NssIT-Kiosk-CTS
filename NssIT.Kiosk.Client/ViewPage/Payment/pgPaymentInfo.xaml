@@ -56,6 +56,7 @@
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
+
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
@@ -65,11 +66,33 @@
             <Border Grid.ColumnSpan="3" Grid.RowSpan="3" BorderBrush="#DDDDDD" BorderThickness="0 0 0 1"/>
 
             <!--Depart-->
-            <TextBlock Grid.Row="0" Grid.Column="0" Text="{DynamicResource DEPART_Label}" FontSize="18" Foreground="#19305A" VerticalAlignment="Center"/>
+            <TextBlock Grid.Row="0" Grid.Column="0" Text="{DynamicResource DEPART_Label}" FontSize="18" Foreground="#19305A" VerticalAlignment="Center" x:Name="DeptTxt"/>
 
-            <TextBlock Grid.Row="0" Grid.Column="1" Text="Adult (RM10.00 x 2)" FontSize="17" Foreground="#777777" VerticalAlignment="Center" x:Name="TxtDepartDesn"/>
 
-            <TextBlock Grid.Row="0" Grid.Column="2" Text="RM36.00" FontSize="18" Foreground="#142B56" VerticalAlignment="Center" HorizontalAlignment="Right" x:Name="TxtDepartPrice"/>
+            <!--<TextBlock Grid.Row="0" Grid.Column="2" Text="RM36.00" FontSize="18" Foreground="#142B56" VerticalAlignment="Center" HorizontalAlignment="Right" x:Name="TxtDepartPrice"/>-->
+
+
+            <Grid Grid.Row="0" Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Row="0" Grid.Column="1" Text="Adult (RM10.00 x 2)" FontSize="17" Foreground="#777777" VerticalAlignment="Center" x:Name="TxtDepartDesn"/>
+                <TextBlock Grid.Row="1" Grid.Column="1" Text="SkyWay (RM10.00 x 2)" FontSize="17" Foreground="#777777" VerticalAlignment="Center" x:Name="TxtDepartSkyWay"/>
+
+            </Grid>
+            <!--<TextBlock Grid.Row="0" Grid.Column="1" Text="Adult (RM10.00 x 2)" FontSize="17" Foreground="#777777" VerticalAlignment="Center" x:Name="TxtDepartDesn"/>-->
+            <Grid Grid.Row="0" Grid.Column="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" Grid.Column="2" Text="RM36.00" FontSize="18" Foreground="#142B56" VerticalAlignment="Center" HorizontalAlignment="Right" x:Name="TxtDepartPrice"/>
+                <TextBlock Grid.Row="1" Grid.Column="2" Text="RM36.00" FontSize="18" Foreground="#142B56" VerticalAlignment="Center" HorizontalAlignment="Right" x:Name="TxtDepartPriceSkyWay"/>
+
+            </Grid>
+
 
             <!--Return-->
             <TextBlock Grid.Row="1" Text="Return" FontSize="18" Foreground="#19305A" VerticalAlignment="Center" Visibility="Collapsed"/>

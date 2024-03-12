@@ -29,6 +29,7 @@ namespace NssIT.Kiosk.Client.ViewPage.Payment
         private decimal _returnTotalAmount = 0M;
         private decimal _totalAmount = 0M;
         private string _transactionNo = "";
+        private decimal _skyWayPrice = 0M;
 
         private LanguageCode _language = LanguageCode.English;
         private ResourceDictionary _langMal = null;
@@ -51,18 +52,56 @@ namespace NssIT.Kiosk.Client.ViewPage.Payment
             {
                 this.Resources.MergedDictionaries.Add(_langMal);
                 TxtDepartDesn.Text = string.Format(_langMal["PAYMENT_DEPART_AMOUNT_DESCRIPTION_Label"]?.ToString(), _currency, $@"{_departTotalPricePerTicket:#,##0.00}", _noOfPssg.ToString());
+
+                if(_skyWayPrice > 0)
+                {
+                    TxtDepartSkyWay.Visibility = Visibility.Visible;
+                    TxtDepartSkyWay.Text = string.Format(_langMal["PAYMENT_DEPART_AMOUNT_DESCRIPTION_SKYWAY_Label"]?.ToString(), _currency, $@"{_skyWayPrice:#,##0.00}", _noOfPssg.ToString());
+                }
+                else
+                {
+                    TxtDepartSkyWay.Visibility = Visibility.Collapsed;
+                }
             }
             else
             {
                 this.Resources.MergedDictionaries.Add(_langEng);
                 TxtDepartDesn.Text = string.Format(_langEng["PAYMENT_DEPART_AMOUNT_DESCRIPTION_Label"]?.ToString(), _currency, $@"{_departTotalPricePerTicket:#,##0.00}", _noOfPssg.ToString());
+                if (_skyWayPrice > 0)
+                {
+                    TxtDepartSkyWay.Visibility = Visibility.Visible;
+                    TxtDepartSkyWay.Text = string.Format(_langEng["PAYMENT_DEPART_AMOUNT_DESCRIPTION_SKYWAY_Label"]?.ToString(), _currency, $@"{_skyWayPrice:#,##0.00}", _noOfPssg.ToString());
+                }
+                else
+                {
+                    TxtDepartSkyWay.Visibility = Visibility.Collapsed;
+                }
             }
 
             if (string.IsNullOrWhiteSpace(TxtDepartDesn.Text))
                 TxtDepartDesn.Text = $@"Adult ({_currency} {_departTotalPricePerTicket:#,##0.00} x {_noOfPssg})";
 
             TxtTransNo.Text = $@"({_transactionNo})";
+            
+
+
+            decimal totalSkyWayTicket = _skyWayPrice * _noOfPssg;
+
+            if(_skyWayPrice > 0)
+            {
+                TxtDepartPriceSkyWay.Text = $@"{_currency} {totalSkyWayTicket:#,##0.00}";
+                TxtDepartPriceSkyWay.Visibility = Visibility.Visible;
+
+                _departTotalAmount = _departTotalAmount - totalSkyWayTicket;
+
+            }
+            else
+            {
+                //TxtDepartPriceSkyWay.Text = $@"{_currency} {totalSkyWayTicket:#,##0.00}";
+                TxtDepartPriceSkyWay.Visibility = Visibility.Collapsed;
+            }
             TxtDepartPrice.Text = $@"{_currency} {_departTotalAmount:#,##0.00}";
+
             TxtTotalAmount.Text = $@"{_currency} {_totalAmount:#,##0.00}";
         }
 
@@ -72,7 +111,7 @@ namespace NssIT.Kiosk.Client.ViewPage.Payment
         }
 
         public void InitPaymentInfo(string currency, string transactionNo, decimal departTotalPricePerTicket, int numberOfPassenger, 
-            decimal departTotalAmount, decimal totalAmount, LanguageCode language)
+            decimal departTotalAmount, decimal totalAmount, LanguageCode language, decimal skyWayPrice)
         {
             _language = language;
             _currency = currency;
@@ -81,6 +120,7 @@ namespace NssIT.Kiosk.Client.ViewPage.Payment
             _departTotalAmount = departTotalAmount;
             _totalAmount = totalAmount;
             _transactionNo = transactionNo;
+            _skyWayPrice = skyWayPrice;
         }
     }
 }
