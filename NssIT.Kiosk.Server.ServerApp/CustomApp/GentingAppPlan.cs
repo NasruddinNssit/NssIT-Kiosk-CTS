@@ -344,14 +344,14 @@ namespace NssIT.Kiosk.Server.ServerApp.CustomApp
                 if (uiInsurnSubm.IsIncludeInsurance == false)
                 {
                     userSession.DepartInsurance = 0M;
-                    userSession.DepartTotalAmount = (userSession.DepartAdultPrice + userSession.DepartSkyWayAmount + userSession.DepartTerminalCharge + userSession.DepartOnlineQrCharge)
+                    userSession.DepartTotalAmount = (userSession.DepartAdultPrice  + userSession.DepartTerminalCharge + userSession.DepartOnlineQrCharge)
                         * userSession.PassengerSeatDetailList.Length;
 
                     
                 }
                 else
                 {
-                    userSession.DepartTotalAmount = (userSession.DepartAdultPrice + userSession.DepartSkyWayAmount + userSession.DepartInsurance + userSession.DepartTerminalCharge + userSession.DepartOnlineQrCharge)
+                    userSession.DepartTotalAmount = (userSession.DepartAdultPrice + userSession.DepartInsurance + userSession.DepartTerminalCharge + userSession.DepartOnlineQrCharge)
                         * userSession.PassengerSeatDetailList.Length;
 
                    

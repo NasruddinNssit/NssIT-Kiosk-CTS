@@ -441,7 +441,7 @@ namespace NssIT.Kiosk.Client.ViewPage.Seat
 				_dropDetail = null;
 			}
 
-			decimal defaultSeatPrice = _adultPrice + InsurancePrice + SkyWayAmount + _terminalCharge + _onlineQrCharge;
+			decimal defaultSeatPrice = _adultPrice + InsurancePrice  + _terminalCharge + _onlineQrCharge;
 
 			SeatDeckCollection seatDeckColl = _seatCalibrator.GenerateSeatDeckCollection(seatState.col1, seatState.col2, seatState.row, defaultSeatPrice, seatState.details);
 

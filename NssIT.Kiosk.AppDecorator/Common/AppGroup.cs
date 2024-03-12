@@ -24,7 +24,7 @@ namespace NssIT.Kiosk.AppDecorator.Common
         public static string Larkin => "LAR";
         public static string Klang => "KLG";
 
-        public static string Genting => "GTG";
+        public static string Genting => "GHA";
 
         public static void GetStationInfo(AppGroup appGroup, out string stationCode, out string stationName)
         {
