@@ -1242,7 +1242,7 @@ namespace NssIT.Kiosk.Server.ServerApp
                             {
                                 if (updateCountDownUponDispatched)
                                 {
-                                    int countDownInterval = _standardCountDownIntervalSec + 3;
+                                    int countDownInterval = (_standardCountDownIntervalSec * 2) + 3;
 
                                     if (kioskMsg is UICustInfoAck uICustInfo)
                                     {

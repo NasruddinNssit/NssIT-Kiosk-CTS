@@ -663,6 +663,9 @@
                           <Height>2.98486in</Height>
                           <Width>0.21667in</Width>
                           <ZIndex>21</ZIndex>
+                          <Visibility>
+                            <Hidden>true</Hidden>
+                          </Visibility>
                           <Style>
                             <Border>
                               <Style>None</Style>
@@ -1526,7 +1529,6 @@
                         </Border>
                       </Style>
                     </Rectangle>
-                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
               </TablixCells>
