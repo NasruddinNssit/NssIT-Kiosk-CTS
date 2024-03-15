@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:NssIT.Kiosk.Client.ViewPage.Insurance"
       mc:Ignorable="d"  Stylus.IsPressAndHoldEnabled="False"
-      d:DesignHeight="900" d:DesignWidth="750"
+      d:DesignHeight="800" d:DesignWidth="870"
       FontFamily="Segoe UI" Background="White"
       Title="SkyWay" Loaded="Page_Loaded" Unloaded="Page_Unloaded">
 
@@ -18,305 +18,180 @@
     </Page.Resources>
 
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition Height="100" />
+            <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Border Grid.Column="0" Grid.Row="0" BorderThickness="0,2,0,0" BorderBrush="#FFDDDDDD" Margin="5,0,5,0"/>
+        <Border Grid.Row="0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
 
-        <Border Grid.Column="0" Grid.Row="0" BorderThickness="1,1,1,1" BorderBrush="#FFDDDDDD" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0">
-            <Grid HorizontalAlignment="Center" Margin="7,0,0,0">
+                <Border Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="3">
+                    <Border Height="40" Width="650" VerticalAlignment="Top" HorizontalAlignment="Center" CornerRadius="10, 10, 10, 10" x:Name="BdOperatorLogo"/>
+                </Border>
+                <TextBlock Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3" Text="Transnasional" 
+   HorizontalAlignment="Center" VerticalAlignment="Bottom" 
+   FontSize="32" x:Name="TxtOperatorName"/>
+            </Grid>
+        </Border>
+
+        <Border Grid.Column="0" Grid.Row="1" BorderThickness="1,1,1,1" BorderBrush="#FFDDDDDD" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" Height="250">
+            <Grid HorizontalAlignment="Center" Margin="7,0,0,0" VerticalAlignment="Center">
                 <Grid.ColumnDefinitions>
                     <!-- C0, Left Margin-->
                     <ColumnDefinition Width="5" />
                     <!-- C1, Left Label -->
-                    <ColumnDefinition Width="180" />
+                    <ColumnDefinition Width="300" />
                     <!-- C2, : -->
-                    <ColumnDefinition Width="20" />
+                    <ColumnDefinition Width="40" />
                     <!-- C3, Data -->
-                    <ColumnDefinition Width="500"/>
+                    <ColumnDefinition Width="300"/>
                     <!-- C4, Right Margin-->
                     <ColumnDefinition Width="5" />
                 </Grid.ColumnDefinitions>
 
                 <Grid.RowDefinitions>
                     <!-- R0, Top Margin -->
-                    <RowDefinition Height="20"/>
-                    <!-- R1, Bus Company -->
-                    <RowDefinition Height="80"/>
+                   
                     <!-- R2, Origin-->
                     <RowDefinition Height="Auto"/>
                     <!-- R3, Destination -->
                     <RowDefinition Height="Auto"/>
                     <!-- R4, Departure Date -->
                     <RowDefinition Height="Auto"/>
-                    <!-- R5, Departure Time -->
-                    <RowDefinition Height="Auto"/>
-                    <!-- R6, Seat -->
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-
-                    <!-- R7, <Space> -->
-                    <RowDefinition Height="50"/>
-                    <!-- R8, Insuranse Sentence -->
-                    <RowDefinition Height="Auto"/>
-
-                    <RowDefinition Height="Auto"/>
-                    <!-- R9, <Space> -->
-                    <RowDefinition Height="30"/>
-                    
-                    <!-- R10, Decision Button -->
-                    <RowDefinition Height="70"/>
-                    
-                    <!-- Bottom Margin-->
-                    <RowDefinition Height="*"/>
+                   
                 </Grid.RowDefinitions>
 
 
 
                 <!-- R1, Company .. /Resources/Transnasional.bmp .. https://cdn.bookaway.com/media/files/5d4005faf0a68d080ff2032f.png -->
-                <Border Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3">
-                    <Border Height="40" Width="650" VerticalAlignment="Top" HorizontalAlignment="Center" CornerRadius="10, 10, 10, 10" x:Name="BdOperatorLogo"/>
-                </Border>
-
-                <TextBlock Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3" Text="Transnasional" 
-                   HorizontalAlignment="Center" VerticalAlignment="Bottom" 
-                   FontSize="32" x:Name="TxtOperatorName"/>
-
-                <!--
-        <TextBlock Grid.Column="1" Grid.Row="2" Text="Company"
-                   VerticalAlignment="Top" Margin="0,5,0,5" FontSize="20"/>
-
-        <TextBlock Grid.Column="2" Grid.Row="2" Text=":"
-                   VerticalAlignment="Top" HorizontalAlignment="Center" 
-                   Margin="0,5,0,0" FontSize="20"/>
--->
-
-
-                <!-- R1, Origin -->
-                <TextBlock Grid.Column="1" Grid.Row="2" Text="{DynamicResource ORIGIN_Label}"
-                   VerticalAlignment="Top" Margin="0,5,0,5" FontSize="32"/>
-
-                <TextBlock Grid.Column="2" Grid.Row="2" Text=":"
-                   VerticalAlignment="Top" HorizontalAlignment="Center" 
-                   Margin="0,5,0,0" FontSize="32"/>
-
-                <TextBlock Grid.Column="3" Grid.Row="2" Text="Melaka Sentral"
-                   VerticalAlignment="Top" Margin="0,5,0,0" FontSize="32" 
-                   TextWrapping="WrapWithOverflow" x:Name="TxtOriginDesc"/>
-
-                <!-- R2, Destination -->
-                <TextBlock Grid.Column="1" Grid.Row="3" Text="{DynamicResource DESTINATION_Label}"
-                   VerticalAlignment="Top" Margin="0,5,0,5" FontSize="32"/>
-
-                <TextBlock Grid.Column="2" Grid.Row="3" Text=":"
-                   VerticalAlignment="Top" HorizontalAlignment="Center" 
-                   Margin="0,5,0,0" FontSize="32"/>
-
-                <TextBlock Grid.Column="3" Grid.Row="3" Text="TBS (Terminal Bersepadu Selatan)"
-                   VerticalAlignment="Top" Margin="0,5,0,0" FontSize="32" 
-                   TextWrapping="Wrap" x:Name="TxtDestDesc"/>
-
-                <!-- R3, Departure Date -->
-                <TextBlock Grid.Column="1" Grid.Row="4" Text="{DynamicResource DATE_Label}"
-                   VerticalAlignment="Top" Margin="0,5,0,5" FontSize="32"/>
-
-                <TextBlock Grid.Column="2" Grid.Row="4" Text=":"
-                   VerticalAlignment="Top" HorizontalAlignment="Center" 
-                   Margin="0,5,0,0" FontSize="32"/>
-
-                <TextBlock Grid.Column="3" Grid.Row="4" Text="30/09/2020"
-                   VerticalAlignment="Top" Margin="0,5,0,0" FontSize="32" x:Name="TxtDepartDate"/>
-
-                <!-- R3, Departure Time -->
-                <TextBlock Grid.Column="1" Grid.Row="5" Text="{DynamicResource Time_Label}"
-                   VerticalAlignment="Top" Margin="0,5,0,5" FontSize="32"/>
-
-                <TextBlock Grid.Column="2" Grid.Row="5" Text=":"
-                   VerticalAlignment="Top" HorizontalAlignment="Center" 
-                   Margin="0,5,0,0" FontSize="32"/>
-
-                <TextBlock Grid.Column="3" Grid.Row="5" Text="10:00AM"
-                   VerticalAlignment="Top" Margin="0,5,0,0" FontSize="32" x:Name="TxtDepartTime"/>
-
-                <!-- R6, Seat -->
-                <TextBlock Grid.Column="1" Grid.Row="7" Text="{DynamicResource SEAT_Label}" TextWrapping="WrapWithOverflow" 
-                   VerticalAlignment="Top" Margin="0,5,0,5" FontSize="32"/>
-
-                <TextBlock Grid.Column="2" Grid.Row="7" Text=":"
-                   VerticalAlignment="Top" HorizontalAlignment="Center" 
-                   Margin="0,5,0,0" FontSize="32"/>
-
-
+              
                 
 
-                <Grid Grid.Column="3" Grid.Row="7" Grid.ColumnSpan="2" Margin="0,3,0,0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="500"/>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-
-                    <ListView Name="LstSeatList" Grid.Column="0" Grid.Row="0" 
-                        Height="265"
-                        ItemsSource="{Binding}"
-                        BorderThickness="0"
-                        IsSynchronizedWithCurrentItem="True" 
-                        ScrollViewer.CanContentScroll="False" Margin="3,0,0,0" 
-                        ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
-                        SelectionMode="Single">
-
-                        <ListView.Resources>
-                            <Style TargetType="GridViewColumnHeader">
-                                <Setter Property="Visibility" Value="Collapsed" />
-                            </Style>
-                        </ListView.Resources>
-
-                        <ListView.ItemContainerStyle>
-                            <Style TargetType="ListViewItem">
-                                <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-                                <!--<Setter Property="Focusable" Value="false"/>-->
-                                <Setter Property="Height" Value="50" />
-
-                                <Style.Triggers>
-                                    <Trigger Property="IsSelected" Value="True">
-                                        <Setter Property="Background" Value="{x:Null}" />
-                                        <Setter Property="BorderBrush" Value="{x:Null}" />
-                                    </Trigger>
-                                </Style.Triggers>
-                            </Style>
-                        </ListView.ItemContainerStyle>
-                        <ListView.View>
-                            <GridView AllowsColumnReorder="False">
-
-                                <!--Seat No.-->
-                                <GridViewColumn Width="100"  x:Name="GvcSeatDesnCol">
-                                    <GridViewColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <TextBlock Tag="TxtSeatDesnTag" Text="{Binding Path=SeatDesn}"  TextAlignment="Left" VerticalAlignment="Center" Margin="0,0,0,0" FontSize="32" Foreground="#FF444444"/>
-                                        </DataTemplate>
-                                    </GridViewColumn.CellTemplate>
-                                </GridViewColumn>
-
-                                <!--Space-->
-                                <GridViewColumn Width="20" x:Name="GvcSpace1Col">
-                                    <GridViewColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <TextBlock Tag="TxtSpace1Tag" Text=" "  TextAlignment="Left" VerticalAlignment="Center" Margin="0,0,0,0" FontSize="32" Foreground="#FF444444"/>
-                                        </DataTemplate>
-                                    </GridViewColumn.CellTemplate>
-                                </GridViewColumn>
-
-                                <!--Currency-->
-                                <GridViewColumn Width="100" x:Name="GvcCurrencyCol">
-                                    <GridViewColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <TextBlock Tag="TxtCurrencyTag" Text="{Binding Path=Currency}"  TextAlignment="Right" VerticalAlignment="Center" Margin="0,0,0,0" FontSize="32" Foreground="#FF444444"/>
-                                        </DataTemplate>
-                                    </GridViewColumn.CellTemplate>
-                                </GridViewColumn>
-
-                                <!--Ticket Amount-->
-                                <GridViewColumn Width="110" x:Name="GvcTripDetailCol">
-                                    <GridViewColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <TextBlock Tag="TxtCurrencyTag" Text="{Binding Path=PriceStr}"  TextAlignment="Right" VerticalAlignment="Center" Margin="0,0,0,0" FontSize="32" Foreground="#FF444444"/>
-                                        </DataTemplate>
-                                    </GridViewColumn.CellTemplate>
-                                </GridViewColumn>
-                            </GridView>
-                        </ListView.View>
-                    </ListView>
-
-                    <Grid Grid.Column="3" Grid.Row="2" Grid.ColumnSpan="2" Margin="0,3,0,0">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="100"/>
-                            <ColumnDefinition Width="20"/>
-                            <!-- Currency -->
-                            <ColumnDefinition Width="100"/>
-                            <!-- Total Amount -->
-                            <ColumnDefinition Width="110"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                        </Grid.RowDefinitions>
-
-                        <Border Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="4" BorderThickness="0,1,0,0" BorderBrush="Black" />
-
-                        <TextBlock Grid.Column="0" Grid.Row="0" Text="{DynamicResource TOTAL_Label}" FontSize="32" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-                        <TextBlock Grid.Column="2" Grid.Row="0" Text="$" FontSize="32" VerticalAlignment="Center" HorizontalAlignment="Right" x:Name="TxtCurrency"/>
-                        <TextBlock Grid.Column="3" Grid.Row="0" Text="00.00" FontSize="32" VerticalAlignment="Center" HorizontalAlignment="Right" x:Name="TxtAmount"/>
-                    </Grid>
-
-                </Grid>
-
-
-                <!-- R7-->
-                <TextBlock Grid.Column="1" Grid.Row="6" Text="{DynamicResource SKYWAY_label}" TextWrapping="WrapWithOverflow" 
-                           VerticalAlignment="Top" Margin="0,5,0,5" FontSize="32"/>
-
-
-                <TextBlock Grid.Column="2" Grid.Row="6" Text=":"
-                                VerticalAlignment="Top" HorizontalAlignment="Center" 
-                                 Margin="0,5,0,0" FontSize="32"/>
-
-
-                <!--<TextBlock Grid.Column="3" Grid.Row="7" Text="(MYR 9.00 X 4)"
-                        VerticalAlignment="Top" Margin="0,5,0,0" FontSize="32" x:Name="TxtSkywayPrice"/>-->
-
-                <Grid Grid.Column="3" Grid.Row="6" Grid.ColumnSpan="2" Margin="0,3,0,0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="10"/>
-                        <ColumnDefinition Width="10"/>
-                        <!-- Currency -->
-                        <ColumnDefinition Width="60"/>
-                        <!-- Total Amount -->
-                        <ColumnDefinition Width="100"/>
-                        <ColumnDefinition Width="30"/>
-                        <ColumnDefinition Width="30"/>
-                        <ColumnDefinition Width="10"/>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-
-
-                    <TextBlock Grid.Column="0" Grid.Row="0" Text="(" FontSize="32" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-                    <TextBlock Grid.Column="2" Grid.Row="0" Text="RM" FontSize="32" VerticalAlignment="Center" HorizontalAlignment="Left" x:Name="TxtCurrencySkyWay"/>
-                    <TextBlock Grid.Column="3" Grid.Row="0" Text="00.00" FontSize="32" VerticalAlignment="Center" HorizontalAlignment="Left" x:Name="TxtAmountSkyWay"/>
-                    <TextBlock Grid.Column="4" Grid.Row="0" Text="x" FontSize="32" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-                    <TextBlock Grid.Column="5" Grid.Row="0" Text="4" FontSize="32" VerticalAlignment="Center" HorizontalAlignment="Left" x:Name="TxtCustLen"/>
-                    <TextBlock Grid.Column="6" Grid.Row="0" Text=")" FontSize="32" VerticalAlignment="Center" HorizontalAlignment="Left" />
-
-                </Grid>
-
               
-                <!-- R8, Insuranse Sentence -->
-                <Grid Grid.Column="1" Grid.Row="10" Grid.ColumnSpan="3">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
+                <!-- R1, Origin -->
+                <TextBlock Grid.Column="1" Grid.Row="0" Text="AWANA GENTING"
+                   VerticalAlignment="Top" Margin="0,5,0,5" FontSize="32"  FontWeight="Bold"
+                            TextWrapping="Wrap" HorizontalAlignment="Right" Name="TxtOriginDesc"/>
 
-                    <TextBlock Grid.Row="0"
-                       Margin="0,0,0,0" FontSize="16"
-                       Text="Please include skyway ticket in my ticket."
-                       VerticalAlignment="Center"  
-                       TextWrapping="WrapWithOverflow" x:Name="TxtInsuranceA1"/>
+                <TextBlock Grid.Column="2" Grid.Row="0" Text=">"
+                   VerticalAlignment="Top" HorizontalAlignment="Center" 
+                   Margin="0,5,0,0" FontSize="32" FontWeight="Bold"/>
+
+                <TextBlock Grid.Column="3" Grid.Row="0" Text="1 UTAMA"
+                   VerticalAlignment="Top" Margin="0,5,0,0" FontSize="32" 
+                   TextWrapping="WrapWithOverflow" x:Name="TxtDestDesc" FontWeight="Bold" HorizontalAlignment="Left"/>
+
+                <!-- R2, Destination -->
+                <TextBlock Grid.Column="1" Grid.Row="1" Text="15/03/2024"
+                   VerticalAlignment="Top" Margin="0,5,0,5" FontSize="32" HorizontalAlignment="Right"
+                           x:Name="TxtDepartDate"/>
+
+                <TextBlock Grid.Column="2" Grid.Row="1" Text=""
+                   VerticalAlignment="Top" HorizontalAlignment="Center" 
+                   Margin="0,5,0,0" FontSize="32"/>
+
+                <TextBlock Grid.Column="3" Grid.Row="1" Text="10:00AM"
+                   VerticalAlignment="Top" Margin="0,5,0,0" FontSize="32" 
+                   TextWrapping="Wrap" x:Name="TxtDepartTime" HorizontalAlignment="Left"/>
+
+                <!-- R3, Departure Date -->
+                <TextBlock Grid.Column="1" Grid.Row="2" Text="Total Tickets (2)"
+                   VerticalAlignment="Top" Margin="0,5,0,5" FontSize="32" HorizontalAlignment="Left" x:Name="TxtTotalTicket"/>
+
+                <TextBlock Grid.Column="2" Grid.Row="2" Text=""
+                   VerticalAlignment="Top" HorizontalAlignment="Center" 
+                   Margin="0,5,0,0" FontSize="32"/>
+
+                <TextBlock Grid.Column="3" Grid.Row="2" Text="RM9.20"
+                   VerticalAlignment="Top" Margin="0,5,0,0" HorizontalAlignment="Right" FontSize="32" x:Name="TxtTicketPrice"/>
+
+            
+
+            </Grid>
+        </Border>
+
+        <Border Grid.Row="2" BorderThickness="1,1,1,1" BorderBrush="#FFDDDDDD" HorizontalAlignment="Center" VerticalAlignment="Center"  >
+
+            <Grid HorizontalAlignment="Center" >
+                <Grid.ColumnDefinitions>
+                    <!-- C0, Left Margin-->
+                    <ColumnDefinition Width="Auto" />
+                    <!-- C1, Left Label -->
+                    <ColumnDefinition Width="400" />
+                    <!-- C2, : -->
+                    <ColumnDefinition Width="20" />
+                    <!-- C3, Data -->
+                    <ColumnDefinition Width="400"/>
+                    <!-- C4, Right Margin-->
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <!-- R0, Top Margin -->
+                   
+                    <!-- R1, Bus Company -->
+                    <RowDefinition Height="80" />
+                    <!-- R2, Origin-->
+                    <RowDefinition Height="Auto"/>
+                    <!-- R3, Destination -->
+                    <RowDefinition Height="Auto"/>
+                    <!-- R4, Departure Date -->
 
                    
-                </Grid>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
 
 
-                <!-- R9, Decision Button -->
-                <Grid Grid.Column="1" Grid.Row="12" Grid.ColumnSpan="5">
+
+                <!-- R1, Company .. /Resources/Transnasional.bmp .. https://cdn.bookaway.com/media/files/5d4005faf0a68d080ff2032f.png -->
+
+
+
+                <Border Grid.ColumnSpan="4" Grid.Row="0" Background="#3169b2">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="{DynamicResource Buy_Label}" VerticalAlignment="Center" FontSize="30" Grid.ColumnSpan="2" Foreground="White" Margin="7, 0 ,0,0" x:Name="TxtSkyWayBuyLabel"/>
+                        <Image Grid.Column="2" Source="/Resources/SkyWayLogo.png" HorizontalAlignment="Right" Height="60"/>
+                    </Grid>
+                </Border>
+
+                <!-- R1, Origin -->
+                <TextBlock Grid.Column="1" Grid.Row="1" Text="{DynamicResource SKYWAY_Label}"
+        VerticalAlignment="Top" Margin="10,10,0,0" FontSize="25"
+                 TextWrapping="Wrap" x:Name="TxtSkyWayLbl"/>
+              
+
+               
+
+                <!-- R2, Destination -->
+                <TextBlock Grid.Column="1" Grid.Row="2" Text="RM 9.00 x 2"
+        VerticalAlignment="Top" Margin="10,10,0,0" FontSize="20" FontWeight="Bold" HorizontalAlignment="Left"
+                x:Name="TxtSkywayPrice"/>
+
+                <TextBlock Grid.Column="2" Grid.Row="2" Text=""
+        VerticalAlignment="Top" HorizontalAlignment="Center" 
+        Margin="0,5,0,0" FontSize="32"/>
+
+                <TextBlock Grid.Column="3" Grid.Row="2" Text="RM 18.00"
+        VerticalAlignment="Top" Margin="0,10,10,0" FontSize="20" 
+        TextWrapping="Wrap"  HorizontalAlignment="Right" FontWeight="Bold" x:Name="TxtSkywayTotalPrice"/>
+
+               
+
+               
+
+                <Grid Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="4" VerticalAlignment="Center" Margin="0, 0, 0, 10">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
@@ -326,18 +201,20 @@
                     </Grid.RowDefinitions>
 
                     <Border Grid.Column="0" Grid.Row="0" CornerRadius="5" Background="#FF43D82C" Height ="45" 
-                        VerticalAlignment="Top" Margin="0,0,20,0" HorizontalAlignment="Right" Width="150" x:Name="BdNo" MouseLeftButtonUp="BdNo_Click">
+VerticalAlignment="Top" Margin="0,0,20,0" HorizontalAlignment="Right" Width="150" x:Name="BdNo" MouseLeftButtonUp="BdNo_Click">
                         <TextBlock Text="{DynamicResource NO_Label}" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" MaxWidth="100" TextAlignment="Center" FontSize="16"/>
                     </Border>
 
                     <Border Grid.Column="1" Grid.Row="0" CornerRadius="5" Background="#FF43D82C" Height ="45" 
-                        VerticalAlignment="Top" Margin="20,0,0,0" HorizontalAlignment="Left" Width="150"  x:Name="BdYes" MouseLeftButtonUp="BdYes_Click">
+VerticalAlignment="Top" Margin="20,0,0,0" HorizontalAlignment="Left" Width="150"  x:Name="BdYes" MouseLeftButtonUp="BdYes_Click">
                         <TextBlock Text="{DynamicResource YES_Label}" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" MaxWidth="100" TextAlignment="Center" FontSize="16"/>
                     </Border>
                 </Grid>
-
             </Grid>
+
+            
         </Border>
+
 
 
     </Grid>

@@ -47,8 +47,6 @@ namespace NssIT.Kiosk.Client.ViewPage.Skyway
         private CustSeatDetail[] _departCustSeatDetail = null;
         private DateTime _departPassengerDate = DateTime.MinValue;
 
-        private SeatDetailViewList _seatDetailList = new SeatDetailViewList();
-
         private CultureInfo _provider = CultureInfo.InvariantCulture;
 		private ResourceDictionary _langMal = null;
 		private ResourceDictionary _langEng = null;
@@ -59,7 +57,7 @@ namespace NssIT.Kiosk.Client.ViewPage.Skyway
 		public pgSkyWay()
         {
             InitializeComponent();
-			LstSeatList.DataContext = _seatDetailList;
+			
 			_langMal = CommonFunc.GetXamlResource(@"ViewPage\Skyway\rosInsuranceMalay.xaml");
 			_langEng = CommonFunc.GetXamlResource(@"ViewPage\Skyway\rosInsuranceEnglish.xaml");
 		}
@@ -102,28 +100,39 @@ namespace NssIT.Kiosk.Client.ViewPage.Skyway
 
 				using(var d = this.Dispatcher.DisableProcessing())
 				{
-					_seatDetailList.Clear();
-					foreach(CustSeatDetail st in _departCustSeatDetail)
-					{
-						_seatDetailList.Add(new SeatDetailViewRow()
-						{
-							Currency = $@"{_departCurrency}",SeatDesn = $@"{st.Desn}",
-                            Price = (_departAdultPrice + _departInsurance + _departTerminalCharge + _departOnlineQrCharge)
-                        });
-					}
+					//_seatDetailList.Clear();
+					//foreach(CustSeatDetail st in _departCustSeatDetail)
+					//{
+					//	_seatDetailList.Add(new SeatDetailViewRow()
+					//	{
+					//		Currency = $@"{_departCurrency}",SeatDesn = $@"{st.Desn}",
+     //                       Price = (_departAdultPrice + _departInsurance + _departTerminalCharge + _departOnlineQrCharge)
+     //                   });
+					//}
 
-                    TxtCurrency.Text = _departCurrency;
-                    TxtAmount.Text = $@"{_departTotalAmount:#,###.00}";
+                   
 
                     TxtOperatorName.Text = _departCompanyDesc;
                     TxtOriginDesc.Text = _originStationName;
                     TxtDestDesc.Text = _destinationStationName;
                     TxtDepartDate.Text = _departPassengerDepartDateTime.ToString("dd/MM/yyyy");
                     TxtDepartTime.Text = _departPassengerDepartDateTime.ToString("hh:mm tt");
-					TxtCurrencySkyWay.Text = _departCurrency;
-					TxtAmountSkyWay.Text = $@"{_skyWayPrice:#,###.00}";
 
-					TxtCustLen.Text = _departCustSeatDetail.Length.ToString();
+					if(_language == LanguageCode.Malay)
+					{
+						TxtTotalTicket.Text = string.Format(_langMal["TOTAL_TICKET_Label"]?.ToString(), _departCustSeatDetail.Length);
+                        
+
+                    }
+					else
+					{
+                        TxtTotalTicket.Text = string.Format(_langEng["TOTAL_TICKET_Label"]?.ToString(), _departCustSeatDetail.Length);
+
+                    }
+					var skywayTotalPrice = _skyWayPrice * _departCustSeatDetail.Length;
+
+					TxtSkywayPrice.Text = $@"{_departCurrency} {_skyWayPrice: #,###.00} x {_departCustSeatDetail.Length}";
+                    TxtSkywayTotalPrice.Text = $@"{_departCurrency} {skywayTotalPrice: #,###.00} ";
                     BitmapImage bip = new BitmapImage();
                     bip.BeginInit();
                     bip.UriSource = new Uri(_departCompanyLogoUrl, UriKind.Absolute);

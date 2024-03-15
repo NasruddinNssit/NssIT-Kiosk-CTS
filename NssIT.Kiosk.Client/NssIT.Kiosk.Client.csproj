@@ -427,6 +427,7 @@
     <Content Include="Resources\genting.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Resources\SkyWayLogo.png" />
     <Content Include="ViewPage\BoardingPass\BoardingDate\rosBoardingDateEnglish.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

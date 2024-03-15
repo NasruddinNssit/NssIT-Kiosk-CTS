@@ -94,9 +94,9 @@ namespace NssIT.Kiosk.Client.ViewPage.Info
             else if(info == InfoCode.SkyWaySelectInfo)
             {
                 if (language == LanguageCode.Malay)
-                    TxtInfo.Text = _langMal["SKYWAY_INFO_Label"]?.ToString();
+                    TxtInfo.Text = "";
                 else
-                    TxtInfo.Text = _langEng["SKYWAY_INFO_Label"]?.ToString();
+                    TxtInfo.Text = "";
             }
 
             else if(info == InfoCode.InsuranceSelectInfo)

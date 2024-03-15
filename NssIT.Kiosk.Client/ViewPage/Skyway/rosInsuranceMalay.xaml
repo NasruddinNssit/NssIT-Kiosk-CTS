@@ -8,17 +8,12 @@
     <sys:String x:Key="NO_Label">Tidak</sys:String>
     <sys:String x:Key="YES_Label">Ya(Teruskan)</sys:String>
 
-    <sys:String x:Key="ORIGIN_Label">Lokasi Asal</sys:String>
-    <sys:String x:Key="DESTINATION_Label">Destinasi</sys:String>
-    <sys:String x:Key="DATE_Label">Tarikh</sys:String>
-    <sys:String x:Key="Time_Label">Masa</sys:String>
-    <sys:String x:Key="SEAT_Label">Tempat Duduk</sys:String>
-    <sys:String x:Key="TOTAL_Label">Jumlah</sys:String>
-    <sys:String x:Key="SKYWAY_label">Harga Tiket Kereta Kabel</sys:String>
+    
+    <sys:String x:Key="TOTAL_TICKET_Label">Jumlah Tiket ({0})</sys:String>
 
 
-    <sys:String x:Key="INSURENCE_A_1_Label">Sila sertakan pembelian tiket kereta kabel di dalam tiket saya.</sys:String>
+    <sys:String x:Key="SKYWAY_Label">Tiket Kereta Kabel Genting</sys:String>
 
-    <sys:String x:Key="INSURENCE_B_1_Label">* Insurans ini tidak sah untuk penumpang melebihi 80 tahun dan kewarganegaraan dari Iran, Cuba, Syria, Sudan, Korea Utara dan Wilayah Crimea dari Ukraine dan jika dibeli, polisi itu akan menjadi tidak sah dan premium tidak boleh dikembalikan.</sys:String>
+
 
 </ResourceDictionary>
