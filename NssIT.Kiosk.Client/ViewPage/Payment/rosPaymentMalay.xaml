@@ -27,7 +27,7 @@
     <sys:String x:Key="I_AM_DONE_Label">SELESAI</sys:String>
     <sys:String x:Key="PLEASE_CLEAR__Label">SILA KOSONGKAN</sys:String>
     <sys:String x:Key="THE_SCREEN__Label">SKRIN INI</sys:String>
-    <sys:String x:Key="PAUSE_Label">HUBUNGI SOKONGAN KAUNTER</sys:String>
+    <sys:String x:Key="PAUSE_Label">JEDA</sys:String>
     <sys:String x:Key="SCREEN__Label">SKRIN</sys:String>
     <sys:String x:Key="WE_SORRY_Label">Haraf Maaf,</sys:String>
     <sys:String x:Key="UNABLE_COMPLETE_TRANS_Label">pembayaran anda tidak berjaya.</sys:String>

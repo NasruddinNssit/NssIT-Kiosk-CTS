@@ -131,7 +131,11 @@ namespace NssIT.Kiosk.Client.ViewPage.Skyway
                     }
 					var skywayTotalPrice = _skyWayPrice * _departCustSeatDetail.Length;
 
-					TxtSkywayPrice.Text = $@"{_departCurrency} {_skyWayPrice: #,###.00} x {_departCustSeatDetail.Length}";
+					var totalDefaultprice = _departAdultPrice * _departCustSeatDetail.Length;
+
+					TxtTicketPrice.Text = $@"{_departCurrency} {totalDefaultprice: #,###.00}";
+
+                    TxtSkywayPrice.Text = $@"{_departCurrency} {_skyWayPrice: #,###.00} x {_departCustSeatDetail.Length}";
                     TxtSkywayTotalPrice.Text = $@"{_departCurrency} {skywayTotalPrice: #,###.00} ";
                     BitmapImage bip = new BitmapImage();
                     bip.BeginInit();

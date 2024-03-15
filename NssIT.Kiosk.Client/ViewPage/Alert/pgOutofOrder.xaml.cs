@@ -65,6 +65,11 @@ namespace NssIT.Kiosk.Client.ViewPage.Alert
             {
                 ImgStationLogo.Source = new BitmapImage(new Uri("/Resources/Klang Sentral Terminal 00.jpeg", UriKind.RelativeOrAbsolute));
             }
+            else if(App.SysParam.PrmAppGroup == AppDecorator.Common.AppGroup.Genting)
+            {
+                ImgStationLogo.Source = new BitmapImage(new Uri("/Resources/genting.png", UriKind.RelativeOrAbsolute));
+
+            }
             else
             {
                 ImgStationLogo.Source = new BitmapImage(new Uri("/Resources/MelakaSentral-logo.png", UriKind.RelativeOrAbsolute));

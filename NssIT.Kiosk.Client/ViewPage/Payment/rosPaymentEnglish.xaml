@@ -27,7 +27,7 @@
     <sys:String x:Key="I_AM_DONE_Label">DONE</sys:String>
     <sys:String x:Key="PLEASE_CLEAR__Label">PLEASE CLEAR</sys:String>
     <sys:String x:Key="THE_SCREEN__Label">THE SCREEN</sys:String>
-    <sys:String x:Key="PAUSE_Label">CONTACT SUPPORT</sys:String>
+    <sys:String x:Key="PAUSE_Label">PAUSE</sys:String>
     <sys:String x:Key="SCREEN__Label">SCREEN</sys:String>
     <sys:String x:Key="WE_SORRY_Label">We Are Sorry,</sys:String>
     <sys:String x:Key="UNABLE_COMPLETE_TRANS_Label">your payment did not go through.</sys:String>

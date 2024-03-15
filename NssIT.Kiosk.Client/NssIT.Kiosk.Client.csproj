@@ -424,6 +424,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Resource Include="Resources\CreditCardPayWave01.png" />
+    <Content Include="Resources\genting-v.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\genting.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -806,6 +809,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Reports\TicketGenting.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\TicketGentingErrorMessage.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="packages.config" />

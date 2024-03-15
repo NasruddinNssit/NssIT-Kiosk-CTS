@@ -12,8 +12,8 @@
         Title="Kiosk Ticketing" 
         Loaded="MainWindow_Loaded" Unloaded="MainWindow_Unloaded" >
     <!--WindowStyle="None" WindowState="Maximized"-->
-
-    <Grid>
+   
+    <Grid >
         <Grid.ColumnDefinitions>
             <ColumnDefinition x:Name="C00" Width="Auto" />
             <ColumnDefinition x:Name="C01" Width="*" />

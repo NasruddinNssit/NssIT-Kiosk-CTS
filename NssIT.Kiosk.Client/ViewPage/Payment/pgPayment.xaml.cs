@@ -167,6 +167,8 @@ namespace NssIT.Kiosk.Client.ViewPage.Payment
 
                 else if (App.SysParam.PrmAppGroup == AppGroup.Klang)
                     return $@"file://{App.ExecutionFolderPath}\Resources\Klang Sentral Terminal 00 - Vertical.png";
+                else if(App.SysParam.PrmAppGroup == AppGroup.Genting)
+                    return $@"file://{App.ExecutionFolderPath}\Resources\genting-v.png";
 
                 else
                     return $@"file://{App.ExecutionFolderPath}\Resources\MelSenLogo_Vertical.jpg";
@@ -208,6 +210,9 @@ namespace NssIT.Kiosk.Client.ViewPage.Payment
                     return "TicketTerminalBersepaduGombakErrorMessage";
                 else if (App.SysParam.PrmAppGroup == AppGroup.Klang)
                     return "TicketKlangSentralErrorMessage";
+                else if(App.SysParam.PrmAppGroup == AppGroup.Genting)
+                    return "TicketGentingErrorMessage";
+
                 else
                     return "TicketMelakaSentralErrorMessage";
             }
@@ -955,6 +960,8 @@ namespace NssIT.Kiosk.Client.ViewPage.Payment
 
                         PrintTicketError(uiCompltResult);
                         App.ShowDebugMsg("Print Sales Receipt on Fail Completed Transaction ..; pgPayment.UpdateTransCompleteStatus");
+
+                        Task.Delay(10000).Wait();
 
                         if (_isPauseOnPrinting == false)
                             App.MainScreenControl.ShowWelcome();
