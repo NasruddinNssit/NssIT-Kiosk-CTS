@@ -3,7 +3,7 @@
                     xmlns:sys="clr-namespace:System;assembly=mscorlib"
                     xmlns:local="clr-namespace:NssIT.Kiosk.Client.ViewPage.Skyway">
 
-    <sys:String x:Key="Buy_Label">Adakah anda ingin membeli tiket Kereta Kabel ? </sys:String>
+    <sys:String x:Key="Buy_Label">Adakah anda ingin sertakan Kereta Kabel ? </sys:String>
    
     <sys:String x:Key="NO_Label">Tidak</sys:String>
     <sys:String x:Key="YES_Label">Ya(Teruskan)</sys:String>

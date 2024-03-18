@@ -161,7 +161,7 @@
                 </TextBlock>
             </Button>
 
-            <Button HorizontalAlignment="Left" Margin="0 10 0 0" Style="{StaticResource btnPause}" Padding="20 5 20 5" Height="80" Width="180" x:Name="BtnPause" Click="BtnPause_Click">
+            <Button HorizontalAlignment="Left" Margin="0 10 0 0" Style="{StaticResource btnPause}" Padding="20 5 20 5" Height="80" Width="180" x:Name="BtnPause" Click="BtnPause_Click" Visibility="Collapsed">
                 <TextBlock TextAlignment="Center" FontSize="15" TextWrapping="Wrap">
                 <Run Text="{DynamicResource PAUSE_Label}"/>
                 <!--<LineBreak/>

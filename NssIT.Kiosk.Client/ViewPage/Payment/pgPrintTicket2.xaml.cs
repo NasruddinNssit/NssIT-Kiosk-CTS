@@ -130,11 +130,15 @@ namespace NssIT.Kiosk.Client.ViewPage.Payment
                 BtnDone.Visibility = Visibility.Visible;
                 System.Windows.Forms.Application.DoEvents();
 
-                if (isTransactionSuccess) { }
+                if (isTransactionSuccess) 
+                {
+                    BtnPause.Visibility = Visibility.Collapsed;
+                }
                 else
                 {
                     GrdSuccessPrintMsg.Visibility = Visibility.Collapsed;
                     GrdFailPrintMsg.Visibility = Visibility.Visible;
+                    BtnPause.Visibility = Visibility.Visible;
                 }
             }));
         }

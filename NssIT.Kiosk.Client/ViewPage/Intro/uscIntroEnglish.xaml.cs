@@ -206,7 +206,7 @@ namespace NssIT.Kiosk.Client.ViewPage.Intro
 				else if(App.SysParam.PrmAppGroup == AppDecorator.Common.AppGroup.Genting)
 				{
 					ImgStationLogo.Source = new BitmapImage(new Uri("/Resources/genting.png", UriKind.RelativeOrAbsolute));
-                    ImgTicketGirl.Source = new BitmapImage(new Uri("/Resources/Klang Sentral Girl_BI.png", UriKind.RelativeOrAbsolute));
+                    ImgTicketGirl.Source = new BitmapImage(new Uri("/Resources/Genting_BI.png", UriKind.RelativeOrAbsolute));
 					ImgStationLogo.Height = 60;
                 }
                 else
