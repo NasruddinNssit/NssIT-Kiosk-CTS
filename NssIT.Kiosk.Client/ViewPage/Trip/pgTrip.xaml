@@ -151,9 +151,9 @@
                                         <RowDefinition Height="Auto" />
                                     </Grid.RowDefinitions>
 
-                                    <TextBlock Grid.Column="0" Grid.Row="0" Tag="TxtTotalSeatTag" Text="{Binding Path=TotalSeatStr}" Visibility="{Binding Path=NormalSeatAvailableVisible}" TextWrapping="WrapWithOverflow" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="16" Foreground="#FF777777" Padding="0,2,0,7"/>
-                                    <TextBlock Grid.Column="0" Grid.Row="1" Tag="TxtTotalSeatTag2" Text="{Binding Path=TotalSeatStr}" Visibility="{Binding Path=QuickFinishSeatAvailableVisible}" TextWrapping="WrapWithOverflow" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" Foreground="#FFFF0000" Padding="0,2,0,7"/>
-                                    <TextBlock Grid.Column="0" Grid.Row="2" Tag="TxtTotalSeatTag3" Text="{Binding Path=TotalSeatStr}" Visibility="{Binding Path=SoldOutVisible}" TextWrapping="WrapWithOverflow" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="11" FontWeight="Bold" Foreground="#FFFF0000" Padding="0,2,0,7"/>
+                                    <TextBlock Grid.Column="0" Grid.Row="0" Tag="TxtTotalSeatTag" Text="{Binding Path=AvailableSeat}" Visibility="{Binding Path=NormalSeatAvailableVisible}" TextWrapping="WrapWithOverflow" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="16" Foreground="#FF777777" Padding="0,2,0,7"/>
+                                    <TextBlock Grid.Column="0" Grid.Row="1" Tag="TxtTotalSeatTag2" Text="{Binding Path=AvailableSeat}" Visibility="{Binding Path=QuickFinishSeatAvailableVisible}" TextWrapping="WrapWithOverflow" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" Foreground="#FFFF0000" Padding="0,2,0,7"/>
+                                    <TextBlock Grid.Column="0" Grid.Row="2" Tag="TxtTotalSeatTag3" Text="{Binding Path=AvailableSeat}" Visibility="{Binding Path=SoldOutVisible}" TextWrapping="WrapWithOverflow" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="11" FontWeight="Bold" Foreground="#FFFF0000" Padding="0,2,0,7"/>
 
                                 </Grid>
                                 

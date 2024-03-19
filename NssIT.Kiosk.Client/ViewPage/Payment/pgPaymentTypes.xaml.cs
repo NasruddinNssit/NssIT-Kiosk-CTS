@@ -100,7 +100,7 @@ namespace NssIT.Kiosk.Client.ViewPage.Payment
                 ShowEnableCancelButton(true);
                 ChangeScreenSize();
 
-                _endTransCountDown.ChangeCountDown("ENDING", 30, 700);
+                _endTransCountDown.ChangeCountDown("ENDING", 60, 1000);
             }
             catch (Exception ex)
             {

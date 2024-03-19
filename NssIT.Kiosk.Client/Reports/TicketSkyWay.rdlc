@@ -6,12 +6,12 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>2.76333in</Width>
+              <Width>2.76994in</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
             <TablixRow>
-              <Height>2.96538in</Height>
+              <Height>3.54871in</Height>
               <TablixCells>
                 <TablixCell>
                   <CellContents>
@@ -23,9 +23,9 @@
                           <MIMEType>image/png</MIMEType>
                           <Sizing>Fit</Sizing>
                           <Top>4.25265cm</Top>
-                          <Left>1.9539cm</Left>
-                          <Height>0.70695in</Height>
-                          <Width>1.16734in</Width>
+                          <Left>1.67602cm</Left>
+                          <Height>1.2382in</Height>
+                          <Width>1.30624in</Width>
                           <Style>
                             <Border>
                               <Style>None</Style>
@@ -45,7 +45,9 @@
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox4</rd:DefaultName>
@@ -74,6 +76,7 @@
                                 <TextRun>
                                   <Value>AWANA SKYWAY</Value>
                                   <Style>
+                                    <FontSize>8pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -120,7 +123,7 @@
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox4</rd:DefaultName>
-                          <Top>2.38122in</Top>
+                          <Top>2.98191in</Top>
                           <Left>0.13731in</Left>
                           <Height>0.25708in</Height>
                           <Width>0.50694in</Width>
@@ -143,61 +146,25 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!skywaydatefrom.Value</Value>
+                                  <Value>=Fields!skywaydatefrom.Value &amp; "-" &amp; Fields!skywaydateto.Value</Value>
                                   <Style>
                                     <FontSize>8pt</FontSize>
-                                  </Style>
-                                </TextRun>
-                                <TextRun>
-                                  <Value>-</Value>
-                                  <Style>
-                                    <FontSize>8pt</FontSize>
+                                    <TextDecoration>Underline</TextDecoration>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox9</rd:DefaultName>
-                          <Top>2.38122in</Top>
-                          <Left>0.65205in</Left>
+                          <Top>2.98191in</Top>
+                          <Left>0.64425in</Left>
                           <Height>0.25708in</Height>
-                          <Width>0.69305in</Width>
+                          <Width>1.28194in</Width>
                           <ZIndex>4</ZIndex>
-                          <ToolTip>=Fields!skywaydatefrom.Value</ToolTip>
-                          <Style>
-                            <Border>
-                              <Style>None</Style>
-                            </Border>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                            <WritingMode>Horizontal</WritingMode>
-                          </Style>
-                        </Textbox>
-                        <Textbox Name="skywaydateto">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value>=Fields!skywaydateto.Value</Value>
-                                  <Style>
-                                    <FontSize>8pt</FontSize>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style />
-                            </Paragraph>
-                          </Paragraphs>
-                          <Top>2.38122in</Top>
-                          <Left>1.34509in</Left>
-                          <Height>0.25708in</Height>
-                          <Width>0.5993in</Width>
-                          <ZIndex>5</ZIndex>
-                          <ToolTip>=Fields!skywaydateto.Value</ToolTip>
+                          <ToolTip>=Fields!skywaydatefrom.Value &amp; "-" &amp; Fields!skywaydateto.Value</ToolTip>
                           <Style>
                             <Border>
                               <Style>None</Style>
@@ -234,11 +201,11 @@
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox12</rd:DefaultName>
-                          <Top>2.38122in</Top>
-                          <Left>1.95828in</Left>
+                          <Top>2.98191in</Top>
+                          <Left>1.92619in</Left>
                           <Height>0.25708in</Height>
-                          <Width>0.78945in</Width>
-                          <ZIndex>6</ZIndex>
+                          <Width>0.82154in</Width>
+                          <ZIndex>5</ZIndex>
                           <Style>
                             <Border>
                               <Style>None</Style>
@@ -269,7 +236,9 @@
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox13</rd:DefaultName>
@@ -277,7 +246,7 @@
                           <Left>0.13731in</Left>
                           <Height>0.1911in</Height>
                           <Width>2.61042in</Width>
-                          <ZIndex>7</ZIndex>
+                          <ZIndex>6</ZIndex>
                           <Style>
                             <Border>
                               <Style>None</Style>
@@ -316,7 +285,7 @@
                           <Left>0.64425in</Left>
                           <Height>0.51736in</Height>
                           <Width>2.10348in</Width>
-                          <ZIndex>8</ZIndex>
+                          <ZIndex>7</ZIndex>
                           <Style>
                             <Border>
                               <Style>None</Style>
@@ -336,7 +305,7 @@
                           <Left>0.13731in</Left>
                           <Height>0.54514in</Height>
                           <Width>0.50694in</Width>
-                          <ZIndex>9</ZIndex>
+                          <ZIndex>8</ZIndex>
                           <Style>
                             <Border>
                               <Style>None</Style>
@@ -366,7 +335,7 @@
                           <Left>0.13731in</Left>
                           <Height>0.2043in</Height>
                           <Width>2.61042in</Width>
-                          <ZIndex>10</ZIndex>
+                          <ZIndex>9</ZIndex>
                           <Style>
                             <Border>
                               <Style>None</Style>
@@ -400,7 +369,7 @@
                           <Left>0.14511in</Left>
                           <Height>0.1793in</Height>
                           <Width>2.61042in</Width>
-                          <ZIndex>11</ZIndex>
+                          <ZIndex>10</ZIndex>
                           <Style>
                             <Border>
                               <Style>None</Style>
@@ -431,11 +400,11 @@
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox1</rd:DefaultName>
-                          <Top>2.6383in</Top>
+                          <Top>3.29455in</Top>
                           <Left>0.13731in</Left>
                           <Height>0.19167in</Height>
                           <Width>2.61042in</Width>
-                          <ZIndex>12</ZIndex>
+                          <ZIndex>11</ZIndex>
                           <Style>
                             <Border>
                               <Style>None</Style>
@@ -476,8 +445,8 @@
         <PageBreak>
           <BreakLocation>End</BreakLocation>
         </PageBreak>
-        <Height>2.96538in</Height>
-        <Width>2.76333in</Width>
+        <Height>3.54871in</Height>
+        <Width>2.76994in</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -485,10 +454,10 @@
         </Style>
       </Tablix>
     </ReportItems>
-    <Height>2.96538in</Height>
+    <Height>3.54871in</Height>
     <Style />
   </Body>
-  <Width>2.76333in</Width>
+  <Width>2.76994in</Width>
   <Page>
     <PageHeight>3in</PageHeight>
     <PageWidth>8in</PageWidth>
