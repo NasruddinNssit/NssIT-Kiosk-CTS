@@ -424,6 +424,12 @@
       <SubType>Designer</SubType>
     </Page>
     <Resource Include="Resources\CreditCardPayWave01.png" />
+    <Content Include="Resources\Credit-Debit-BM.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Credit-Debit-EN.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\genting-v.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

@@ -122,7 +122,9 @@
             <Image HorizontalAlignment="Right" Margin="0 10 0 45" Height="100"
                Source="/Resources/icon-bottom-eWallet-bm-03.png" Visibility="Visible" x:Name="ImgEWallet"/>
             <Image HorizontalAlignment="Right" Margin="0 10 0 45" Height="100"
-    Source="/Resources/icon-bottom-kredit-bm-01.png" Visibility="Visible" x:Name="ImgCreditCard"/>
+    Source="/Resources/Credit-Debit-BM.png" Visibility="Visible" x:Name="ImgCreditCard"/>
+            
+            
             <Image HorizontalAlignment="Right" Margin="0 10 0 45" Height="100"
                Source="/Resources/icon-bottom-tunai-bm-03.png" Visibility="Visible" x:Name="ImgCash"/>
         </StackPanel>
