@@ -203,7 +203,7 @@ namespace NssIT.Kiosk.Client
 						}
 					}
 					else if (pT == PaymentType.CreditCard)
-						pStr = "Credit Card";
+						pStr = "Credit/Debit Card";
 					else if (pT == PaymentType.PaymentGateway)
 						pStr = "eWallet";
 
