@@ -224,7 +224,7 @@
                           <rd:DefaultName>Name</rd:DefaultName>
                           <Top>0.89549in</Top>
                           <Left>1.65898in</Left>
-                          <Height>2.51813in</Height>
+                          <Height>2.29243in</Height>
                           <Width>0.21494in</Width>
                           <ZIndex>6</ZIndex>
                           <Style>
@@ -255,9 +255,9 @@
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>IC</rd:DefaultName>
-                          <Top>4.34957in</Top>
+                          <Top>4.09609in</Top>
                           <Left>1.65898in</Left>
-                          <Height>0.63611in</Height>
+                          <Height>0.93126in</Height>
                           <Width>0.21494in</Width>
                           <ZIndex>7</ZIndex>
                           <Style>
@@ -363,8 +363,8 @@
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox2</rd:DefaultName>
-                          <Top>3.4414in</Top>
-                          <Left>1.65898in</Left>
+                          <Top>3.18792in</Top>
+                          <Left>1.67287in</Left>
                           <Height>0.89428in</Height>
                           <Width>0.21494in</Width>
                           <ZIndex>11</ZIndex>
