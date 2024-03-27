@@ -12,7 +12,7 @@
     <sys:String x:Key="DEPART_TRIP_INFO_Label">Please choose a departing trip</sys:String>
     <sys:String x:Key="DEPART_SEAT_INFO_Label">Pick your seat</sys:String>
     <sys:String x:Key="DEPART_PICKUP_DROPOFF_INFO_Label">Select both your preferred pickup and drop-off locations</sys:String>
-    <sys:String x:Key="PASSENGER_INFO_Label">Please provide the following personal details</sys:String>
+    <sys:String x:Key="PASSENGER_INFO_Label">Please provide the following passenger details</sys:String>
     <sys:String x:Key="INSURANCE_INFO_Label">Do yo want to include insurance ?</sys:String>
     <sys:String x:Key="SKYWAY_INFO_Label">Do you want to include skyway ?</sys:String>
 
